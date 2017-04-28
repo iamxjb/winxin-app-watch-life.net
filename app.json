@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/logs/logs",
+    "pages/page/page"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#21759b",
+    "navigationBarTitleText": "守望轩",
+    "navigationBarTextStyle":"#fff"
+  }
+}

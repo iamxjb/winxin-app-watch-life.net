@@ -1,0 +1,31 @@
+
+.header {
+  padding: 50rpx 0; 
+  text-align: center;
+  font-weight: normal;
+    font-size: 30rpx;  
+    line-height: 40rpx;
+    color: #757575;
+}
+
+.header_img {
+  padding: 50rpx 0; 
+}
+
+.content-article {
+    margin-bottom: 1.142857143rem ;
+    border-bottom: 2rpx solid #ededed;
+}
+.entry-title {
+    font-size: 50rpx;
+    line-height: 1.2;
+    font-weight:normal;
+    outline: none;
+    color: #21759b;
+    margin-bottom:48rpx;
+}
+.entry-summary{
+  font-size: 35rpx;
+  line-height: 50rpx;
+
+}

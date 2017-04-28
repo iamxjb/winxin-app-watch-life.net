@@ -1,0 +1,35 @@
+
+<!--index.wxml-->
+<import src="../../templates/header.wxml" />
+<view class="container">
+  <view class="top-bar">
+    <view class="top-bar-item">
+      <navigator url="/pages/index/index">Home</navigator>
+    </view>
+    <block wx:for-items="{{pagesList}}">
+      <block wx:if="{{item.id !=29 && item.id !=32 }}">
+        <view class="top-bar-item">
+          <navigator url="/pages/page/page?id={{item.id}}">{{item.title.rendered}}</navigator>
+        </view>
+      </block>
+    </block>
+  </view>
+  <template is="tempHeader" />
+  <scroll-view  style="height:{{scrollHeight}}px;" scroll-y="true" bindscrolltolower="lower" lower-threshold="200rpx" >
+    <block wx:for-items="{{postsList}}">
+      <view class="posts-item" index="{{index}}" id="{{item.id}}" catchtap="redictDetail">
+        <view class="content-article ">
+          <view class="entry-title">
+            {{item.title.rendered}}
+          </view>
+          <view class="entry-summary">
+            {{item.summary}}
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  <loading hidden="{{hidden}}">
+    加载中...
+  </loading>
+</view>
