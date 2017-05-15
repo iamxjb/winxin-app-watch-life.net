@@ -17,5 +17,6 @@
 4、文章列表页添加发布时间。
 
 5、升级最新的微信小程序富文本解析组件wxParse（https://github.com/icindy/wxParse）
+
 升级的详细说明见：https://www.watch-life.net/wordpress/wordpress-weixin-1-5.html
 
