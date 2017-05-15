@@ -1,26 +1,54 @@
-
 <!--index.wxml-->
 <import src="../../templates/header.wxml" />
+
 <view class="container">
-  <view class="top-bar">
-    <view class="top-bar-item">
-      <navigator url="/pages/index/index">Home</navigator>
-    </view>
-    <block wx:for-items="{{pagesList}}">
-      <block wx:if="{{item.id !=29 && item.id !=32 }}">
-        <view class="top-bar-item">
-          <navigator url="/pages/page/page?id={{item.id}}">{{item.title.rendered}}</navigator>
+ 
+ <!-- 侧滑菜单-->
+  <view class="slide-mask" style="display:{{maskDisplay}}" bindtap="slideCloseEvent"></view>
+  <view class="slide-menu" style="right: {{slideRight}}px;width: {{slideWidth}}px;height:{{slideHeight}}px;" animation="{{slideAnimation}}">
+      <scroll-view scroll-y="true" style="height:100%;width:100%">
+      <view class="header">
+        <view class="toolbar">
+          <block wx:key="id" wx:for="{{pagesList}}">
+            <block wx:if="{{item.id !=29 && item.id !=32 }}">
+              <view class="item">
+                <navigator url="/pages/page/page?id={{item.id}}">{{item.title.rendered}}</navigator>
+              </view>
+            </block>
+          </block>
+
         </view>
-      </block>
-    </block>
+        <icon type="cancel" size="30" class="close-btn" color="#FFF" bindtap="slideCloseEvent" />
+      </view>
+      <view class="menu-item home">
+        <image src="../../images/home.png" class="home-icon"></image>
+        
+        <navigator url="/pages/index/index"><text class="home-text">Home</text></navigator>
+      </view>
+
+      <view class="slide-inner">
+        <block wx:key="id" wx:for="{{categoriesList}}">
+          <view class="menu-item" data-id="{{item.id}}"  bindtap="redictIndex">
+         <text class="home-text"><text>{{item.name}}({{item.count}})</text> </text>                       
+          </view>
+          
+        </block>
+      </view>
+    </scroll-view>
   </view>
-  <template is="tempHeader" />
-  <scroll-view  style="height:{{scrollHeight}}px;" scroll-y="true" bindscrolltolower="lower" lower-threshold="200rpx" >
-    <block wx:for-items="{{postsList}}">
+    <!-- 侧滑菜单  -->
+
+
+  <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true" bindscrolltolower="lower" lower-threshold="200rpx">
+   <template is="tempHeader" />
+    <block wx:key="id" wx:for="{{postsList}}">
       <view class="posts-item" index="{{index}}" id="{{item.id}}" catchtap="redictDetail">
         <view class="content-article ">
           <view class="entry-title">
             {{item.title.rendered}}
+          </view>
+          <view class="entry-date">
+            发表于： {{item.date}}
           </view>
           <view class="entry-summary">
             {{item.summary}}
@@ -28,7 +56,10 @@
         </view>
       </view>
     </block>
+
   </scroll-view>
+
+  <view class="float-action" bindtap="ballClickEvent" style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent"> </view>
   <loading hidden="{{hidden}}">
     加载中...
   </loading>

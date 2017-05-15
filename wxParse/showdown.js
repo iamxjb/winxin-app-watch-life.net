@@ -1,7 +1,15 @@
-;/*! showdown 19-08-2016 */
-(function(){
 /**
- * Created by Tivie on 13-07-2015.
+ * 
+ * showdown: https://github.com/showdownjs/showdown
+ * 
+ * author: Di (微信小程序开发工程师)
+ * organization: WeAppDev(微信小程序开发论坛)(http://weappdev.com)
+ *               垂直微信小程序开发交流社区
+ * 
+ * github地址: https://github.com/icindy/wxParse
+ * 
+ * for: 微信小程序富文本解析
+ * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
  */
 
 function getDefaultOpts(simple) {
@@ -2521,24 +2529,4 @@ showdown.subParser('unescapeSpecialChars', function (text) {
   });
   return text;
 });
-
-var root = this;
-
-// CommonJS/nodeJS Loader
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = showdown;
-
-// AMD Loader
-} else if (typeof define === 'function' && define.amd) {
-  define(function () {
-    'use strict';
-    return showdown;
-  });
-
-// Regular Browser loader
-} else {
-  root.showdown = showdown;
-}
-}).call(this);
-
-//# sourceMappingURL=showdown.js.map
+module.exports = showdown;

@@ -1,0 +1,107 @@
+
+.float-action {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 10px #AAA;
+  background: #21759b;
+  z-index: 100;
+}
+
+/*slide-menu*/
+.slide-mask {
+  position: fixed;
+  width: 100%;
+  top:0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .3);
+  z-index: 800;
+}
+.slide-menu {
+  position: fixed;
+ top: 2rpx;
+  background: #FFF;
+  z-index: 900;
+  
+}
+/*.slide-menu .slide-inner {
+  padding: 40rpx;
+}*/
+.slide-menu .header {
+  background: #21759b;
+  height: 100rpx;
+  color: #FFF;
+  padding: 40rpx 40rpx 40rpx 40rpx;
+   margin-bottom:0rpx;
+   
+}
+
+
+.toolbar {
+  height: 100rpx;
+  padding-top: 25rpx;
+  line-height: 75rpx;
+}
+.toolbar .item {
+  width: 30%;
+  display: inline-block;
+  overflow: hidden;
+  text-align: center
+}
+.toolbar .item text {
+  display: inline-block;
+  font-size: 30rpx
+}
+.toolbar .item image {
+  display: inline-block;
+  position: relative;
+  top: 10rpx;
+  margin-right: 10rpx;
+  height: 50rpx;
+  width: 50rpx;
+}
+
+.slide-menu .menu-item {
+  position: relative;
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 40rpx;
+  font-size: 35rpx;
+ 
+}
+.slide-menu .menu-item:active {
+  background: #FAFAFA;
+}
+.slide-menu .menu-item image {
+  position: absolute;
+  top: 25rpx;
+  right: 40rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+.home-icon {
+  position: absolute;
+  top: 25rpx;
+  left: 40rpx;
+}
+.home-text {
+  position: absolute;
+  left: 100rpx;
+}
+.slide-menu .home {
+  color: #019DD6;
+  background:rgba(0,0,0,0.10);
+}
+
+.slide-menu .close-btn {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  z-index: 1000
+}
+
+

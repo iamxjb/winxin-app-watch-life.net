@@ -53,7 +53,7 @@ function getDateDiff (dateTimeStamp) {
   return result;
 }
 
-function cutstr(str, len) {
+function cutstr(str, len,flag) {
         var str_length = 0;
         var str_len = 0;
         var str_cut = new String();
@@ -67,9 +67,14 @@ function cutstr(str, len) {
             }
             str_cut = str_cut.concat(a);
             if (str_length >= len) {
+              if (flag == 0){
                 str_cut = str_cut.concat("...");
+
+              }              
+                
                 return str_cut;
             }
+           
         }
         //如果给定字符串小于指定长度，则返回源字符串；  
         if (str_length < len) {

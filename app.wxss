@@ -1,12 +1,10 @@
 /**app.wxss**/
 .container {
-    padding: 0 50rpx; 
+    padding: 0 25rpx; 
     background-color: #fff;
     font-family:Microsoft YaHei,Helvetica, Arial, sans-serif;
+    
 } 
-
-
-
 .header {
   padding: 50rpx 0; 
   text-align: center;
@@ -26,17 +24,32 @@
     margin-bottom: 1.142857143rem ;
     border-bottom: 2rpx solid #ededed;
 }
+.content-article-detail {    
+    border-bottom: 2rpx solid #ededed;
+}
+
 .entry-title {
     font-size: 50rpx;
     line-height: 1.2;
     font-weight:normal;
     outline: none;
     color: #21759b;
-    margin-bottom:48rpx;
+    margin-bottom:25rpx;
 }
+.entry-date {
+    font-size: 25rpx;
+    line-height: 1.2;
+    font-weight:normal;
+    outline: none;
+    color: #21759b;
+    margin-bottom:30rpx;
+
+   
+}
+
 .entry-summary{
-  font-size: 35rpx;
-  line-height: 50rpx;
+  font-size: 35rpx;  
+  line-height:1.8rem
 
 }
 
@@ -64,3 +77,13 @@
 .other-navigator-hover {
     color:red;
 }
+
+.wxParse-p
+{
+  margin: 0 0 1.714285714rem;
+}
+
+
+
+
+
