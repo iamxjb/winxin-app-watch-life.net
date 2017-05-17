@@ -1,10 +1,17 @@
 # winxin-app-watch-life.net
-"守望轩"官网微信小程序
+# "守望轩"官网微信小程序
+
+![wordpress微信小程序](https://www.watch-life.net/images/2017/05/wordpress-weixin-15-1.png) 
+
+![wordpress微信小程序](https://www.watch-life.net/images/2017/05/wordpress-weixin-15-2.png) 
+
 程序开发流程及注意事项见：https://www.watch-life.net/wordpress/weixin-connect-wordpress.html
 
 技术支持网站：https://www.watch-life.net
 
 技术支持微信：
+
+![weixin](https://www.watch-life.net/images/iamxjbweixin.jpg) 
 
 
 # 更新历史：
