@@ -9,6 +9,8 @@
 
 技术支持网站：https://www.watch-life.net
 
+开源协议：MIT
+
 技术支持微信：
 
 ![weixin](https://www.watch-life.net/images/iamxjbweixin.jpg) 
