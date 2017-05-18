@@ -1,3 +1,14 @@
+/*
+ * 
+ * WordPres版微信小程序
+ * author: jianbo
+ * organization: 守望轩  www.watch-life.net
+ * github:    https://github.com/iamxjb/winxin-app-watch-life.net
+ * 技术支持微信号：iamxjb
+ * 开源协议：MIT
+ * 
+ */
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -87,9 +98,17 @@ function cutstr(str, len,flag) {
     return str.replace(/ /g,"");
   }
 
+  function formatDateTime(s)
+  {
+    //var str = s.replace("t", " ");
+    return s.replace("T", " ");
+
+  }
+
 module.exports = {
   formatTime: formatTime,
   getDateDiff: getDateDiff,
   cutstr:cutstr,
-  removeHTML:removeHTML
+  removeHTML:removeHTML,
+  formatDateTime: formatDateTime
 }

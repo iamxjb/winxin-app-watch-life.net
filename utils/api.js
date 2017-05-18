@@ -1,3 +1,14 @@
+/*
+ * 
+ * WordPres版微信小程序
+ * author: jianbo
+ * organization: 守望轩  www.watch-life.net
+ * github:    https://github.com/iamxjb/winxin-app-watch-life.net
+ * 技术支持微信号：iamxjb
+ * 开源协议：MIT
+ * 
+ */
+
 var HOST_URI = 'https://www.watch-life.net/wp-json/wp/v2/';
 
 var GET_PAGE='pages';
@@ -38,6 +49,11 @@ module.exports = {
     //获取分类列表
     getCategories: function (id, obj) {
       return HOST_URI + 'categories?per_page=50&orderby=count&order=desc'
+    },
+    //获取评论
+    getComments: function (id, obj) {
+      return HOST_URI + 'comments?orderby=date&order=asc&post=' + id
     }
+
     
 };

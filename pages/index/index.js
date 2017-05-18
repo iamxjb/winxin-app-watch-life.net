@@ -1,4 +1,14 @@
-// posts.js
+/*
+ * 
+ * WordPres版微信小程序
+ * author: jianbo
+ * organization: 守望轩  www.watch-life.net
+ * github:    https://github.com/iamxjb/winxin-app-watch-life.net
+ * 技术支持微信号：iamxjb
+ * 开源协议：MIT
+ * 
+ */
+
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
@@ -89,6 +99,8 @@ Page({
     wx.request({
       url: Api.getTopics(data),
       success: function (response) {
+        console.log(response);
+        self.data.postsList;
         self.setData({
           //postsList: response.data
           postsList: self.data.postsList.concat(response.data.map(function (item) {

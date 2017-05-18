@@ -1,0 +1,49 @@
+/*
+ * 
+ * WordPres版微信小程序
+ * author: jianbo
+ * organization: 守望轩  www.watch-life.net
+ * github:    https://github.com/iamxjb/winxin-app-watch-life.net
+ * 技术支持微信号：iamxjb
+ * 开源协议：MIT
+ * 
+ */
+
+.commentheader {  
+  padding: 50rpx 0; 
+  text-align: left;
+  font-weight: normal;
+    font-size: 30rpx;  
+    line-height: 40rpx;
+    color: #757575;     
+}
+
+.comment {    
+    border-bottom: 2rpx solid #ededed;
+}
+.comment-user {
+    font-size: 30rpx;
+    line-height: 1.2;
+    font-weight:normal;
+    outline: none;
+    color: #000;
+    margin-bottom:25rpx;
+    margin-top: 25rpx
+}
+.comment-date {
+    font-size: 25rpx;
+    line-height: 1.2;
+    font-weight:normal;
+    outline: none;
+    color: #21759b;
+    margin-bottom:30rpx;
+
+   
+}
+.comment-summary{
+  color: #757575; 
+  font-size: 30rpx;  
+  line-height:1.8rem
+
+}
+

@@ -1,4 +1,14 @@
-<!--index.wxml-->
+<!--/*
+ * 
+ * WordPres版微信小程序
+ * author: jianbo
+ * organization: 守望轩  www.watch-life.net
+ * github:    https://github.com/iamxjb/winxin-app-watch-life.net
+ * 技术支持微信号：iamxjb
+ * 开源协议：MIT
+ * 
+ */-->
+
 <import src="../../wxParse/wxParse.wxml"/> 
 <import src="../../templates/header.wxml"/>
 <view class="container">
@@ -8,10 +18,23 @@
                    {{detail.title.rendered}}
          </view>
          <view class="entry-date">
-            发表于： {{detail.date}}
+            发表于： {{detailDate}}
           </view>
          <view class="entry-summary">
          <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
          </view>
-    </view>   
+    </view>
+
+    <view class="commentheader">
+    有{{commentCount}}条评论
+    </view>
+ <block wx:key="id" wx:for="{{commentsList}}">
+    <view class="comment">
+  
+    <view class="comment-user">  {{item.author_name}} </view>      <view class="comment-date">  {{item.date}} </view>
+    <view class="comment-summary"> {{item.summary}}</view> 
+    </view>
+    </block>
+
+   
 </view>

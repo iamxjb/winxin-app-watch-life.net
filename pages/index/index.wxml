@@ -1,4 +1,14 @@
-<!--index.wxml-->
+<!--
+/*
+ * 
+ * WordPres版微信小程序
+ * author: jianbo
+ * organization: 守望轩  www.watch-life.net
+ * github:    https://github.com/iamxjb/winxin-app-watch-life.net
+ * 技术支持微信号：iamxjb
+ * 开源协议：MIT
+ * 
+ */-->
 <import src="../../templates/header.wxml" />
 
 <view class="container">
@@ -26,6 +36,12 @@
         <navigator url="/pages/index/index"><text class="home-text">Home</text></navigator>
       </view>
 
+      <view class="menu-item home">
+        <image src="../../images/home.png" class="home-icon"></image>
+        
+         <input  maxlength="10" type="text" placeholder="最大输入长度10" />
+      </view>
+     
       <view class="slide-inner">
         <block wx:key="id" wx:for="{{categoriesList}}">
           <view class="menu-item" data-id="{{item.id}}"  bindtap="redictIndex">
@@ -63,4 +79,5 @@
   <loading hidden="{{hidden}}">
     加载中...
   </loading>
+  
 </view>

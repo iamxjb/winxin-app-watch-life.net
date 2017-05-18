@@ -1,4 +1,14 @@
-/**app.wxss**/
+/*
+ * 
+ * WordPres版微信小程序
+ * author: jianbo
+ * organization: 守望轩  www.watch-life.net
+ * github:    https://github.com/iamxjb/winxin-app-watch-life.net
+ * 技术支持微信号：iamxjb
+ * 
+ * 
+ */
+
 .container {
     padding: 0 25rpx; 
     background-color: #fff;

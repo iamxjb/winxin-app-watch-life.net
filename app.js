@@ -1,4 +1,14 @@
-//app.js
+/*
+ * 
+ * WordPres版微信小程序
+ * author: jianbo
+ * organization: 守望轩  www.watch-life.net
+ * github:    https://github.com/iamxjb/winxin-app-watch-life.net
+ * 技术支持微信号：iamxjb
+ * 
+ * 
+ */
+
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
