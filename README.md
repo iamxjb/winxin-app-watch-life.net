@@ -1,5 +1,5 @@
 # winxin-app-watch-life.net
-# "守望轩"官网微信小程序
+# "守望轩"官网WordPress微信小程序
 
 ![wordpress微信小程序](https://www.watch-life.net/images/2017/05/wordpress-weixin-15-1.png) 
 
