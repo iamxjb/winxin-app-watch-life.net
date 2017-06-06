@@ -1,3 +1,4 @@
+<!--
 /*
  * 
  * WordPres版微信小程序
@@ -6,14 +7,12 @@
  * github:    https://github.com/iamxjb/winxin-app-watch-life.net
  * 技术支持微信号：iamxjb
  * 开源协议：MIT
- * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
- */
-
-.log-list {
-  display: flex;
-  flex-direction: column;
-  padding: 40rpx;
-}
-.log-item {
-  margin: 10rpx;
-}
+ * 
+ */-->
+<template name="tempFooter"> 
+  <view class="header">    
+    <view>
+      © 2002-2017 守望轩 watch-life.net is proudly powered by WordPress
+    </view>
+  </view>
+</template>

@@ -6,7 +6,7 @@
  * github:    https://github.com/iamxjb/winxin-app-watch-life.net
  * 技术支持微信号：iamxjb
  * 开源协议：MIT
- * 
+ * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
  */
 
 function formatTime(date) {
@@ -25,6 +25,12 @@ function formatTime(date) {
 function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
+}
+
+function obj2uri(obj) {
+  return Object.keys(obj).map(function (k) {
+    return encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]);
+  }).join('&');
 }
 
 function getDateDiff (dateTimeStamp) {
@@ -105,10 +111,25 @@ function cutstr(str, len,flag) {
 
   }
 
+  var compare = function (prop) {
+    return function (obj1, obj2) {
+      var val1 = obj1[prop];
+      var val2 = obj2[prop]; if (val1 > val2) {
+        return -1;
+      } else if (val1 < val2) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  }
+
 module.exports = {
   formatTime: formatTime,
   getDateDiff: getDateDiff,
   cutstr:cutstr,
   removeHTML:removeHTML,
-  formatDateTime: formatDateTime
+  formatDateTime: formatDateTime,
+  compare: compare
+  
 }

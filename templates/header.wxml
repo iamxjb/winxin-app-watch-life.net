@@ -6,18 +6,16 @@
  * github:    https://github.com/iamxjb/winxin-app-watch-life.net
  * 技术支持微信号：iamxjb
  * 开源协议：MIT
- * 
+ * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
+ *
  */-->
 
-<template name="tempHeader"> 
+<template name="tempHeader">
   <view class="header">
     <image src="../../images/logo.gif" style="height:120rpx;width:400rpx"></image>
     <view>
       守望生活, 审视自我,宁静雅致的小轩馆.
     </view>
-
-
   </view>
-
 </template>
 <!-- header end -->

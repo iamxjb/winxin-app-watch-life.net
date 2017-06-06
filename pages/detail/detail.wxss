@@ -9,41 +9,84 @@
  * 
  */
 
-.commentheader {  
-  padding: 50rpx 0; 
+.commentheader {
+  padding: 50rpx 0;
   text-align: left;
   font-weight: normal;
-    font-size: 30rpx;  
-    line-height: 40rpx;
-    color: #757575;     
+  font-size: 30rpx;
+  line-height: 40rpx;
+  color: #757575;
 }
 
-.comment {    
-    border-bottom: 2rpx solid #ededed;
+.comment {
+  border-bottom: 2rpx solid #ededed;
 }
+
 .comment-user {
-    font-size: 30rpx;
-    line-height: 1.2;
-    font-weight:normal;
-    outline: none;
-    color: #000;
-    margin-bottom:25rpx;
-    margin-top: 25rpx
+  font-size: 30rpx;
+  line-height: 1.2;
+  font-weight: normal;
+  outline: none;
+  color: #000;
+  margin-bottom: 25rpx;
+  margin-top: 25rpx;
 }
+
 .comment-date {
-    font-size: 25rpx;
-    line-height: 1.2;
-    font-weight:normal;
-    outline: none;
-    color: #21759b;
-    margin-bottom:30rpx;
-
-   
-}
-.comment-summary{
-  color: #757575; 
-  font-size: 30rpx;  
-  line-height:1.8rem
-
+  font-size: 25rpx;
+  line-height: 1.2;
+  font-weight: normal;
+  outline: none;
+  color: #21759b;
+  margin-bottom: 30rpx;
 }
 
+.comment-response {
+  color: #757575;
+  font-size: 30rpx;
+  line-height: 1.8rem;
+  margin-bottom: 50rpx;
+}
+
+.comment-summary {
+  color: #757575;
+  font-size: 30rpx;
+  line-height: 1.8rem;
+  margin-bottom: 50rpx;
+}
+
+.comment-respond {
+  margin-top: 40rpx;
+}
+
+.comment-reply-title {
+  font-size: 40rpx;
+  line-height: 1.5;
+  color: #21759b;
+}
+
+.comment-input {
+  height: 2.58823529em;
+  min-height: 2.58823529em;
+  line-height: 2.58823529em;
+  border: 1px solid #ccc;
+  margin-top: 20rpx;
+}
+
+.comment-area {
+  border: 1px solid #ccc;
+  margin-top: 20rpx;
+  max-width: 700rpx;
+}
+
+.comment-button {
+  font-size: 0.785714286rem;
+  font-weight: normal;
+  color: #7c7c7c;
+  background-color: #e6e6e6;
+  background-repeat: repeat-x;
+}
+
+.textNoEmpty {
+  color: red;
+}
