@@ -3,7 +3,9 @@
 ![wordpress微信小程序](https://www.watch-life.net/images/2017/06/wordpress-wexin-app-2.png) 
 
 
-程序开发流程及注意事项见：https://www.watch-life.net/wordpress/weixin-connect-wordpress.html
+# 程序开发流程及注意事项见：
+
+https://www.watch-life.net/wordpress/weixin-connect-wordpress.html
 
 # 技术支持网站：https://www.watch-life.net
 
@@ -18,7 +20,7 @@
 ![weixinqun](https://www.watch-life.net/images/2017/05/weixi-nwordpress.png) 
 
 
-# 捐赠：感谢您对我的支持，您的支持是我前进的动力
+# 捐赠赞赏：请微信扫描以下二维码。感谢您对我的支持，您的支持是我前进的动力
 
 ![weixinpay](https://www.watch-life.net/images/2017/06/weixinpay150150.png) 
 
