@@ -15,7 +15,7 @@
 
 ![weixin](https://www.watch-life.net/images/iamxjbweixin.jpg) 
 
-# 讨论微信群：WordPress版微信小程序 ，二维码如下：
+# 讨论微信群：二维码如下
 
 
 <img width="150" height="150" src="https://www.watch-life.net/images/2017/05/weixi-nwordpress.png"/>
