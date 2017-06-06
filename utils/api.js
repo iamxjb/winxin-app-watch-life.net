@@ -26,6 +26,14 @@ module.exports = {
     return url;
 
   },
+
+  getStickyPosts: function () {
+    var url = HOST_URI + 'posts?sticky=true&per_page=5&page=1';
+    return url;
+
+  },
+
+
   // 获取特定id的文章列表
   getPostsByIDs: function (obj) {
     var url = HOST_URI + 'posts?include=' + obj;
