@@ -5,7 +5,7 @@
 
 # 程序开发流程及注意事项见：
 
-https://www.watch-life.net/wordpress/weixin-connect-wordpress.html
+# https://www.watch-life.net/wordpress/weixin-connect-wordpress.html
 
 # 技术支持网站：https://www.watch-life.net
 
