@@ -115,15 +115,14 @@ Page({
       postsShowSwiperList: []
     });
 
-    var isSticky=false;
+    var isSticky = false;
 
 
     //先优先获取置顶的文章
     wx.request({
       url: Api.getStickyPosts(),
       success: function (response) {
-        if (response.data.length>0)
-        {
+        if (response.data.length > 0) {
 
           self.setData({
             postsShowSwiperList: self.data.postsShowSwiperList.concat(response.data.map(function (item) {
@@ -134,13 +133,12 @@ Page({
           isSticky = true;
 
           self.fetchPostsData(self.data);
-        }                    
-        
+        }
+
       }
     });
 
-    if (!isSticky)
-    {
+    if (isSticky) {
       return;
     }
 
@@ -218,7 +216,8 @@ Page({
           self.setData({
             displaySwiper: "none"
 
-          })
+          });
+          self.fetchPostsData(self.data)
         }
       }
     });
