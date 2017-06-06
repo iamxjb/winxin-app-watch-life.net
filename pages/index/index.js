@@ -139,7 +139,7 @@ Page({
       }
     });
 
-    if (isSticky)
+    if (!isSticky)
     {
       return;
     }
