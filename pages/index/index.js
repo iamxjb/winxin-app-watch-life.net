@@ -56,6 +56,18 @@ Page({
       url: url
     })
   },
+  onShareAppMessage: function () {
+    return {
+      title: '“守望轩”网站小程序',
+      path: 'pages/index/index',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
   onLoad: function (options) {
     var self = this;
     if (options.categoryID && options.categoryID != 0) {
