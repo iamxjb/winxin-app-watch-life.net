@@ -17,10 +17,15 @@
 
 ![weixinqun](https://www.watch-life.net/images/2017/05/weixi-nwordpress.png) 
 
+捐赠：
+
+![weixinpay](https://www.watch-life.net/images/2017/06/weixinpay150150.png) 
+
+
 
 # 更新历史：
 
-日期：2017年6月6日
+## 日期：2017年6月6日
 
 内容：
 
@@ -37,7 +42,7 @@
 升级的详细说明见： https://www.watch-life.net/wordpress/wordpress-weixin-2-html.html
 
 
-日期：2017年5月15日
+## 日期：2017年5月15日
 
 内容：
 
