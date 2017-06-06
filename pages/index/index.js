@@ -58,7 +58,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '“守望轩”网站小程序',
+      title: '“守望轩”网站微信小程序',
       path: 'pages/index/index',
       success: function (res) {
         // 转发成功
