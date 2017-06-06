@@ -22,7 +22,7 @@ https://www.watch-life.net/wordpress/weixin-connect-wordpress.html
 
 # 捐赠赞赏：请微信扫描以下二维码。感谢您对我的支持，您的支持是我前进的动力
 
-![weixinpay](https://www.watch-life.net/images/2017/06/weixinpay150150.png) 
+![weixinpay](https://www.watch-life.net/images/2017/06/weixinpay150.png) 
 
 
 
