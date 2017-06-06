@@ -45,16 +45,16 @@
 
         <text class="comment-reply-title">发表评论</text>
         <view class="comment-response">姓名
-          <text class="textNoEmpty">*</text>：
+          <text class="textNoEmpty">*</text>
           <input class="comment-input" maxlength="30" name="inputName" value="{{userInfo.nickName}}"/> </view>
 
         <view class="comment-response">电子邮件
-          <text class="textNoEmpty">*</text>：
+          <text class="textNoEmpty">*</text>
           <input class="comment-input" maxlength="50" name="inputEmail" />
         </view>
         <view class="comment-response">评论
-          <text class="textNoEmpty">*</text>：
-          <textarea class="comment-area" maxlength="200" auto-focus="true" style="height: 8em" name="inputComment" value="{{content}}" />
+          <text class="textNoEmpty">*</text>
+          <textarea class="comment-area" maxlength="200" style="height: 8em" name="inputComment" value="{{content}}" />
         </view>
 
         <view class="comment-summary">
