@@ -117,6 +117,11 @@ Page({
       postsShowSwiperList: []
     });
 
+<<<<<<< HEAD
+=======
+    var isSticky = false;
+
+>>>>>>> 58212c48da4fb1b5d390fc38ed0eb485e7695257
 
     //先优先获取置顶的文章
     wx.request({
@@ -133,7 +138,70 @@ Page({
 
           self.fetchPostsData(self.data);
         }
+<<<<<<< HEAD
         else {
+=======
+
+      }
+    });
+
+    if (isSticky) {
+      return;
+    }
+
+    //如果没有置顶文章就取最近30条评论最多5篇文章
+    wx.request({
+      url: Api.getRecentfiftyComments(),
+      success: function (response) {
+        var recentfiftyComments = response.data;
+        if (recentfiftyComments.length > 0) {
+
+          var postsList = [];
+          var postsShowSwiper = []
+          for (var i = 0; i < recentfiftyComments.length; i++) {
+            postsList[i] = { "post": recentfiftyComments[i].post.toString() };
+
+          }
+
+          //对文章的评论数量
+          var map = [];
+          var postsSortList = [];
+          for (var i = 0; i < postsList.length; i++) {
+            var s = postsList[i].post.toString();
+
+            var r = map[s];
+            if (r) {
+              map[s] += 1;
+            } else {
+              map[s] = 1;
+            }
+          }
+
+          //转换为对象数组
+          for (var i = 0; i < map.length; i++) {
+            if (map[i]) {
+              postsSortList.push({ "post": i.toString(), "count": map[i] })
+            }
+          }
+
+          //对对象数组排序
+          postsSortList.sort(util.compare("count"));
+
+          //获取评论最多的5篇文章
+          if (postsSortList.length > 5) {
+            for (var i = 0; i < 5; i++) {
+              postsShowSwiper[i] = postsSortList[i].post;
+
+            }
+          }
+          else {
+            for (var i = 0; i < postsSortList.length; i++) {
+              postsShowSwiper[i] = postsSortList[i].post;
+
+            }
+          }
+
+>>>>>>> 58212c48da4fb1b5d390fc38ed0eb485e7695257
 
           //如果没有置顶文章就取最近30条评论最多5篇文章
           wx.request({
@@ -215,6 +283,12 @@ Page({
           //end  如果没有置顶文章就取最近30条评论最多5篇文章
         }
 
+<<<<<<< HEAD
+=======
+          });
+          self.fetchPostsData(self.data)
+        }
+>>>>>>> 58212c48da4fb1b5d390fc38ed0eb485e7695257
       }
     });
 
