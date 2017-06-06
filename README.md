@@ -5,20 +5,20 @@
 
 程序开发流程及注意事项见：https://www.watch-life.net/wordpress/weixin-connect-wordpress.html
 
-技术支持网站：https://www.watch-life.net
+# 技术支持网站：https://www.watch-life.net
 
-开源协议：MIT
+# 开源协议：MIT
 
-技术支持微信：
+# 技术支持微信：
 
 ![weixin](https://www.watch-life.net/images/iamxjbweixin.jpg) 
 
-讨论微信群：WordPress版微信小程序 ，二维码如下：
+# 讨论微信群：WordPress版微信小程序 ，二维码如下：
 
 ![weixinqun](https://www.watch-life.net/images/2017/05/weixi-nwordpress.png) 
 
 
-捐赠：
+# 捐赠：感谢您对我的支持，您的支持是我前进的动力
 
 ![weixinpay](https://www.watch-life.net/images/2017/06/weixinpay150150.png) 
 
