@@ -1,8 +1,7 @@
 # "守望轩"官网WordPress微信小程序
 
-![wordpress微信小程序](https://www.watch-life.net/images/2017/05/wordpress-weixin-15-1.png) 
+![wordpress微信小程序](https://www.watch-life.net/images/2017/06/wordpress-wexin-app-2.png) 
 
-![wordpress微信小程序](https://www.watch-life.net/images/2017/05/wordpress-weixin-15-2.png) 
 
 程序开发流程及注意事项见：https://www.watch-life.net/wordpress/weixin-connect-wordpress.html
 
@@ -20,6 +19,23 @@
 
 
 # 更新历史：
+
+日期：2017年6月6日
+
+内容：
+
+1、调整列表页的显示方式。
+
+2、增加搜索。
+
+3、首页增加轮播图片和缩略图。
+
+4、增加文章评论
+
+5.增加小程序分享
+
+升级的详细说明见： https://www.watch-life.net/wordpress/wordpress-weixin-2-html.html
+
 
 日期：2017年5月15日
 
