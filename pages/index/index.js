@@ -35,6 +35,8 @@ Page({
     floatDisplay: "none",
 
 
+
+
     //  侧滑菜单
     maskDisplay: 'none',
     slideHeight: 0,
@@ -115,15 +117,12 @@ Page({
       postsShowSwiperList: []
     });
 
-    var isSticky=false;
-
 
     //先优先获取置顶的文章
     wx.request({
       url: Api.getStickyPosts(),
       success: function (response) {
-        if (response.data.length>0)
-        {
+        if (response.data.length > 0) {
 
           self.setData({
             postsShowSwiperList: self.data.postsShowSwiperList.concat(response.data.map(function (item) {
@@ -131,95 +130,91 @@ Page({
               return item;
             }))
           });
-          isSticky = true;
 
           self.fetchPostsData(self.data);
-        }                    
-        
-      }
-    });
+        }
+        else {
 
-    if (!isSticky)
-    {
-      return;
-    }
-
-    //如果没有置顶文章就取最近30条评论最多5篇文章
-    wx.request({
-      url: Api.getRecentfiftyComments(),
-      success: function (response) {
-        var recentfiftyComments = response.data;
-        if (recentfiftyComments.length > 0) {
-
-          var postsList = [];
-          var postsShowSwiper = []
-          for (var i = 0; i < recentfiftyComments.length; i++) {
-            postsList[i] = { "post": recentfiftyComments[i].post.toString() };
-
-          }
-
-          //对文章的评论数量
-          var map = [];
-          var postsSortList = [];
-          for (var i = 0; i < postsList.length; i++) {
-            var s = postsList[i].post.toString();
-
-            var r = map[s];
-            if (r) {
-              map[s] += 1;
-            } else {
-              map[s] = 1;
-            }
-          }
-
-          //转换为对象数组
-          for (var i = 0; i < map.length; i++) {
-            if (map[i]) {
-              postsSortList.push({ "post": i.toString(), "count": map[i] })
-            }
-          }
-
-          //对对象数组排序
-          postsSortList.sort(util.compare("count"));
-
-          //获取评论最多的5篇文章
-          if (postsSortList.length > 5) {
-            for (var i = 0; i < 5; i++) {
-              postsShowSwiper[i] = postsSortList[i].post;
-
-            }
-          }
-          else {
-            for (var i = 0; i < postsSortList.length; i++) {
-              postsShowSwiper[i] = postsSortList[i].post;
-
-            }
-          }
-
-
-          //获取轮播文章的列表
+          //如果没有置顶文章就取最近30条评论最多5篇文章
           wx.request({
-            url: Api.getPostsByIDs(postsShowSwiper.toString()),
+            url: Api.getRecentfiftyComments(),
             success: function (response) {
-              self.setData({
-                //postsShowSwiperList: response.data
-                postsShowSwiperList: self.data.postsShowSwiperList.concat(response.data.map(function (item) {
-                  item.firstImage = Api.getContentFirstImage(item.content.rendered);
-                  return item;
-                }))
-              });
+              var recentfiftyComments = response.data;
+              if (recentfiftyComments.length > 0) {
 
-              self.fetchPostsData(self.data)
+                var postsList = [];
+                var postsShowSwiper = []
+                for (var i = 0; i < recentfiftyComments.length; i++) {
+                  postsList[i] = { "post": recentfiftyComments[i].post.toString() };
+
+                }
+
+                //对文章的评论数量
+                var map = [];
+                var postsSortList = [];
+                for (var i = 0; i < postsList.length; i++) {
+                  var s = postsList[i].post.toString();
+
+                  var r = map[s];
+                  if (r) {
+                    map[s] += 1;
+                  } else {
+                    map[s] = 1;
+                  }
+                }
+
+                //转换为对象数组
+                for (var i = 0; i < map.length; i++) {
+                  if (map[i]) {
+                    postsSortList.push({ "post": i.toString(), "count": map[i] })
+                  }
+                }
+
+                //对对象数组排序
+                postsSortList.sort(util.compare("count"));
+
+                //获取评论最多的5篇文章
+                if (postsSortList.length > 5) {
+                  for (var i = 0; i < 5; i++) {
+                    postsShowSwiper[i] = postsSortList[i].post;
+
+                  }
+                }
+                else {
+                  for (var i = 0; i < postsSortList.length; i++) {
+                    postsShowSwiper[i] = postsSortList[i].post;
+
+                  }
+                }
+                //获取轮播文章的列表
+                wx.request({
+                  url: Api.getPostsByIDs(postsShowSwiper.toString()),
+                  success: function (response) {
+                    self.setData({
+                      //postsShowSwiperList: response.data
+                      postsShowSwiperList: self.data.postsShowSwiperList.concat(response.data.map(function (item) {
+                        item.firstImage = Api.getContentFirstImage(item.content.rendered);
+                        return item;
+                      }))
+                    });
+
+                    self.fetchPostsData(self.data)
+                  }
+                });
+              }
+              else //如果没有评论就不显示轮转的幻灯
+              {
+                self.setData({
+                  displaySwiper: "none"
+
+                });
+                self.fetchPostsData(self.data)
+              }
             }
           });
+          //end  如果没有置顶文章就取最近30条评论最多5篇文章
         }
-        else //如果没有评论就不显示轮转的幻灯
-        {
-          self.setData({
-            displaySwiper: "none"
 
-          })
-        }
       }
     });
 
