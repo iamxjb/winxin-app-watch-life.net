@@ -35,6 +35,18 @@ Page({
   onLoad: function (options) {
     this.fetchDetailData(options.id);
   },
+  onShareAppMessage: function () {
+    return {
+      title: '分享文章：' + this.data.detail.title.rendered,
+      path: 'pages/detail/detail?id=' + this.data.detail.id,
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
   //获取文章内容
   fetchDetailData: function (id) {
     var self = this;

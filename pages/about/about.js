@@ -55,6 +55,18 @@ Page({
    */
   onReachBottom: function () {
   
+  },
+   onShareAppMessage: function () {
+    return {
+      title: '关于“守望轩”官方小程序',
+      path: 'pages/about/about',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 
 })
