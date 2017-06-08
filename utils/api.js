@@ -62,7 +62,7 @@ module.exports = {
   },
   //获取评论
   getComments: function (id, obj) {
-    return HOST_URI + 'comments?orderby=date&order=asc&post=' + id
+    return HOST_URI + 'comments?per_page=100&orderby=date&order=asc&post=' + id
   },
 
   //获取最近的50个评论
