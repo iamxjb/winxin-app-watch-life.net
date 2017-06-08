@@ -33,7 +33,7 @@
 }
 
 .float-action-title {
-  display:inline-block;
+  display: inline-block;
   width: 100%;
   color: #fff;
   text-align: center;
@@ -147,7 +147,6 @@
   background-color: #eee;
   padding: 5px 10px;
   min-height: 1rem;
-  
   font-size: 30rpx;
 }
 
@@ -198,6 +197,12 @@
   font-size: 40rpx;
   line-height: 1.2;
   font-weight: normal;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .common-list .list-item.has-img .content-date {
