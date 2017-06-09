@@ -55,6 +55,10 @@
   margin-bottom: 50rpx;
 }
 
+.entry-summary image{
+  width:100%!important;
+} 
+
 .comment-respond {
   margin-top: 40rpx;
 }
