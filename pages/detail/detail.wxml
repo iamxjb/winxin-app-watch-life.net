@@ -13,6 +13,8 @@
 <import src="../../wxParse/wxParse.wxml" />
 <import src="../../templates/header.wxml" />
 <view class="container"> 
+<scroll-view style="height:{{scrollHeight}}px;" scroll-y="true" lower-threshold="100rpx">
+
   <view class="content-article-detail">
     <view class="entry-title">
       {{detail.title.rendered}}
@@ -67,5 +69,7 @@
     <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
 
   </view>
+
+  </scroll-view>
 
 </view>

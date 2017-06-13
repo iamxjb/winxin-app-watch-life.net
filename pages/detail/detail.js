@@ -24,6 +24,9 @@ Page({
     hidden: false,
     wxParseData:[],
     display:'none',
+
+    scrollHeight: 0,
+
     dialog: {
       title: '',
       content: '',
@@ -34,6 +37,17 @@ Page({
   },
   onLoad: function (options) {
     this.fetchDetailData(options.id);
+    var self = this;
+    wx.getSystemInfo({
+      
+      success: function (res) {
+        //console.info(res.windowHeight);
+        self.setData({
+          scrollHeight: res.windowHeight,
+          
+        });
+      }
+    });
   },
   onShareAppMessage: function () {
     return {

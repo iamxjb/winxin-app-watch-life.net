@@ -265,9 +265,14 @@ Page({
         });
 
 
+        if (data.page==1)
+        {
+          self.fetchPagesData();
+          self.fetchCategoriesData();
+        }
 
-        self.fetchPagesData();
-        self.fetchCategoriesData();
+        
+
         setTimeout(function () {
           self.setData({
             hidden: true
