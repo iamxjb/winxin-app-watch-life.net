@@ -12,7 +12,7 @@
 
 .wxParse{
     margin: 0 5px;
-    font-family: Helvetica,sans-serif;
+    font-family: Microsoft YaHei,Helvetica,sans-serif;
     font-size: 28rpx;
     color: #666;
     line-height: 1.8;
@@ -24,6 +24,11 @@ view{
     display: inline;
     margin: 0;
     padding: 0;
+}
+
+.wxParse-p
+{
+  margin: 0 0 1.714285714rem;
 }
 /*//标题 */
 .wxParse-div{margin: 0;padding: 0;}
