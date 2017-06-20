@@ -19,6 +19,7 @@
   <view class="slide-menu" style="right: {{slideRight}}px;width: {{slideWidth}}px;height:{{slideHeight}}px;" animation="{{slideAnimation}}">
     <scroll-view scroll-y="true" style="height:100%;width:100%">
       <view class="header">
+      <!--
         <view class="toolbar">
           <block wx:key="id" wx:for="{{pagesList}}">
             <block wx:if="{{item.id !=29 && item.id !=32 }}">
@@ -27,7 +28,7 @@
               </view>
             </block>
           </block>
-        </view>
+        </view>-->
         <icon type="cancel" size="30" class="close-btn" color="#FFF" bindtap="slideCloseEvent" />
       </view>
       
@@ -87,8 +88,6 @@
 
   <view class="float-action" bindtap="ballClickEvent" style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent" style="display:{{floatDisplay}}"><text class="float-action-title">导航</text></view>
 
-  <loading hidden="{{hidden}}">
-    加载中...
-  </loading>
+ 
 
 </view>

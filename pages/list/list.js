@@ -24,11 +24,13 @@ Page({
     postsShowSwiperList: {},
 
 
+    isLastPage: false,
+
     page: 1,
     search: '',
     categories: 0,
 
-    hidden: false,
+   
     scrollHeight: 0,
 
     displaySwiper: "block",
@@ -59,6 +61,45 @@ Page({
     wx.navigateTo({
       url: url
     })
+  },
+  // onReachBottom: function () {
+
+  //   var self = this;
+  //   if (!self.data.isLastPage) {
+  //     self.setData({
+  //       page: self.data.page + 1
+  //     });
+  //     console.log('当前页' + self.data.page);
+  //     this.fetchPostsData(self.data);
+  //   }
+  //   else {
+  //     wx.showToast({
+  //       title: '没有更多内容',
+  //       mask: false,
+  //       duration: 1000
+  //     });
+  //   }
+
+  // }
+  // ,
+  //底部刷新
+  lower: function (e) {
+
+    var self = this;
+    if (!self.data.isLastPage) {
+      self.setData({
+        page: self.data.page + 1
+      });
+      console.log('当前页' + self.data.page);
+      this.fetchPostsData(self.data);
+    }
+    else {
+      wx.showToast({
+        title: '没有更多内容',
+        mask: false,
+        duration: 1000
+      });
+    }
   },
   onLoad: function (options) {
     var self = this;
@@ -96,9 +137,7 @@ Page({
   fetchPostsData: function (data) {
     var self = this;
 
-    self.setData({
-      hidden: false
-    });
+  
     if (!data) data = {};
     if (!data.page) data.page = 1;
     if (!data.categories) data.categories = 0;
@@ -109,46 +148,73 @@ Page({
       });
     };
 
+
+    
+    wx.showLoading({
+      title: '加载中',
+    })
+
     wx.request({
       url: Api.getPosts(data),
       success: function (response) {
-        //console.log(response);       
-        self.setData({
-          //postsList: response.data
-          hidden: true,
-          floatDisplay: "block",
-          postsList: self.data.postsList.concat(response.data.map(function (item) {
-            //var strSummary = util.removeHTML(item.content.rendered);
-            // item.summary = util.cutstr(strSummary, 200, 0);
-            var strdate = item.date
-            item.firstImage = Api.getContentFirstImage(item.content.rendered);
-            item.date = util.cutstr(strdate, 10, 1);
-            return item;
-          })),
-
-        });
-
-        self.fetchPagesData();
-        self.fetchCategoriesData();
-        setTimeout(function () {
+        if (response.statusCode === 200) {
+          
+          //console.log(response);       
           self.setData({
-            hidden: true
-          });
-        }, 900);
+            //postsList: response.data
 
+            floatDisplay: "block",
+            postsList: self.data.postsList.concat(response.data.map(function (item) {
+              //var strSummary = util.removeHTML(item.content.rendered);
+              // item.summary = util.cutstr(strSummary, 200, 0);
+              var strdate = item.date
+              item.firstImage = Api.getContentFirstImage(item.content.rendered);
+              item.date = util.cutstr(strdate, 10, 1);
+              return item;
+            })),
+
+          });
+
+          if (data.page == 1) {            
+            self.fetchCategoriesData();
+          }
+
+          setTimeout(function () {
+            wx.hideLoading();
+            wx.showToast({
+              title: '加载完毕',
+              icon: 'success',
+              duration: 900
+            })
+          }, 900);
+
+        }
+        else
+        {
+          if (response.data.code == "rest_post_invalid_page_number") {
+
+            self.setData({
+              isLastPage: true
+            });
+            wx.showToast({
+              title: '没有更多内容',
+              mask: false,
+              duration: 1500
+            });
+          }
+          else {
+            wx.showToast({
+              title: response.data.message,
+              duration: 1500
+            })
+          }
+        }
+        
 
       }
     });
   },
-  //底部刷新
-  lower: function (e) {
-    var self = this;
-    self.setData({
-      page: self.data.page + 1
-    });
-    console.log('当前页' + self.data.page);
-    this.fetchPostsData(self.data);
-  },
+  
   //获取页面列表
   fetchPagesData: function () {
     var self = this;

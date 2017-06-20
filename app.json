@@ -12,6 +12,7 @@
     "navigationBarBackgroundColor": "#21759b",
     "navigationBarTitleText": "守望轩",
     "navigationBarTextStyle": "#fff"
+   
   },
   "tabBar": {
     "color": "#7A7E83",

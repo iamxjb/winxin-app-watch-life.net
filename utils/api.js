@@ -15,7 +15,7 @@ var HOST_URI = 'https://www.watch-life.net/wp-json/wp/v2/';
 module.exports = {
   // 获取文章列表数据
   getPosts: function (obj) {
-    var url = HOST_URI + 'posts?per_page=8&page=' + obj.page;
+    var url = HOST_URI + 'posts?per_page=6&page=' + obj.page;
     
     if (obj.categories != 0) {
       url += '&categories=' + obj.categories;

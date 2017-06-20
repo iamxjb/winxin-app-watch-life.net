@@ -16,7 +16,8 @@
   font-size: 30rpx;
   line-height: 40rpx;
   color: #757575;
-  border-bottom: 2rpx solid #ededed;
+  /*
+  border-bottom: 2rpx solid #ededed; */
   margin-bottom: 48rpx;
 }
 
@@ -66,7 +67,7 @@
 
 .slide-menu .header {
   background: #21759b;
-  height: 100rpx;
+  height: 40rpx;
   color: #fff;
   padding: 40rpx 40rpx 40rpx 40rpx;
   margin-bottom: 0rpx;

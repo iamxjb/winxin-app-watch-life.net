@@ -21,7 +21,7 @@ Page({
     commentsList:{},
     commentCount:'',
     detailDate:'',
-    hidden: false,
+   
     wxParseData:[],
     display:'none',
 
@@ -64,10 +64,7 @@ Page({
   //获取文章内容
   fetchDetailData: function (id) {
     var self = this;
-    self.setData({
-      hidden: false
-
-    });
+   
     wx.request({
       url: Api.getPostByID(id, { mdrender: false }),
       success: function (response) {
@@ -83,11 +80,8 @@ Page({
 
         self.fetchCommentData(id);
 
-        setTimeout(function () {
-          self.setData({
-            hidden: true
-          });
-        }, 300);
+
+       
       }
     });
   },
@@ -95,7 +89,7 @@ Page({
   fetchCommentData: function (id) {
     var self = this;
     self.setData({
-      hidden: false,
+     
       commentsList: []
     });
 
@@ -116,11 +110,16 @@ Page({
           commentCount: "有" + response.data.length + "条评论",
           userInfo: wx.getStorageSync("userInfo")
         });
-        setTimeout(function () {
-          self.setData({
-            hidden: true
-          });
-        }, 300);
+
+
+        wx.showToast({
+          title: '加载中',
+          icon: 'loading',
+          mask: false,
+          duration: 1000         
+
+        })
+        
       }
     });
   },

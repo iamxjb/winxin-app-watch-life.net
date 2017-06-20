@@ -24,13 +24,15 @@ Page({
     postsShowSwiperList: {},
 
 
+    isLastPage:false,
+    
     page: 1,
     search: '',
     categories: 0,
 
-    hidden: false,
     scrollHeight: 0,
 
+    displayHeader:"none",
     displaySwiper: "block",
     floatDisplay: "none",
 
@@ -67,6 +69,11 @@ Page({
         // 转发失败
       }
     }
+  },
+  onReachBottom: function () {
+
+    //console.log("xialajiazai");  
+   
   },
   onLoad: function (options) {
     var self = this;
@@ -108,7 +115,7 @@ Page({
     });
   },
 
-  //获取最近50个评论中评论最多的文章
+  
   fetchTopFivePosts: function () {
     var self = this;
     self.setData({
@@ -133,91 +140,20 @@ Page({
         }
 
         else {
+          self.setData({
+            displaySwiper: "none",
+            displayHeader:"block"
 
-          //如果没有置顶文章就取最近30条评论最多5篇文章
-          wx.request({
-            url: Api.getRecentfiftyComments(),
-            success: function (response) {
-              var recentfiftyComments = response.data;
-              if (recentfiftyComments.length > 0) {
-
-                var postsList = [];
-                var postsShowSwiper = []
-                for (var i = 0; i < recentfiftyComments.length; i++) {
-                  postsList[i] = { "post": recentfiftyComments[i].post.toString() };
-
-                }
-
-                //对文章的评论数量
-                var map = [];
-                var postsSortList = [];
-                for (var i = 0; i < postsList.length; i++) {
-                  var s = postsList[i].post.toString();
-
-                  var r = map[s];
-                  if (r) {
-                    map[s] += 1;
-                  } else {
-                    map[s] = 1;
-                  }
-                }
-
-                //转换为对象数组
-                for (var i = 0; i < map.length; i++) {
-                  if (map[i]) {
-                    postsSortList.push({ "post": i.toString(), "count": map[i] })
-                  }
-                }
-
-                //对对象数组排序
-                postsSortList.sort(util.compare("count"));
-
-                //获取评论最多的5篇文章
-                if (postsSortList.length > 5) {
-                  for (var i = 0; i < 5; i++) {
-                    postsShowSwiper[i] = postsSortList[i].post;
-
-                  }
-                }
-                else {
-                  for (var i = 0; i < postsSortList.length; i++) {
-                    postsShowSwiper[i] = postsSortList[i].post;
-
-                  }
-                }
-
-
-                //获取轮播文章的列表
-                wx.request({
-                  url: Api.getPostsByIDs(postsShowSwiper.toString()),
-                  success: function (response) {
-                    self.setData({
-                      //postsShowSwiperList: response.data
-                      postsShowSwiperList: self.data.postsShowSwiperList.concat(response.data.map(function (item) {
-                        item.firstImage = Api.getContentFirstImage(item.content.rendered);
-                        return item;
-                      }))
-                    });
-
-                    self.fetchPostsData(self.data)
-                  }
-                });
-              }
-              else //如果没有评论就不显示轮转的幻灯
-              {
-                self.setData({
-                  displaySwiper: "none"
-
-                });
-                self.fetchPostsData(self.data)
-              }
-            }
           });
 
-          //end 如果没有置顶文章就取最近30条评论最多5篇文章
+          self.fetchPostsData(self.data);
 
         }
 
+
+      },
+      fail: function (response) {
+        //var temp = response.data;
 
       }
     });
@@ -232,9 +168,7 @@ Page({
   fetchPostsData: function (data) {
     var self = this;
 
-    self.setData({
-      hidden: false
-    });
+    
     if (!data) data = {};
     if (!data.page) data.page = 1;
     if (!data.categories) data.categories = 0;
@@ -245,39 +179,78 @@ Page({
       });
     };
 
+    wx.showLoading({
+      title: '加载中',
+    })
+
     wx.request({
       url: Api.getPosts(data),
       success: function (response) {
-        //console.log(response);       
-        self.setData({
-          //postsList: response.data
-          hidden: true,
-          floatDisplay: "block",
-          postsList: self.data.postsList.concat(response.data.map(function (item) {
-            //var strSummary = util.removeHTML(item.content.rendered);
-            // item.summary = util.cutstr(strSummary, 200, 0);
-            var strdate = item.date
-            item.firstImage = Api.getContentFirstImage(item.content.rendered);
-            item.date = util.cutstr(strdate, 10, 1);
-            return item;
-          })),
 
-        });
+        if (response.statusCode === 200) {
+
+          //console.log(response);       
+          self.setData({
+            //postsList: response.data
+           
+            floatDisplay: "block",
+            postsList: self.data.postsList.concat(response.data.map(function (item) {
+              //var strSummary = util.removeHTML(item.content.rendered);
+              // item.summary = util.cutstr(strSummary, 200, 0);
+              var strdate = item.date
+              item.firstImage = Api.getContentFirstImage(item.content.rendered);
+              item.date = util.cutstr(strdate, 10, 1);
+              return item;
+            })),
+
+          });
 
 
-        if (data.page==1)
-        {
-          self.fetchPagesData();
-          self.fetchCategoriesData();
+          if (data.page == 1) {
+            
+            self.fetchCategoriesData();
+          }
+
+
+          setTimeout(function () {
+            wx.hideLoading();
+            wx.showToast({
+              title: '加载完毕',
+              icon: 'success',
+              duration: 900
+            })
+          }, 900)
+         
+
         }
+        else
+        {
 
         
+          if (response.data.code =="rest_post_invalid_page_number")
+          {
 
-        setTimeout(function () {
-          self.setData({
-            hidden: true
-          });
-        }, 900);
+            self.setData({
+              isLastPage:true
+            });
+            wx.showToast({
+              title: '没有更多内容',
+              mask:false,
+              duration: 1500
+            });
+          }
+          else
+          {
+            wx.showToast({
+              title: response.data.message,
+              duration: 1500
+            })
+          }
+
+          
+
+        }
+
 
 
       }
@@ -285,12 +258,24 @@ Page({
   },
   //底部刷新
   lower: function (e) {
+    
     var self = this;
-    self.setData({
-      page: self.data.page + 1
-    });
-    console.log('当前页' + self.data.page);
-    this.fetchPostsData(self.data);
+    if (!self.data.isLastPage)
+    {
+      self.setData({
+        page: self.data.page + 1
+      });
+      console.log('当前页' + self.data.page);
+      this.fetchPostsData(self.data);
+    }
+    else
+    {
+      wx.showToast({
+        title: '没有更多内容',
+        mask: false,
+        duration: 1000
+      });
+    }
   },
   //获取页面列表
   fetchPagesData: function () {

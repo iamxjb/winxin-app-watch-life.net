@@ -19,6 +19,7 @@
   <view class="slide-menu" style="right: {{slideRight}}px;width: {{slideWidth}}px;height:{{slideHeight}}px;" animation="{{slideAnimation}}">
     <scroll-view scroll-y="true" style="height:100%;width:100%">
       <view class="header">
+      <!--
         <view class="toolbar">
           <block wx:key="id" wx:for="{{pagesList}}">
             <block wx:if="{{item.id !=29 && item.id !=32 }}">
@@ -27,7 +28,7 @@
               </view>
             </block>
           </block>
-        </view>
+        </view>-->
         <icon type="cancel" size="30" class="close-btn" color="#FFF" bindtap="slideCloseEvent" />
       </view>
       <!--
@@ -42,13 +43,14 @@
         <view class="search-section">
           <form catchsubmit="formSubmit" catchreset="formReset">
             <view class="search-pancel">
-              <input value="" name="input" class="search-input" placeholder="请输入搜索内容..." />            
+              <input value="" name="input" class="search-input" placeholder="请输入搜索内容..." />
               <button class="search-button" form-type="submit" size="mini" plain="true">搜索</button>
             </view>
           </form>
         </view>
         <block wx:key="id" wx:for="{{categoriesList}}">
-          <view class="menu-item" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex"><image src="../../images/folder.png"></image>
+          <view class="menu-item" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
+            <image src="../../images/folder.png"></image>
             <text class="home-text">
               <text>{{item.name}}({{item.count}})</text>
             </text>
@@ -63,40 +65,46 @@
 
   <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true" bindscrolltolower="lower" lower-threshold="100rpx">
 
-    <view class="index-header" style="display:{{displaySwiper}}">
-    <swiper class="index-swiper" indicator-dots="true" interval="10000" autoplay="true">
-    <block wx:key="id" wx:for="{{postsShowSwiperList}}">
-      <swiper-item id="{{item.id}}" index="{{index}}" bindtap="redictDetail">
-        <image mode="aspectFill" src="{{item.firstImage}}" style="width:100%" />
-        <view class="mask"></view>
-        <view class="desc">
-          <text>{{item.title.rendered}}</text>
-        </view>
-      </swiper-item>
-    </block>
-  </swiper>
+
+    <view class="header" style="display:{{displayHeader}}">
+    <image src="../../images/logo.gif" style="height:120rpx;width:400rpx"></image>
+    <view>
+      守望生活, 审视自我,宁静雅致的小轩馆.
+    </view>
   </view>
 
+    <view class="index-header" style="display:{{displaySwiper}}">
+      <swiper class="index-swiper" indicator-dots="true" interval="10000" autoplay="true">
+        <block wx:key="id" wx:for="{{postsShowSwiperList}}">
+          <swiper-item id="{{item.id}}" index="{{index}}" bindtap="redictDetail">
+            <image mode="aspectFill" src="{{item.firstImage}}" style="width:100%" />
+            <view class="mask"></view>
+            <view class="desc">
+              <text>{{item.title.rendered}}</text>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
     <view class="common-list">
-    <block wx:key="id" wx:for="{{postsList}}">
-     <view class="list-item has-img" index="{{index}}" id="{{item.id}}" bindtap="redictDetail">
-        <view class="content-title">
-          <text>{{item.title.rendered}}</text>
+      <block wx:key="id" wx:for="{{postsList}}">
+        <view class="list-item has-img" index="{{index}}" id="{{item.id}}" bindtap="redictDetail">
+          <view class="content-title">
+            <text>{{item.title.rendered}}</text>
+          </view>
+          <view class="content-date">
+            <image src="../../images/calendar.png"></image>
+            <text>{{item.date}}</text>
+          </view>
+          <image src="{{item.firstImage}}" class="cover"></image>
         </view>
-        <view class="content-date">
-        <image src="../../images/calendar.png"></image>
-          <text>{{item.date}}</text>
-        </view>
-        <image  src="{{item.firstImage}}" class="cover"></image>
-      </view>
-    </block>
+      </block>
     </view>
   </scroll-view>
 
-  <view class="float-action" bindtap="ballClickEvent" style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent" style="display:{{floatDisplay}}"><text class="float-action-title">导航</text></view>
-
-  <loading hidden="{{hidden}}">
-    加载中...
-  </loading>
+  <view class="float-action" bindtap="ballClickEvent" style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent" style="display:{{floatDisplay}}">
+    <text class="float-action-title">导航</text>
+  </view> 
 
 </view>
