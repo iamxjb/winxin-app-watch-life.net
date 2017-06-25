@@ -13,6 +13,7 @@
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
+var app = getApp()
 
 Page({
   data: {
@@ -24,8 +25,15 @@ Page({
    
     wxParseData:[],
     display:'none',
+    page: 1,
+    isLastPage:false,
 
+    postID:null,
     scrollHeight: 0,
+
+    isGetUserInfo:false,
+
+    
 
     dialog: {
       title: '',
@@ -47,6 +55,15 @@ Page({
           
         });
       }
+    });
+
+    //获取用户信息
+    app.getUserInfo(function (userInfo) {
+      //更新数据
+      self.setData({
+        userInfo: userInfo,
+        isGetUserInfo:true
+      })
     });
   },
   onShareAppMessage: function () {
@@ -71,6 +88,7 @@ Page({
         //console.log(response);
         self.setData({
           detail: response.data,
+          postID: id,
           detailDate: util.cutstr(response.data.date, 10, 1),
           //wxParseData: WxParse('md',response.data.content.rendered)
           wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5),
@@ -78,37 +96,53 @@ Page({
 
         });
 
-        self.fetchCommentData(id);
-
-
-       
+        self.fetchCommentData(self.data);       
       }
     });
   },
   //获取评论
-  fetchCommentData: function (id) {
+  fetchCommentData: function (data) {
     var self = this;
-    self.setData({
-     
-      commentsList: []
-    });
 
-    var dd = wx.getStorageSync("userInfo");
+    if (!data) data = {};
+    if (!data.page) data.page = 1;
+
+    if (data.page === 1) {
+      self.setData({
+        commentsList: []
+      });
+    };
     wx.request({
-      url: Api.getComments(id, { mdrender: false }),
+      url: Api.getComments(data),
       success: function (response) {
+        if (response.data.length < 6) {
+          self.setData({
+            isLastPage: true
+          });
+        }
         self.data.commentsList;
         self.setData({
           //commentsList: response.data,
+         
           commentsList: self.data.commentsList.concat(response.data.map(function (item) {
             var strSummary = util.removeHTML(item.content.rendered);
             var strdate = item.date
             item.summary = strSummary;
             item.date = util.formatDateTime(strdate);
+            if (item.author_url.indexOf('wx.qlogo.cn') >0)
+            {
+              item.author_url = item.author_url.replace("http", "https");
+            }
+            else
+            {
+              item.author_url ="../../images/gravatar.png";
+            }
+            
             return item;
+           
           })),
           commentCount: "有" + response.data.length + "条评论",
-          userInfo: wx.getStorageSync("userInfo")
+          
         });
 
 
@@ -123,93 +157,170 @@ Page({
       }
     });
   },
+  //底部刷新
+  loadMore: function (e) {
+
+    var self = this;
+    if (!self.data.isLastPage) {
+      self.setData({
+        page: self.data.page + 1
+      });
+      console.log('当前页' + self.data.page);
+      this.fetchCommentData(self.data);
+    }
+    else {
+      wx.showToast({
+        title: '没有更多内容',
+        mask: false,
+        duration: 1000
+      });
+    }
+  },
   //提交评论
   formSubmit: function (e) { 
     var self = this;   
-    var name = e.detail.value.inputName;
-    var email = e.detail.value.inputEmail;
+    var name = self.data.userInfo.nickName;
+    var email = "test@test.com";
     var comment = e.detail.value.inputComment;
+    var author_url =  self.data.userInfo.avatarUrl;
+    
     var postID = e.detail.value.inputPostID;
-    if (name.length === 0 || email.length === 0 || comment.length===0 )
+    if (comment.length===0 )
     {
       self.setData({
         'dialog.hidden': false,
         'dialog.title': '提示',
-        'dialog.content': '有需要填写的内容没有填写'
+        'dialog.content': '没有填写评论内容。'
 
       });
 
     }
     else
     {
+      //检测授权
+      self.checkSettingStatu();
       
-      wx.request({
-        url: Api.postComment(), 
-        method:'post',
-        data: {
-          post: postID,
-          author_name: name,
-          author_email: email,
-          content: comment
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          //console.log(res.data)
-          if (res.statusCode==201)
-          {
-            self.setData({
-              'dialog.hidden': false,
-              'dialog.title': '提示',
-              'dialog.content': '评论成功',
-              content:''
+      if (self.data.isGetUserInfo)
+      {
 
-            });
 
-            self.fetchCommentData(postID);            
+        wx.request({
+          url: Api.postComment(),
+          method: 'post',
+          data: {
+            post: postID,
+            author_name: name,
+            author_email: email,
+            content: comment,
+            author_url: author_url
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            //console.log(res.data)
+            if (res.statusCode == 201) {
+              self.setData({
+                'dialog.hidden': false,
+                'dialog.title': '提示',
+                'dialog.content': '评论成功',
+                content: ''
 
+              });
+
+              self.fetchCommentData(self.data);
+
+            }
+            else {
+
+              if (res.data.code == 'rest_comment_login_required') {
+                self.setData({
+                  'dialog.hidden': false,
+                  'dialog.title': '提示',
+                  'dialog.content': '需要开启在WordPress rest api 的匿名评论功能！'
+
+                });
+              }
+              else if (res.data.code == 'rest_invalid_param' && res.data.message.indexOf('author_email') > 0) {
+                self.setData({
+                  'dialog.hidden': false,
+                  'dialog.title': '提示',
+                  'dialog.content': 'email填写错误！'
+
+                });
+              }
+              else {
+                self.setData({
+                  'dialog.hidden': false,
+                  'dialog.title': '提示',
+                  'dialog.content': '评论失败,' + res.data.message
+
+                });
+              }
+
+            }
+
+          },
+          fail: function (res) {
+            //console.log(res.data) 
           }
-          else
-          {
+        });
 
-            if (res.data.code == 'rest_comment_login_required') {
-              self.setData({
-                'dialog.hidden': false,
-                'dialog.title': '提示',
-                'dialog.content': '需要开启在WordPress rest api 的匿名评论功能！'
-
-              });
-            }
-            else if (res.data.code == 'rest_invalid_param' && res.data.message.indexOf('author_email' > 0)) {
-              self.setData({
-                'dialog.hidden': false,
-                'dialog.title': '提示',
-                'dialog.content': 'email填写错误！'
-
-              });
-            }
-            else
-            {
-              self.setData({
-                'dialog.hidden': false,
-                'dialog.title': '提示',
-                'dialog.content':'评论失败,错误原因:' +res.data.message
-
-              });
-            }
-
-          } 
-          
-        },
-        fail: function(res)
-        {
-          //console.log(res.data) 
-        }
-      });
+      }
 
     }
    
+  },
+  // 检测授权状态
+  checkSettingStatu: function (cb) {
+    var that = this;
+    // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
+    wx.getSetting({
+      success: function success(res) {
+        console.log(res.authSetting);
+        var authSetting = res.authSetting;
+        if (util.isEmptyObject(authSetting)) {
+          console.log('首次授权');
+        } else {
+          console.log('不是第一次授权', authSetting);
+          // 没有授权的提醒
+          if (authSetting['scope.userInfo'] === false) {
+            wx.showModal({
+              title: '用户未授权',
+              content: '如需正常使用评论的功能，请授权管理中选中“用户信息”，然后点按确定后再次提交评论。',
+              showCancel: false,
+              success: function (res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                  wx.openSetting({
+                    success: function success(res) {
+                      console.log('openSetting success', res.authSetting);
+                      var as = res.authSetting;
+                      for (var i in as) {
+                        
+                        if(as[i])
+                        {
+                          //获取用户信息
+                          app.getUserInfo(function (userInfo)                             {
+                            //更新数据
+                            that.setData({
+                              userInfo: userInfo,
+                              isGetUserInfo: true
+                            })
+                          });
+                        }
+                        
+                      }                     
+
+                    }
+                  });
+                }
+              }
+            })
+          }
+        }
+      }
+    });
   },
   confirm: function () {
     this.setData({

@@ -124,12 +124,34 @@ function cutstr(str, len,flag) {
     }
   }
 
+  /* 
+ * 判断图片类型 
+ */  
+function checkImgType(filePath){  
+  if (!/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/.test(filePath)) {
+       return false;
+  }
+  else{
+    return true;
+  }   
+}
+
+// 是否为空对象
+function isEmptyObject(e) {
+  var t;
+  for (t in e)
+    return !1;
+  return !0
+}
+
 module.exports = {
   formatTime: formatTime,
   getDateDiff: getDateDiff,
   cutstr:cutstr,
   removeHTML:removeHTML,
   formatDateTime: formatDateTime,
-  compare: compare
+  compare: compare,
+  checkImgType: checkImgType,
+  isEmptyObject: isEmptyObject
   
 }

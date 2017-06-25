@@ -53,11 +53,21 @@
   font-size: 30rpx;
   line-height: 1.8rem;
   margin-bottom: 50rpx;
+ 
 }
 
-.entry-summary image{
-  width:100%!important;
-} 
+.comment-post {
+  color: #757575;
+  font-size: 30rpx;
+  line-height: 1.8rem;
+  margin-bottom: 50rpx;
+  text-align: center;
+}
+
+
+.entry-summary image {
+  width: 100% !important;
+}
 
 .comment-respond {
   margin-top: 40rpx;
@@ -75,6 +85,8 @@
   line-height: 2.58823529em;
   border: 1px solid #ccc;
   margin-top: 20rpx;
+  text-align: left;
+
 }
 
 .comment-area {
@@ -86,11 +98,53 @@
 .comment-button {
   font-size: 0.785714286rem;
   font-weight: normal;
-  color: #7c7c7c;
-  background-color: #e6e6e6;
+  color: #fff;
+  background-color: #21759b;
   background-repeat: repeat-x;
+  margin-top: 30rpx;
 }
 
 .textNoEmpty {
   color: red;
+}
+
+.gravatarImg {
+  margin-top: 4px;
+  border-radius: 50%;
+  opacity: 1;
+  transform: scale(1);
+  perspective-origin: top center;
+  transition: all ease-in-out 0.3s;
+  height: 48rpx;
+  width: 48rpx;
+}
+
+
+.detail-date {
+    font-size: 25rpx;
+    line-height: 1.5;
+    font-weight:normal;
+    outline: none;
+    color: #21759b;
+    margin-bottom:30rpx;
+    border-bottom: 2rpx solid #ededed;
+   
+}
+
+.more-comment {
+  color:  #21759b;
+  font-size: 30rpx;
+  line-height: 1.8rem;
+  margin-bottom: 50rpx;
+  text-align: center;
+  margin-top: 30rpx
+}
+
+.no-more-comment {
+  color: #757575;
+  font-size: 30rpx;
+  line-height: 1.8rem;
+  margin-bottom: 50rpx;
+  text-align: center;
+  margin-top: 30rpx
 }

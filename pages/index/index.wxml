@@ -63,7 +63,7 @@
   <!-- 侧滑菜单  -->
 
 
-  <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true" bindscrolltolower="lower" lower-threshold="100rpx">
+  <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true"  lower-threshold="100rpx">
 
 
     <view class="header" style="display:{{displayHeader}}">
@@ -100,6 +100,9 @@
           <image src="{{item.firstImage}}" class="cover"></image>
         </view>
       </block>
+    </view>
+    <view  class="more" style="display:{{floatDisplay}}">
+    <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>      
     </view>
   </scroll-view>
 

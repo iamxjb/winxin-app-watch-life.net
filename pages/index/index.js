@@ -13,7 +13,7 @@
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
-var app = getApp()
+
 
 Page({
   data: {
@@ -90,16 +90,7 @@ Page({
     }
 
     this.fetchTopFivePosts();
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function (userInfo) {
-      //更新数据
-      self.setData({
-        userInfo: userInfo
-      })
-
-      wx.setStorageSync("userInfo", userInfo)
-
-    });
+    
 
     wx.getSystemInfo({
       success: function (res) {
@@ -189,6 +180,13 @@ Page({
 
         if (response.statusCode === 200) {
 
+          if (response.data.length<6)
+          {
+            self.setData({
+              isLastPage: true
+            });
+          }
+
           //console.log(response);       
           self.setData({
             //postsList: response.data
@@ -257,7 +255,7 @@ Page({
     });
   },
   //底部刷新
-  lower: function (e) {
+  loadMore: function (e) {
     
     var self = this;
     if (!self.data.isLastPage)

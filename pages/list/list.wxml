@@ -62,7 +62,7 @@
   <!-- 侧滑菜单  -->
 
 
-  <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true" bindscrolltolower="lower" lower-threshold="100rpx">
+  <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true"  lower-threshold="100rpx">
 
    <view class="list-header">    
     <view>
@@ -84,6 +84,11 @@
       </view>
     </block>
     </view>
+
+    <view  class="more" style="display:{{floatDisplay}}">
+    <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>      
+    </view>
+
   </scroll-view>
 
   <view class="float-action" bindtap="ballClickEvent" style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent" style="display:{{floatDisplay}}"><text class="float-action-title">导航</text></view>

@@ -15,11 +15,11 @@
 <view class="container"> 
 <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true" lower-threshold="100rpx">
 
-  <view class="content-article-detail">
+  <view class="content-article-detail" style="display:{{display}}">
     <view class="entry-title">
       {{detail.title.rendered}}
     </view>
-    <view class="entry-date" style="display:{{display}}">
+    <view class="detail-date">
       <image src="../../images/calendar.png" style="height:32rpx;width:32rpx"></image>
       {{detailDate}}
     </view>
@@ -35,32 +35,30 @@
     <block wx:key="id" wx:for="{{commentsList}}">
       <view class="comment">
 
-        <view class="comment-user"> {{item.author_name}} </view>
+        <view class="comment-user">
+         <image src="{{item.author_url}}" class="gravatarImg"></image>
+         {{item.author_name}} </view>
         <view class="comment-date"> {{item.date}} </view>
         <view class="comment-summary"> {{item.summary}}</view>
       </view>
+
+      
     </block>
+
+    <view style="display:{{floatDisplay}}">
+    <view  class="more-comment"  bindtap="loadMore" hidden="{{isLastPage}}">
+    点击加载更多评论...   
+    </view>
+
+    <view class="no-more-comment" hidden="{{!isLastPage}}">无更多评论...</view>
+    </view>
 
     <form catchsubmit="formSubmit">
       <view class="comment-respond">
-        <input class="comment-input" maxlength="50" name="inputPostID" value="{{detail.id}}" style="display:none" />
+        <input class="comment-input" maxlength="50" name="inputPostID" value="{{detail.id}}" style="display:none" />       
 
-        <text class="comment-reply-title">发表评论</text>
-        <view class="comment-response">姓名
-          <text class="textNoEmpty">*</text>
-          <input class="comment-input" maxlength="30" name="inputName" value="{{userInfo.nickName}}"/> </view>
-
-        <view class="comment-response">电子邮件
-          <text class="textNoEmpty">*</text>
-          <input class="comment-input" maxlength="50" name="inputEmail" />
-        </view>
-        <view class="comment-response">评论
-          <text class="textNoEmpty">*</text>
-          <textarea class="comment-area" maxlength="200" style="height: 8em" name="inputComment" value="{{content}}" />
-        </view>
-
-        <view class="comment-summary">
-          <button class="comment-button" formType="submit">发表评论</button>
+        <view class="comment-post">
+         <input class="comment-input" maxlength="30" name="inputComment" placeholder="输入评论" /> <button class="comment-button" formType="submit" size="mini">发表评论</button>
         </view>
 
       </view>

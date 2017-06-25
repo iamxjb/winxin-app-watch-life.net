@@ -94,6 +94,21 @@
 }
 
 
+.more{
+  margin-top: 30rpx;
+  text-align: center;
+  margin-bottom: 30rpx
+}
+
+.more-button {
+  font-size: 0.785714286rem;
+  font-weight: normal;
+  color: #fff;
+  background-color: #21759b;
+  background-repeat: repeat-x;
+  margin-top: 30rpx;
+}
+
 
 
 

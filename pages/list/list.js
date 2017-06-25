@@ -83,7 +83,7 @@ Page({
   // }
   // ,
   //底部刷新
-  lower: function (e) {
+  loadMore: function (e) {
 
     var self = this;
     if (!self.data.isLastPage) {

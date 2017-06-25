@@ -61,8 +61,8 @@ module.exports = {
     return HOST_URI + 'categories?per_page=50&orderby=count&order=desc'
   },
   //获取评论
-  getComments: function (id, obj) {
-    return HOST_URI + 'comments?per_page=100&orderby=date&order=asc&post=' + id
+  getComments: function (obj) {
+    return HOST_URI + 'comments?per_page=6&orderby=date&order=asc&post=' + obj.postID + '&page=' + obj.page
   },
 
   //获取最近的50个评论
