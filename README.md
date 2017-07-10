@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# "守望轩"官网WordPress微信小程序
+# WordPress版微信小程序
 
 ![wordpress微信小程序](https://www.watch-life.net/images/2017/06/wordpress-wexin-app-2.png) 
 
@@ -63,6 +62,7 @@
 
 升级的详细说明见：https://www.watch-life.net/wordpress/wordpress-weixin-1-5.html
 
+<<<<<<< HEAD
 =======
 # WordPress版微信小程序
 
@@ -128,5 +128,3 @@
 
 升级的详细说明见：https://www.watch-life.net/wordpress/wordpress-weixin-1-5.html
 
-
->>>>>>> e2c382856ea60e613465710169e10b89e6f21d5d
