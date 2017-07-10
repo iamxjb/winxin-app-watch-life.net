@@ -22,6 +22,7 @@ Page({
     commentsList:{},
     commentCount:'',
     detailDate:'',
+    commentValue:'',
    
     wxParseData:[],
     display:'none',
@@ -30,11 +31,9 @@ Page({
 
     postID:null,
     scrollHeight: 0,
+    link:'',
 
     isGetUserInfo:false,
-
-    
-
     dialog: {
       title: '',
       content: '',
@@ -68,7 +67,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '分享文章：' + this.data.detail.title.rendered,
+      title: '分享"守望轩"的文章：' + this.data.detail.title.rendered,
       path: 'pages/detail/detail?id=' + this.data.detail.id,
       success: function (res) {
         // 转发成功
@@ -78,6 +77,23 @@ Page({
       }
     }
   },
+  copyLink:function()
+  {
+    wx.setClipboardData({
+      data: this.data.link,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showToast({
+              title: '完成复制',
+              icon: 'success',
+              duration: 2000
+            })
+          }
+        })
+      }
+    })
+  },
   //获取文章内容
   fetchDetailData: function (id) {
     var self = this;
@@ -85,16 +101,51 @@ Page({
     wx.request({
       url: Api.getPostByID(id, { mdrender: false }),
       success: function (response) {
-        //console.log(response);
+
+        if (response.data.total_comments != null && response.data.total_comments !='' )
+        {
+          self.setData({            
+            commentCount: "有" + response.data.total_comments + "条评论"
+          });
+         
+        }
+        
         self.setData({
           detail: response.data,
           postID: id,
+          link: response.data.link,
+         
           detailDate: util.cutstr(response.data.date, 10, 1),
           //wxParseData: WxParse('md',response.data.content.rendered)
           wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5),
           display: 'block'
 
         });
+
+        wx.setNavigationBarTitle({
+          title: response.data.title.rendered,
+          success: function (res) {
+            // success
+          }
+        });
+
+
+        // 调用API从本地缓存中获取阅读记录并记录
+        var logs = wx.getStorageSync('readLogs') || [];
+        // 过滤重复值
+        if (logs.length > 0) {
+          logs = logs.filter(function (log) {
+            return log[0] !== id;
+          });
+        }
+        // 如果超过指定数量
+        if (logs.length > 19) {
+          logs.pop();//去除最后一个
+        }
+        logs.unshift([id, response.data.title.rendered]);
+        wx.setStorageSync('readLogs', logs);
+        //end 
+
 
         self.fetchCommentData(self.data);       
       }
@@ -120,9 +171,10 @@ Page({
             isLastPage: true
           });
         }
-        self.data.commentsList;
+       // self.data.commentsList;
         self.setData({
           //commentsList: response.data,
+         
          
           commentsList: self.data.commentsList.concat(response.data.map(function (item) {
             var strSummary = util.removeHTML(item.content.rendered);
@@ -145,8 +197,8 @@ Page({
             
             return item;
            
-          })),
-          commentCount: "有" + response.data.length + "条评论",
+          }))
+          
           
         });
 
@@ -154,7 +206,7 @@ Page({
         wx.showToast({
           title: '加载中',
           icon: 'loading',
-          mask: false,
+          mask: true,
           duration: 1000         
 
         })
@@ -232,6 +284,8 @@ Page({
                 content: ''
 
               });
+
+             
 
               self.fetchCommentData(self.data);
 

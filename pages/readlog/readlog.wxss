@@ -1,0 +1,55 @@
+
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50rpx 0;
+  box-sizing: border-box;
+} 
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.dec{
+  margin-top: 50rpx;
+}
+
+.dec-text{
+   font-size: 25rpx; 
+  color: #757575;
+}
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.log-list {
+  display: flex;
+  flex-direction: column;
+  padding: 40rpx;
+}
+.log-items
+{
+  margin-top: 20rpx;
+}
+.log-text {
+  margin: 20rpx;
+  font-size: 30rpx; 
+  color: #757575;
+  text-align: left;
+  
+
+
+}

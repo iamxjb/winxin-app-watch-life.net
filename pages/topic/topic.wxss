@@ -1,0 +1,58 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding:0;
+  box-sizing: border-box;
+}
+
+
+/*topic list*/
+.topic-common-list {
+  padding:30rpx 30rpx;
+}
+.list-item {
+  position: relative;
+  border-bottom: 1px solid #eee;  
+  overflow: hidden;
+  clear: both;
+ 
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 30rpx;
+  background: #fff;
+}
+
+
+.list-item  image.cover {
+  width: 100%;
+  height: 300rpx;
+  
+}
+
+ .content-title {
+  padding: 10rpx 30rpx; 
+  overflow:hidden; 
+  text-overflow: ellipsis;
+  white-space:nowrap;
+ 
+}
+.content-title text {
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-weight: bold;
+  color:#121b23;
+}
+.content-brief{
+  padding:0rpx 30rpx 30rpx;
+  font-size: 32rpx;
+  line-height: 40rpx;
+  font-weight: 400;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color:#989ebb;
+}
+

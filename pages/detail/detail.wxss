@@ -9,8 +9,60 @@
  * 
  */
 
+.content-article-detail {    
+    border-bottom: 2rpx solid #ededed;
+    margin-top: 40rpx;
+    margin-bottom: 20px;
+}
+
+
+.entry-title {
+    font-size: 50rpx;
+    line-height: 1.2;
+    font-weight:normal;
+    outline: none;
+    /*color: #21759b; */
+    margin-bottom:25rpx;
+}
+
+.entry-summary{
+  font-size: 35rpx;  
+  line-height:1.8rem
+
+}
+
+.entry-summary image {
+  width: 100% !important;
+}
+
+.entry-date {
+    font-size: 25rpx;
+    line-height: 1.5;
+    font-weight:normal;
+    outline: none;
+    margin-bottom:30rpx;
+    border-bottom: 2rpx solid #ededed;
+    margin-left: 30rpx;
+    
+   
+}
+.entry-date-text
+{
+  margin-left: 20rpx
+}
+
+.entry-category-text
+{
+  margin-left: 20rpx
+}
+
+
+
+/*  comment   */
+
+
 .commentheader {
-  padding: 50rpx 0;
+  padding: 20rpx 0;
   text-align: left;
   font-weight: normal;
   font-size: 30rpx;
@@ -37,7 +89,7 @@
   line-height: 1.2;
   font-weight: normal;
   outline: none;
-  color: #21759b;
+  
   margin-bottom: 30rpx;
 }
 
@@ -51,8 +103,8 @@
 .comment-summary {
   color: #757575;
   font-size: 30rpx;
-  line-height: 1.8rem;
-  margin-bottom: 50rpx;
+  line-height: 1.2rem;
+  margin-bottom: 10rpx;
  
 }
 
@@ -62,15 +114,11 @@
   line-height: 1.8rem;
   margin-bottom: 50rpx;
   text-align: center;
+  display: flex;
+  flex-direction: row;
 }
-
-
-.entry-summary image {
-  width: 100% !important;
-}
-
 .comment-respond {
-  margin-top: 40rpx;
+  margin-top: 20rpx;
 }
 
 .comment-reply-title {
@@ -79,13 +127,29 @@
   color: #21759b;
 }
 
+.comment-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.comment-box {
+  padding: 2px 3px;
+  display: flex;
+  justify-content: center;
+}
 .comment-input {
-  height: 2.58823529em;
-  min-height: 2.58823529em;
-  line-height: 2.58823529em;
-  border: 1px solid #ccc;
-  margin-top: 20rpx;
-  text-align: left;
+  background-color: #f2f2f2;
+  padding: 2px 3px;
+  font-size: 12px;
+  height: 25px;
+  max-height: 25px;
+  width: 100%;
+  text-align: left
 
 }
 
@@ -96,12 +160,17 @@
 }
 
 .comment-button {
-  font-size: 0.785714286rem;
-  font-weight: normal;
+  width: 100rpx;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5px;
+  border-radius: 2px;
+  text-align: center;
+  padding: 0 2px !important;
+  font-size: 12px;
+  background-color: #296FD0;
   color: #fff;
-  background-color: #21759b;
-  background-repeat: repeat-x;
-  margin-top: 30rpx;
 }
 
 .textNoEmpty {
@@ -120,31 +189,76 @@
 }
 
 
-.detail-date {
-    font-size: 25rpx;
-    line-height: 1.5;
-    font-weight:normal;
-    outline: none;
-    color: #21759b;
-    margin-bottom:30rpx;
-    border-bottom: 2rpx solid #ededed;
-   
-}
+
 
 .more-comment {
-  color:  #21759b;
+  
   font-size: 30rpx;
   line-height: 1.8rem;
-  margin-bottom: 50rpx;
+  margin-bottom:50rpx;
   text-align: center;
-  margin-top: 30rpx
+  margin-top: 20rpx
 }
 
-.no-more-comment {
-  color: #757575;
-  font-size: 30rpx;
-  line-height: 1.8rem;
-  margin-bottom: 50rpx;
+
+
+/*  comment end  */
+
+
+.sharedetail
+{
+  position: relative;
   text-align: center;
-  margin-top: 30rpx
 }
+
+
+.share-button {
+  width: 100rpx;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 5px;
+  margin-right: 20rpx;
+  border-radius: 2px;
+  text-align: center;
+  padding: 0 2px !important;
+  font-size: 12px;
+  background-color: #20B444;
+  color: #fff;  
+}
+
+.copy-button
+{
+  border: 1px solid #eee !important;
+  color: #296FD0 !important;  
+  height:60rpx;
+  width: 250rpx;
+  margin-left: 30rpx
+}
+
+.showMessage
+{
+  text-align: center;
+  font-weight: normal;
+  font-size: 26rpx;
+  line-height: 40rpx;
+  color: sandybrown;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx
+}
+
+.ditail-copyright
+{
+
+  font-size: 26rpx;
+  line-height: 1.2;
+  font-weight: normal;
+  text-align: center;
+  color:  #999;
+  margin-top: 20rpx;
+  margin-bottom: 50rpx
+
+}
+
+
+

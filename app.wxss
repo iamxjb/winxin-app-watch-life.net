@@ -26,60 +26,6 @@
     margin-bottom:48rpx;
 }
 
-.header_img {
-  padding: 50rpx 0; 
-}
-
-.content-article {
-    margin-bottom: 1.142857143rem ;
-    border-bottom: 2rpx solid #ededed;
-}
-.content-article-detail {    
-    border-bottom: 2rpx solid #ededed;
-    margin-top: 40rpx;
-}
-
-.entry-title {
-    font-size: 50rpx;
-    line-height: 1.2;
-    font-weight:normal;
-    outline: none;
-    color: #21759b;
-    margin-bottom:25rpx;
-}
-.entry-date {
-    font-size: 25rpx;
-    line-height: 1.2;
-    font-weight:normal;
-    outline: none;
-    color: #21759b;
-    margin-bottom:30rpx;
-   
-}
-
-.entry-summary{
-  font-size: 35rpx;  
-  line-height:1.8rem
-
-}
-
-.top-bar {
-  height: 70rpx;
-  width:100%; 
-  top:10rps;
-  z-index:1;
- 
-}
-.top-bar-item {
-  display:inline-block;
-  width: 20%;
-  color: #21759b;
-  text-align: center;
-  line-height: 36px;
-  font-size: 14px;
-}
-/** wxss **/
-/** 修改默认的navigator点击态 **/
 .navigator-hover {
     color:blue;
 }
@@ -88,27 +34,145 @@
     color:red;
 }
 
+
+
+
+
 .wxParse-p
 {
   margin: 0 0 1.714285714rem;
 }
 
 
-.more{
-  margin-top: 30rpx;
+
+/*  more   */
+
+.loadingmore{
+  margin-top: 15rpx;
   text-align: center;
-  margin-bottom: 30rpx
+  margin-bottom: 15rpx
 }
 
 .more-button {
   font-size: 0.785714286rem;
   font-weight: normal;
-  color: #fff;
-  background-color: #21759b;
+  color:  #999;
+  background-color: #fff;
   background-repeat: repeat-x;
   margin-top: 30rpx;
+  width: 300rpx;
+}
+
+.no-more {
+  color: #757575;
+  font-size: 30rpx;
+  line-height: 1.8rem;
+  margin-bottom: 15rpx;
+  text-align: center;
+  margin-top: 15rpx
+}
+
+
+/*  more  end  */
+
+
+
+/*common list  for  index  list page */
+
+.common-list .list-item {
+  position: relative;
+  border-bottom: 1px solid #eee;
+  padding: 20rpx;
+  min-height: 150rpx;
+  overflow: hidden;
 }
 
 
 
+.common-list .list-item.has-img image.cover {
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+  width: 150rpx;
+  height: 150rpx;
+  
+}
 
+.common-list .list-item.has-img .content-title {
+  
+  margin-left: 200rpx;
+  height:80rpx;
+  margin-bottom:20rpx;
+  
+}
+
+.common-list .list-item.has-img .content-title text {
+  
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+
+  font-size: 32rpx;
+  line-height: 1.2;
+  font-weight: normal;
+}
+
+.common-list .list-item.has-img .content-date {
+   margin-left: 200rpx;
+}
+
+.common-list .list-item.has-img .content-date image {
+ 
+
+  width: 32rpx;
+  height: 32rpx;
+  margin-right:10rpx;
+  vertical-align: middle;
+}
+
+.common-list .list-item .content-date text {
+  
+  color:#999;
+  margin-right: 30rpx;
+  font-size: 21rpx;
+  line-height: 1.2;
+  font-weight: normal;
+}
+
+
+/*common list end */
+
+
+
+
+.showerror
+{
+
+  text-align: center;
+  font-weight: normal;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  color: #757575;
+  margin-top: 100rpx;
+}
+
+.errortext
+{
+  margin-top: 50rpx;
+  table-layout: center;
+}
+
+.copyright
+{
+  font-size: 26rpx;
+  line-height: 1.2;
+  font-weight: normal;
+  text-align: center;
+  color:  #999;
+  margin-top: 20rpx;
+  margin-bottom: 50rpx
+
+}

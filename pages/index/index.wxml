@@ -10,104 +10,75 @@
  * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
  *
  */-->
-<import src="../../templates/header.wxml" />
 
+<import src="../../templates/common-list.wxml" />
+<import src="../../templates/copyright.wxml" />
 <view class="container">
 
-  <!-- 侧滑菜单-->
-  <view class="slide-mask" style="display:{{maskDisplay}}" bindtap="slideCloseEvent"></view>
-  <view class="slide-menu" style="right: {{slideRight}}px;width: {{slideWidth}}px;height:{{slideHeight}}px;" animation="{{slideAnimation}}">
-    <scroll-view scroll-y="true" style="height:100%;width:100%">
-      <view class="header">
-      <!--
-        <view class="toolbar">
-          <block wx:key="id" wx:for="{{pagesList}}">
-            <block wx:if="{{item.id !=29 && item.id !=32 }}">
-              <view class="item">
-                <navigator url="/pages/page/page?id={{item.id}}">{{item.title.rendered}}</navigator>
-              </view>
-            </block>
-          </block>
-        </view>-->
-        <icon type="cancel" size="30" class="close-btn" color="#FFF" bindtap="slideCloseEvent" />
-      </view>
-      <!--
-      <view class="menu-item home">
-        <image src="../../images/home.png" class="home-icon"></image>
-        <navigator url="/pages/index/index" open-type ="switchTab">
-          <text class="home-text">Home</text>
-        </navigator>
-      </view> -->
-
-      <view class="slide-inner">
-        <view class="search-section">
-          <form catchsubmit="formSubmit" catchreset="formReset">
-            <view class="search-pancel">
-              <input value="" name="input" class="search-input" placeholder="请输入搜索内容..." />
-              <button class="search-button" form-type="submit" size="mini" plain="true">搜索</button>
-            </view>
-          </form>
-        </view>
-        <block wx:key="id" wx:for="{{categoriesList}}">
-          <view class="menu-item" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
-            <image src="../../images/folder.png"></image>
-            <text class="home-text">
-              <text>{{item.name}}({{item.count}})</text>
-            </text>
-          </view>
-
-        </block>
-      </view>
-    </scroll-view>
-  </view>
-  <!-- 侧滑菜单  -->
 
 
-  <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true"  lower-threshold="100rpx">
-
-
-    <view class="header" style="display:{{displayHeader}}">
+  <view class="header" style="display:{{displayHeader}}">
     <image src="../../images/logo.gif" style="height:120rpx;width:400rpx"></image>
     <view>
       守望生活, 审视自我,宁静雅致的小轩馆.
     </view>
   </view>
 
-    <view class="index-header" style="display:{{displaySwiper}}">
-      <swiper class="index-swiper" indicator-dots="true" interval="10000" autoplay="true">
-        <block wx:key="id" wx:for="{{postsShowSwiperList}}">
-          <swiper-item id="{{item.id}}" index="{{index}}" bindtap="redictDetail">
-            <image mode="aspectFill" src="{{item.firstImage}}" style="width:100%" />
-            <view class="mask"></view>
-            <view class="desc">
-              <text>{{item.title.rendered}}</text>
-            </view>
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
-
-    <view class="common-list">
-      <block wx:key="id" wx:for="{{postsList}}">
-        <view class="list-item has-img" index="{{index}}" id="{{item.id}}" bindtap="redictDetail">
-          <view class="content-title">
+  <view class="index-header" style="display:{{displaySwiper}}">
+    <swiper class="index-swiper" indicator-dots="true" interval="10000" autoplay="true">
+      <block wx:key="id" wx:for="{{postsShowSwiperList}}">
+        <swiper-item id="{{item.id}}" index="{{index}}" bindtap="redictDetail">
+          <image mode="aspectFill" src="{{item.post_medium_image_300}}" style="width:100%" />
+          <view class="swiper-mask"></view>
+          <view class="swiper-desc">
             <text>{{item.title.rendered}}</text>
           </view>
-          <view class="content-date">
-            <image src="../../images/calendar.png"></image>
-            <text>{{item.date}}</text>
-          </view>
-          <image src="{{item.firstImage}}" class="cover"></image>
-        </view>
+        </swiper-item>
       </block>
-    </view>
-    <view  class="more" style="display:{{floatDisplay}}">
-    <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>      
-    </view>
-  </scroll-view>
+    </swiper>
+  </view>
 
-  <view class="float-action" bindtap="ballClickEvent" style="opacity: {{ballOpacity}};bottom:{{ballBottom}}px;right:{{ballRight}}px;" bindtouchmove="ballMoveEvent" style="display:{{floatDisplay}}">
-    <text class="float-action-title">导航</text>
-  </view> 
+
+
+  <view class="showerror" style="display:{{showerror}}">
+    <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
+    <view class="errortext">
+      暂时无法访问网络,下拉重试...
+
+    </view>
+  </view>
+
+
+
+  <view style="display:{{showallDisplay}}">
+    <view style="display:{{floatDisplay}}">
+      <form catchsubmit="formSubmit" catchreset="formReset">
+        <view class="search-pancel">
+          <input value="" name="input" confirm-type="搜索" class="search-input" placeholder="请输入搜索内容..." />
+          <button class="search-button" form-type="submit" size="mini" plain="true">搜索</button>
+          <button class="share-button" open-type="share" size="mini" plain="true">转发</button>
+        </view>
+      </form>
+    </view>
+    <!-- 加载图文列表 -->
+    <template is="tempCommonList" data="{{postsList}}" />
+
+    <view class="loadingmore" style="display:{{floatDisplay}}">
+      <view hidden="{{isLastPage}}">
+        <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>
+      </view>
+
+      <view class="no-more" hidden="{{!isLastPage}}">---无更多文章---</view>
+
+    </view>
+
+    <view class="copyright" style="display:{{floatDisplay}}">
+      <template is="tempCopyright" />
+    </view>
+
+  </view>
+
+
+
 
 </view>

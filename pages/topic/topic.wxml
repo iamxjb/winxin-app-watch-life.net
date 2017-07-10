@@ -1,0 +1,25 @@
+<import src="../../templates/copyright.wxml" />
+<view class="container">
+  <scroll-view style="height:100%;" scroll-y="true" lower-threshold="100rpx">
+    <view class="topic-common-list">
+      <block wx:key="id" wx:for="{{categoriesList}}">
+        <view class="list-item" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
+          <view>
+            <image src="{{item.category_thumbnail_image}}" class="cover"></image>
+          </view>
+          <view class="content-title">
+            <text>{{item.name}}</text>
+          </view>
+          <view class="content-brief">
+            <text>{{item.description}}</text>
+          </view>
+        </view>  
+             
+      </block>
+    </view>
+  </scroll-view>
+
+   <view class="copyright" style="display:{{floatDisplay}}">
+     <template is="tempCopyright" />
+     </view>
+</view>

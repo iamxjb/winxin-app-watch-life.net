@@ -58,7 +58,14 @@ module.exports = {
   },
   //获取分类列表
   getCategories: function () {
-    return HOST_URI + 'categories?per_page=50&orderby=count&order=desc'
+    var url =HOST_URI + 'categories?per_page=100&orderby=count&order=desc';
+    return url
+
+  },
+  //获取某个分类信息
+  getCategoryByID: function (id) {
+    var dd = HOST_URI + 'categories/' + id;
+    return HOST_URI + 'categories/'+id;
   },
   //获取评论
   getComments: function (obj) {

@@ -144,6 +144,24 @@ function isEmptyObject(e) {
   return !0
 }
 
+function CheckImgExists(imgurl) {
+  var ImgObj = new Image(); //判断图片是否存在  
+  ImgObj.src = imgurl;
+  //没有图片，则返回-1  
+  if (ImgObj.fileSize > 0 || (ImgObj.width > 0 && ImgObj.height > 0)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function GetPageName(imagpath) {
+  var tmp = new Array();
+  tmp = imagpath.split("/");
+  return tmp[tmp.length - 1];
+}
+
+
 module.exports = {
   formatTime: formatTime,
   getDateDiff: getDateDiff,
@@ -152,6 +170,8 @@ module.exports = {
   formatDateTime: formatDateTime,
   compare: compare,
   checkImgType: checkImgType,
-  isEmptyObject: isEmptyObject
+  isEmptyObject: isEmptyObject,
+  CheckImgExists: CheckImgExists,
+  GetPageName: GetPageName
   
 }

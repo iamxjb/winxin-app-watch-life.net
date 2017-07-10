@@ -12,62 +12,84 @@
 
 <import src="../../wxParse/wxParse.wxml" />
 <import src="../../templates/header.wxml" />
-<view class="container"> 
-<scroll-view style="height:{{scrollHeight}}px;" scroll-y="true" lower-threshold="100rpx">
+<import src="../../templates/copyright.wxml" />
+<view class="container">
+  <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true" lower-threshold="100rpx">
 
-  <view class="content-article-detail" style="display:{{display}}">
-    <view class="entry-title">
-      {{detail.title.rendered}}
-    </view>
-    <view class="detail-date">
-      <image src="../../images/calendar.png" style="height:32rpx;width:32rpx"></image>
-      {{detailDate}}
-    </view>
-    <view class="entry-summary">
-      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-    </view>
-  </view>
-
-  <view style="display:{{display}}">
-    <view class="commentheader">
-      {{commentCount}}
-    </view>
-    <block wx:key="id" wx:for="{{commentsList}}">
-      <view class="comment">
-
-        <view class="comment-user">
-         <image src="{{item.author_url}}" class="gravatarImg"></image>
-         {{item.author_name}} </view>
-        <view class="comment-date"> {{item.date}} </view>
-        <view class="comment-summary"> {{item.summary}}</view>
+    <view class="content-article-detail" style="display:{{display}}">
+      <view class="entry-title">
+        {{detail.title.rendered}}
+      </view>
+      <view class="entry-date">
+        <image src="../../images/calendar.png" style="height:32rpx;width:32rpx"></image>
+        <text class="entry-date-text">{{detailDate}}</text>
+      </view>
+      <view class="entry-summary">
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
       </view>
 
-      
-    </block>
+      <view class="sharedetail">
+        <view>
+          
+          <button class="copy-button" formType="submit" size="mini" bindtap="copyLink">复制链接</button>
+        </view>
+        <view class="showMessage">
+          点击"复制链接"按钮,通过外部浏览器访问原始页面.
+        </view>
+      </view>
 
-    <view style="display:{{floatDisplay}}">
-    <view  class="more-comment"  bindtap="loadMore" hidden="{{isLastPage}}">
-    点击加载更多评论...   
+
     </view>
 
-    <view class="no-more-comment" hidden="{{!isLastPage}}">无更多评论...</view>
-    </view>
+    <view style="display:{{display}}">
+      <view class="commentheader">
+        {{commentCount}}
+      </view>
+      <block wx:key="id" wx:for="{{commentsList}}">
+        <view class="comment">
 
-    <form catchsubmit="formSubmit">
-      <view class="comment-respond">
-        <input class="comment-input" maxlength="50" name="inputPostID" value="{{detail.id}}" style="display:none" />       
-
-        <view class="comment-post">
-         <input class="comment-input" maxlength="30" name="inputComment" placeholder="输入评论" /> <button class="comment-button" formType="submit" size="mini">发表评论</button>
+          <view class="comment-user">
+            <image src="{{item.author_url}}" class="gravatarImg"></image>
+            {{item.author_name}} </view>
+          <view class="comment-date"> {{item.date}} </view>
+          <view class="comment-summary"> {{item.summary}}</view>
         </view>
 
+
+      </block>
+
+      <view style="display:{{display}}">
+
+        <view class="more-comment" bindtap="loadMore" hidden="{{isLastPage}}">
+          点击加载更多评论...
+        </view>
+
+        <view hidden="{{!isNoComment}}">
+          <view class="no-more" hidden="{{!isLastPage}}">---无更多评论---</view>
+        </view>
       </view>
-    </form>
+      <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
+    </view>
 
-    <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
-
+    <view class="ditail-copyright" style="display:{{display}}">
+    <template is="tempCopyright" />
   </view>
 
   </scroll-view>
-
+  <view style="display:{{display}}" >
+  <form catchsubmit="formSubmit">
+  <view class="comment-respond">
+    <input class="comment-input" maxlength="50" name="inputPostID" value="{{detail.id}}" style="display:none" />
+    <view class="comment-post">
+      <view class="comment-fixed">
+        <view class="comment-box"><button class="share-button touch-active" open-type="share" size="mini">转发</button>
+          <input class="comment-input" maxlength="30" name="inputComment" value="{{content}}" placeholder="输入评论" />
+          <button class="comment-button touch-active" formType="submit" size="mini">发布</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</form>
+</view>
+  
 </view>
