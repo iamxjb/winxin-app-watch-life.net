@@ -67,7 +67,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '“守望轩”网站微信小程序。基于WordPress版小程序构建。',
+      title: '“守望轩”网站微信小程序,基于WordPress版小程序构建.技术支持：www.watch-life.net',
       path: 'pages/index/index',
       success: function (res) {
         // 转发成功

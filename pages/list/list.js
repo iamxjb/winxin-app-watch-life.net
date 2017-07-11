@@ -27,6 +27,8 @@ Page({
     search: '',
     categories: 0, 
 
+    categoriesName:'',
+
     categoriesImage:"", 
 
     showerror:"none",
@@ -46,6 +48,35 @@ Page({
     wx.navigateTo({
       url: url
     })
+  },
+  onShareAppMessage: function () {
+
+    var title = "分享“守望轩”";
+    var path =""
+
+    if (this.data.categories && this.data.categories != 0 != 0)
+  {
+      title += "的专题：" + this.data.categoriesList.name;
+      path = 'pages/list/list?categoryID=' + this.data.categoriesList.id;
+
+  }
+  else
+  {
+      title += "的搜索内容：" + this.data.searchKey;
+      path = 'pages/list/list?search=' + this.data.searchKey;
+  }
+
+
+    return {
+      title: title,
+      path: path,
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   },
   reload:function(e)
   {
@@ -96,6 +127,7 @@ Page({
       self.setData({
         categories: options.categoryID,
         isCategoryPage:"block"
+        
        
       });
       self.fetchCategoriesData(options.categoryID);
@@ -251,7 +283,8 @@ Page({
 
         self.setData({
           categoriesList: response.data,
-          categoriesImage: catImage
+          categoriesImage: catImage,
+          categoriesName: response.name
         });
 
         wx.setNavigationBarTitle({

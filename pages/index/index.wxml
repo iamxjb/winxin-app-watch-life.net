@@ -53,10 +53,13 @@
   <view style="display:{{showallDisplay}}">
     <view style="display:{{floatDisplay}}">
       <form catchsubmit="formSubmit" catchreset="formReset">
-        <view class="search-pancel">
-          <input value="" name="input" confirm-type="搜索" class="search-input" placeholder="请输入搜索内容..." />
-          <button class="search-button" form-type="submit" size="mini" plain="true">搜索</button>
-          <button class="share-button" open-type="share" size="mini" plain="true">转发</button>
+       <view class="search-pancel">
+          <input value="" name="input" confirm-type="搜索" class="search-input" placeholder="搜搜看..." ></input>
+          <button class="search-button" form-type="submit" size="mini" plain="true">
+            <icon type="search" color="#296FD0" size="20"/>
+          </button>
+          <!--
+          <button class="share-button" open-type="share" size="mini" plain="true">转发</button> -->
         </view>
       </form>
     </view>

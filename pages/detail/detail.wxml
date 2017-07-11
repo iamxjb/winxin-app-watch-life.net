@@ -82,9 +82,9 @@
     <input class="comment-input" maxlength="50" name="inputPostID" value="{{detail.id}}" style="display:none" />
     <view class="comment-post">
       <view class="comment-fixed">
-        <view class="comment-box"><button class="share-button touch-active" open-type="share" size="mini">转发</button>
+        <view class="comment-box"><button class="share-button touch-active" open-type="share" size="30rpx" >转发</button>
           <input class="comment-input" maxlength="30" name="inputComment" value="{{content}}" placeholder="输入评论" />
-          <button class="comment-button touch-active" formType="submit" size="mini">发布</button>
+          <button class="comment-button touch-active" formType="submit">发布</button>
         </view>
       </view>
     </view>

@@ -65,6 +65,9 @@ swiper .swiper-desc {
 
 /*   index   swiper  end  */
 
+
+/*
+
 .search-input { 
   background-color: #fff;
   padding: 5px 10px;
@@ -90,14 +93,55 @@ swiper .swiper-desc {
   
 }
 
+*/
+
+.search-button {
+  border-left: 0!important;
+  border-top: 1px solid #296FD0 !important;
+  border-right: 1px solid #296FD0 !important;
+  border-bottom: 1px solid #296FD0 !important;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 60px;
+  border-bottom-right-radius: 60px;
+  color: #296FD0 !important; 
+/*  left: 280rpx;*/
+/*  height:60rpx;*/
+  width: 20%;
+  margin:0!important;
+}
+
+.search-button icon{
+  position:absolute;
+  margin-top:14rpx;
+}
+
+.search-input { 
+  background-color: #fff;
+  padding: 16rpx 0 16rpx 44rpx;
+  min-height: 1rem;
+  font-size: 30rpx;
+/*  position: absolute;*/
+  border-bottom-left-radius: 60px;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border:1px solid #296FD0;
+  border-right: 0!important;
+  height:36rpx;
+  width: 80%;
+  text-align: left;
+ /* margin-left: 15rpx;*/
+  
+  
+}
+
 .share-button {
   border: 1px solid #eee !important;
   color: #296FD0 !important; 
-  left: 100rpx;
-  height:60rpx;
-  width: 150rpx;
-  
-  
+  left:10rpx;
+height:60rpx;
+width:200rpx;  
 }
 
 .search-pancel {

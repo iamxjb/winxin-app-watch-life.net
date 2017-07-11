@@ -70,6 +70,19 @@ Page({
     });
   },
 
+  onShareAppMessage: function () {
+    return {
+      title: '分享“守望轩”小程序的专题栏目.',
+      path: 'pages/topic/topic',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
+
   //跳转至某分类下的文章列表
   redictIndex: function (e) {
     //console.log('查看某类别下的文章');  
