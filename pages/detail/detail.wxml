@@ -79,7 +79,7 @@
   <view style="display:{{display}}" >
   <form catchsubmit="formSubmit">
   <view class="comment-respond">
-    <input class="comment-input" maxlength="50" name="inputPostID" value="{{detail.id}}" style="display:none" />
+    <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
     <view class="comment-post">
       <view class="comment-fixed">
         <view class="comment-box"><button class="share-button touch-active" open-type="share" size="30rpx" >转发</button>
