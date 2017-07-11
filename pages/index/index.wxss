@@ -16,9 +16,8 @@
   font-size: 30rpx;
   line-height: 40rpx;
   color: #757575;
-  /*
-  border-bottom: 2rpx solid #ededed; 
-  margin-bottom: 10rpx;*/
+  margin-top: 5rpx;
+ 
 }
 
 
@@ -66,34 +65,6 @@ swiper .swiper-desc {
 /*   index   swiper  end  */
 
 
-/*
-
-.search-input { 
-  background-color: #fff;
-  padding: 5px 10px;
-  min-height: 1rem;
-  font-size: 30rpx;
-  position: absolute;
-  border-radius:3px 4px 5px 6px; 
-  border:1px solid #eee;
-  height:30rpx;
-  width: 300rpx;
-  text-align: left;
-  margin-left: 15rpx;
-  
-  
-}
-
-.search-button {
-  border: 1px solid #eee !important;
-  color: #296FD0 !important; 
-  left: 280rpx;
-  height:60rpx;
-  width: 150rpx
-  
-}
-
-*/
 
 .search-button {
   border-left: 0!important;
@@ -105,8 +76,7 @@ swiper .swiper-desc {
   border-top-right-radius: 60px;
   border-bottom-right-radius: 60px;
   color: #296FD0 !important; 
-/*  left: 280rpx;*/
-/*  height:60rpx;*/
+
   width: 20%;
   margin:0!important;
 }
@@ -131,7 +101,7 @@ swiper .swiper-desc {
   height:36rpx;
   width: 80%;
   text-align: left;
- /* margin-left: 15rpx;*/
+
   
   
 }
