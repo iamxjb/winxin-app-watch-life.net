@@ -130,7 +130,7 @@ Page({
               }             
               return item;
             })),
-            showallDisplay:"block",
+            showallDisplay: "block",
             displaySwiper: "block"
           });
 
@@ -141,7 +141,8 @@ Page({
           self.setData({
            
             displaySwiper: "none",
-            displayHeader:"block"
+            displayHeader:"block",
+            showallDisplay: "block",
 
           });
           self.fetchPostsData(self.data);
