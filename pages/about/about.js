@@ -54,9 +54,9 @@ Page({
       success: function (response) {
         console.log(response);
         self.setData({
-          pageData: response.data
+          pageData: response.data,
           // wxParseData: WxParse('md',response.data.content.rendered)
-          //wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5)
+         // wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5)
         });
         setTimeout(function () {
           self.setData({
