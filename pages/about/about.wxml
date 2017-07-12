@@ -14,10 +14,13 @@
 <import src="../../templates/header.wxml"/>
 <view class="container">
   <template is="tempHeader" /> 
-<view class="h2"> {{pageData.title.rendered}}</view>
+<view class="h2"> Wordpress版微信小程序</view>
   <view class="wrapper">
       <view class="excerpt">
-    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+      <rich-text nodes="{{pageData.content.rendered}}"></rich-text>
+      
+      <!-- 
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/> -->
       
       </view> 
       </view>

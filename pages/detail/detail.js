@@ -172,10 +172,12 @@ Page({
           });
         }
        // self.data.commentsList;
+
+        if (response.data) {
+
+        
         self.setData({
-          //commentsList: response.data,
-         
-         
+          //commentsList: response.data, 
           commentsList: self.data.commentsList.concat(response.data.map(function (item) {
             var strSummary = util.removeHTML(item.content.rendered);
             var strdate = item.date
@@ -201,6 +203,8 @@ Page({
           
           
         });
+
+      }
 
 
         wx.showToast({

@@ -15,8 +15,7 @@
 }
 
 .excerpt{
-  color:#626262;
-  text-indent:2em;
+  color:#626262; 
   font-size:32rpx;
   line-height:64rpx;
   text-align: left;

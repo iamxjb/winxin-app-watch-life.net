@@ -25,7 +25,7 @@
         <text class="entry-date-text">{{detailDate}}</text>
       </view>
       <view class="entry-summary">
-        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+     <template is="wxParse" data="{{wxParseData:article.nodes}}" />
       </view>
 
       <view class="sharedetail">
