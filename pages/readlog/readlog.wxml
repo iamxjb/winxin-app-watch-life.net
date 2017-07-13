@@ -32,7 +32,7 @@
       <block wx:else>
 
        <view class="log-items">
-    <text class="log-text">您还未浏览任何文章，赶紧去查看您感兴趣的内容吧！</text>
+    <text class="log-text">您还未浏览任何文章，去看看您感兴趣的内容吧</text>
         </view>
 
       </block>

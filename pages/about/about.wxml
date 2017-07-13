@@ -16,11 +16,9 @@
   <template is="tempHeader" /> 
 <view class="h2"> Wordpress版微信小程序</view>
   <view class="wrapper">
-      <view class="excerpt">
-      <rich-text nodes="{{pageData.content.rendered}}"></rich-text>
-      
-      <!-- 
-    <template is="wxParse" data="{{wxParseData:article.nodes}}"/> -->
+      <view class="excerpt"> 
+     
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
       
       </view> 
       </view>
