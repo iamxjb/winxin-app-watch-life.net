@@ -6,9 +6,9 @@
 
 # 开源协议：MIT
 
-# 技术支持微信：
+# 技术支持微信：iamxjb
 
-![weixin](https://www.watch-life.net/images/2017/07/weixinapp215.png) 
+![iamxjb](https://www.watch-life.net/images/iamxjbweixin.jpg) 
 
 # 程序开发系列文章
 
@@ -23,7 +23,6 @@
 <a href="https://www.watch-life.net/wechat/wordpress-weixin-2-1-5.html" target="_blank">5.WordPress版微信小程序2.1.5版本发布</a>
 
 # 讨论微信群：二维码如下
-
 
 <img width="150" height="150" src="https://www.watch-life.net/images/2017/05/weixi-nwordpress.png"/>
 
