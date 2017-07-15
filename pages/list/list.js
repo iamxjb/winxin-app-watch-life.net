@@ -54,7 +54,7 @@ Page({
     var title = "分享“守望轩”";
     var path =""
 
-    if (this.data.categories && this.data.categories != 0 != 0)
+    if (this.data.categories && this.data.categories != 0)
   {
       title += "的专题：" + this.data.categoriesList.name;
       path = 'pages/list/list?categoryID=' + this.data.categoriesList.id;
