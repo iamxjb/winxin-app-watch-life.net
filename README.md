@@ -2,11 +2,6 @@
 
 ![wordpress微信小程序](https://www.watch-life.net/images/2017/07/weixinapp215.png) 
 
-
-# 程序开发流程及注意事项见：
-
-# https://www.watch-life.net/wordpress/weixin-connect-wordpress.html
-
 # 技术支持网站：https://www.watch-life.net
 
 # 开源协议：MIT
@@ -15,7 +10,17 @@
 
 ![weixin](https://www.watch-life.net/images/2017/07/weixinapp215.png) 
 
+# 程序开发系列文章
 
+1.<a href="https://www.watch-life.net/wordpress/weixin-connect-wordpress.html" target="_blank">用微信小程序连接WordPress网站</a>
+
+2.<a href="http://WordPress版微信小程序1.5版本发布" target="_blank">WordPress版微信小程序1.5版本发布</a>
+
+3.<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2.html" target="_blank">WordPress版微信小程序2.0版本发布</a>
+
+4.<a href="http://利用WordPress REST API 开发微信小程序从入门到放弃" target="_blank">利用WordPress REST API 开发微信小程序从入门到放弃</a>
+
+5.<a href="https://www.watch-life.net/wechat/wordpress-weixin-2-1-5.html" target="_blank">WordPress版微信小程序2.1.5版本发布</a>
 
 # 讨论微信群：二维码如下
 
@@ -31,9 +36,21 @@
 
 # 更新历史：
 
-## 预计日期：2017年7月17日
+## 2017年7月15日
 
+1.完善首页列表的缩略。调整为150*150的小图，需要配合wp-rest-api-for-app插件.
 
+2.去除侧滑菜单。增加专题分类，并完善搜索。
+
+3.完善评论及显示。
+
+4、优化程序性能，整理wxss，让程序代码更易懂和美观.
+
+5.修复获取微信头像bug，当头像如果是https地址的话，不强制转换成https。
+
+6.修复没有置顶文章，下拉刷新不显示列表的bug。
+
+7.为评论增加分页，提供分页刷新的功能。
 
 
 ## 日期：2017年6月6日
