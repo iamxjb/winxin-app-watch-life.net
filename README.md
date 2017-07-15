@@ -1,6 +1,6 @@
 # WordPress版微信小程序
 
-![wordpress微信小程序](https://www.watch-life.net/images/2017/06/wordpress-wexin-app-2.png) 
+![wordpress微信小程序](https://www.watch-life.net/images/2017/07/weixinapp215.png) 
 
 
 # 程序开发流程及注意事项见：
