@@ -13,7 +13,9 @@
 
 # 技术支持微信：
 
-![weixin](https://www.watch-life.net/images/iamxjbweixin.jpg) 
+![weixin](https://www.watch-life.net/images/2017/07/weixinapp215.png) 
+
+
 
 # 讨论微信群：二维码如下
 
