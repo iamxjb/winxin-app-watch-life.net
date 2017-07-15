@@ -44,7 +44,7 @@
 
 3.完善评论及显示。
 
-4、优化程序性能，整理wxss，让程序代码更易懂和美观.
+4.优化程序性能，整理wxss，让程序代码更易懂和美观.
 
 5.修复获取微信头像bug，当头像如果是https地址的话，不强制转换成https。
 
@@ -57,13 +57,13 @@
 
 内容：
 
-1、调整列表页的显示方式。
+1.调整列表页的显示方式。
 
-2、增加搜索。
+2.增加搜索。
 
-3、首页增加轮播图片和缩略图。
+3.首页增加轮播图片和缩略图。
 
-4、增加文章评论
+4.增加文章评论
 
 5.增加小程序分享
 
@@ -74,15 +74,15 @@
 
 内容：
 
-1、在主页面，加入浮动按钮，用来打开侧滑导航菜单。
+1.在主页面，加入浮动按钮，用来打开侧滑导航菜单。
 
-2、增加侧滑导航菜单，菜单上包括页面及文章分类.侧滑菜单代码参考WechatSmallApps（https://github.com/jkgeekJack/WechatSmallApps）的代码修改。
+2.增加侧滑导航菜单，菜单上包括页面及文章分类.侧滑菜单代码参考WechatSmallApps（https://github.com/jkgeekJack/WechatSmallApps）的代码修改。
 
-3、优化下拉刷新数据（分页）的性能。
+3.优化下拉刷新数据（分页）的性能。
 
-4、文章列表页添加发布时间。
+4.文章列表页添加发布时间。
 
-5、升级最新的微信小程序富文本解析组件wxParse（https://github.com/icindy/wxParse）
+5.升级最新的微信小程序富文本解析组件wxParse（https://github.com/icindy/wxParse）
 
 升级的详细说明见：https://www.watch-life.net/wordpress/wordpress-weixin-1-5.html
 
