@@ -12,15 +12,15 @@
 
 # 程序开发系列文章
 
-1.<a href="https://www.watch-life.net/wordpress/weixin-connect-wordpress.html" target="_blank">用微信小程序连接WordPress网站</a>
+<a href="https://www.watch-life.net/wordpress/weixin-connect-wordpress.html" target="_blank">1.用微信小程序连接WordPress网站</a>
 
-2.<a href="http://WordPress版微信小程序1.5版本发布" target="_blank">WordPress版微信小程序1.5版本发布</a>
+<a href="http://WordPress版微信小程序1.5版本发布" target="_blank">2.WordPress版微信小程序1.5版本发布</a>
 
-3.<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2.html" target="_blank">WordPress版微信小程序2.0版本发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2.html" target="_blank">3.WordPress版微信小程序2.0版本发布</a>
 
-4.<a href="http://利用WordPress REST API 开发微信小程序从入门到放弃" target="_blank">利用WordPress REST API 开发微信小程序从入门到放弃</a>
+<a href="http://利用WordPress REST API 开发微信小程序从入门到放弃" target="_blank">4.利用WordPress REST API 开发微信小程序从入门到放弃</a>
 
-5.<a href="https://www.watch-life.net/wechat/wordpress-weixin-2-1-5.html" target="_blank">WordPress版微信小程序2.1.5版本发布</a>
+<a href="https://www.watch-life.net/wechat/wordpress-weixin-2-1-5.html" target="_blank">5.WordPress版微信小程序2.1.5版本发布</a>
 
 # 讨论微信群：二维码如下
 
