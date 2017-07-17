@@ -32,7 +32,6 @@
 ![weixinpay](https://www.watch-life.net/images/2017/06/weixinpay150.png) 
 
 
-
 # 更新历史：
 
 ## 2017年7月15日
