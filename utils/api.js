@@ -59,6 +59,7 @@ module.exports = {
   //获取分类列表
   getCategories: function () {
     var url =HOST_URI + 'categories?per_page=100&orderby=count&order=desc';
+    //var url = HOST_URI + 'categories?include=1,1059,98,416,189,374,6&orderby=count&order=desc';
     return url
 
   },
@@ -69,8 +70,15 @@ module.exports = {
   },
   //获取评论
   getComments: function (obj) {
-    return HOST_URI + 'comments?per_page=6&orderby=date&order=asc&post=' + obj.postID + '&page=' + obj.page
+    return HOST_URI + 'comments?parent=0&per_page=100&orderby=date&order=desc&post=' + obj.postID + '&page=' + obj.page
   },
+
+  //获取回复
+  getChildrenComments: function (obj) {
+    var url= HOST_URI + 'comments?parent_exclude=0&per_page=100&orderby=date&order=desc&post=' + obj.postID
+     return url;
+  },
+
 
   //获取最近的50个评论
   getRecentfiftyComments:function(){
