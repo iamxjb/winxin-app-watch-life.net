@@ -25,12 +25,12 @@
         <text class="entry-date-text">{{detailDate}}</text>
       </view>
       <view class="entry-summary">
-     <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
       </view>
 
       <view class="sharedetail">
         <view>
-          
+
           <button class="copy-button" formType="submit" size="mini" bindtap="copyLink">复制链接</button>
         </view>
         <view class="showMessage">
@@ -47,12 +47,82 @@
       </view>
       <block wx:key="id" wx:for="{{commentsList}}">
         <view class="comment">
-
           <view class="comment-user">
             <image src="{{item.author_url}}" class="gravatarImg"></image>
-            {{item.author_name}} </view>
+            {{item.author_name}}</view>
           <view class="comment-date"> {{item.date}} </view>
           <view class="comment-summary"> {{item.summary}}</view>
+ <view class="comment-repaly"> <button class="replay-button touch-active" bindtap="replay"  data-id="{{item.id}}" data-name="{{item.author_name}}" >回复</button></view>
+
+          <!-- 一级回复-->
+          <view wx:for="{{ChildrenCommentsList}}" wx:key="itemid1" wx:for-index="idx" wx:for-item="item1">
+            <view wx:if="{{item1.parent===item.id}}">
+              <view class="comment-children">
+                <view class="comment-user">
+                  <image src="{{item1.author_url}}" class="gravatarImg"></image>
+                  {{item1.author_name}} </view>
+                <view class="comment-date"> {{item1.date}} </view>
+                <view class="comment-summary"> {{item1.summary}}</view>
+                 <view class="comment-repaly"> <button class="replay-button touch-active" bindtap="replay"  data-id="{{item1.id}}" data-name="{{item1.author_name}}" >回复</button></view>
+
+                <!-- 二级回复-->
+                <view wx:for="{{ChildrenCommentsList}}" wx:key="itemid2" wx:for-index="idx" wx:for-item="item2">
+                  <view wx:if="{{item2.parent===item1.id}}">
+                    <view class="comment-children">
+                      <view class="comment-user">
+                        <image src="{{item2.author_url}}" class="gravatarImg"></image>
+                        {{item2.author_name}} </view>
+                      <view class="comment-date"> {{item2.date}} </view>
+                      <view class="comment-summary"> {{item2.summary}}</view>
+                       <view class="comment-repaly"><button class="replay-button touch-active" bindtap="replay"  data-id="{{item2.id}}" data-name="{{item2.author_name}}" >回复</button></view>  
+                        
+                         <!-- 三级回复-->
+                          <view wx:for="{{ChildrenCommentsList}}" wx:key="itemid3" wx:for-index="idx" wx:for-item="item3">
+                            <view wx:if="{{item3.parent===item2.id}}">
+                              <view class="comment-children">
+                                <view class="comment-user">
+                                  <image src="{{item3.author_url}}" class="gravatarImg"></image>
+                                  {{item3.author_name}} </view>
+                                <view class="comment-date"> {{item3.date}} </view>
+                                <view class="comment-summary"> {{item3.summary}}</view>
+                                <view class="comment-repaly"><button class="replay-button touch-active" bindtap="replay"  data-id="{{item3.id}}" data-name="{{item3.author_name}}" >回复</button></view> 
+                             
+                                <!-- 四级回复 -->
+
+
+                                    <view wx:for="{{ChildrenCommentsList}}" wx:key="itemid4" wx:for-index="idx" wx:for-item="item4">
+                                      <view wx:if="{{item4.parent===item3.id}}">
+                                        <view class="comment-children">
+                                          <view class="comment-user">
+                                            <image src="{{item4.author_url}}" class="gravatarImg"></image>
+                                            {{item4.author_name}} </view>
+                                          <view class="comment-date"> {{item4.date}} </view>
+                                          <view class="comment-summary"> {{item4.summary}}</view>
+                                         
+                                        </view>
+                                      </view>
+                                    </view>
+                                  <!-- 四级回复结束 -->
+                             
+                              </view>
+                            </view>
+                          </view>
+
+                          <!-- 三级回复结束-->
+                    
+                    
+                    </view>
+                  </view>
+                </view>
+
+                <!-- 二级回复结束-->
+
+
+              </view>
+            </view>
+          </view>
+          <!-- 一级回复结束-->
+
         </view>
 
 
@@ -72,24 +142,24 @@
     </view>
 
     <view class="ditail-copyright" style="display:{{display}}">
-    <template is="tempCopyright" />
-  </view>
+      <template is="tempCopyright" />
+    </view>
 
   </scroll-view>
-  <view style="display:{{display}}" >
-  <form catchsubmit="formSubmit">
-  <view class="comment-respond">
-    <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
-    <view class="comment-post">
-      <view class="comment-fixed">
-        <view class="comment-box"><button class="share-button touch-active" open-type="share" size="30rpx" >转发</button>
-          <input class="comment-input" maxlength="30" name="inputComment" value="{{content}}" placeholder="输入评论" />
-          <button class="comment-button touch-active" formType="submit">发布</button>
+  <view style="display:{{display}}">
+    <form catchsubmit="formSubmit">
+      <view class="comment-respond">
+        <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
+        <view class="comment-post">
+          <view class="comment-fixed">
+            <view class="comment-box"><button class="share-button touch-active" open-type="share" size="30rpx">转发</button>
+              <input class="comment-input" maxlength="30" name="inputComment" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" />
+              <button class="comment-button touch-active" formType="submit">发布</button>
+            </view>
+          </view>
         </view>
       </view>
-    </view>
+    </form>
   </view>
-</form>
-</view>
-  
+
 </view>

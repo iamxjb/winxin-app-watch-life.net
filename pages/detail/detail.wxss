@@ -74,6 +74,11 @@
   border-bottom: 2rpx solid #ededed;
 }
 
+.comment-children {  
+  border-top: 2rpx solid #ededed;
+  margin-left: 40rpx;
+}
+
 .comment-user {
   font-size: 30rpx;
   line-height: 1.2;
@@ -108,6 +113,16 @@
  
 }
 
+.comment-repaly {
+  color: #757575;
+  font-size: 30rpx;
+  line-height: 1.2rem;
+  margin-bottom: 10rpx;
+ 
+}
+
+
+
 .comment-post {
   color: #757575;
   font-size: 30rpx;
@@ -118,7 +133,7 @@
   flex-direction: row;
 }
 .comment-respond {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
 }
 
 .comment-reply-title {
@@ -135,7 +150,7 @@
   background-color: #fff;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   z-index: 100;
-  margin-bottom:1px;
+  margin-bottom:2rpx;
 
 }
 
@@ -166,6 +181,25 @@
   font-size: 12px;
   background-color:  #296FD0;
   color: #fff;
+  border:none;
+  border-radius:0;
+}
+
+.replay-button {
+  width: 100rpx;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 22rpx;
+  border-bottom-left-radius: 6px!important;
+  border-top-left-radius: 6px!important;
+  border-top-right-radius: 6px!important;
+  border-bottom-right-radius: 6px!important;
+  text-align: center;
+  padding: 0 2px !important;
+  font-size: 12px;
+  color:  #999;
+  background-color: #fff;
   border:none;
   border-radius:0;
 
@@ -237,7 +271,7 @@
   text-align: center;
   padding: 0 2px !important;
   font-size: 12px;
-  background-color: #20B444;
+  background-color: #5599FF;
   color: #fff;  
 }
 

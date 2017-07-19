@@ -282,7 +282,7 @@ Page({
       self.setData({
         page: self.data.page + 1
       });
-      console.log('当前页' + self.data.page);
+      //console.log('当前页' + self.data.page);
       this.fetchPostsData(self.data);
     }
     else
