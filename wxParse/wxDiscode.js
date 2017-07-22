@@ -111,6 +111,7 @@ function strcharacterDiscode(str){
 
     str = str.replace(/&lt;/g, '<');
     str = str.replace(/&gt;/g, '>');
+    str = str.replace(/&#8226;/g, '•');
 
     return str;
 }

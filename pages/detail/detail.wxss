@@ -8,7 +8,7 @@
  * 开源协议：MIT
  * 
  */
-
+@import "../../wxParse/wxParse.wxss";
 .content-article-detail {    
     border-bottom: 2rpx solid #ededed;
     margin-top: 40rpx;
