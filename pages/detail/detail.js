@@ -200,23 +200,16 @@ Page({
               if (item.author_url.indexOf('https') ==-1 )
               {
                 item.author_url = item.author_url.replace("http", "https");
-              }
-
-              
+              }             
             }
             else
             {
               item.author_url ="../../images/gravatar.png";
             }
-            
-             
-            return item;
-           
-          }))
-          
+            return item;           
+          }))         
           
         });
-
       }
         if (data.page === 1){
           self.fetchChildrenCommentData(data, flag);
@@ -306,11 +299,9 @@ Page({
     var name = e.target.dataset.name;
     self.setData({
       parentID: id,
-      placeholder: "回复："+name,
+      content: "@"+name+":",
       focus:true
-    });
-    
-
+    });  
   },
   //提交评论
   formSubmit: function (e) { 
@@ -319,9 +310,25 @@ Page({
     var email = "test@test.com";
     var comment = e.detail.value.inputComment;
     var author_url =  self.data.userInfo.avatarUrl;
-    var parent  = self.data.parentID;
-    
-    var postID = e.detail.value.inputPostID;
+    var parent  = self.data.parentID;    
+    var postID = e.detail.value.inputPostID;    
+    if (comment.indexOf('@') == -1 && comment.indexOf(':')==-1)
+    {
+        parent=0;
+    }
+    else{ 
+        var temp = comment.split(":");
+        if (temp.length == 2 && temp[temp.length - 1].length !=0)
+        {  
+             comment = temp[temp.length - 1];           
+             
+        }
+        else
+        {
+            comment="";
+        }
+
+    }   
     if (comment.length===0 )
     {
       self.setData({
@@ -335,13 +342,10 @@ Page({
     else
     {
       //检测授权
-      self.checkSettingStatu();
-      
+      self.checkSettingStatu();      
       if (self.data.isGetUserInfo)
       {
-
-
-        wx.request({
+          wx.request({
           url: Api.postComment(),
           method: 'post',
           data: {
@@ -366,13 +370,8 @@ Page({
                 commentsList: [],
                 ChildrenCommentsList: []
 
-              });             
-
-              self.fetchCommentData(self.data,'1');
-              
-              
-              
-
+              }); 
+              self.fetchCommentData(self.data,'1'); 
             }
             else {
 
@@ -400,9 +399,7 @@ Page({
 
                 });
               }
-
             }
-
           },
           fail: function (res) {
             //console.log(res.data) 

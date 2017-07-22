@@ -25,7 +25,11 @@
         <text class="entry-date-text">{{detailDate}}</text>
       </view>
       <view class="entry-summary">
+        <!--  <rich-text nodes="{{detail.content.rendered}}"></rich-text>  -->
+      
+    
         <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+     
       </view>
 
       <view class="sharedetail">

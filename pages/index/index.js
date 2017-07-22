@@ -16,29 +16,17 @@ var WxParse = require('../../wxParse/wxParse.js');
 
 
 Page({
-  data: {
-    title: '文章列表',
+  data: {    
     postsList: {},
-    pagesList: {},
-    categoriesList: {},
     postsShowSwiperList: {},
-
-
-    isLastPage:false,
-    
+    isLastPage:false,    
     page: 1,
     search: '',
     categories: 0,
     showerror:"none",
-
     showCategoryName:"",
-
     categoryName:"",
-
-    showallDisplay:"block",
-
-    
-
+    showallDisplay:"block", 
     displayHeader:"none",
     displaySwiper: "none",
     floatDisplay: "none",
@@ -83,7 +71,8 @@ Page({
       showerror: "none",
       showallDisplay:"none",
       displaySwiper:"none",
-      floatDisplay:"none"
+      floatDisplay:"none",
+      page:0
     });
     this.fetchTopFivePosts(); 
     
@@ -133,10 +122,8 @@ Page({
             showallDisplay: "block",
             displaySwiper: "block"
           });
-
           self.fetchPostsData(self.data);
         }
-
         else {
           self.setData({
            
@@ -294,31 +281,7 @@ Page({
       });
     }
   },
-  //获取页面列表
-  fetchPagesData: function () {
-    var self = this;
-    wx.request({
-      url: Api.getPages(),
-      success: function (response) {
-        self.setData({
-          pagesList: response.data
-        });
-      }
-    });
-  },
 
-  //获取分类列表
-  fetchCategoriesData: function () {
-    var self = this;
-    wx.request({
-      url: Api.getCategories(),
-      success: function (response) {
-        self.setData({
-          categoriesList: response.data
-        });
-      }
-    });
-  },
 
 
   // 跳转至查看文章详情

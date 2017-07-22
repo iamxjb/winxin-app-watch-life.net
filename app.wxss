@@ -26,18 +26,6 @@
     margin-bottom:48rpx;
 }
 
-.navigator-hover {
-    color:blue;
-}
-/** 自定义其他点击态样式类 **/
-.other-navigator-hover {
-    color:red;
-}
-
-
-
-
-
 .wxParse-p
 {
   margin: 0 0 1.714285714rem;
