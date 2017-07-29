@@ -28,8 +28,8 @@
 
 # 开源声明：
 
-1、本程序html转wxml的解析采用的是https://github.com/icindy/wxParse。
-2、专题页面及浏览记录页面的设计思路参考 https://devework.com/网站的小程序
+1、本程序html转wxml的解析采用的是https://github.com/icindy/wxParse
+2、专题页面及浏览记录页面的设计思路参考 https://devework.com/  网站的小程序
 
 在此对上述提供开源及创意表示致谢。
 
