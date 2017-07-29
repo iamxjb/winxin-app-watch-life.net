@@ -25,11 +25,12 @@
     border-bottom: 2rpx solid #ededed;
     margin-bottom:48rpx;
 }
-
+/*
 .wxParse-p
 {
   margin: 0 0 1.714285714rem;
 }
+*/
 
 
 
