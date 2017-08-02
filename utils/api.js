@@ -10,9 +10,15 @@
  */
 
 var HOST_URI = 'https://www.watch-life.net/wp-json/wp/v2/';
+var DOMAIN ="www.watch-life.net";
 
 
 module.exports = {
+
+  getDomain:function()
+  {
+      return DOMAIN;
+  },
   // 获取文章列表数据
   getPosts: function (obj) {
     var url = HOST_URI + 'posts?per_page=6&page=' + obj.page;
@@ -26,6 +32,7 @@ module.exports = {
     return url;
 
   },
+
 
   getStickyPosts: function () {
     var url = HOST_URI + 'posts?sticky=true&per_page=5&page=1';
@@ -41,8 +48,15 @@ module.exports = {
     return url;
 
   },
+  // 获取特定slug的文章内容
+  getPostBySlug: function (obj) {
+      var url = HOST_URI + 'posts?slug=' + obj;
+
+      return url;
+
+  },
   // 获取内容页数据
-  getPostByID: function (id, obj) {
+  getPostByID: function (id) {
     
     return HOST_URI + 'posts/' + id;
   },

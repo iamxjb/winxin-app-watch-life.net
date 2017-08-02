@@ -86,8 +86,10 @@ Page({
     var self = this; 
     this.fetchTopFivePosts();   
   },
+  onShow: function (options){
+      wx.setStorageSync('openLinkCount', 0);
 
-  
+  },  
   fetchTopFivePosts: function () {
     var self = this;
     self.setData({

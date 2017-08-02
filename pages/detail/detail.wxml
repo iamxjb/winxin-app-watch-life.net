@@ -35,10 +35,10 @@
       <view class="sharedetail">
         <view>
 
-          <button class="copy-button" formType="submit" size="mini" bindtap="copyLink">复制链接</button>
+          <button class="copy-button" formType="submit" size="mini" bindtap="copyLink">复制本文链接</button>
         </view>
         <view class="showMessage">
-          点击"复制链接"按钮,通过外部浏览器访问原始页面.
+          点击"复制本文链接"按钮,通过外部浏览器访问本文内容。
         </view>
       </view>
 
