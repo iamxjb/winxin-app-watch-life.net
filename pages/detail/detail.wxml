@@ -34,16 +34,29 @@
 
       <view class="sharedetail">
         <view>
-
           <button class="copy-button" formType="submit" size="mini" bindtap="copyLink">复制本文链接</button>
         </view>
         <view class="showMessage">
           点击"复制本文链接"按钮,通过外部浏览器访问本文内容。
         </view>
       </view>
-
-
     </view>
+
+
+      <view class="relatedPost" style="display:{{display}}">        
+         <view class="relatedTitle">
+          猜你喜欢：
+        </view>
+        <view class="relatedText">
+        <block wx:key="id" wx:for="{{postList}}">
+    
+        <navigator url="../detail/detail?id={{item.id}}" open-type="redirect" hover-class="relatedNavigator">{{index+1}}.{{item.title.rendered}}</navigator>
+       
+        </block>
+        </view>
+      </view>
+
+      
 
     <view style="display:{{display}}">
       <view class="commentheader">

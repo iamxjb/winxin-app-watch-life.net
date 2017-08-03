@@ -33,6 +33,7 @@ Page({
         placeholder: "输入评论",
         postID: null,
         scrollHeight: 0,
+        postList:[],
         link: '',
         isGetUserInfo: false,
         dialog: {
@@ -135,7 +136,49 @@ Page({
                 wx.setStorageSync('readLogs', logs);
                 //end 
 
-                self.fetchCommentData(self.data, '0');
+                var tagsArr =[];
+
+                tagsArr = response.data.tags
+
+                var tags="";
+
+                for (var i = 0; i < tagsArr.length; i++) {
+                    if(i==0)
+                    {
+                        tags += tagsArr[i];
+                    }
+                    else{
+                        tags += "," + tagsArr[i];
+
+                    }
+                }
+                
+
+                if (tags != "")
+                {
+
+                    wx.request({
+                        url: Api.getPostsByTags(id,tags),
+                        success: function (respost) {
+
+                            self.setData({
+                                postList: respost.data
+
+                            });
+
+                            self.fetchCommentData(self.data, '0');
+                        }
+                    });
+                }
+                else
+                {
+                    self.fetchCommentData(self.data, '0');
+
+                }
+
+                
+
+               
             }
         });
     },

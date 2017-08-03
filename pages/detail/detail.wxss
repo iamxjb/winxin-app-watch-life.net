@@ -250,14 +250,57 @@
 
 
 
+
 /*  comment end  */
+
+.relatedPost
+{
+  position: relative;
+  text-align: left;
+  margin-top: 30rpx;
+  border-bottom:2rpx solid #ededed;
+  margin-bottom: 30rpx;
+  
+  
+}
+
+.relatedTitle
+{
+  text-align: left;
+  font-weight: normal;  
+  line-height: 40rpx;  
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 36rpx;
+  color:#21759b !important;
+ 
+}
+
+.relatedText
+{
+  text-align: left;
+  font-weight: normal;
+  font-size: 26rpx;
+  line-height: 50rpx;
+  color:#21759b!important;
+  
+}
+
+.relatedNavigator
+{  
+  color:#21759b!important;
+
+}
 
 
 .sharedetail
 {
   position: relative;
   text-align: center;
+  margin-top: 30rpx;
 }
+
+
 
 
 .share-button {
