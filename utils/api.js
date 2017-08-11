@@ -9,8 +9,10 @@
  * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
  */
 
-var HOST_URI = 'https://www.watch-life.net/wp-json/wp/v2/';
-var DOMAIN ="www.watch-life.net";
+var DOMAIN = "www.watch-life.net";
+var HOST_URI = 'https://' + DOMAIN+'/wp-json/wp/v2/';
+var HOST_URI_WATCH_LIFE_JSON = 'https://' + DOMAIN + '/wp-json/watch-life-net/v1/';
+
 
 
 module.exports = {
@@ -80,8 +82,8 @@ module.exports = {
   },
   //获取分类列表
   getCategories: function () {
-    var url =HOST_URI + 'categories?per_page=100&orderby=count&order=desc';
-    //var url = HOST_URI + 'categories?include=1,1059,98,416,189,374,6&orderby=count&order=desc';
+    //var url =HOST_URI + 'categories?per_page=100&orderby=count&order=desc';
+    var url = HOST_URI + 'categories?include=1,1059,98,416,189,374,6&orderby=count&order=desc';
     return url
 
   },
@@ -123,6 +125,20 @@ module.exports = {
       src=arrReg[1];
     }
     return src;  
-  }
+  },
 
+ //获取热点文章
+  getTopHotPosts(flag){      
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      if(flag ==1)
+      {
+          url +="post/hotpostthisyear"
+      }
+      else if(flag==2)
+      {
+          url += "post/hotpost"
+      }
+
+      return url;
+  }
 };

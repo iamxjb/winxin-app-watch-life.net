@@ -7,7 +7,8 @@
     "pages/about/about",
     "pages/list/list",
     "pages/topic/topic",
-    "pages/readlog/readlog"
+    "pages/readlog/readlog",
+    "pages/hot/hot"
 
   ],
   "window": {
@@ -37,10 +38,10 @@
       }
       ,
       {
-        "pagePath": "pages/readlog/readlog",
-        "iconPath": "images/tar-person.png",
-        "selectedIconPath": "images/tar-person-on.png",
-        "text": "我"
+        "pagePath": "pages/hot/hot",
+        "iconPath": "images/hot.png",
+        "selectedIconPath": "images/hot-on.png",
+        "text": "热点"
       },
       {
         "pagePath": "pages/about/about",

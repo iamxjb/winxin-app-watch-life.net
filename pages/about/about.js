@@ -44,6 +44,68 @@ Page({
       }
     }
   },
+  //给a标签添加跳转和复制链接事件
+  wxParseTagATap: function (e) {
+      var self = this;
+      var href = e.currentTarget.dataset.src;
+      console.log(href);
+      var domain = Api.getDomain();
+      //我们可以在这里进行一些路由处理
+      if (href.indexOf(domain) == -1) {
+          wx.setClipboardData({
+              data: href,
+              success: function (res) {
+                  wx.getClipboardData({
+                      success: function (res) {
+                          wx.showToast({
+                              title: '链接已复制',
+                              //icon: 'success',
+                              image: '../../images/link.png',
+                              duration: 2000
+                          })
+                      }
+                  })
+              }
+          })
+      }
+      else {
+
+          var slug = util.GetUrlFileName(href, domain);
+          if (slug == 'index') {
+              wx.switchTab({
+                  url: '../index/index'
+              })
+          }
+          else {
+
+              wx.request({
+                  url: Api.getPostBySlug(slug),
+                  success: function (res) {
+                      var postID = res.data[0].id;
+                      var openLinkCount = wx.getStorageSync('openLinkCount') || 0;
+                      if (openLinkCount > 4) {
+                          wx.redirectTo({
+                              url: '../detail/detail?id=' + postID
+                          })
+                      }
+                      else {
+                          wx.navigateTo({
+                              url: '../detail/detail?id=' + postID
+                          })
+                          openLinkCount++;
+                          wx.setStorageSync('openLinkCount', openLinkCount);
+                      }
+                  }
+              });
+
+          }
+
+
+
+
+      }
+
+  },
   fetchData: function (id) {
     var self = this;
     self.setData({

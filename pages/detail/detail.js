@@ -120,28 +120,11 @@ Page({
                         // success
                     }
                 });
-                // 调用API从本地缓存中获取阅读记录并记录
-                var logs = wx.getStorageSync('readLogs') || [];
-                // 过滤重复值
-                if (logs.length > 0) {
-                    logs = logs.filter(function (log) {
-                        return log[0] !== id;
-                    });
-                }
-                // 如果超过指定数量
-                if (logs.length > 19) {
-                    logs.pop();//去除最后一个
-                }
-                logs.unshift([id, response.data.title.rendered]);
-                wx.setStorageSync('readLogs', logs);
-                //end 
+                
 
                 var tagsArr =[];
-
                 tagsArr = response.data.tags
-
                 var tags="";
-
                 for (var i = 0; i < tagsArr.length; i++) {
                     if(i==0)
                     {
@@ -151,8 +134,7 @@ Page({
                         tags += "," + tagsArr[i];
 
                     }
-                }
-                
+                }             
 
                 if (tags != "")
                 {
