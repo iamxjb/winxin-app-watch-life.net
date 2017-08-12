@@ -417,7 +417,7 @@ Page({
                     },
                     success: function (res) {
                         //console.log(res.data)
-                        if (res.statusCode == 201) {
+                        if (res.statusCode == 201 || res.statusCode == 200) {
                             self.setData({
                                 content: '',
                                 parent: "0",
