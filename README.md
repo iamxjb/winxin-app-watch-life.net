@@ -4,6 +4,10 @@
 
 # 技术支持网站：https://www.watch-life.net
 
+#小程序配套wordpress的插件：
+
+本小程序需要配合wordpress插件wp-rest-api-for-app，才能完整使用，插件下载地址： https://github.com/iamxjb/wp-rest-api-for-app
+
 # 开源协议：MIT
 
 # 技术支持微信：iamxjb
