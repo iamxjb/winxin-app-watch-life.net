@@ -134,15 +134,21 @@ Page({
             })),
 
           });
-          setTimeout(function () {
-            wx.hideLoading();
-           
-          }, 1500);
+                 
 
-        
-
+        } else if (response.statusCode === 404)
+        {
+            wx.showModal({
+                title: '加载失败',
+                content: '加载数据失败,可能没有文章评论。',
+                showCancel: false,
+            });
         }
-        
+
+        setTimeout(function () {
+            wx.hideLoading();
+
+        }, 1500);
       } ,
 
       fail: function (res) {
