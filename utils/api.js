@@ -104,12 +104,12 @@ module.exports = {
   },
 
 
-  //获取最近的50个评论
+  //获取最近的30个评论
   getRecentfiftyComments:function(){
     return HOST_URI + 'comments?per_page=30&orderby=date&order=desc'
   },
 
-  //获取最近的50个评论
+  //发表评论
   postComment: function () {
     return HOST_URI + 'comments'
   },
