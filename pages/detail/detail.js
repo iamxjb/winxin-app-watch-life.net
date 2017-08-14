@@ -234,10 +234,10 @@ Page({
     //获取评论
     fetchCommentData: function (data, flag) {
         var self = this;
-        wx.showLoading({
-            title: '正在加载',
-            mask: true
-        })
+        // wx.showLoading({
+        //     title: '正在加载',
+        //     mask: true
+        // })
 
         if (!data) data = {};
         if (!data.page) data.page = 1;
@@ -318,7 +318,7 @@ Page({
                 }
 
                 setTimeout(function () {
-                    wx.hideLoading();
+                    //wx.hideLoading();
                     if (flag == '1') {
                         wx.showToast({
                             title: '评论发布成功。',

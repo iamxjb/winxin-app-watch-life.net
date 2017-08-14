@@ -104,17 +104,15 @@ module.exports = {
   },
 
 
-  //获取最近的50个评论
+  //获取最近的30个评论
   getRecentfiftyComments:function(){
     return HOST_URI + 'comments?per_page=30&orderby=date&order=desc'
   },
 
-  //获取最近的50个评论
+  //提交评论
   postComment: function () {
     return HOST_URI + 'comments'
-  },
-
-   
+  },   
 
   //获取文章的第一个图片地址,如果没有给出默认图片
   getContentFirstImage: function (content){
