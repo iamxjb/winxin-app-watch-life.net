@@ -25,20 +25,20 @@ Page({
     isLastPage: false,
     page: 1,
     search: '',
-    categories: 0, 
+    categories: 0,
 
-    categoriesName:'',
+    categoriesName: '',
 
-    categoriesImage:"", 
+    categoriesImage: "",
 
-    showerror:"none",
+    showerror: "none",
 
-    isCategoryPage:"none",
-    isSearchPage:"none",
+    isCategoryPage: "none",
+    isSearchPage: "none",
     showallDisplay: "block",
     displaySwiper: "block",
     floatDisplay: "none",
-    searchKey:"",
+    searchKey: "",
   },
   formSubmit: function (e) {
     var url = '../list/list'
@@ -52,19 +52,17 @@ Page({
   onShareAppMessage: function () {
 
     var title = "分享“守望轩”";
-    var path =""
+    var path = ""
 
-    if (this.data.categories && this.data.categories != 0)
-  {
+    if (this.data.categories && this.data.categories != 0) {
       title += "的专题：" + this.data.categoriesList.name;
       path = 'pages/list/list?categoryID=' + this.data.categoriesList.id;
 
-  }
-  else
-  {
+    }
+    else {
       title += "的搜索内容：" + this.data.searchKey;
       path = 'pages/list/list?search=' + this.data.searchKey;
-  }
+    }
 
 
     return {
@@ -78,13 +76,12 @@ Page({
       }
     }
   },
-  reload:function(e)
-  {
+  reload: function (e) {
     var self = this;
     if (self.data.categories && self.data.categories != 0) {
-      
+
       self.setData({
-       // categories: options.categoryID,
+        // categories: options.categoryID,
         isCategoryPage: "block",
         showallDisplay: "none",
         showerror: "none",
@@ -102,6 +99,10 @@ Page({
       })
     }
     self.fetchPostsData(self.data);
+  },
+  onReachBottom: function () {
+    var self = this;
+    this.loadMore();
   },
   //加载分页
   loadMore: function (e) {
@@ -126,31 +127,31 @@ Page({
     if (options.categoryID && options.categoryID != 0) {
       self.setData({
         categories: options.categoryID,
-        isCategoryPage:"block"
-        
-       
+        isCategoryPage: "block"
+
+
       });
       self.fetchCategoriesData(options.categoryID);
     }
     if (options.search && options.search != '') {
       wx.setNavigationBarTitle({
-        title: "搜索关键字:"+options.search,
+        title: "搜索关键字:" + options.search,
         success: function (res) {
           // success
         }
       });
       self.setData({
         search: options.search,
-        isSearchPage:"block",
+        isSearchPage: "block",
         searchKey: options.search
       })
 
       this.fetchPostsData(self.data);
-    }    
+    }
   },
   //获取文章列表数据
   fetchPostsData: function (data) {
-    var self = this;  
+    var self = this;
     if (!data) data = {};
     if (!data.page) data.page = 1;
     if (!data.categories) data.categories = 0;
@@ -160,10 +161,10 @@ Page({
         postsList: []
       });
     };
-    
+
     wx.showLoading({
       title: '正在加载',
-      mask:true
+      mask: true
     });
     wx.request({
       url: Api.getPosts(data),
@@ -173,8 +174,8 @@ Page({
             self.setData({
               isLastPage: true
             });
-          };                 
-          self.setData({        
+          };
+          self.setData({
 
             floatDisplay: "block",
             showallDisplay: "block",
@@ -198,20 +199,19 @@ Page({
           });
           setTimeout(function () {
             wx.hideLoading();
-           
+
           }, 1500);
 
-        
+
 
         }
-        else
-        {
+        else {
           if (response.data.code == "rest_post_invalid_page_number") {
 
             self.setData({
               isLastPage: true
             });
-            
+
           }
           else {
             wx.showToast({
@@ -219,9 +219,9 @@ Page({
               duration: 1500
             })
           }
-        }       
+        }
 
-      } ,
+      },
 
       fail: function (res) {
         wx.hideLoading();
@@ -247,7 +247,7 @@ Page({
         }
       }
     });
-  },  
+  },
 
 
 
@@ -271,13 +271,11 @@ Page({
     wx.request({
       url: Api.getCategoryByID(id),
       success: function (response) {
-        var catImage="";
-        if (typeof (response.data.category_thumbnail_image) == "undefined" || response.data.category_thumbnail_image == "")
-        {
+        var catImage = "";
+        if (typeof (response.data.category_thumbnail_image) == "undefined" || response.data.category_thumbnail_image == "") {
           catImage = "../../images/website.png";
         }
-        else
-        {
+        else {
           catImage = response.data.category_thumbnail_image;
         }
 
@@ -294,7 +292,7 @@ Page({
           }
         });
 
-        self.fetchPostsData(self.data);        
+        self.fetchPostsData(self.data);
 
       }
     });

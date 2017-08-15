@@ -16,18 +16,18 @@ var WxParse = require('../../wxParse/wxParse.js');
 
 
 Page({
-  data: {    
+  data: {
     postsList: {},
     postsShowSwiperList: {},
-    isLastPage:false,    
+    isLastPage: false,
     page: 1,
     search: '',
     categories: 0,
-    showerror:"none",
-    showCategoryName:"",
-    categoryName:"",
-    showallDisplay:"block", 
-    displayHeader:"none",
+    showerror: "none",
+    showCategoryName: "",
+    categoryName: "",
+    showallDisplay: "block",
+    displayHeader: "none",
     displaySwiper: "none",
     floatDisplay: "none",
 
@@ -40,8 +40,7 @@ Page({
         url: url
       })
     }
-    else
-    {
+    else {
       wx.showModal({
         title: '提示',
         content: '请输入搜索内容',
@@ -50,8 +49,8 @@ Page({
 
 
     }
-    
-    
+
+
   },
   onShareAppMessage: function () {
     return {
@@ -69,27 +68,26 @@ Page({
     var self = this;
     self.setData({
       showerror: "none",
-      showallDisplay:"none",
-      displaySwiper:"none",
-      floatDisplay:"none",
-      page:0
+      showallDisplay: "none",
+      displaySwiper: "none",
+      floatDisplay: "none",
+      page: 0
     });
-    this.fetchTopFivePosts(); 
-    
+    this.fetchTopFivePosts();
+
   },
   onReachBottom: function () {
-
-    //console.log("xialajiazai");  
-   
+    var self = this;
+    this.loadMore();
   },
   onLoad: function (options) {
-    var self = this; 
-    this.fetchTopFivePosts();   
+    var self = this;
+    this.fetchTopFivePosts();
   },
-  onShow: function (options){
-      wx.setStorageSync('openLinkCount', 0);
+  onShow: function (options) {
+    wx.setStorageSync('openLinkCount', 0);
 
-  },  
+  },
   fetchTopFivePosts: function () {
     var self = this;
     self.setData({
@@ -104,21 +102,18 @@ Page({
         if (response.data.length > 0) {
 
           self.setData({
-           postsShowSwiperList: response.data,
+            postsShowSwiperList: response.data,
             postsShowSwiperList: self.data.postsShowSwiperList.concat(response.data.map(function (item) {
               //item.firstImage = Api.getContentFirstImage(item.content.rendered);
-              if (item.post_medium_image_300 == null || item.post_medium_image_300 =='')
-              {
-                if (item.content_first_image != null && item.content_first_image !='')
-                {
+              if (item.post_medium_image_300 == null || item.post_medium_image_300 == '') {
+                if (item.content_first_image != null && item.content_first_image != '') {
                   item.post_medium_image_300 = item.content_first_image;
                 }
-                else
-                {
+                else {
                   item.post_medium_image_300 = Api.getContentFirstImage(item.content.rendered);
                 }
 
-              }             
+              }
               return item;
             })),
             showallDisplay: "block",
@@ -128,9 +123,9 @@ Page({
         }
         else {
           self.setData({
-           
+
             displaySwiper: "none",
-            displayHeader:"block",
+            displayHeader: "block",
             showallDisplay: "block",
 
           });
@@ -147,7 +142,7 @@ Page({
 
   //获取文章列表数据
   fetchPostsData: function (data) {
-    var self = this;    
+    var self = this;
     if (!data) data = {};
     if (!data.page) data.page = 1;
     if (!data.categories) data.categories = 0;
@@ -160,66 +155,59 @@ Page({
 
     wx.showLoading({
       title: '正在加载',
-      mask:true
-    }) 
+      mask: true
+    })
     wx.request({
       url: Api.getPosts(data),
       success: function (response) {
 
         if (response.statusCode === 200) {
 
-          if (response.data.length<6)
-          {
+          if (response.data.length < 6) {
             self.setData({
               isLastPage: true
             });
-          }      
+          }
           self.setData({
             floatDisplay: "block",
             postsList: self.data.postsList.concat(response.data.map(function (item) {
-          
+
               var strdate = item.date
-              if (item.category_name !=null)
-              {
-                
-                item.categoryImage ="../../images/topic.png";
+              if (item.category_name != null) {
+
+                item.categoryImage = "../../images/topic.png";
               }
-              else
-              {
+              else {
                 item.categoryImage = "";
               }
 
-              if (item.post_thumbnail_image == null ||item.post_thumbnail_image =='' )
-              {
+              if (item.post_thumbnail_image == null || item.post_thumbnail_image == '') {
                 item.post_thumbnail_image = Api.getContentFirstImage(item.content.rendered);
               }
               item.date = util.cutstr(strdate, 10, 1);
               return item;
             })),
 
-          });          
+          });
           setTimeout(function () {
-            wx.hideLoading();            
+            wx.hideLoading();
           }, 900);
         }
-        else
-        {
+        else {
 
-        
-          if (response.data.code =="rest_post_invalid_page_number")
-          {
+
+          if (response.data.code == "rest_post_invalid_page_number") {
 
             self.setData({
-              isLastPage:true
+              isLastPage: true
             });
             wx.showToast({
               title: '没有更多内容',
-              mask:false,
+              mask: false,
               duration: 1500
             });
           }
-          else
-          {
+          else {
             wx.showToast({
               title: response.data.message,
               duration: 1500
@@ -228,35 +216,33 @@ Page({
         }
       },
 
-       fail: function (res) {
+      fail: function (res) {
 
-         wx.hideLoading();
-         if (data.page == 1) {
+        wx.hideLoading();
+        if (data.page == 1) {
 
-           self.setData({
-             showerror: "block",
-             floatDisplay: "none"
-           });
-          
-         }
-         else
-         {
-           wx.showModal({
-             title: '加载失败',
-             content: '加载数据失败,请重试.',
-             showCancel: false,
-           });
+          self.setData({
+            showerror: "block",
+            floatDisplay: "none"
+          });
+
+        }
+        else {
+          wx.showModal({
+            title: '加载失败',
+            content: '加载数据失败,请重试.',
+            showCancel: false,
+          });
 
 
-           self.setData({
-             page: data.page-1
-           });
-         }
-         
+          self.setData({
+            page: data.page - 1
+          });
+        }
+
 
       },
-      complete:function()
-      {
+      complete: function () {
         wx.stopPullDownRefresh();
       }
 
@@ -264,18 +250,16 @@ Page({
   },
   //加载分页
   loadMore: function (e) {
-    
+
     var self = this;
-    if (!self.data.isLastPage)
-    {
+    if (!self.data.isLastPage) {
       self.setData({
         page: self.data.page + 1
       });
       //console.log('当前页' + self.data.page);
       this.fetchPostsData(self.data);
     }
-    else
-    {
+    else {
       wx.showToast({
         title: '没有更多内容',
         mask: false,
@@ -296,7 +280,7 @@ Page({
     })
   },
 
-  
+
 
   //返回首页
   redictHome: function (e) {
