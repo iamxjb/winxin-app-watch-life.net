@@ -2,9 +2,31 @@
 
 ![wordpress微信小程序](https://www.watch-life.net/images/2017/08/weixinapp220.png) 
 
+# 功能清单：
+
+1.缩略图的方式显示文章列表（首页，分类文章），包括显示文章分类和发布时间，加载分页。
+
+2.在首页用轮播方式显示置顶文章。
+
+3.显示文章分类（专题），包括显示分类的封面图片。
+
+4.显示文章内容页，包括文章站内链接跳转，站外链接复制到剪切板，显示猜你喜欢的相关文章。
+
+5.显示文章评论，提交评论和回复评论，加载评论分页，显示微信用户评论者的头像。
+
+6.显示热点文章。
+
+7.显示wordpress“页面”类文字（关于页面）。
+
+8.对文章内容的全文搜索。
+
+9.小程序页面的分享和转发。
+
+10.WordPress 插件的配套功能。
+
 # 技术支持网站：https://www.watch-life.net
 
-# 小程序配套wordpress的插件：
+# 小程序配套wordpress插件：
 
 本小程序需要配合wordpress插件wp-rest-api-for-app，才能完整使用，插件下载地址： https://github.com/iamxjb/wp-rest-api-for-app
 
@@ -22,9 +44,14 @@
 
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-2.html" target="_blank">3.WordPress版微信小程序2.0版本发布</a>
 
-<a href="http://利用WordPress REST API 开发微信小程序从入门到放弃" target="_blank">4.利用WordPress REST API 开发微信小程序从入门到放弃</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-rest-api-weixin-weapp.html" target="_blank">4.利用WordPress REST API 开发微信小程序从入门到放弃</a>
 
 <a href="https://www.watch-life.net/wechat/wordpress-weixin-2-1-5.html" target="_blank">5.WordPress版微信小程序2.1.5版本发布</a>
+
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-1-8.html" target="_blank">5.WordPress版微信小程序2.1.8版本发布</a>
+
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-2-0.html" target="_blank">5.WordPress版微信小程序2.2.0版本发布</a>
+
 
 # 讨论微信群：
 
@@ -39,12 +66,20 @@
 
 
 
-
 # 捐赠赞赏：请微信扫描以下二维码。感谢您对我的支持，您的支持是我前进的动力
 
 ![weixinpay](https://www.watch-life.net/images/2017/06/weixinpay150.png) 
 
 # 更新历史：
+
+## 2017年8月17日
+1.增加站内链接。
+
+2.增加猜你喜欢功能。
+
+3.增加热点文章功能。
+
+4、取消浏览记录功能。
 
 ## 2017年7月29日
 
