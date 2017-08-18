@@ -11,6 +11,10 @@
  */
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
+var wxApi = require('../../es6-promise/utils/wxApi.js')
+var wxRequest = require('../../es6-promise/utils/wxRequest.js')
+
+
 
 
 Page({
@@ -41,33 +45,24 @@ Page({
       categoriesList: []
     });
 
-    wx.request({
-      url: Api.getCategories(),
-      success: function (response) {
+    var getCategoriesRequest = wxRequest.getRequest(Api.getCategories());
+
+    getCategoriesRequest.then(response =>{
         self.setData({
-          //categoriesList: response.data,
+            floatDisplay: "block",
+            categoriesList: self.data.categoriesList.concat(response.data.map(function (item) {
+                if (typeof (item.category_thumbnail_image) == "undefined" || item.category_thumbnail_image == "") {
+                    item.category_thumbnail_image = "../../images/website.png";
 
-          floatDisplay:"block",
-
-          categoriesList: self.data.categoriesList.concat(response.data.map(function (item) {
-            if (typeof (item.category_thumbnail_image) == "undefined" || item.category_thumbnail_image=="") 
-            {
-              item.category_thumbnail_image ="../../images/website.png";
-              
-            }  
-            return item;        
-          })),
-
-
+                }
+                return item;
+            })),
         });
-
         setTimeout(function () {
-          wx.hideLoading();
+            wx.hideLoading();
         }, 900)
         wx.hideNavigationBarLoading();;
-
-      }
-    });
+    })    
   },
 
   onShareAppMessage: function () {
@@ -92,21 +87,6 @@ Page({
     wx.navigateTo({
       url: url
     });
-  },
-  onReady:function(){
-    // 页面渲染完成
-  },
-  onPullDownRefresh: function () {
-    
-  },
-  onShow:function(){
-    
-    // 页面显示
-  },
-  onHide:function(){
-    // 页面隐藏
-  },
-  onUnload:function(){
-    // 页面关闭
   }
+  
 })

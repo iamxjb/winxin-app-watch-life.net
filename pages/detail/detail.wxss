@@ -355,5 +355,14 @@
     color: #21759b
 }
 
+.wxParse-code
+{
+    padding: 2px 4px !important;
+    font-size: 90% !important;
+    border-radius: 3px !important;
+    color: #eb2226 !important;
+    background-color: #f9f2f4 !important;
+    font-family: Source Code Pro,Consolas,Menlo,Monaco,Courier New,monospace !important;
+}
 
 

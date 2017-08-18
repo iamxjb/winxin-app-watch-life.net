@@ -13,6 +13,8 @@
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
+var wxApi = require('../../es6-promise/utils/wxApi.js')
+var wxRequest = require('../../es6-promise/utils/wxRequest.js')
 var app = getApp()
 
 Page({
@@ -33,7 +35,7 @@ Page({
         placeholder: "输入评论",
         postID: null,
         scrollHeight: 0,
-        postList:[],
+        postList: [],
         link: '',
         isGetUserInfo: false,
         dialog: {
@@ -97,9 +99,11 @@ Page({
     //获取文章内容
     fetchDetailData: function (id) {
         var self = this;
-        wx.request({
-            url: Api.getPostByID(id, { mdrender: false }),
-            success: function (response) {
+        var getPostDetailRequest = wxRequest.getRequest(Api.getPostByID(id));
+        var res;
+        getPostDetailRequest
+            .then(response => {
+                res = response;
                 if (response.data.total_comments != null && response.data.total_comments != '') {
                     self.setData({
                         commentCount: "有" + response.data.total_comments + "条评论"
@@ -114,55 +118,48 @@ Page({
                     wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5),
                     display: 'block'
                 });
-                wx.setNavigationBarTitle({
-                    title: response.data.title.rendered,
-                    success: function (res) {
-                        // success
-                    }
-                });
-                
 
-                var tagsArr =[];
-                tagsArr = response.data.tags
-                var tags="";
+            })
+            .then(response => {
+                wx.setNavigationBarTitle({
+                    title: res.data.title.rendered
+                });
+
+            })
+            .then(response => {
+                var tagsArr = [];
+                tagsArr = res.data.tags
+                var tags = "";
                 for (var i = 0; i < tagsArr.length; i++) {
-                    if(i==0)
-                    {
+                    if (i == 0) {
                         tags += tagsArr[i];
                     }
-                    else{
+                    else {
                         tags += "," + tagsArr[i];
 
                     }
-                }             
+                }
+                if (tags != "") {
 
-                if (tags != "")
-                {
-
-                    wx.request({
-                        url: Api.getPostsByTags(id,tags),
-                        success: function (respost) {
-
+                    var getPostTagsRequest = wxRequest.getRequest(Api.getPostsByTags(id, tags));
+                    getPostTagsRequest
+                        .then(response => {
                             self.setData({
-                                postList: respost.data
-
+                                postList: response.data
                             });
 
-                            self.fetchCommentData(self.data, '0');
-                        }
-                    });
-                }
-                else
-                {
-                    self.fetchCommentData(self.data, '0');
+                        })
 
                 }
+            }).then(response => {
+                self.fetchCommentData(self.data, '0');
+            }).catch(function (response) {
 
-                
+            }).finally(function (response) {
 
-               
-            }
-        });
+            });
+
+
     },
     //给a标签添加跳转和复制链接事件
     wxParseTagATap: function (e) {
@@ -171,7 +168,7 @@ Page({
         console.log(href);
         var domain = Api.getDomain();
         //我们可以在这里进行一些路由处理
-        if (href.indexOf(domain) ==-1) {
+        if (href.indexOf(domain) == -1) {
             wx.setClipboardData({
                 data: href,
                 success: function (res) {
@@ -187,58 +184,43 @@ Page({
                     })
                 }
             })
-       }
-       else
-       {
-                       
+        }
+        else {
             var slug = util.GetUrlFileName(href, domain);
-            if (slug=='index')
-            {
+            if (slug == 'index') {
                 wx.switchTab({
                     url: '../index/index'
                 })
             }
-            else
-            {
+            else {
+                var getPostSlugRequest = wxRequest.getRequest(Api.getPostBySlug(slug));
+                getPostSlugRequest
+                    .then(res => {
 
-                wx.request({
-                    url: Api.getPostBySlug(slug),
-                    success: function (res) {
                         var postID = res.data[0].id;
                         var openLinkCount = wx.getStorageSync('openLinkCount') || 0;
-                         if (openLinkCount>4)
-                        {
+                        if (openLinkCount > 4) {
                             wx.redirectTo({
                                 url: '../detail/detail?id=' + postID
                             })
                         }
-                        else
-                        {
+                        else {
                             wx.navigateTo({
                                 url: '../detail/detail?id=' + postID
                             })
                             openLinkCount++;
-                            wx.setStorageSync('openLinkCount',openLinkCount);
-                        } 
-                    }
-                });
+                            wx.setStorageSync('openLinkCount', openLinkCount);
+                        }
+
+                    })
 
             }
-           
-
-            
-
-       }
+        }
 
     },
     //获取评论
     fetchCommentData: function (data, flag) {
         var self = this;
-        // wx.showLoading({
-        //     title: '正在加载',
-        //     mask: true
-        // })
-
         if (!data) data = {};
         if (!data.page) data.page = 1;
 
@@ -246,9 +228,11 @@ Page({
             commentsList: [],
             ChildrenCommentsList: []
         });
-        wx.request({
-            url: Api.getComments(data),
-            success: function (response) {
+
+        var getCommentsRequest = wxRequest.getRequest(Api.getComments(data));
+
+        getCommentsRequest
+            .then(response => {
                 if (response.data.length < 100) {
                     self.setData({
                         isLastPage: true
@@ -276,21 +260,25 @@ Page({
 
                     });
                 }
+
+
+            })
+            .then(response => {
                 if (data.page === 1) {
                     self.fetchChildrenCommentData(data, flag);
                 }
 
-            }
-        });
+            })
+
     },
 
     //获取回复
     fetchChildrenCommentData: function (data, flag) {
         var self = this;
-        wx.request({
-            url: Api.getChildrenComments(data),
-            success: function (response) {
 
+        var getChildrenCommentsRequest = wxRequest.getRequest(Api.getChildrenComments(data));
+        getChildrenCommentsRequest
+            .then(response => {
                 if (response.data) {
                     self.setData({
                         ChildrenCommentsList: self.data.ChildrenCommentsList.concat(response.data.map(function (item) {
@@ -316,7 +304,6 @@ Page({
                     });
 
                 }
-
                 setTimeout(function () {
                     //wx.hideLoading();
                     if (flag == '1') {
@@ -330,11 +317,7 @@ Page({
                         })
                     }
                 }, 900);
-            }
-        });
-
-
-
+            })
     },
     //底部刷新
     loadMore: function (e) {
@@ -401,22 +384,19 @@ Page({
             //检测授权
             self.checkSettingStatu();
             if (self.data.isGetUserInfo) {
-                wx.request({
-                    url: Api.postComment(),
-                    method: 'post',
-                    data: {
-                        post: postID,
-                        author_name: name,
-                        author_email: email,
-                        content: comment,
-                        author_url: author_url,
-                        parent: parent
-                    },
-                    header: {
-                        'content-type': 'application/json'
-                    },
-                    success: function (res) {
-                        //console.log(res.data)
+
+                var data = {
+                    post: postID,
+                    author_name: name,
+                    author_email: email,
+                    content: comment,
+                    author_url: author_url,
+                    parent: parent
+                };
+                var url = Api.postComment();
+                var postCommentRequest = wxRequest.postRequest(url,data);
+                postCommentRequest
+                    .then(res => {
                         if (res.statusCode == 201 || res.statusCode == 200) {
                             self.setData({
                                 content: '',
@@ -456,11 +436,9 @@ Page({
                                 });
                             }
                         }
-                    },
-                    fail: function (res) {
-                        //console.log(res.data) 
-                    }
-                });
+
+                    })
+
 
             }
 

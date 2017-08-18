@@ -82,10 +82,18 @@ module.exports = {
   },
   //获取分类列表
   getCategories: function () {
-    var url =HOST_URI + 'categories?per_page=100&orderby=count&order=desc';
-    //var url = HOST_URI + 'categories?include=1,1059,98,416,189,374,6&orderby=count&order=desc';
-    return url
+      var url ='';
+      if (DOMAIN =='www.watch-life.net'){
+          url = HOST_URI + 'categories?include=1,1059,98,416,189,374,6&orderby=count&order=desc';
 
+      }
+      else
+      {
+          url = HOST_URI + 'categories?per_page=100&orderby=count&order=desc';
+
+      }
+   
+    return url
   },
   //获取某个分类信息
   getCategoryByID: function (id) {

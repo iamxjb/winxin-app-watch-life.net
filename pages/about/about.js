@@ -13,6 +13,9 @@
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
+var wxApi = require('../../es6-promise/utils/wxApi.js')
+var wxRequest = require('../../es6-promise/utils/wxRequest.js')
+
 
 Page({
   data: {
@@ -78,9 +81,10 @@ Page({
           }
           else {
 
-              wx.request({
-                  url: Api.getPostBySlug(slug),
-                  success: function (res) {
+              var getPostSlugRequest = wxRequest.getRequest(Api.getPostBySlug(slug));
+              getPostSlugRequest
+                  .then(res => {
+
                       var postID = res.data[0].id;
                       var openLinkCount = wx.getStorageSync('openLinkCount') || 0;
                       if (openLinkCount > 4) {
@@ -95,8 +99,8 @@ Page({
                           openLinkCount++;
                           wx.setStorageSync('openLinkCount', openLinkCount);
                       }
-                  }
-              });
+
+                  })
 
           }
 
@@ -111,21 +115,22 @@ Page({
     self.setData({
       hidden: false
     });
-    wx.request({
-      url: Api.getPageByID(id, { mdrender: false }),
-      success: function (response) {
+
+    var getPageRequest = wxRequest.getRequest(Api.getPageByID(id));
+
+    getPageRequest.then(response =>{
         console.log(response);
         self.setData({
-          pageData: response.data,
-          // wxParseData: WxParse('md',response.data.content.rendered)
-        wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5)
+            pageData: response.data,
+            // wxParseData: WxParse('md',response.data.content.rendered)
+            wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5)
         });
         setTimeout(function () {
-          self.setData({
-            hidden: true
-          });
+            self.setData({
+                hidden: true
+            });
         }, 300);
-      }
-    });
+    })
+    
   }
 })

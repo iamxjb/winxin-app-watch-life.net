@@ -179,7 +179,7 @@ function strMoreDiscode(str){
     str = str.replace(/\r\n/g,"");  
     str = str.replace(/\n/g,"");
 
-    str = str.replace(/code/g,"wxxxcode-style");
+    //str = str.replace(/code/g,"wxxxcode-style");
     return str;
 }
 
@@ -188,7 +188,7 @@ function strDiscode(str){
     str = strGreeceDiscode(str);
     str = strcharacterDiscode(str);
     str = strOtherDiscode(str);
-    str = strMoreDiscode(str);
+    //str = strMoreDiscode(str);
     return str;
 }
 function urlToHttpUrl(url,rep){

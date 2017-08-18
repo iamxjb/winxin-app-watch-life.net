@@ -13,7 +13,9 @@
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
-var app = getApp()
+var wxApi = require('../../es6-promise/utils/wxApi.js')
+var wxRequest = require('../../es6-promise/utils/wxRequest.js')
+
 
 Page({
   data: {
@@ -91,7 +93,6 @@ Page({
         tab: tab
 
     })
-
     if (tab !== 0) {
       this.fetchPostsData(tab);
     } else {
@@ -115,29 +116,29 @@ Page({
       title: '正在加载',
       mask:true
     });
-    wx.request({
-        url: Api.getTopHotPosts(tab),
-      success: function (response) {
+    var getTopHotPostsRequest = wxRequest.getRequest(Api.getTopHotPosts(tab));
+
+    getTopHotPostsRequest.then(response =>{
+
         if (response.statusCode === 201) {
-                           
-          self.setData({
-            showallDisplay: "block",
-            postsList: self.data.postsList.concat(response.data.map(function (item) {
-                var strdate = item.post_date
-             
 
-              if (item.post_thumbnail_image == null || item.post_thumbnail_image == '') {
-                item.post_thumbnail_image = '../../images/watch-life-logo-128.jpg';
-              }
-              item.post_date = util.cutstr(strdate, 10, 1);
-              return item;
-            })),
+            self.setData({
+                showallDisplay: "block",
+                postsList: self.data.postsList.concat(response.data.map(function (item) {
+                    var strdate = item.post_date
 
-          });
-                 
 
-        } else if (response.statusCode === 404)
-        {
+                    if (item.post_thumbnail_image == null || item.post_thumbnail_image == '') {
+                        item.post_thumbnail_image = '../../images/watch-life-logo-128.jpg';
+                    }
+                    item.post_date = util.cutstr(strdate, 10, 1);
+                    return item;
+                })),
+
+            });
+
+
+        } else if (response.statusCode === 404) {
             wx.showModal({
                 title: '加载失败',
                 content: '加载数据失败,可能没有文章评论。',
@@ -149,32 +150,27 @@ Page({
             wx.hideLoading();
 
         }, 1500);
-      } ,
 
-      fail: function (res) {
+    })
+    .catch(function () {
         wx.hideLoading();
         if (data.page == 1) {
 
-          self.setData({
-            showerror: "block",
-            floatDisplay: "none"
-          });
+            self.setData({
+                showerror: "block",
+                floatDisplay: "none"
+            });
 
         }
         else {
-          wx.showModal({
-            title: '加载失败',
-            content: '加载数据失败,请重试.',
-            showCancel: false,
-          });
-
+            wx.showModal({
+                title: '加载失败',
+                content: '加载数据失败,请重试.',
+                showCancel: false,
+            });
         }
-      }
-    });
-  },  
-
-
-
+    })    
+  }, 
   // 跳转至查看文章详情
   redictDetail: function (e) {
     // console.log('查看文章');

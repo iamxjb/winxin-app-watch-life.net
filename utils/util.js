@@ -170,6 +170,14 @@ function GetUrlFileName(url,domain) {
 }
 
 
+function json2Form(json) {
+    var str = [];
+    for (var p in json) {
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(json[p]));
+    }
+    return str.join("&");
+}
+
 module.exports = {
   formatTime: formatTime,
   getDateDiff: getDateDiff,
@@ -180,6 +188,7 @@ module.exports = {
   checkImgType: checkImgType,
   isEmptyObject: isEmptyObject,
   CheckImgExists: CheckImgExists,
-  GetUrlFileName: GetUrlFileName
+  GetUrlFileName: GetUrlFileName,
+  json2Form: json2Form
   
 }
