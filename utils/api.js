@@ -146,5 +146,13 @@ module.exports = {
       }
 
       return url;
+  },
+
+  //更新文章浏览数
+  updatePageviews(id) {
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      url += "post/addpageview/"+id;
+      return url;
   }
+
 };

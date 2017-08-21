@@ -71,7 +71,8 @@ Page({
       showallDisplay:"none",
       displaySwiper:"none",
       floatDisplay:"none",
-      page:0
+      page:0,
+      postsShowSwiperList:[]
     });
     this.fetchTopFivePosts(); 
     
@@ -181,7 +182,7 @@ Page({
                         var strdate = item.date
                         if (item.category_name != null) {
 
-                            item.categoryImage = "../../images/topic.png";
+                            item.categoryImage = "../../images/category.png";
                         }
                         else {
                             item.categoryImage = "";

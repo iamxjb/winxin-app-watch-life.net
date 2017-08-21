@@ -44,7 +44,11 @@ Page({
             hidden: true
         },
         content: '',
-        userInfo: []
+        userInfo: [],
+
+        isShow: false,//控制menubox是否显示
+        isLoad: true,//解决menubox执行一次  
+        menuBackgroup: false,
     },
     onLoad: function (options) {
         this.fetchDetailData(options.id);
@@ -96,6 +100,38 @@ Page({
             }
         })
     },
+    like:function(){
+
+        wx.showToast({
+            title: '正在开发中',
+            //image: '../../images/link.png',
+            duration: 2000
+        })
+    },
+    /*
+    collection:function(){
+        wx.showToast({
+            title: '正在开发中',
+            //image: '../../images/link.png',
+            duration: 2000
+        })
+    },
+
+    */
+    goHome:function()
+    {
+        wx.switchTab({
+            url: '../index/index'
+        })
+    },
+    appreciation:function(){
+        wx.showToast({
+            title: '正在开发中',
+            //image: '../../images/link.png',
+            duration: 2000
+        })
+    },
+
     //获取文章内容
     fetchDetailData: function (id) {
         var self = this;
@@ -151,7 +187,19 @@ Page({
                         })
 
                 }
-            }).then(response => {
+            }).then(response =>{
+
+                var updatePageviewsRequest = wxRequest.getRequest(Api.updatePageviews(id));
+                updatePageviewsRequest
+                    .then(result => {
+
+                        console.log(result.data.message);
+                        
+
+                    })
+                
+            })
+            .then(response => {
                 self.fetchCommentData(self.data, '0');
             }).catch(function (response) {
 
@@ -318,6 +366,21 @@ Page({
                     }
                 }, 900);
             })
+    },
+    //显示或隐藏功能菜单
+    ShowHideMenu: function () {
+        this.setData({
+            isShow: !this.data.isShow,
+            isLoad: false,
+            menuBackgroup: !this.data.false
+        })
+    },
+    //点击非评论区隐藏功能菜单
+    hiddenMenubox: function () {
+        this.setData({
+            isShow: false,
+            menuBackgroup: false
+        })
     },
     //底部刷新
     loadMore: function (e) {

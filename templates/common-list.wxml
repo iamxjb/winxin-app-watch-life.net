@@ -11,8 +11,10 @@
           <text>{{item.date}}</text>
           <image src="{{item.categoryImage }}"></image>
             <text class="">{{item.category_name}}</text>
+            <image src="../../images/pageviews.png"></image>
+            <text class="">{{item.pageviews}}</text>        
         </view>
-        <image src="{{item.post_thumbnail_image}}" class="cover"></image>
+        <image src="{{item.post_thumbnail_image}}" mode="aspectFill" class="cover"></image>
       </view>
     </block>
   </view>  
