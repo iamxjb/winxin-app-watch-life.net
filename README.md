@@ -24,7 +24,7 @@
 
 10.WordPress 插件的配套功能。
 
-# 技术支持网站：https://www.watch-life.net(该域名从2017年8月29日开始域名，暂时无法访问)
+# 技术支持网站：https://www.watch-life.net(该域名从2017年8月29日开始域名备案，暂时无法访问)
 
 # 技术支持的网站暂时请访问：https://wf.woaixcx.com(以下访问链接请自行修改域名)
 
