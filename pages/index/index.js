@@ -71,6 +71,7 @@ Page({
       showallDisplay:"none",
       displaySwiper:"none",
       floatDisplay:"none",
+      isLastPage:flase,
       page:0,
       postsShowSwiperList:[]
     });
