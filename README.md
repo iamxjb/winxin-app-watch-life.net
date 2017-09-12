@@ -24,9 +24,13 @@
 
 10.WordPress 插件的配套功能。
 
-# 技术支持网站：https://www.watch-life.net(该域名从2017年8月29日开始域名备案，暂时无法访问)
+# 小程序访问微信二维码：
 
-# 技术支持的网站暂时请访问：https://www.zhaen.com (以下访问链接请自行修改域名)
+![wordpress版微信小程序](https://www.watch-life.net/images/2017/04/weixinapp-watch-life.jpg) 
+
+
+# 技术支持网站：https://www.watch-life.net
+
 
 # 小程序配套wordpress插件：
 
