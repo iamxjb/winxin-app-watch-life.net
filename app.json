@@ -15,7 +15,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#296FD0",
     "navigationBarTitleText": "守望轩",
-    "navigationBarTextStyle": "#fff"
+    "navigationBarTextStyle": "white"
    
   },
   "tabBar": {

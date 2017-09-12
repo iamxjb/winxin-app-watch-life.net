@@ -57,12 +57,16 @@ Page({
                 }
                 return item;
             })),
-        });
+        });        
+    })
+
+    .finally(function () {
         setTimeout(function () {
             wx.hideLoading();
         }, 900)
         wx.hideNavigationBarLoading();;
-    })    
+
+        });      
   },
 
   onShareAppMessage: function () {

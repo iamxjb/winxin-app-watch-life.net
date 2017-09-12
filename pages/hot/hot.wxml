@@ -46,6 +46,8 @@
                         <text>{{item.post_date}}</text>
                         <image src="../../images/comments.png"></image>
                         <text class="">{{item.comment_total}}</text>
+                        <image src="../../images/pageviews.png"></image>
+            <text class="">{{item.pageviews}}</text> 
                     </view>
                     <image src="{{item.post_thumbnail_image}}" class="cover"></image>
                 </view>

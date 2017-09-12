@@ -145,12 +145,6 @@ Page({
                 showCancel: false,
             });
         }
-
-        setTimeout(function () {
-            wx.hideLoading();
-
-        }, 1500);
-
     })
     .catch(function () {
         wx.hideLoading();
@@ -169,7 +163,15 @@ Page({
                 showCancel: false,
             });
         }
-    })    
+    })
+    .finally(function () {
+
+        setTimeout(function () {
+            wx.hideLoading();
+
+        }, 1500);
+
+        });    
   }, 
   // 跳转至查看文章详情
   redictDetail: function (e) {

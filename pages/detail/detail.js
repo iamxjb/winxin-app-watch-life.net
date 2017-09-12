@@ -10,12 +10,16 @@
  * 
  */
 
+
+import config from '../../utils/config.js'
+
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
+var auth = require('../../utils/auth.js');
 var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../es6-promise/utils/wxApi.js')
 var wxRequest = require('../../es6-promise/utils/wxRequest.js')
-var app = getApp()
+var app = getApp();
 
 Page({
     data: {
@@ -36,43 +40,112 @@ Page({
         postID: null,
         scrollHeight: 0,
         postList: [],
-        link: '',
-        isGetUserInfo: false,
+        link: '',        
         dialog: {
             title: '',
             content: '',
             hidden: true
         },
-        content: '',
-        userInfo: [],
+        content: '',      
 
         isShow: false,//控制menubox是否显示
         isLoad: true,//解决menubox执行一次  
-        menuBackgroup: false,
+        menuBackgroup: false,       
+        likeImag:"like.png",
+        likeList:[],
+        likeCount:0,
+        displayLike: 'none'
     },
     onLoad: function (options) {
         this.fetchDetailData(options.id);
         var self = this;
-        wx.getSystemInfo({
-            success: function (res) {
-                //console.info(res.windowHeight);
-                self.setData({
-                    scrollHeight: res.windowHeight,
+              
+        //获取屏幕的高度
+        var wxGetSystemInfo = wxApi.wxGetSystemInfo();
+        wxGetSystemInfo().then(response=>{
+          self.setData({
+            scrollHeight: response.windowHeight
 
-                });
-            }
-        });
-
+          })
+        })
+    },
+    //获取用户信息和openid
+    getUsreInfo:function(){      
+      var self = this;
+      var wxLogin = wxApi.wxLogin();
+      var jscode='';
+      wxLogin().then(response => {
+          jscode = response.code
+          var wxGetUserInfo = wxApi.wxGetUserInfo()
+          return wxGetUserInfo()
+        }).
         //获取用户信息
-        app.getUserInfo(function (userInfo) {
-            //更新数据
-            self.setData({
-                userInfo: userInfo,
-                isGetUserInfo: true
-            })
+        then(response => {
+          console.log(response.userInfo);
+          app.globalData.userInfo=response.userInfo;
+          app.globalData.isGetUserInfo=true;
+          /*
+          self.setData({
+            userInfo: response.userInfo,
+            isGetUserInfo: true
+          })
+
+          */
+
+          var url = Api.getOpenidUrl();
+          var data = {
+            js_code: jscode,
+            encryptedData: response.encryptedData,
+            iv: response.iv,
+            avatarUrl: response.userInfo.avatarUrl
+          }
+          var postOpenidRequest = wxRequest.postRequest(url, data);
+          postOpenidRequest.then(response => {
+            if (response.data.status == '201') {
+              console.log(response.data.openid);
+              app.globalData.openid = response.data.openid;
+              app.globalData.isGetOpenid = true;
+              /*
+              self.setData({
+                openid: response.data.openid,
+                isGetOpenid: true
+              })
+              */
+
+            }
+            else {
+              console.log(response.data.message);
+            }
+          }).then(response => {
+            self.showLikeImg();
+
+          })
+        })
+    },
+    showLikeImg:function(){
+      var self=this;
+      var flag = false;
+      var likes = self.data.detail.avatarurls;
+
+      self.setData({
+        likeList: self.data.detail.avatarurls
+      });
+      
+      for (var i in likes) {
+
+        if (likes[i].openid == app.globalData.openid) {
+          flag = true;
+        }
+
+      }
+      if (flag) {
+        self.setData({
+          likeImag: "like-on.png"
         });
+      }
     },
     onShareAppMessage: function () {
+      this.ShowHideMenu();
         return {
             title: '分享"守望轩"的文章：' + this.data.detail.title.rendered,
             path: 'pages/detail/detail?id=' + this.data.detail.id,
@@ -82,9 +155,12 @@ Page({
             fail: function (res) {
                 // 转发失败
             }
+
+            
         }
     },
     copyLink: function () {
+      this.ShowHideMenu();
         wx.setClipboardData({
             data: this.data.link,
             success: function (res) {
@@ -100,31 +176,83 @@ Page({
             }
         })
     },
-    like:function(){
+    clickLike:function(e){
+      var id =e.target.id;
+      var self=this; 
+      if (id =='likebottom')  
+      {
+        this.ShowHideMenu();
+      } 
+       
+      if (app.globalData.isGetOpenid)
+      { 
+        var data = {
+          openid: app.globalData.openid,         
+          postid: self.data.postID          
+        };
+        var url = Api.postLikeUrl();
+        var postLikRequest = wxRequest.postRequest(url, data);
+        postLikRequest
+          .then(response => {
+            if (response.data.status == '201') {
+              var _likeList = []
+              var _like = { "avatarurl": app.globalData.userInfo.avatarUrl, "openid": app.globalData.openid }
 
-        wx.showToast({
-            title: '正在开发中',
-            //image: '../../images/link.png',
-            duration: 2000
-        })
-    },
-    /*
-    collection:function(){
-        wx.showToast({
-            title: '正在开发中',
-            //image: '../../images/link.png',
-            duration: 2000
-        })
-    },
+              _likeList.push(_like);
+              var tempLikeList = _likeList.concat(self.data.likeList);
+              var _likeCount = parseInt(self.data.likeCount) + 1;
+              self.setData({
+                likeList: tempLikeList,
+                likeCount: _likeCount,
+                displayLike: 'block'
+              });
+              wx.showToast({
+                title: '谢谢点赞',
+                icon: 'success',
+                duration: 900,
+                success: function () {
+                }
+              })             
 
-    */
+            }
+            else if (response.data.status == '501')
+            {
+              console.log(response.data.message);
+              wx.showToast({
+                title: '谢谢，已赞过',
+                icon: 'success',
+                duration: 900,
+                success: function () {
+
+                }
+              })
+            }
+            else{
+              console.log(response.data.message);
+
+            }
+
+            self.setData({
+              likeImag: "like-on.png"
+            });
+           
+
+          })
+      }
+      else
+      {
+        self.userAuthorization();
+      }
+    },   
+   
     goHome:function()
     {
         wx.switchTab({
             url: '../index/index'
         })
     },
-    appreciation:function(){
+    praise:function(){
+      this.ShowHideMenu();
         wx.showToast({
             title: '正在开发中',
             //image: '../../images/link.png',
@@ -137,6 +265,8 @@ Page({
         var self = this;
         var getPostDetailRequest = wxRequest.getRequest(Api.getPostByID(id));
         var res;
+        var _displayLike='none';
+        
         getPostDetailRequest
             .then(response => {
                 res = response;
@@ -144,15 +274,24 @@ Page({
                     self.setData({
                         commentCount: "有" + response.data.total_comments + "条评论"
                     });
+                };
+                var _likeCount = response.data.like_count;
+                if (response.data.like_count !='0')  
+                {
+                   _displayLike="block"
                 }
+                             
                 self.setData({
                     detail: response.data,
+                    likeCount: _likeCount ,
                     postID: id,
                     link: response.data.link,
                     detailDate: util.cutstr(response.data.date, 10, 1),
                     //wxParseData: WxParse('md',response.data.content.rendered)
                     wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5),
-                    display: 'block'
+                    display: 'block',
+                    displayLike: _displayLike
+                    
                 });
 
             })
@@ -192,16 +331,25 @@ Page({
                 var updatePageviewsRequest = wxRequest.getRequest(Api.updatePageviews(id));
                 updatePageviewsRequest
                     .then(result => {
-
-                        console.log(result.data.message);
-                        
+                        console.log(result.data.message);                       
 
                     })
                 
             })
             .then(response => {
                 self.fetchCommentData(self.data, '0');
-            }).catch(function (response) {
+            }).then(resonse =>{
+
+              if (!app.globalData.isGetOpenid) {
+                self.getUsreInfo();
+              }
+              else
+              {
+                self.showLikeImg();
+              }
+
+            })           
+            .catch(function (response) {
 
             }).finally(function (response) {
 
@@ -214,8 +362,8 @@ Page({
         var self = this;
         var href = e.currentTarget.dataset.src;
         console.log(href);
-        var domain = Api.getDomain();
-        //我们可以在这里进行一些路由处理
+        var domain = config.getDomain;
+        //可以在这里进行一些路由处理
         if (href.indexOf(domain) == -1) {
             wx.setClipboardData({
                 data: href,
@@ -414,10 +562,10 @@ Page({
     //提交评论
     formSubmit: function (e) {
         var self = this;
-        var name = self.data.userInfo.nickName;
-        var email = "test@test.com";
+        var name = app.globalData.userInfo.nickName;
+        
         var comment = e.detail.value.inputComment;
-        var author_url = self.data.userInfo.avatarUrl;
+        var author_url = app.globalData.userInfo.avatarUrl;
         var parent = self.data.parentID;
         var postID = e.detail.value.inputPostID;
         if (comment.indexOf('@') == -1 && comment.indexOf(':') == -1) {
@@ -443,11 +591,10 @@ Page({
             });
 
         }
-        else {
-            //检测授权
-            self.checkSettingStatu();
-            if (self.data.isGetUserInfo) {
-
+        else {           
+            
+          if (app.globalData.isGetOpenid) {
+            var email = app.globalData.openid+"@wx.qq.com";
                 var data = {
                     post: postID,
                     author_name: name,
@@ -502,62 +649,56 @@ Page({
 
                     })
 
+            }
+            else
+            {
+              //self.checkSettingStatu();
 
+               self.userAuthorization();
+              
             }
 
         }
 
     },
-    // 检测授权状态
-    checkSettingStatu: function (cb) {
-        var that = this;
-        // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
-        wx.getSetting({
-            success: function success(res) {
-                console.log(res.authSetting);
-                var authSetting = res.authSetting;
-                if (util.isEmptyObject(authSetting)) {
-                    console.log('首次授权');
-                } else {
-                    console.log('不是第一次授权', authSetting);
-                    // 没有授权的提醒
-                    if (authSetting['scope.userInfo'] === false) {
-                        wx.showModal({
-                            title: '用户未授权',
-                            content: '如需正常使用评论的功能，请授权管理中选中“用户信息”，然后点按确定后再次提交评论。',
-                            showCancel: false,
-                            success: function (res) {
-                                if (res.confirm) {
-                                    console.log('用户点击确定')
-                                    wx.openSetting({
-                                        success: function success(res) {
-                                            console.log('openSetting success', res.authSetting);
-                                            var as = res.authSetting;
-                                            for (var i in as) {
 
-                                                if (as[i]) {
-                                                    //获取用户信息
-                                                    app.getUserInfo(function (userInfo) {
-                                                        //更新数据
-                                                        that.setData({
-                                                            userInfo: userInfo,
-                                                            isGetUserInfo: true
-                                                        })
-                                                    });
-                                                }
+    userAuthorization:function(){
+      var self=this;
+      wx.showModal({
+        title: '未授权',
+        content: '如需正常使用评论的功能需授权获取用户信息。是否在授权管理中选中“用户信息”?',
+        showCancel: true,
+        cancelColor: '#296fd0',
+        confirmColor: '#296fd0',
+        confirmText: '设置权限',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            wx.openSetting({
+              success: function success(res) {
+                console.log('openSetting success', res.authSetting);
+                var scopeUserInfo = res.authSetting["scope.userInfo"];
+                if (scopeUserInfo) {
 
-                                            }
-
-                                        }
-                                    });
-                                }
-                            }
-                        })
-                    }
+                  // app.getUserInfo(function (userInfo) {
+                  //   //更新数据
+                  //   var test = userInfo;
+                  //   that.setData({
+                  //     userInfo: userInfo,
+                  //     isGetUserInfo: true
+                  //   })
+                  // });
+                  self.getUsreInfo();
                 }
-            }
-        });
+              }
+            });
+          }
+        }
+      })
+
+
     },
+    
     confirm: function () {
         this.setData({
             'dialog.hidden': true,
@@ -565,6 +706,7 @@ Page({
             'dialog.content': ''
         })
     }
+    
 
 
 })

@@ -9,7 +9,7 @@
  * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
  * 
  */
-
+import config from '../../utils/config.js'
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
@@ -22,8 +22,10 @@ Page({
     title: '页面内容',
     pageData: {},
     pagesList: {},
-    hidden: false,
-    wxParseData: []
+    display: 'none',
+    wxParseData: [],
+   
+    
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
@@ -32,7 +34,19 @@ Page({
         // success
       }
     });
+    
     this.fetchData(1136);
+  },
+  onPullDownRefresh: function () {
+      var self = this;
+      self.setData({
+          display:'none' ,
+          pageData:{},
+          wxParseData:{},
+
+      });
+
+      this.fetchData(1136);
 
   },
   onShareAppMessage: function () {
@@ -52,7 +66,7 @@ Page({
       var self = this;
       var href = e.currentTarget.dataset.src;
       console.log(href);
-      var domain = Api.getDomain();
+      var domain = config.getDomain;
       //我们可以在这里进行一些路由处理
       if (href.indexOf(domain) == -1) {
           wx.setClipboardData({
@@ -104,20 +118,12 @@ Page({
 
           }
 
-
-
-
       }
 
   },
   fetchData: function (id) {
-    var self = this;
-    self.setData({
-      hidden: false
-    });
-
+    var self = this; 
     var getPageRequest = wxRequest.getRequest(Api.getPageByID(id));
-
     getPageRequest.then(response =>{
         console.log(response);
         self.setData({
@@ -125,12 +131,11 @@ Page({
             // wxParseData: WxParse('md',response.data.content.rendered)
             wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5)
         });
-        setTimeout(function () {
-            self.setData({
-                hidden: true
-            });
-        }, 300);
+        self.setData({
+            display: 'block'
+        });
+        
+        
     })
-    
   }
 })

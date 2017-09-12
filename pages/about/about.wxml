@@ -12,7 +12,7 @@
  */-->
 <import src="../../wxParse/wxParse.wxml"/>
 <import src="../../templates/header.wxml"/>
-<view class="container">
+<view class="container" style="display:{{display}}">
   <template is="tempHeader" /> 
 
   <view class="wrapper">

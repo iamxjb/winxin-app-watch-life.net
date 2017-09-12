@@ -232,13 +232,18 @@
 .gravatarImg {
   margin-top: 4px;
   border-radius: 50%;
+  /*
   opacity: 1;
   transform: scale(1);
   perspective-origin: top center;
   transition: all ease-in-out 0.3s;
+  */
   height: 48rpx;
   width: 48rpx;
 }
+
+
+
 
 
 
@@ -297,6 +302,64 @@ margin-top:2rpx;
   
 }
 
+.likePost
+{
+  position: relative;
+  text-align: left;
+  margin-top: 30rpx;
+  border-bottom:2rpx solid #ededed;
+  margin-bottom: 30rpx;
+  
+  
+}
+
+.likeTitle
+{
+  text-align: center;
+  font-weight: normal;  
+  line-height: 40rpx;  
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 36rpx;
+  color:#21759b !important;
+  vertical-align:middle;
+ 
+}
+.likeText
+{
+  text-align: center;
+  font-weight: normal;
+  font-size: 26rpx;
+  line-height: 50rpx;
+  color:#21759b!important;
+  
+}
+
+.img-like{
+width:50rpx;
+height:50rpx;
+display: inline-block;
+text-align: center;
+margin-right:20rpx;
+
+
+}
+
+.gravatarLikeImg {
+  margin-top: 4px;
+  border-radius: 50%;
+  /*
+  opacity: 1;
+  transform: scale(1);
+  perspective-origin: top center;
+  transition: all ease-in-out 0.3s;
+  */
+  height: 60rpx;
+  width: 60rpx;
+  margin-right:20rpx;
+}
+
+
 .relatedNavigator
 {  
   color:#21759b!important;
@@ -332,25 +395,29 @@ margin-top:2rpx;
   width:auto;
   height: auto;
   margin:0;
-  padding:0;
-  Float:left;  
+  padding:0;   
   line-height:1;
   border-radius:none;
-  -webkit-tap-highlight-color:transparent;
-  color:#fff;
-  background-color:transparent;
-  border:none !important;
+  -webkit-tap-highlight-color:transparent;  
+  background-color:transparent;  
+  border:none !important;  
+  color:#333;
+  
 }
 
+.share-title{
+   color:#333;
+   font-size: 30rpx;
+   padding-top: 20rpx;
+}
 
 
 .copy-button
 {
-  border: 1px solid #eee !important;
+ 
   color: #296FD0 !important;  
-  height:60rpx;
-  width: 250rpx;
-  margin-left: 30rpx
+
+ 
 }
 
 .showMessage
@@ -422,15 +489,29 @@ margin-top:2rpx;
     border-top:2rpx solid #ededed; 
 }
 .iconLine{
-    margin-top: 50rpx ;margin-left: 100rpx;
+    margin-top: 20rpx ;
+   
+}
+
+.iconLine text {
+  font-size: 30rpx;
+   text-align: center;
+}
+.iconLine view {
+   text-align: center;
+}
+
+.text-center{
+  text-align: center
 }
 
 .img-menu{
 width:50rpx;
 height:50rpx;
-margin-right:8px;
-margin-left: 40rpx;
-Float:left;
+display: inline-block;
+ text-align: center;
+
+
 }
 
 .emoji-move-in {

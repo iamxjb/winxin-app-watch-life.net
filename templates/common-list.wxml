@@ -9,10 +9,12 @@
         <view class="content-date">
           <image src="../../images/calendar.png"></image>
           <text>{{item.date}}</text>
-          <image src="{{item.categoryImage }}"></image>
-            <text class="">{{item.category_name}}</text>
+          <image src="../../images/comments.png"></image>
+            <text class="">{{item.total_comments}}</text>
             <image src="../../images/pageviews.png"></image>
-            <text class="">{{item.pageviews}}</text>        
+            <text class="">{{item.pageviews}}</text>
+            <image src="../../images/like.png"></image>
+            <text class="">{{item.like_count}}</text>        
         </view>
         <image src="{{item.post_thumbnail_image}}" mode="aspectFill" class="cover"></image>
       </view>

@@ -9,28 +9,24 @@
  * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
  */
 
-var DOMAIN = "www.watch-life.net";
-var HOST_URI = 'https://' + DOMAIN+'/wp-json/wp/v2/';
-var HOST_URI_WATCH_LIFE_JSON = 'https://' + DOMAIN + '/wp-json/watch-life-net/v1/';
 
+import config from 'config.js'
 
-
-module.exports = {
-
-  getDomain:function()
-  {
-      return DOMAIN;
-  },
+var domain = config.getDomain;
+var HOST_URI = 'https://' + domain+'/wp-json/wp/v2/';
+var HOST_URI_WATCH_LIFE_JSON = 'https://' + domain + '/wp-json/watch-life-net/v1/';
+   
+module.exports = {  
   // 获取文章列表数据
   getPosts: function (obj) {
-    var url = HOST_URI + 'posts?per_page=6&page=' + obj.page;
+      var url = HOST_URI + 'posts?per_page=6&orderby=date&order=desc&page=' + obj.page;
     
     if (obj.categories != 0) {
       url += '&categories=' + obj.categories;
     }
-    if (obj.search != '') {
+    else if (obj.search != '') {
       url += '&search=' + encodeURIComponent(obj.search);
-    }   
+    }     
     return url;
 
   },
@@ -83,7 +79,8 @@ module.exports = {
   //获取分类列表
   getCategories: function () {
       var url ='';
-      if (DOMAIN =='www.watch-life.net'){
+      //此处的域名不用换
+      if (domain =='www.watch-life.net'){
           url = HOST_URI + 'categories?include=1,1059,98,416,189,374,6&orderby=count&order=desc';
 
       }
@@ -153,6 +150,22 @@ module.exports = {
       var url = HOST_URI_WATCH_LIFE_JSON;
       url += "post/addpageview/"+id;
       return url;
+  },
+  //获取用户openid
+  getOpenidUrl(id) {
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    url += "weixin/getopenid";
+    return url;
+  },
+
+  //获取用户openid
+  postLikeUrl() {
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    url += "post/like";
+    return url;
   }
+
+
+
 
 };
