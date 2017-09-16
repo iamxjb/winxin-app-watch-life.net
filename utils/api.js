@@ -158,13 +158,32 @@ module.exports = {
     return url;
   },
 
-  //获取用户openid
+  //点赞
   postLikeUrl() {
     var url = HOST_URI_WATCH_LIFE_JSON;
     url += "post/like";
     return url;
-  }
+  },
 
+  //判断当前用户是否点赞
+  postIsLikeUrl() {
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    url += "post/islike";
+    return url;
+  },
+
+  //赞赏,获取支付密钥
+  postPraiseUrl() {   
+    var url = 'https://' + domain  + "/wp-wxpay/pay/app.php";
+    return url;
+  },
+
+  //更新赞赏数据
+  updatePraiseUrl() {
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    url += "post/praise";
+    return url;
+  }
 
 
 

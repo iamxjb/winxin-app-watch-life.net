@@ -1,0 +1,77 @@
+
+/*
+ * 
+ * WordPres版微信小程序
+ * author: jianbo
+ * organization: 守望轩  www.watch-life.net
+ * github:    https://github.com/iamxjb/winxin-app-watch-life.net
+ * 技术支持微信号：iamxjb
+ * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
+ * 
+ */
+
+.container {
+  width: 100%;
+  margin-bottom: 10rpx;
+  padding:0 0rpx
+}
+
+
+.title
+{
+  text-align: center;
+  margin-bottom: 50rpx;
+}
+
+.price-list {
+  padding: 0 15rpx;
+  text-align: center;
+  flex-direction: row;
+}
+
+.price-list .item {
+  float: left;
+  margin-right: 10rpx;
+  margin-left: 10rpx;
+  margin-bottom: 20rpx;
+  width: 220rpx;
+}
+
+.price-list .price-box {
+  width: 100%;
+  height: 100rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #3366CC;
+  text-align: center;
+}
+
+.price-list .price-box em {
+  line-height: 100rpx;
+  color: #d55a4a;
+  font-size: 30rpx;
+}
+
+.price-list .price-box .price {
+  font-size: 50rpx;
+  display: inline-block;
+}
+
+.price-list .price-box.active {
+  background-color: #3366CC;
+}
+
+.price-list .price-box.active em {
+  color: #fff;
+  background-color: #3366CC;
+}
+
+
+.cancel-button {
+  font-size: 0.785714286rem;
+  font-weight: normal;
+  color:  #3366CC;
+  background-color: #fff;
+  background-repeat: repeat-x;
+  margin-top: 30rpx;
+  width: 300rpx;
+}

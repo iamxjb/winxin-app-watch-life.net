@@ -215,6 +215,7 @@
   font-size: 14px;
   height: 25px;
   max-height: 25px;
+  min-height: 30px;
   width: 80%;
   text-align: left;
   border: 1px solid  #296FD0;
@@ -262,7 +263,7 @@ width:70rpx;
 height:60rpx;
 border-radius:50%;
 margin-right:8px;
-margin-top:2rpx;
+margin-top:10rpx;
 }
 
 

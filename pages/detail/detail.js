@@ -84,14 +84,6 @@ Page({
           console.log(response.userInfo);
           app.globalData.userInfo=response.userInfo;
           app.globalData.isGetUserInfo=true;
-          /*
-          self.setData({
-            userInfo: response.userInfo,
-            isGetUserInfo: true
-          })
-
-          */
-
           var url = Api.getOpenidUrl();
           var data = {
             js_code: jscode,
@@ -104,21 +96,15 @@ Page({
             if (response.data.status == '201') {
               console.log(response.data.openid);
               app.globalData.openid = response.data.openid;
-              app.globalData.isGetOpenid = true;
-              /*
-              self.setData({
-                openid: response.data.openid,
-                isGetOpenid: true
-              })
-              */
+              app.globalData.isGetOpenid = true;             
 
             }
             else {
               console.log(response.data.message);
             }
-          }).then(response => {
-            self.showLikeImg();
-
+          }).then(response =>
+          {
+            self.getIslike();
           })
         })
     },
@@ -126,23 +112,10 @@ Page({
       var self=this;
       var flag = false;
       var likes = self.data.detail.avatarurls;
-
       self.setData({
         likeList: self.data.detail.avatarurls
       });
       
-      for (var i in likes) {
-
-        if (likes[i].openid == app.globalData.openid) {
-          flag = true;
-        }
-
-      }
-      if (flag) {
-        self.setData({
-          likeImag: "like-on.png"
-        });
-      }
     },
     onShareAppMessage: function () {
       this.ShowHideMenu();
@@ -191,8 +164,8 @@ Page({
           postid: self.data.postID          
         };
         var url = Api.postLikeUrl();
-        var postLikRequest = wxRequest.postRequest(url, data);
-        postLikRequest
+        var postLikeRequest = wxRequest.postRequest(url, data);
+        postLikeRequest
           .then(response => {
             if (response.data.status == '201') {
               var _likeList = []
@@ -212,8 +185,7 @@ Page({
                 duration: 900,
                 success: function () {
                 }
-              })             
-
+              }) 
             }
             else if (response.data.status == '501')
             {
@@ -223,7 +195,6 @@ Page({
                 icon: 'success',
                 duration: 900,
                 success: function () {
-
                 }
               })
             }
@@ -231,19 +202,40 @@ Page({
               console.log(response.data.message);
 
             }
-
             self.setData({
               likeImag: "like-on.png"
-            });
-           
-
+            });  
           })
       }
       else
       {
         self.userAuthorization();
       }
-    },   
+    },
+    getIslike: function () { //判断当前用户是否点赞
+      var self=this;
+      if (app.globalData.isGetOpenid) {
+        var data = {
+          openid: app.globalData.openid,
+          postid: self.data.postID
+        };
+        var url = Api.postIsLikeUrl();
+        var postIsLikeRequest = wxRequest.postRequest(url, data);
+        postIsLikeRequest
+          .then(response => {
+
+            if (response.data.status == '201') {
+
+              self.setData({
+                likeImag: "like-on.png"
+              });
+            }
+
+
+          })
+
+      }
+    },    
    
     goHome:function()
     {
@@ -252,12 +244,17 @@ Page({
         })
     },
     praise:function(){
-      this.ShowHideMenu();
-        wx.showToast({
-            title: '正在开发中',
-            //image: '../../images/link.png',
-            duration: 2000
+      this.ShowHideMenu();      
+      var self = this;
+      if (app.globalData.isGetOpenid) {
+
+        wx.navigateTo({
+          url: '../pay/pay?openid=' + app.globalData.openid+'&postid=' + self.data.postID 
         })
+      }
+      else {
+        self.userAuthorization();
+      }
     },
 
     //获取文章内容
@@ -315,7 +312,6 @@ Page({
                     }
                 }
                 if (tags != "") {
-
                     var getPostTagsRequest = wxRequest.getRequest(Api.getPostsByTags(id, tags));
                     getPostTagsRequest
                         .then(response => {
@@ -327,7 +323,6 @@ Page({
 
                 }
             }).then(response =>{
-
                 var updatePageviewsRequest = wxRequest.getRequest(Api.updatePageviews(id));
                 updatePageviewsRequest
                     .then(result => {
@@ -335,20 +330,18 @@ Page({
 
                     })
                 
-            })
-            .then(response => {
+          }).then(response => {//获取点赞记录
+            self.showLikeImg();
+          }).then(response => {
                 self.fetchCommentData(self.data, '0');
             }).then(resonse =>{
-
               if (!app.globalData.isGetOpenid) {
                 self.getUsreInfo();
               }
-              else
-              {
-                self.showLikeImg();
-              }
 
-            })           
+          }).then(response => {
+            self.getIslike();
+          })                       
             .catch(function (response) {
 
             }).finally(function (response) {
@@ -456,14 +449,11 @@ Page({
 
                     });
                 }
-
-
             })
             .then(response => {
                 if (data.page === 1) {
                     self.fetchChildrenCommentData(data, flag);
                 }
-
             })
 
     },
@@ -471,7 +461,6 @@ Page({
     //获取回复
     fetchChildrenCommentData: function (data, flag) {
         var self = this;
-
         var getChildrenCommentsRequest = wxRequest.getRequest(Api.getChildrenComments(data));
         getChildrenCommentsRequest
             .then(response => {
@@ -487,14 +476,11 @@ Page({
                                 if (item.author_url.indexOf('https') == -1) {
                                     item.author_url = item.author_url.replace("http", "https");
                                 }
-
-
                             }
                             else {
                                 item.author_url = "../../images/gravatar.png";
                             }
                             return item;
-
                         }))
 
                     });
@@ -532,7 +518,6 @@ Page({
     },
     //底部刷新
     loadMore: function (e) {
-
         var self = this;
         if (!self.data.isLastPage) {
             self.setData({
@@ -562,8 +547,7 @@ Page({
     //提交评论
     formSubmit: function (e) {
         var self = this;
-        var name = app.globalData.userInfo.nickName;
-        
+        var name = app.globalData.userInfo.nickName;        
         var comment = e.detail.value.inputComment;
         var author_url = app.globalData.userInfo.avatarUrl;
         var parent = self.data.parentID;
@@ -575,12 +559,10 @@ Page({
             var temp = comment.split(":");
             if (temp.length == 2 && temp[temp.length - 1].length != 0) {
                 comment = temp[temp.length - 1];
-
             }
             else {
                 comment = "";
             }
-
         }
         if (comment.length === 0) {
             self.setData({
@@ -589,10 +571,8 @@ Page({
                 'dialog.content': '没有填写评论内容。'
 
             });
-
         }
-        else {           
-            
+        else {
           if (app.globalData.isGetOpenid) {
             var email = app.globalData.openid+"@wx.qq.com";
                 var data = {
@@ -646,14 +626,11 @@ Page({
                                 });
                             }
                         }
-
                     })
 
             }
             else
             {
-              //self.checkSettingStatu();
-
                self.userAuthorization();
               
             }
@@ -661,7 +638,6 @@ Page({
         }
 
     },
-
     userAuthorization:function(){
       var self=this;
       wx.showModal({
@@ -679,15 +655,6 @@ Page({
                 console.log('openSetting success', res.authSetting);
                 var scopeUserInfo = res.authSetting["scope.userInfo"];
                 if (scopeUserInfo) {
-
-                  // app.getUserInfo(function (userInfo) {
-                  //   //更新数据
-                  //   var test = userInfo;
-                  //   that.setData({
-                  //     userInfo: userInfo,
-                  //     isGetUserInfo: true
-                  //   })
-                  // });
                   self.getUsreInfo();
                 }
               }
@@ -695,18 +662,13 @@ Page({
           }
         }
       })
-
-
     },
-    
+       
     confirm: function () {
         this.setData({
             'dialog.hidden': true,
             'dialog.title': '',
             'dialog.content': ''
         })
-    }
-    
-
-
+    } 
 })
