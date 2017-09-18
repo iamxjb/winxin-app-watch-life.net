@@ -20,9 +20,16 @@
 
 8.对文章内容的全文搜索。
 
-9.小程序页面的分享和转发。
+9.文章页面的分享、转发，复制。
 
 10.WordPress 插件的配套功能。
+
+11.文章浏览数显示及更新。
+
+12.文章微信用户点赞及点赞的微信用户头像显示。
+
+13.通过微信支付对文章赞赏。
+
 
 # 小程序访问微信二维码：
 
@@ -34,7 +41,11 @@
 
 # 小程序配套wordpress插件：
 
-本小程序需要配合wordpress插件wp-rest-api-for-app，才能完整使用，插件下载地址： https://github.com/iamxjb/wp-rest-api-for-app
+本小程序完整使用需要配合我编写的wordpress插件wp-rest-api-for-app，才能完整使用，插件下载地址： https://github.com/iamxjb/wp-rest-api-for-app
+
+# 小程序配套赞赏（微信支付）功能服务端程序：
+
+本小程序赞赏功能需要配合我编写微信支付服务端php程序，才能使用，程序下载地址： https://github.com/iamxjb/weixin-app-wxpay
 
 # 开源协议：MIT
 
@@ -44,19 +55,24 @@
 
 # 程序开发系列文章
 
-<a href="https://www.watch-life.net/wordpress/weixin-connect-wordpress.html" target="_blank">1.用微信小程序连接WordPress网站</a>
+<a href="https://www.watch-life.net/wordpress/weixin-connect-wordpress.html" target="_blank" rel="noopener">1.用微信小程序连接WordPress网站</a>
 
-<a href="http://WordPress版微信小程序1.5版本发布" target="_blank">2.WordPress版微信小程序1.5版本发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-1-5.html" target="_blank" rel="noopener">2.WordPress版微信小程序1.5版本发布</a>
 
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2.html" target="_blank">3.WordPress版微信小程序2.0版本发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2.html" target="_blank" rel="noopener">3.WordPress版微信小程序2.0版本发布</a>
 
-<a href="https://www.watch-life.net/wordpress/wordpress-rest-api-weixin-weapp.html" target="_blank">4.利用WordPress REST API 开发微信小程序从入门到放弃</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-rest-api-weixin-weapp.html" target="_blank" rel="noopener">4.利用WordPress REST API 开发微信小程序从入门到放弃</a>
 
-<a href="https://www.watch-life.net/wechat/wordpress-weixin-2-1-5.html" target="_blank">5.WordPress版微信小程序2.1.5版本发布</a>
+<a href="https://www.watch-life.net/wechat/wordpress-weixin-2-1-5.html" target="_blank">5.WordPress版微信小程序2.1.5版发布</a></p>
 
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-1-8.html" target="_blank">5.WordPress版微信小程序2.1.8版本发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-1-8.html" target="_blank" rel="noopener">6.WordPress版微信小程序2.1.8版发布</a>
 
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-2-0.html" target="_blank">5.WordPress版微信小程序2.2.0版本发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-rest-api.html" rel="bookmark">WordPress版微信小程序开发系列(一)：WordPress REST API</a>
+
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-2-0.html" target="_blank">8.WordPress版微信小程序2.2.0版发布</a>
+
+
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-2-8.html" target="_blank">9.WordPress版微信小程序2.2.8版本发布</a>
 
 
 # 讨论微信群：
@@ -66,7 +82,11 @@
 # 开源声明：
 
 1、本程序html转wxml的解析采用的是https://github.com/icindy/wxParse
+
 2、专题页面及浏览记录页面的设计思路参考 https://devework.com/  网站的小程序
+
+3.本程序有关es6-promise 部分代码参考 开源程序：https://github.com/cinoliu/-es6-promise
+
 
 在此对上述提供开源及创意表示致谢。
 
@@ -77,6 +97,12 @@
 ![weixinpay](https://www.watch-life.net/images/2017/06/weixinpay150.png) 
 
 # 更新历史：
+
+## 2017年9月16日
+1.增加点赞功能
+
+2.增加赞赏功能（微信支付）
+
 
 ## 2017年8月17日
 1.增加站内链接。
