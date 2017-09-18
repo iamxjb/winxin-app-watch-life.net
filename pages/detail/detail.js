@@ -84,7 +84,7 @@ Page({
           console.log(response.userInfo);
           app.globalData.userInfo=response.userInfo;
           app.globalData.isGetUserInfo=true;
-          var url = Api.getOpenidUrl();
+          var url = Api.getOpenidUrl();          
           var data = {
             js_code: jscode,
             encryptedData: response.encryptedData,
@@ -111,9 +111,20 @@ Page({
     showLikeImg:function(){
       var self=this;
       var flag = false;
-      var likes = self.data.detail.avatarurls;
+      var _likes = self.data.detail.avatarurls;
+      var likes=[];
+      for (var i = 0; i < _likes.length;i++)
+      {
+        var avatarurl ="../../images/gravatar.png";
+        if (_likes[i].avatarurl.indexOf('wx.qlogo.cn') != -1)
+        {
+          avatarurl = _likes[i].avatarurl;
+        }
+        likes[i] = avatarurl;
+      }
+      var temp= likes;
       self.setData({
-        likeList: self.data.detail.avatarurls
+        likeList: likes
       });
       
     },
@@ -642,7 +653,7 @@ Page({
       var self=this;
       wx.showModal({
         title: '未授权',
-        content: '如需正常使用评论的功能需授权获取用户信息。是否在授权管理中选中“用户信息”?',
+        content: '如需正常使用评论、点赞、赞赏等功能需授权获取用户信息。是否在授权管理中选中“用户信息”?',
         showCancel: true,
         cancelColor: '#296fd0',
         confirmColor: '#296fd0',

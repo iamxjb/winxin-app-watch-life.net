@@ -75,7 +75,7 @@
       </view>
       <view class="likeText">
         <block wx:key="id" wx:for="{{likeList}}">
-         <image src="{{item.avatarurl}}" class="gravatarLikeImg"></image>          
+         <image src="{{item}}" class="gravatarLikeImg"></image>          
         </block>
       </view>
     </view>
