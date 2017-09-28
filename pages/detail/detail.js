@@ -131,7 +131,7 @@ Page({
     onShareAppMessage: function () {
       this.ShowHideMenu();
         return {
-            title: '分享"守望轩"的文章：' + this.data.detail.title.rendered,
+          title: '分享"' + config.getWebsiteName +'"的文章：' + this.data.detail.title.rendered,
             path: 'pages/detail/detail?id=' + this.data.detail.id,
             success: function (res) {
                 // 转发成功

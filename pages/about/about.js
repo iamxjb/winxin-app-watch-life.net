@@ -9,12 +9,13 @@
  * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
  * 
  */
-import config from '../../utils/config.js'
+
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../es6-promise/utils/wxApi.js')
 var wxRequest = require('../../es6-promise/utils/wxRequest.js')
+import config from '../../utils/config.js'
 
 
 Page({
@@ -35,7 +36,7 @@ Page({
       }
     });
     
-    this.fetchData(1136);
+    this.fetchData(config.getAboutId);
   },
   onPullDownRefresh: function () {
       var self = this;
@@ -51,7 +52,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '关于“守望轩”官方小程序',
+      title: '关于“' + config.getWebsiteName +'”官方小程序',
       path: 'pages/about/about',
       success: function (res) {
         // 转发成功

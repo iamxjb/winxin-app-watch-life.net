@@ -16,6 +16,8 @@ var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../es6-promise/utils/wxApi.js')
 var wxRequest = require('../../es6-promise/utils/wxRequest.js')
 
+import config from '../../utils/config.js'
+
 
 Page({
   data: {
@@ -56,7 +58,7 @@ Page({
   },
   onShareAppMessage: function () {
 
-    var title = "分享“守望轩”的热点文章。";
+    var title = "分享“"+ config.getWebsiteName +"”的热点文章。";
     var path ="pages/hot/hot";
     return {
       title: title,

@@ -11,8 +11,14 @@
 
 
 
-//配置域名
-var DOMAIN = "www.watch-life.net";
+
+var DOMAIN = "www.watch-life.net";//配置域名,域名只修改此处
+var WEBSITENAME="守望轩"; //网站名称
+var ABOUTID= 1136; //wordpress网站关于页面的id
+
+
 export default {
-  getDomain: DOMAIN
+  getDomain: DOMAIN,
+  getWebsiteName: WEBSITENAME,
+  getAboutId: ABOUTID
 }

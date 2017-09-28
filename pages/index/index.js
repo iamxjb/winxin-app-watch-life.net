@@ -16,6 +16,8 @@ var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../es6-promise/utils/wxApi.js')
 var wxRequest = require('../../es6-promise/utils/wxRequest.js')
 
+import config from '../../utils/config.js'
+
 Page({
   data: {    
     postsList: [],
@@ -54,7 +56,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '“守望轩”网站微信小程序,基于WordPress版小程序构建.技术支持：www.watch-life.net',
+      title: '“' + config.getWebsiteName+'”网站微信小程序,基于WordPress版小程序构建.技术支持：www.watch-life.net',
       path: 'pages/index/index',
       success: function (res) {
         // 转发成功
