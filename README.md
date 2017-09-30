@@ -31,6 +31,7 @@
 13.通过微信支付对文章赞赏。
 
 
+
 # 小程序访问微信二维码：
 
 ![wordpress版微信小程序](https://www.watch-life.net/images/2017/04/weixinapp-watch-life.jpg) 
@@ -73,6 +74,14 @@
 
 
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-2-8.html" target="_blank">9.WordPress版微信小程序2.2.8版本发布</a>
+
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-app-faq.html" target="_blank">10.WordPress版微信小程序开发系列(二):安装使用问答</a>
+
+# 优秀WordPress版微信小程序推荐
+
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-app-for-you-1.html" target="_blank">优秀WordPress版微信小程序推荐(一)</a>
+
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-app-for-you-2.html" target="_blank">优秀WordPress版微信小程序推荐(二)</a>
 
 
 # 讨论微信群：
