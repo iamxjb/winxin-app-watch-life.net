@@ -585,59 +585,61 @@ Page({
         }
         else {
           if (app.globalData.isGetOpenid) {
-            var email = app.globalData.openid+"@wx.qq.com";
-                var data = {
-                    post: postID,
-                    author_name: name,
-                    author_email: email,
-                    content: comment,
-                    author_url: author_url,
-                    parent: parent
-                };
-                var url = Api.postComment();
-                var postCommentRequest = wxRequest.postRequest(url,data);
-                postCommentRequest
-                    .then(res => {
-                        if (res.statusCode == 201 || res.statusCode == 200) {
-                            self.setData({
-                                content: '',
-                                parent: "0",
-                                placeholder: "输入评论",
-                                focus: false,
-                                commentsList: [],
-                                ChildrenCommentsList: []
+            var email = app.globalData.openid + "@qq.com";
+            var openid = app.globalData.openid;
+            var data = {
+              post: postID,
+              author_name: name,
+              author_email: email,
+              content: comment,
+              author_url: author_url,
+              parent: parent,
+              openid: openid
+            };
+            var url = Api.postWeixinComment();
+            var postCommentRequest = wxRequest.postRequest(url, data);
+            postCommentRequest
+              .then(res => {
+                if (res.statusCode == 201 || res.statusCode == 200) {
+                  self.setData({
+                    content: '',
+                    parent: "0",
+                    placeholder: "输入评论",
+                    focus: false,
+                    commentsList: [],
+                    ChildrenCommentsList: []
 
-                            });
-                            self.fetchCommentData(self.data, '1');
-                        }
-                        else {
+                  });
+                  self.fetchCommentData(self.data, '1');
+                }
+                else {
 
-                            if (res.data.code == 'rest_comment_login_required') {
-                                self.setData({
-                                    'dialog.hidden': false,
-                                    'dialog.title': '提示',
-                                    'dialog.content': '需要开启在WordPress rest api 的匿名评论功能！'
+                  if (res.data.code == 'rest_comment_login_required') {
+                    self.setData({
+                      'dialog.hidden': false,
+                      'dialog.title': '提示',
+                      'dialog.content': '需要开启在WordPress rest api 的匿名评论功能！'
 
-                                });
-                            }
-                            else if (res.data.code == 'rest_invalid_param' && res.data.message.indexOf('author_email') > 0) {
-                                self.setData({
-                                    'dialog.hidden': false,
-                                    'dialog.title': '提示',
-                                    'dialog.content': 'email填写错误！'
+                    });
+                  }
+                  else if (res.data.code == 'rest_invalid_param' && res.data.message.indexOf('author_email') > 0) {
+                    self.setData({
+                      'dialog.hidden': false,
+                      'dialog.title': '提示',
+                      'dialog.content': 'email填写错误！'
 
-                                });
-                            }
-                            else {
-                                self.setData({
-                                    'dialog.hidden': false,
-                                    'dialog.title': '提示',
-                                    'dialog.content': '评论失败,' + res.data.message
+                    });
+                  }
+                  else {
+                    self.setData({
+                      'dialog.hidden': false,
+                      'dialog.title': '提示',
+                      'dialog.content': '评论失败,' + res.data.message
 
-                                });
-                            }
-                        }
-                    })
+                    });
+                  }
+                }
+              })
 
             }
             else

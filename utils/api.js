@@ -117,7 +117,13 @@ module.exports = {
   //提交评论
   postComment: function () {
     return HOST_URI + 'comments'
-  },   
+  }, 
+
+  //提交微信评论
+  postWeixinComment: function () {
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    return url + 'comment/add'
+  },    
 
   //获取文章的第一个图片地址,如果没有给出默认图片
   getContentFirstImage: function (content){

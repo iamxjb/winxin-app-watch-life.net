@@ -145,7 +145,7 @@ Page({
         )
         .finally(function () {
 
-           // console.log(response); 
+            console.log('ok'); 
             
         
     });            
