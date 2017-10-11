@@ -47,7 +47,7 @@ Page({
 
       });
 
-      this.fetchData(1136);
+      this.fetchData(config.getAboutId);
 
   },
   onShareAppMessage: function () {
