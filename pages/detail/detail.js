@@ -12,13 +12,12 @@
 
 
 import config from '../../utils/config.js'
-
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var auth = require('../../utils/auth.js');
 var WxParse = require('../../wxParse/wxParse.js');
-var wxApi = require('../../es6-promise/utils/wxApi.js')
-var wxRequest = require('../../es6-promise/utils/wxRequest.js')
+var wxApi = require('../../utils/wxApi.js')
+var wxRequest = require('../../utils/wxRequest.js')
 var app = getApp();
 
 Page({
@@ -58,56 +57,7 @@ Page({
     },
     onLoad: function (options) {
         this.fetchDetailData(options.id);
-        var self = this;
-              
-        //获取屏幕的高度
-        var wxGetSystemInfo = wxApi.wxGetSystemInfo();
-        wxGetSystemInfo().then(response=>{
-          self.setData({
-            scrollHeight: response.windowHeight
-
-          })
-        })
-    },
-    //获取用户信息和openid
-    getUsreInfo:function(){      
-      var self = this;
-      var wxLogin = wxApi.wxLogin();
-      var jscode='';
-      wxLogin().then(response => {
-          jscode = response.code
-          var wxGetUserInfo = wxApi.wxGetUserInfo()
-          return wxGetUserInfo()
-        }).
-        //获取用户信息
-        then(response => {
-          console.log(response.userInfo);
-          app.globalData.userInfo=response.userInfo;
-          app.globalData.isGetUserInfo=true;
-          var url = Api.getOpenidUrl();          
-          var data = {
-            js_code: jscode,
-            encryptedData: response.encryptedData,
-            iv: response.iv,
-            avatarUrl: response.userInfo.avatarUrl
-          }
-          var postOpenidRequest = wxRequest.postRequest(url, data);
-          postOpenidRequest.then(response => {
-            if (response.data.status == '201') {
-              console.log(response.data.openid);
-              app.globalData.openid = response.data.openid;
-              app.globalData.isGetOpenid = true;             
-
-            }
-            else {
-              console.log(response.data.message);
-            }
-          }).then(response =>
-          {
-            self.getIslike();
-          })
-        })
-    },
+    },    
     showLikeImg:function(){
       var self=this;
       var flag = false;
@@ -234,14 +184,11 @@ Page({
         var postIsLikeRequest = wxRequest.postRequest(url, data);
         postIsLikeRequest
           .then(response => {
-
             if (response.data.status == '201') {
-
               self.setData({
                 likeImag: "like-on.png"
               });
             }
-
 
           })
 
@@ -343,7 +290,7 @@ Page({
                 
           }).then(response => {//获取点赞记录
             self.showLikeImg();
-          }).then(response => {
+          }).then(response => {//获取评论
                 self.fetchCommentData(self.data, '0');
             }).then(resonse =>{
               if (!app.globalData.isGetOpenid) {
@@ -558,9 +505,8 @@ Page({
     //提交评论
     formSubmit: function (e) {
         var self = this;
-        var name = app.globalData.userInfo.nickName;        
-        var comment = e.detail.value.inputComment;
-        var author_url = app.globalData.userInfo.avatarUrl;
+                
+        var comment = e.detail.value.inputComment;        
         var parent = self.data.parentID;
         var postID = e.detail.value.inputPostID;
         if (comment.indexOf('@') == -1 && comment.indexOf(':') == -1) {
@@ -585,6 +531,8 @@ Page({
         }
         else {
           if (app.globalData.isGetOpenid) {
+            var name = app.globalData.userInfo.nickName;
+            var author_url = app.globalData.userInfo.avatarUrl;
             var email = app.globalData.openid + "@qq.com";
             var openid = app.globalData.openid;
             var data = {
@@ -596,7 +544,7 @@ Page({
               parent: parent,
               openid: openid
             };
-            var url = Api.postWeixinComment();
+            var url = Api.postComment();
             var postCommentRequest = wxRequest.postRequest(url, data);
             postCommentRequest
               .then(res => {
@@ -631,6 +579,7 @@ Page({
                     });
                   }
                   else {
+                    console.log(res)
                     self.setData({
                       'dialog.hidden': false,
                       'dialog.title': '提示',
@@ -651,32 +600,46 @@ Page({
         }
 
     },
-    userAuthorization:function(){
-      var self=this;
-      wx.showModal({
-        title: '未授权',
-        content: '如需正常使用评论、点赞、赞赏等功能需授权获取用户信息。是否在授权管理中选中“用户信息”?',
-        showCancel: true,
-        cancelColor: '#296fd0',
-        confirmColor: '#296fd0',
-        confirmText: '设置权限',
-        success: function (res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-            wx.openSetting({
-              success: function success(res) {
-                console.log('openSetting success', res.authSetting);
-                var scopeUserInfo = res.authSetting["scope.userInfo"];
-                if (scopeUserInfo) {
-                  self.getUsreInfo();
+    userAuthorization: function (){
+        var self = this;
+        // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
+        wx.getSetting({
+            success: function success(res) {
+                console.log(res.authSetting);
+                var authSetting = res.authSetting;
+                if (util.isEmptyObject(authSetting)) {
+                    console.log('第一次授权');
+                } else {
+                    console.log('不是第一次授权', authSetting);
+                    // 没有授权的提醒
+                    if (authSetting['scope.userInfo'] === false) {
+                        wx.showModal({
+                            title: '用户未授权',
+                            content: '如需正常使用评论、点赞、赞赏等功能需授权获取用户信息。是否在授权管理中选中“用户信息”?',
+                            showCancel: true,
+                            cancelColor: '#296fd0',
+                            confirmColor: '#296fd0',
+                            confirmText: '设置权限',
+                            success: function (res) {
+                                if (res.confirm) {
+                                    console.log('用户点击确定')
+                                    wx.openSetting({
+                                        success: function success(res) {
+                                            console.log('打开设置', res.authSetting);
+                                            var scopeUserInfo = res.authSetting["scope.userInfo"];
+                                            if (scopeUserInfo) {
+                                                self.getUsreInfo();
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        })
+                    }
                 }
-              }
-            });
-          }
-        }
-      })
-    },
-       
+            }
+        });
+       },
     confirm: function () {
         this.setData({
             'dialog.hidden': true,

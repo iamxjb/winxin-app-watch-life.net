@@ -1,5 +1,14 @@
-//var Promise = require('../../es6-promise/plugins/es6-promise.js')
-
+/*
+ * 
+ * WordPres版微信小程序
+ * author: jianbo
+ * organization: 守望轩  www.watch-life.net
+ * github:    https://github.com/iamxjb/winxin-app-watch-life.net
+ * 技术支持微信号：iamxjb
+ * 开源协议：MIT
+ *  *Copyright (c) 2017 https://www.watch-life.net All rights reserved.
+ * 
+ */
 function wxPromisify(fn) {
   return function (obj = {}) {
     return new Promise((resolve, reject) => {
@@ -43,6 +52,7 @@ function wxGetSystemInfo() {
   return wxPromisify(wx.getSystemInfo)
 }
 
+
 /**
  * 保留当前页面，跳转到应用内的某个页面
  * url:'../index/index'
@@ -62,5 +72,7 @@ module.exports = {
   wxPromisify: wxPromisify,
   wxLogin: wxLogin,
   wxGetUserInfo: wxGetUserInfo,
-  wxGetSystemInfo: wxGetSystemInfo
+  wxGetSystemInfo: wxGetSystemInfo,
+
+
 }

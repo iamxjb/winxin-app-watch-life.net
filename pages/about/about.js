@@ -13,8 +13,8 @@
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
-var wxApi = require('../../es6-promise/utils/wxApi.js')
-var wxRequest = require('../../es6-promise/utils/wxRequest.js')
+var wxApi = require('../../utils/wxApi.js')
+var wxRequest = require('../../utils/wxRequest.js')
 import config from '../../utils/config.js'
 
 
@@ -49,7 +49,7 @@ Page({
 
       this.fetchData(config.getAboutId);
 
-  },
+  },  
   onShareAppMessage: function () {
     return {
       title: '关于“' + config.getWebsiteName +'”官方小程序',

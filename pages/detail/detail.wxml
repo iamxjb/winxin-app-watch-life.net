@@ -14,7 +14,7 @@
 <import src="../../templates/header.wxml" />
 <import src="../../templates/copyright.wxml" />
 <view class="container">
-  <scroll-view style="height:{{scrollHeight}}px;" scroll-y="true" lower-threshold="100rpx">
+  
 
     <view class="content-article-detail" style="display:{{display}}">
       <view class="entry-title">
@@ -192,7 +192,7 @@
       <template is="tempCopyright" />
     </view>
 
-  </scroll-view>
+
 
   <!--评论区-->
   <view class="menuBackground" catchtap="hiddenMenubox" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
