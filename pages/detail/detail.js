@@ -188,6 +188,8 @@ Page({
               self.setData({
                 likeImag: "like-on.png"
               });
+
+              console.log("已赞过");
             }
 
           })
@@ -294,11 +296,13 @@ Page({
                 self.fetchCommentData(self.data, '0');
             }).then(resonse =>{
               if (!app.globalData.isGetOpenid) {
-                self.getUsreInfo();
+                  auth.getUsreInfo();
               }
 
-          }).then(response => {
-            self.getIslike();
+          }).then(response => {//获取是否已经点赞
+              if (app.globalData.isGetOpenid){
+                self.getIslike();
+            }
           })                       
             .catch(function (response) {
 
@@ -628,7 +632,7 @@ Page({
                                             console.log('打开设置', res.authSetting);
                                             var scopeUserInfo = res.authSetting["scope.userInfo"];
                                             if (scopeUserInfo) {
-                                                self.getUsreInfo();
+                                                auth.getUsreInfo();
                                             }
                                         }
                                     });

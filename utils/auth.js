@@ -12,6 +12,7 @@
 var util = require('util.js');
 var wxApi = require('wxApi.js')
 var wxRequest = require('wxRequest.js')
+var Api = require('api.js');
 var app = getApp();
 module.exports = {
     //获取用户信息和openid
