@@ -40,7 +40,7 @@ module.exports = {
                 var postOpenidRequest = wxRequest.postRequest(url, data);
                 //获取openid
                 postOpenidRequest.then(response => {
-                    if (response.data.status == '201') {
+                    if (response.data.status == '200') {
                         //console.log(response.data.openid)
                         console.log("openid 获取成功");
                         app.globalData.openid = response.data.openid;
@@ -55,6 +55,8 @@ module.exports = {
                 // .then(response => {
                 //     self.getIslike();
                 // })
+            }).catch(function (error) {
+                console.log('error: ' + error.errMsg);
             })
     }
 }

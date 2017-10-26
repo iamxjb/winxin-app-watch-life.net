@@ -128,7 +128,7 @@ Page({
         var postLikeRequest = wxRequest.postRequest(url, data);
         postLikeRequest
           .then(response => {
-            if (response.data.status == '201') {
+            if (response.data.status == '200') {
               var _likeList = []
               var _like = { "avatarurl": app.globalData.userInfo.avatarUrl, "openid": app.globalData.openid }
 
@@ -184,7 +184,7 @@ Page({
         var postIsLikeRequest = wxRequest.postRequest(url, data);
         postIsLikeRequest
           .then(response => {
-            if (response.data.status == '201') {
+            if (response.data.status == '200') {
               self.setData({
                 likeImag: "like-on.png"
               });
@@ -250,6 +250,22 @@ Page({
                     displayLike: _displayLike
                     
                 });
+
+                // 调用API从本地缓存中获取阅读记录并记录
+                var logs = wx.getStorageSync('readLogs') || [];
+                // 过滤重复值
+                if (logs.length > 0) {
+                    logs = logs.filter(function (log) {
+                        return log[0] !== id;
+                    });
+                }
+                // 如果超过指定数量
+                if (logs.length > 19) {
+                    logs.pop();//去除最后一个
+                }
+                logs.unshift([id, response.data.title.rendered]);
+                wx.setStorageSync('readLogs', logs);
+             //end 
 
             })
             .then(response => {
@@ -548,11 +564,11 @@ Page({
               parent: parent,
               openid: openid
             };
-            var url = Api.postComment();
+            var url = Api.postWeixinComment();
             var postCommentRequest = wxRequest.postRequest(url, data);
             postCommentRequest
               .then(res => {
-                if (res.statusCode == 201 || res.statusCode == 200) {
+                if (res.statusCode == 200 ) {
                   self.setData({
                     content: '',
                     parent: "0",
@@ -562,6 +578,7 @@ Page({
                     ChildrenCommentsList: []
 
                   });
+                 // console.log(res.data.code);
                   self.fetchCommentData(self.data, '1');
                 }
                 else {
@@ -583,7 +600,7 @@ Page({
                     });
                   }
                   else {
-                    console.log(res)
+                    console.log(res.data.code)
                     self.setData({
                       'dialog.hidden': false,
                       'dialog.title': '提示',

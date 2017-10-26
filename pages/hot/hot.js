@@ -57,7 +57,6 @@ Page({
     })
   },
   onShareAppMessage: function () {
-
     var title = "分享“"+ config.getWebsiteName +"”的热点文章。";
     var path ="pages/hot/hot";
     return {
@@ -73,8 +72,7 @@ Page({
   },
   reload:function(e)
   {
-    var self = this;
-   
+    var self = this;   
     self.fetchPostsData(self.data);
   },
 
@@ -119,17 +117,12 @@ Page({
       mask:true
     });
     var getTopHotPostsRequest = wxRequest.getRequest(Api.getTopHotPosts(tab));
-
     getTopHotPostsRequest.then(response =>{
-
-        if (response.statusCode === 201) {
-
+        if (response.statusCode === 200) {
             self.setData({
                 showallDisplay: "block",
                 postsList: self.data.postsList.concat(response.data.map(function (item) {
                     var strdate = item.post_date
-
-
                     if (item.post_thumbnail_image == null || item.post_thumbnail_image == '') {
                         item.post_thumbnail_image = '../../images/watch-life-logo-128.jpg';
                     }
@@ -138,7 +131,6 @@ Page({
                 })),
 
             });
-
 
         } else if (response.statusCode === 404) {
             wx.showModal({
