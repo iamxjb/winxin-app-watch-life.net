@@ -321,9 +321,15 @@ margin-top:10rpx;
   line-height: 40rpx;  
   margin-top: 20rpx;
   margin-bottom: 20rpx;
+  margin-left: 280rpx;
   font-size: 36rpx;
   color:#21759b !important;
-  vertical-align:middle;
+  vertical-align:middle;  
+  width:140rpx;
+  height:70rpx;
+  border-radius: 30rpx;
+  border: 1rpx solid #21759b;
+  
  
 }
 .likeText
@@ -333,6 +339,7 @@ margin-top:10rpx;
   font-size: 26rpx;
   line-height: 50rpx;
   color:#21759b!important;
+  margin-bottom: 20rpx;
   
 }
 
@@ -342,9 +349,9 @@ height:50rpx;
 display: inline-block;
 text-align: center;
 margin-right:20rpx;
-
-
+margin-top:8rpx;
 }
+
 
 .gravatarLikeImg {
   margin-top: 4px;

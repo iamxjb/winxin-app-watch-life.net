@@ -91,8 +91,8 @@
 .top-bar-item {
   display:inline-block;
   background: #fff;
-  width: 50%;
-  color: #000;
+  width: 25%;
+  color: #000000;
   text-align: center;
   line-height: 36px;
   font-size: 14px;

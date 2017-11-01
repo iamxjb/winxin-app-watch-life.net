@@ -10,32 +10,37 @@
  * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
  *
  */-->
+<import src="../../templates/common-list.wxml" />
+<import src="../../templates/copyright.wxml" />
 
+
+<view class="top-bar">
+    <block wx:for="{{topBarItems}}" wx:key="id">
+        <view class="top-bar-item {{item.selected ? 'top-bar-item-Selected': '' }}" catchtap="onTapTag" id="{{item.id}}">{{item.name}}</view>
+    </block>
+</view>
 <view class="container">
-  <view   class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
-  <view class="dec">
-    <text class="dec-text">阅读记录仅保存在本地设备，且最多保存数量为二十条</text>
-  </view>
+    <view class="showerror" style="display:{{showerror}}">
+        <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
+        <view class="errortext">
+            暂时无法访问网络
+            <view class="">
+                <button class="more-button" bindtap="reload" size="mini" bindtap="reload">重新加载</button>
+            </view>
+        </view>
+    </view>
 
-  <view class="log-list">
-  <block wx:if="{{readLogs.length>0}}">
-  <block wx:key="id" wx:for="{{readLogs}}">
- 
+  <view class="log-list"> 
+  <block wx:key="id" wx:for="{{readLogs}}"> 
   <view class="log-items" index="{{index}}" id="{{item[0]}}" catchtap="redictDetail">
     <text class="log-text">{{index + 1}}. {{item[1]}}</text>
         </view>
         </block>
-      </block>
-      <block wx:else>
-
-       <view class="log-items">
-    <text class="log-text">您还未浏览任何文章，去看看您感兴趣的内容吧</text>
-        </view>
-
-      </block>
+       <view class="log-items"  style="display:{{shownodate}}">
+        <text class="log-text">没有相关文章</text>
+        </view>      
 </view>
+    <view class="copyright" style="display:{{floatDisplay}}">
+        <template is="tempCopyright" />
+    </view>
 </view>
-

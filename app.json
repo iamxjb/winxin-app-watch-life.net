@@ -40,10 +40,16 @@
       ,
       {
         "pagePath": "pages/hot/hot",
-        "iconPath": "images/hot.png",
-        "selectedIconPath": "images/hot-on.png",
-        "text": "热点"
+        "iconPath": "images/ranking.png",
+        "selectedIconPath": "images/ranking-on.png",
+        "text": "排行"
       },
+      {
+        "pagePath": "pages/readlog/readlog",
+        "iconPath": "images/tar-person.png",
+        "selectedIconPath": "images/tar-person-on.png",
+        "text": "我"
+    },
       {
         "pagePath": "pages/about/about",
         "iconPath": "images/watch-life-logo-80.jpg",

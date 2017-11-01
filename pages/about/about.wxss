@@ -40,3 +40,77 @@
 .wxParse-a{
     color: #21759b
 }
+
+.praisePost
+{
+  position: relative;
+  text-align: left;
+  margin-top: 30rpx;
+  border-bottom:2rpx solid #ededed;
+  margin-bottom: 30rpx;
+  
+  
+}
+
+.praiseTitle
+{
+  text-align: center;
+  font-weight: normal;  
+  line-height: 40rpx;  
+  margin-top: 50rpx;
+  margin-bottom: 20rpx;
+ /* margin-left: 280rpx; */
+  font-size: 36rpx;
+  color:#21759b !important;
+  vertical-align:middle;  
+ /* width:500rpx; */
+  height:70rpx;
+  border-radius: 30rpx;
+  border: 1rpx solid #21759b;
+  
+ 
+}
+.praiseText
+{
+  text-align: center;
+  font-weight: normal;
+  font-size: 26rpx;
+  line-height: 50rpx;
+  color:#21759b!important;
+  margin-bottom: 20rpx;
+  
+}
+
+.img-like{
+width:50rpx;
+height:50rpx;
+display: inline-block;
+text-align: center;
+margin-right:20rpx;
+margin-top:8rpx;
+}
+
+
+.gravatarLikeImg {
+  margin-top: 4px;
+  border-radius: 50%;
+  /*
+  opacity: 1;
+  transform: scale(1);
+  perspective-origin: top center;
+  transition: all ease-in-out 0.3s;
+  */
+  height: 60rpx;
+  width: 60rpx;
+  margin-right:20rpx;
+}
+
+.praise-button {
+  font-size: 0.785714286rem;
+  font-weight: normal;
+  color:  #fff;
+  background-color: #21759b;
+  background-repeat: repeat-x;
+  margin-top: 30rpx;
+  width: 300rpx;
+}

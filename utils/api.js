@@ -123,6 +123,12 @@ module.exports = {
   postWeixinComment: function () {
     var url = HOST_URI_WATCH_LIFE_JSON;
     return url + 'comment/add'
+  }, 
+
+  //获取微信评论
+  getWeixinComment: function (openid) {
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      return url + 'comment/get?openid=' + openid;
   },    
 
   //获取文章的第一个图片地址,如果没有给出默认图片
@@ -145,7 +151,13 @@ module.exports = {
       }
       else if(flag==2)
       {
-          url += "post/hotpost"
+          url += "post/pageviewsthisyear"
+      }
+      else if (flag == 3) {
+          url += "post/likethisyear"
+      }
+      else if (flag == 4) {
+          url += "post/praisethisyear"
       }
 
       return url;
@@ -178,6 +190,13 @@ module.exports = {
     return url;
   },
 
+  //获取我的点赞
+  getMyLikeUrl(openid) {
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      url += "post/mylike?openid=" + openid;
+      return url;
+  },
+
   //赞赏,获取支付密钥
   postPraiseUrl() {   
     var url = 'https://' + domain  + "/wp-wxpay/pay/app.php";
@@ -189,7 +208,29 @@ module.exports = {
     var url = HOST_URI_WATCH_LIFE_JSON;
     url += "post/praise";
     return url;
+  },
+
+  //获取我的赞赏数据
+  getMyPraiseUrl(openid) {
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      url += "post/mypraise?openid=" + openid;
+      return url;
+  },
+
+  //获取所有的赞赏数据
+  getAllPraiseUrl() {
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      url += "post/allpraise";
+      return url;
+  },
+
+  //发送模版消息
+  sendMessagesUrl() {
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      url += "weixin/sendmessage";
+      return url;
   }
+
 
 
 

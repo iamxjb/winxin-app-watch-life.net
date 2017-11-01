@@ -209,7 +209,7 @@ Page({
       if (app.globalData.isGetOpenid) {
 
         wx.navigateTo({
-          url: '../pay/pay?openid=' + app.globalData.openid+'&postid=' + self.data.postID 
+          url: '../pay/pay?flag=1&openid=' + app.globalData.openid+'&postid=' + self.data.postID 
         })
       }
       else {

@@ -14,18 +14,21 @@ var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var auth = require('../../utils/auth.js');
 var WxParse = require('../../wxParse/wxParse.js');
-var wxApi = require('../../utils/wxApi.js')
-var wxRequest = require('../../utils/wxRequest.js')
+var wxApi = require('../../utils/wxApi.js');
+var wxRequest = require('../../utils/wxRequest.js');
+import config from '../../utils/config.js'
 
 var app = getApp();
 Page({
   data: {    
     prices: [
-      1, 6, 8, 18, 66, 88
+      6, 8, 18, 66, 88,188
     ],
     openid:'',
     postid:'',
-    total_fee:''
+    total_fee:'',
+    template_id: config.getTemplateId,
+    flag:'1'
   },
 
   /**
@@ -37,10 +40,12 @@ Page({
 
     var openid = options.openid;
     var postid = options.postid;
+    var flag = options.flag;
 
     that.setData({
       openid: openid,
-      postid: postid
+      postid: postid,
+      flag:flag
         });
 
   },
@@ -57,6 +62,7 @@ Page({
    */
   selectItem: function (event) {
     var total_fee = event.currentTarget.dataset.item;
+    var money = total_fee ;
     total_fee = total_fee*100;
     var that = this;    
     var url = Api.postPraiseUrl();
@@ -85,6 +91,9 @@ Page({
                 orderid: response.data.nonceStr,
                 money: total_fee
               }
+              var form_id = response.data.package;
+              form_id = form_id.substring(10);
+              
               var updatePraiseRequest = wxRequest.postRequest(url, data); //更新赞赏数据
               updatePraiseRequest
                 .then(response => {
@@ -94,6 +103,31 @@ Page({
                     title: '谢谢赞赏！',
                     uration: 2000,
                     success: function () {
+                        data =
+                            {
+                                openid: app.globalData.openid,
+                                postid: that.data.postid,
+                                template_id: that.data.template_id,
+                                form_id: form_id,
+                                total_fee: money,
+                                flag: that.data.flag
+                            };
+                        url = Api.sendMessagesUrl();
+                        var sendMessageRequest = wxRequest.postRequest(url, data);
+                        sendMessageRequest.then(response => {
+                            if (response.data.status == '200') {
+                                console.log(response.data.message);
+                                wx.navigateBack({
+                                    delta: 1
+                                })
+
+                            }
+                            else {
+                                console.log(response.data.message);
+
+                            }
+
+                        });
 
                     }
                   });

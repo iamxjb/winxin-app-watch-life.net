@@ -15,8 +15,9 @@ var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
+var auth = require('../../utils/auth.js');
 import config from '../../utils/config.js'
-
+var app = getApp();
 
 Page({
   data: {
@@ -25,6 +26,12 @@ Page({
     pagesList: {},
     display: 'none',
     wxParseData: [],
+    praiseList:[],
+    dialog: {
+        title: '',
+        content: '',
+        hidden: true
+    },
    
     
   },
@@ -37,6 +44,17 @@ Page({
     });
     
     this.fetchData(config.getAboutId);
+  },
+  praise: function () {     
+      var self = this;
+      if (app.globalData.isGetOpenid) {
+          wx.navigateTo({
+              url: '../pay/pay?flag=2&openid=' + app.globalData.openid + '&postid=' + config.getAboutId
+          })
+      }
+      else {
+          self.userAuthorization();
+      }
   },
   onPullDownRefresh: function () {
       var self = this;
@@ -122,6 +140,47 @@ Page({
       }
 
   },
+
+  userAuthorization: function () {
+      var self = this;
+      // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
+      wx.getSetting({
+          success: function success(res) {
+              console.log(res.authSetting);
+              var authSetting = res.authSetting;
+              if (util.isEmptyObject(authSetting)) {
+                  console.log('第一次授权');
+              } else {
+                  console.log('不是第一次授权', authSetting);
+                  // 没有授权的提醒
+                  if (authSetting['scope.userInfo'] === false) {
+                      wx.showModal({
+                          title: '用户未授权',
+                          content: '如需正常使用评论、点赞、赞赏等功能需授权获取用户信息。是否在授权管理中选中“用户信息”?',
+                          showCancel: true,
+                          cancelColor: '#296fd0',
+                          confirmColor: '#296fd0',
+                          confirmText: '设置权限',
+                          success: function (res) {
+                              if (res.confirm) {
+                                  console.log('用户点击确定')
+                                  wx.openSetting({
+                                      success: function success(res) {
+                                          console.log('打开设置', res.authSetting);
+                                          var scopeUserInfo = res.authSetting["scope.userInfo"];
+                                          if (scopeUserInfo) {
+                                              auth.getUsreInfo();
+                                          }
+                                      }
+                                  });
+                              }
+                          }
+                      })
+                  }
+              }
+          }
+      });
+  },
   fetchData: function (id) {
     var self = this; 
     var getPageRequest = wxRequest.getRequest(Api.getPageByID(id));
@@ -137,6 +196,40 @@ Page({
         });
         
         
+    }).then(res =>{        
+        var getAllPraiseRequest = wxRequest.getRequest(Api.getAllPraiseUrl());
+        getAllPraiseRequest.then(response =>{
+
+            if (response.data.status == '200') {
+
+                var _avatarurls = response.data.avatarurls;
+                var avatarurls = [];
+                for (var i = 0; i < _avatarurls.length; i++) {
+                    var avatarurl = "../../images/gravatar.png";
+                    if (_avatarurls[i].avatarurl.indexOf('wx.qlogo.cn') != -1) {
+                        avatarurl = _avatarurls[i].avatarurl;
+                    }
+                    avatarurls[i] = avatarurl;
+                }
+                
+                self.setData({
+                    praiseList: avatarurls
+                });
+
+            }
+            else {
+                console.log(response);
+            }
+
+
+        })
+
+    })    
+    .then(res =>{
+        if (!app.globalData.isGetOpenid) {
+            auth.getUsreInfo();
+        }
+
     })
   }
 })
