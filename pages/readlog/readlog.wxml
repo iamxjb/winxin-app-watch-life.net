@@ -13,6 +13,11 @@
 <import src="../../templates/common-list.wxml" />
 <import src="../../templates/copyright.wxml" />
 
+<view class="container">
+  <view   class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
 
 <view class="top-bar">
     <block wx:for="{{topBarItems}}" wx:key="id">
@@ -43,4 +48,5 @@
     <view class="copyright" style="display:{{floatDisplay}}">
         <template is="tempCopyright" />
     </view>
+</view>
 </view>

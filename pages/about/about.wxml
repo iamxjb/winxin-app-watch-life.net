@@ -22,14 +22,19 @@
       
       </view> 
 
+<view style='text-align:center'>     
+      <button class="gotowebpage-button" formType="submit" size="mini" bindtap="gotowebpage">打开“守望轩”网站</button>
+     <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
+    </view> 
     <view class="praisePost">  
     <view style='text-align:center'>
      <button class="praise-button" formType="submit" size="mini" bindtap="praise">捐赠</button>
+
      <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
     </view>  
       <view class="praiseTitle">
       <view style='margin-top: 15rpx;'>
-           <text>谢谢以下赞赏朋友</text>
+           <text>谢谢以下赞赏或捐赠的朋友</text>
            </view>
         </view>    
       <view class="praiseText">

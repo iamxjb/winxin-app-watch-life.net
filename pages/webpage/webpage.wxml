@@ -1,0 +1,2 @@
+<!--pages/webpage.wxml-->
+<web-view src="https://www.watch-life.net/"></web-view>

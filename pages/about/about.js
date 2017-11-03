@@ -80,6 +80,14 @@ Page({
       }
     }
   },
+  gotowebpage:function()
+  {
+      var url = '../webpage/webpage'
+      wx.navigateTo({
+          url: url
+      })
+
+  },
   //给a标签添加跳转和复制链接事件
   wxParseTagATap: function (e) {
       var self = this;

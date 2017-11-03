@@ -39,10 +39,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {  
-    var that = this;
+    var self = this;
     if (!app.globalData.isGetOpenid) {
         auth.getUsreInfo();
     }
+    
   },
 
   // 跳转至查看文章详情
@@ -98,9 +99,12 @@ Page({
   },
   fetchPostsData: function (tab) {
       self = this;
+      var asdf = app.globalData.userInfo;
+      
       self.setData({
           showerror: 'none',
           shownodate:'none',
+          userInfo: app.globalData.userInfo
       });  
 
         

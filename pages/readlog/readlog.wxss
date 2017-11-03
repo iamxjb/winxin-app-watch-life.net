@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 50rpx 0;
+  /*padding: 50rpx 0; */
   box-sizing: border-box;
 } 
 
@@ -38,11 +38,12 @@
 .log-list {
   display: flex;
   flex-direction: column;
-  padding: 40rpx;
+  padding: 10rpx;
+  margin-top: 5rpx
 }
 .log-items
 {
-  margin-top: 20rpx;
+  margin-top: 20rpx; 
 }
 .log-text {
   margin: 20rpx;
@@ -56,9 +57,10 @@
   height: 80rpx;
   background: #fff;
   width:100%;
-  position: fixed;
+  /*position: fixed;*/
   top:0;
   z-index:1;
+ /* margin-top: 200rpx;*/
 }
 
 

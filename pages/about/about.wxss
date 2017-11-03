@@ -109,8 +109,18 @@ margin-top:8rpx;
   font-size: 0.785714286rem;
   font-weight: normal;
   color:  #fff;
+  background-color: #ff6f06;
+  background-repeat: repeat-x;
+  margin-top: 30rpx;
+  width: 450rpx;
+}
+
+.gotowebpage-button {
+  font-size: 0.785714286rem;
+  font-weight: normal;
+  color:  #fff;
   background-color: #21759b;
   background-repeat: repeat-x;
   margin-top: 30rpx;
-  width: 300rpx;
+  width: 450rpx;
 }
