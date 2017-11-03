@@ -96,13 +96,12 @@ Page({
   fetchTopFivePosts: function () {
     var self = this;
     //取置顶的文章
-    var getPostsRequest = wxRequest.getRequest(Api.getStickyPosts());
+    var getPostsRequest = wxRequest.getRequest(Api.getSwiperPosts());
     getPostsRequest.then(response => {
-            if (response.data.length > 0) {
-
+        if (response.data.posts.length > 0) {
                 self.setData({
-                    postsShowSwiperList: response.data,
-                    postsShowSwiperList: self.data.postsShowSwiperList.concat(response.data.map(function (item) {
+                    postsShowSwiperList: response.data.posts,
+                    postsShowSwiperList: self.data.postsShowSwiperList.concat(response.data.posts.map(function (item) {
                         //item.firstImage = Api.getContentFirstImage(item.content.rendered);
                         if (item.post_medium_image_300 == null || item.post_medium_image_300 == '') {
                             if (item.content_first_image != null && item.content_first_image != '') {

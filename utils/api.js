@@ -37,6 +37,15 @@ module.exports = {
     return url;
 
   },
+ 
+  
+  //获取首页滑动文章
+  getSwiperPosts: function () {
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      url +='post/swipe';
+      return url;
+  },
+
 
   // 获取tag相关的文章列表
   getPostsByTags: function (id,tags) {
