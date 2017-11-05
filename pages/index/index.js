@@ -108,7 +108,7 @@ Page({
                                 item.post_medium_image_300 = item.content_first_image;
                             }
                             else {
-                                item.post_medium_image_300 = Api.getContentFirstImage(item.content.rendered);
+                                item.post_medium_image_300 = "../../images/watch-life-logo-128.jpg";
                             }
 
                         }
@@ -191,7 +191,7 @@ Page({
                         }
 
                         if (item.post_thumbnail_image == null || item.post_thumbnail_image == '') {
-                            item.post_thumbnail_image = Api.getContentFirstImage(item.content.rendered);
+                            item.post_thumbnail_image = "../../images/watch-life-logo-128.jpg";
                         }
                         item.date = util.cutstr(strdate, 10, 1);
                         return item;
