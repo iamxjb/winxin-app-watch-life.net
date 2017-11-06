@@ -12,76 +12,72 @@
  */-->
 <import src="../../templates/common-list.wxml" />
 <import src="../../templates/copyright.wxml" />
-<view class="container">
 
   <scroll-view style="height:100%;" scroll-y="true" lower-threshold="100rpx">
 
-    <view class="topic-common-list" style="display:{{isCategoryPage}}">     
-        <view class="topic-list-item" >
-          <view>
-            <image src="{{categoriesImage}}" class="cover"></image>
-          </view>
-          <view class="topic-content-title">
-            <text>{{categoriesList.name}}</text>
-          </view>
-          <view class="topic-content-brief">
-            <text>{{categoriesList.description}}</text>
-          </view>
-        </view>     
-    </view>
-
-
-    <view class="topic-common-list" style="display:{{isSearchPage}}">     
-        <view class="topic-list-item" >
-          <view>
-            <image src="../../images/website-search.png" class="cover"></image>
-          </view>
-          <view class="topic-content-title">
-            <text>搜索关键字:</text><text class="searchKey">{{searchKey}}</text>
-          </view>
-          <view class="topic-content-brief">
-            <text>本搜索是全文搜索</text>
-          </view>
-        </view>     
-    </view>
-
-    
-
-
-
-    <view class="showerror" style="display:{{showerror}}">
-    <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
-
-    <view class="errortext">
-      暂时无法访问网络
-      <view class="">
-      <button class="more-button" bindtap="reload" size="mini" bindtap="reload">重新加载</button>
+    <view class="topic-common-list" style="display:{{isCategoryPage}}">
+      <view class="topic-list-item">
+        <image src="{{categoriesImage}}" class="cover">
+        </image>
+        <view class="topic-content-title">
+          <text>{{categoriesList.name}}</text>
+        </view>
+        <view class="topic-content-title-line"></view>
+        <view class="topic-content-brief">
+          <text>{{categoriesList.description}}</text>
+        </view>
       </view>
     </view>
-  </view>
-   
-   <view style="display:{{showallDisplay}}">
-   <template is="tempCommonList" data="{{postsList}}"/>
 
-    <view  class="loadingmore" style="display:{{floatDisplay}}">
-    <view hidden="{{isLastPage}}">
-    <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>   
+
+    <view class="topic-common-list" style="display:{{isSearchPage}}">
+      <view class="topic-list-item">
+        <view>
+          <image src="../../images/website-search.png" class="cover"></image>
+        </view>
+        <view class="topic-content-title">
+          <text>搜索关键字：</text>
+          <text class="searchKey">{{searchKey}}</text>
+        </view>
+        <view class="topic-content-title-line"></view>
+        <view class="topic-content-brief">
+          <text>本搜索是全文搜索</text>
+        </view>
+      </view>
     </view>
 
 
-    <view class="no-more" hidden="{{!isLastPage}}">----------无更多文章...---------</view>
-        
+
+<view class="container">
+
+    <view class="showerror" style="display:{{showerror}}">
+      <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
+
+      <view class="errortext">
+        暂时无法访问网络
+        <view class="">
+          <button class="more-button" bindtap="reload" size="mini" bindtap="reload">重新加载</button>
+        </view>
+      </view>
     </view>
 
+    <view style="display:{{showallDisplay}}">
+      <template is="tempCommonList" data="{{postsList}}" />
+
+      <view class="loadingmore" style="display:{{floatDisplay}}">
+        <view hidden="{{isLastPage}}">
+          <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>
+        </view>
+
+
+        <view class="no-more" hidden="{{!isLastPage}}">----------无更多文章...---------</view>
+
+      </view>
+
     </view>
-    
-<view class="copyright" style="display:{{floatDisplay}}">
-     <template is="tempCopyright" />
-     </view>
 
-</scroll-view>
-  
-
- 
-
+    <view class="copyright" style="display:{{floatDisplay}}">
+      <template is="tempCopyright" />
+    </view>
 </view>
+  </scroll-view>

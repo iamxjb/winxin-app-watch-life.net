@@ -13,40 +13,43 @@
 <import src="../../templates/common-list.wxml" />
 <import src="../../templates/copyright.wxml" />
 
-<view class="container">
-  <view   class="userinfo">
+<view class="readlog-container">
+  <!-- <view class="userinfo-bg">
+     <image src="../../images/website-userinfo-bg.png" class="cover"></image>
+  </view> -->
+  <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
 
-<view class="top-bar">
+  <view class="top-bar">
     <block wx:for="{{topBarItems}}" wx:key="id">
-        <view class="top-bar-item {{item.selected ? 'top-bar-item-Selected': '' }}" catchtap="onTapTag" id="{{item.id}}">{{item.name}}</view>
+      <view class="top-bar-item {{item.selected ? 'top-bar-item-Selected': '' }}" catchtap="onTapTag" id="{{item.id}}">{{item.name}}</view>
     </block>
-</view>
-<view class="container">
+  </view>
+  <view class="container">
     <view class="showerror" style="display:{{showerror}}">
-        <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
-        <view class="errortext">
-            暂时无法访问网络
-            <view class="">
-                <button class="more-button" bindtap="reload" size="mini" bindtap="reload">重新加载</button>
-            </view>
+      <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
+      <view class="errortext">
+        暂时无法访问网络
+        <view class="">
+          <button class="more-button" bindtap="reload" size="mini" bindtap="reload">重新加载</button>
         </view>
+      </view>
     </view>
 
-  <view class="log-list"> 
-  <block wx:key="id" wx:for="{{readLogs}}"> 
-  <view class="log-items" index="{{index}}" id="{{item[0]}}" catchtap="redictDetail">
-    <text class="log-text">{{index + 1}}. {{item[1]}}</text>
+    <view class="log-list">
+      <block wx:key="id" wx:for="{{readLogs}}">
+        <view class="log-items" index="{{index}}" id="{{item[0]}}" catchtap="redictDetail">
+          <text class="log-text">{{index + 1}}. {{item[1]}}</text>
         </view>
-        </block>
-       <view class="log-items"  style="display:{{shownodate}}">
+      </block>
+      <view class="log-items" style="display:{{shownodata}}">
         <text class="log-text">没有相关文章</text>
-        </view>      
-</view>
-    <view class="copyright" style="display:{{floatDisplay}}">
-        <template is="tempCopyright" />
+      </view>
     </view>
-</view>
+    <view class="copyright" style="display:{{floatDisplay}}">
+      <template is="tempCopyright" />
+    </view>
+  </view>
 </view>

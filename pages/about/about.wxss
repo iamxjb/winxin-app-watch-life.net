@@ -46,7 +46,7 @@
   position: relative;
   text-align: left;
   margin-top: 30rpx;
-  border-bottom:2rpx solid #ededed;
+  /* border-bottom:2rpx solid #ededed; */
   margin-bottom: 30rpx;
   
   
@@ -60,13 +60,13 @@
   margin-top: 50rpx;
   margin-bottom: 20rpx;
  /* margin-left: 280rpx; */
-  font-size: 36rpx;
-  color:#21759b !important;
+  font-size: 28rpx;
+  color:#959595 !important;
   vertical-align:middle;  
  /* width:500rpx; */
   height:70rpx;
   border-radius: 30rpx;
-  border: 1rpx solid #21759b;
+  /* border: 1rpx solid #21759b; */
   
  
 }
@@ -109,18 +109,31 @@ margin-top:8rpx;
   font-size: 0.785714286rem;
   font-weight: normal;
   color:  #fff;
-  background-color: #ff6f06;
+  background-color: #f85959;
   background-repeat: repeat-x;
-  margin-top: 30rpx;
-  width: 450rpx;
+  margin-top: 24rpx;
+  width: 320rpx;
+  height: 60rpx;
+  border-radius: 60rpx;
+}
+
+.praise-button::after{
+  border:none;
 }
 
 .gotowebpage-button {
   font-size: 0.785714286rem;
   font-weight: normal;
   color:  #fff;
-  background-color: #21759b;
+  background-color: #118fff;
   background-repeat: repeat-x;
-  margin-top: 30rpx;
-  width: 450rpx;
+  line-height: 80rpx;
+  margin-top: 40rpx;
+  width: 320rpx;
+  height: 60rpx;
+  border-radius: 60rpx;
+}
+
+.gotowebpage-button::after{
+   border: none; 
 }

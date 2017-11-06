@@ -14,30 +14,31 @@
 <import src="../../templates/header.wxml" />
 <import src="../../templates/copyright.wxml" />
 <view class="container">
-  
+  <view class="container">
+
 
     <view class="content-article-detail" style="display:{{display}}">
       <view class="entry-title">
         {{detail.title.rendered}}
       </view>
       <view class="entry-date">
-        <image src="../../images/calendar.png" style="height:32rpx;width:32rpx;"></image>
+        <image src="../../images/calendar.png" style="height:24rpx;width:24rpx;"></image>
         <text class="entry-date-text">{{detailDate}}</text>
         <block wx:if="{{detail.category_name !=null}}">
-          <image src="../../images/category.png" style="height:32rpx;width:32rpx;margin-left: 20rpx;"></image>
+          <image src="../../images/category.png" style="height:24rpx;width:24rpx;margin-left: 20rpx;"></image>
           <text class="entry-icon-text">{{detail.category_name}}</text>
         </block>
-        <image src="../../images/comments.png" style="height:32rpx;width:32rpx;margin-left: 20rpx;"></image>
+        <image src="../../images/comments.png" style="height:24rpx;width:24rpx;margin-left: 20rpx;"></image>
         <text class="entry-icon-text">{{detail.total_comments}}</text>
-        <image src="../../images/pageviews.png" style="height:32rpx;width:32rpx;margin-left: 20rpx;"></image>
+        <image src="../../images/pageviews.png" style="height:24rpx;width:24rpx;margin-left: 20rpx;"></image>
         <text class="entry-icon-text">{{detail.pageviews}}</text>
-        <image src="../../images/like.png" style="height:32rpx;width:32rpx;margin-left: 20rpx;"></image>
+        <image src="../../images/home-like.png" style="height:24rpx;width:24rpx;margin-left: 20rpx;"></image>
         <text class="entry-icon-text">{{likeCount}}</text>
 
       </view>
       <view class="entry-summary">
-            
-        <template is="wxParse" data="{{wxParseData:article.nodes}}" /> 
+
+        <template is="wxParse" data="{{wxParseData:article.nodes}}" />
 
       </view>
 
@@ -54,12 +55,13 @@
 
     </view>
 
-    
+
 
     <view class="relatedPost" style="display:{{display}}">
       <view class="relatedTitle">
-        猜你喜欢：
+        猜你喜欢
       </view>
+      <view class="entry-gap-like"></view>
       <view class="relatedText">
         <block wx:key="id" wx:for="{{postList}}">
 
@@ -69,27 +71,40 @@
       </view>
     </view>
 
-    <view class="likePost" style="display:{{displayLike}}">    
-      <view class="likeTitle">     
-       <image src="../../images/like-on.png"  class="img-like" id="liketop" catchtap="clickLike" ></image>
-           <text>{{likeCount}}</text>
-        </view>    
+    <view class="likePost" style="display:{{displayLike}}">
+      <view class="relatedTitle">
+        点    赞
+      </view>
+      <view class="entry-gap-zan"></view>
+
+      <view class="likeTitle">
+        <text>{{likeCount}}人已赞</text>
+      </view>
+
+      <view class="likeTitle-img">
+        <image src="../../images/like-on.png" class="img-like" id="liketop" catchtap="clickLike"></image>
+      </view>
       <view class="likeText">
         <block wx:key="id" wx:for="{{likeList}}">
-         <image src="{{item}}" class="gravatarLikeImg"></image>          
+          <image src="{{item}}" class="gravatarLikeImg"></image>
         </block>
       </view>
     </view>
 
     <view style="display:{{display}}">
+      <view class="relatedTitle">
+        评论交流
+      </view>
+      <view class="entry-gap-like"></view>
       <view class="commentheader">
         {{commentCount}}
       </view>
       <block wx:key="id" wx:for="{{commentsList}}">
         <view class="comment">
           <view class="comment-user">
-            <image src="{{item.author_url}}" class="gravatarImg"></image>
-            {{item.author_name}}</view>
+              <image src="{{item.author_url}}" class="gravatarImg"></image>
+            {{item.author_name}}
+          </view>
           <view class="comment-date"> {{item.date}} </view>
           <view class="comment-summary"> {{item.summary}}</view>
           <view class="comment-repaly">
@@ -195,66 +210,68 @@
 
 
 
-  <!--评论区-->
-  <view class="menuBackground" catchtap="hiddenMenubox" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
-  <view style="display:{{display}}">
-    <view class="comment-fixed">
-      <form catchsubmit="formSubmit">
-        <view class="comment-respond">
-          <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
-          <view class="comment-box">
-            <image src="../../images/tar-home-on.png" class="img-plus" style="margin-left:20rpx;margin-right:20rpx" catchtap="goHome"></image>
-            <input class="comment-input" cursor-spacing="10" maxlength="30" name="inputComment" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" />
-            <button class="comment-button touch-active" formType="submit">发送</button>
-            <image src="../../images/plus.png" class="img-plus" catchtap="ShowHideMenu" mode=""></image>
-          </view>
-          <!--功能图标-->
-          <view class="menu-box {{isShow ? 'emoji-move-in' : 'emoji-move-out'}} {{isLoad ? 'no-emoji-move' : ''}}">
-            <view class="iconList">
-              <view class="iconLine">
-                <view style="width:25%; float:left; text-align:center">
-                 <button class="share-button share-button touch-active" open-type="share"> 
-                 <view>
-                    <image src="../../images/forwarding.png" class="img-menu"></image>
-                  </view>
-                  <view class="share-title">  <text>转发</text>  </view>
-                  </button>
-                </view>
-
-                <view style="width:25%; float:left; text-align:center">
-                  <view>
-                    <image src="../../images/copy.png" class="img-menu" catchtap="copyLink"></image>
-                  </view>
-                  <view>
-                    <text>复制链接</text>
-                  </view>
-                </view>
-
-                <view style="width:25%; float:left; text-align:center">
-                  <view>
-                    <image src="../../images/{{likeImag}}" catchtap="clickLike"  id="likebottom"  class="img-menu"></image>
-                  </view>
-                  <view>
-                    <text>点赞</text>
-                  </view>
-                </view>
-                <view style="width:25%; float:left; ">
-                  <view>
-                    <image src="../../images/appreciation.png" catchtap="praise" class="img-menu"></image>
-                  </view>
-                  <view>
-                    <text>赞赏</text>
+    <!--评论区-->
+    <view class="menuBackground" catchtap="hiddenMenubox" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
+    <view style="display:{{display}}">
+      <view class="comment-fixed">
+        <form catchsubmit="formSubmit">
+          <view class="comment-respond">
+            <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
+            <view class="comment-box">
+              <image src="../../images/entry-home.png" class="img-plus" style="margin-left:20rpx;margin-right:20rpx" catchtap="goHome"></image>
+              <input class="comment-input" cursor-spacing="10" maxlength="30" name="inputComment" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" />
+              <button class="comment-button touch-active" formType="submit">发送</button>
+              <image src="../../images/plus.png" class="img-plus" catchtap="ShowHideMenu" mode=""></image>
+            </view>
+            <!--功能图标-->
+            <view class="menu-box {{isShow ? 'emoji-move-in' : 'emoji-move-out'}} {{isLoad ? 'no-emoji-move' : ''}}">
+              <view class="iconList">
+                <view class="iconLine">
+                  <view style="width:25%; float:left; text-align:center">
+                    <button class="share-button share-button touch-active" open-type="share">
+                      <view>
+                        <image src="../../images/forwarding.png" class="img-menu"></image>
+                      </view>
+                      <view class="share-title">
+                        <text>转发</text>
+                      </view>
+                    </button>
                   </view>
 
+                  <view style="width:25%; float:left; text-align:center">
+                    <view>
+                      <image src="../../images/copy.png" class="img-menu" catchtap="gotowebpage"></image>
+                    </view>
+                    <view>
+                      <text>阅读原文</text>
+                    </view>
+                  </view>
+
+                  <view style="width:25%; float:left; text-align:center">
+                    <view>
+                      <image src="../../images/{{likeImag}}" catchtap="clickLike" id="likebottom" class="img-menu"></image>
+                    </view>
+                    <view>
+                      <text>点赞</text>
+                    </view>
+                  </view>
+                  <view style="width:25%; float:left; ">
+                    <view>
+                      <image src="../../images/appreciation.png" catchtap="praise" class="img-menu"></image>
+                    </view>
+                    <view>
+                      <text>赞赏</text>
+                    </view>
+
+                  </view>
                 </view>
               </view>
             </view>
-          </view>
 
-        </view>
-      </form>
+          </view>
+        </form>
+      </view>
     </view>
   </view>
-
 
 </view>

@@ -8,8 +8,9 @@
  * 开源协议：MIT
  * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
  */
-.container{
-    padding: 100rpx 25rpx;
+
+.container {
+  padding: 100rpx 24rpx;
 }
 
 .list-header {
@@ -23,83 +24,78 @@
   margin-bottom: 48rpx;
 }
 
-
 /*topic list*/
+
 .topic-common-list {
-  padding:30rpx 30rpx;
+  padding: 30rpx 30rpx;
 }
+
 .topic-list-item {
   position: relative;
-  border-bottom: 1px solid #eee;  
+  border-bottom: 1px solid #eee;
   overflow: hidden;
   clear: both;
- 
   border: 1px solid #ccc;
   border-radius: 6px;
   margin-bottom: 30rpx;
   background: #fff;
 }
 
-
 .topic-list-item  image.cover {
   width: 100%;
   height: 300rpx;
-  
 }
 
- .topic-content-title {
-  padding: 10rpx 30rpx; 
-  overflow:hidden; 
+.topic-content-title {
+  padding: 10rpx 30rpx;
+  overflow: hidden;
   text-overflow: ellipsis;
-  white-space:nowrap;
- 
+  white-space: nowrap;
 }
+
 .topic-content-title text {
   font-size: 36rpx;
   line-height: 36rpx;
   font-weight: bold;
-  color:#121b23;
-}
-.topic-content-brief{
-  padding:0rpx 30rpx 30rpx;
-  font-size: 32rpx;
-  line-height: 40rpx;
-  font-weight: 400;
-  overflow: hidden; 
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color:#989ebb;
-}
-
-.searchKey
-{
   color: #121b23;
 }
 
-
-.top-bar {
-  height: 80rpx;
-  background: #fff;
-  width:100%;
-  position: fixed;
-  top:0;
-  z-index:1;
+.topic-content-brief {
+  padding: 0rpx 30rpx 30rpx;
+  font-size: 32rpx;
+  line-height: 40rpx;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #989ebb;
 }
 
+.searchKey {
+  color: #121b23;
+}
 
+.top-bar {
+  height: 100rpx;
+  background: #fff;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
 
 .top-bar-item {
-  display:inline-block;
+  display: inline-block;
   background: #fff;
   width: 25%;
-  color: #000000;
+  color: #9babba;
   text-align: center;
-  line-height: 36px;
-  font-size: 14px;
+  line-height: 100rpx;
+  font-size: 30rpx;
 }
 
 .top-bar-item-Selected {
- border-bottom: 2px solid cornflowerblue;
-    color: cornflowerblue;
-    font-weight: bold;
+  border-bottom: 1px solid #495056;
+  color: #495056;
+  /* font-weight: bold; */
 }

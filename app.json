@@ -14,14 +14,14 @@
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#296FD0",
+        "navigationBarBackgroundColor": "#118fff",
         "navigationBarTitleText": "守望轩",
         "navigationBarTextStyle": "white"
     },
     "tabBar": {
-        "color": "#7A7E83",
-        "selectedColor": "#005B8B",
-        "borderStyle": "black",
+        "color": "#9BABBA",
+        "selectedColor": "#495056",
+        "borderStyle": "white",
         "backgroundColor": "#ffffff",
         "list": [
             {
@@ -46,12 +46,12 @@
                 "pagePath": "pages/readlog/readlog",
                 "iconPath": "images/tar-person.png",
                 "selectedIconPath": "images/tar-person-on.png",
-                "text": "我"
+                "text": "我的"
             },
             {
                 "pagePath": "pages/about/about",
-                "iconPath": "images/watch-life-logo-80.jpg",
-                "selectedIconPath": "images/watch-life-logo-80-on.jpg",
+                "iconPath": "images/tar-about.png",
+                "selectedIconPath": "images/tar-about-on.png",
                 "text": "关于"
             }
         ]

@@ -121,11 +121,9 @@ Page({
               })
           }
           else {
-
               var getPostSlugRequest = wxRequest.getRequest(Api.getPostBySlug(slug));
               getPostSlugRequest
                   .then(res => {
-
                       var postID = res.data[0].id;
                       var openLinkCount = wx.getStorageSync('openLinkCount') || 0;
                       if (openLinkCount > 4) {

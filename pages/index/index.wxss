@@ -9,23 +9,25 @@
  * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
  */
 
+.index-container {
+  /* padding: 0 24rpx; */
+  background-color: #fff;
+}
+
 .index-header {
-  
   text-align: center;
   font-weight: normal;
   font-size: 30rpx;
   line-height: 40rpx;
   color: #757575;
-  margin-top: 5rpx;
- 
+  /* margin-top: 5rpx; */
 }
-
 
 /*   index   swiper  */
 
 swiper.index-swiper {
   position: relative;
-  height: 450rpx;
+  height: 420rpx;
 }
 
 swiper .swiper-mask {
@@ -34,14 +36,12 @@ swiper .swiper-mask {
   left: 0;
   bottom: 0;
   width: 100%;
-  
 }
 
 swiper image {
   display: block;
   width: 100%;
-  height: 95%;
-  
+  height: 100%;
 }
 
 swiper .swiper-desc {
@@ -51,81 +51,76 @@ swiper .swiper-desc {
   left: 0;
   right: 0;
   width: 100%;
-  padding: 20rpx 20rpx 20rpx 20rpx;
-  background: rgba(0, 0, 0, 0.3);
+  padding: 32rpx 24rpx;
+  /* background: rgba(0, 0, 0, 0.3); */
   color: #fff;
+  font-weight: 600;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-size: 36rpx;
-  height: 100rpx
+  font-size: 30rpx;
+  height: 100rpx;
 }
-
 
 /*   index   swiper  end  */
 
-
-
 .search-button {
-  border-left: 0!important;
-  border-top: 1px solid #ededed !important;
-  border-right: 1px solid #ededed !important;
-  border-bottom: 1px solid #ededed !important;
+  border-left: 0 !important;
+  border-top: 1px solid #fff !important;
+  border-right: 1px solid #fff !important;
+  border-bottom: 1px solid #fff !important;
+  background-color: #fff !important;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
-  border-top-right-radius: 60px;
-  border-bottom-right-radius: 60px;
-  color: #296FD0 !important; 
-
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  color: #296fd0 !important;
   width: 20%;
-  margin:0!important;
+  margin: 0 !important;
+  box-shadow: 1px 1px 6px #ecf0f0;
 }
 
-.search-button icon{
-  position:absolute;
-  margin-top:14rpx;
+.search-button icon {
+  position: absolute;
+  margin: 28rpx 16rpx;
 }
 
-.search-input { 
+.search-input {
   background-color: #fff;
-  padding: 16rpx 0 16rpx 44rpx;
+  padding: 16rpx 0 16rpx 32rpx;
   min-height: 1rem;
   font-size: 30rpx;
-/*  position: absolute;*/
-  border-bottom-left-radius: 60px;
-  border-top-left-radius: 60px;
+  /*  position: absolute;*/
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  border:1px solid #ededed;
-  border-right: 0!important;
-  height:36rpx;
+  /* border: 1px solid #ededed;  */
+  border-right: 0 !important;
+  height: 48rpx;
   width: 80%;
   text-align: left;
-
-  
-  
+  box-shadow: 1px 1px 6px #ecf0f0;
 }
 
 .share-button {
   border: 1px solid #eee !important;
-  color: #296FD0 !important; 
-  left:10rpx;
-height:60rpx;
-width:200rpx;  
+  color: #296fd0 !important;
+  left: 10rpx;
+  height: 100rpx;
+  width: 200rpx;
 }
 
 .search-pancel {
   display: flex;
   flex-direction: row;
-  margin-bottom: 20rpx
-  
+  background-color: #f5f7f7;
+  padding: 24rpx 24rpx;
 }
 
 .search-pancel image {
   width: 50rpx;
-  height:50rpx;  
+  height: 50rpx;
   margin-left: 20rpx;
   vertical-align: middle;
 }
-
-

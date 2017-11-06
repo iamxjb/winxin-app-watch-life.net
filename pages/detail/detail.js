@@ -78,20 +78,31 @@ Page({
       });
       
     },
-    onShareAppMessage: function () {
+    onShareAppMessage: function (res) {
       this.ShowHideMenu();
+      console.log(res);
         return {
           title: '分享"' + config.getWebsiteName +'"的文章：' + this.data.detail.title.rendered,
             path: 'pages/detail/detail?id=' + this.data.detail.id,
             success: function (res) {
                 // 转发成功
+                console.log(res);
             },
             fail: function (res) {
+                console.log(res);
                 // 转发失败
             }
 
             
         }
+    },
+    gotowebpage: function () {
+        var self=this;
+        var url = '../webpage/webpage'
+        wx.navigateTo({
+            url: url+'?url='+this.data.link
+        })
+
     },
     copyLink: function () {
       this.ShowHideMenu();
@@ -130,8 +141,8 @@ Page({
           .then(response => {
             if (response.data.status == '200') {
               var _likeList = []
-              var _like = { "avatarurl": app.globalData.userInfo.avatarUrl, "openid": app.globalData.openid }
-
+              //var _like = { "avatarurl": app.globalData.userInfo.avatarUrl, "openid": app.globalData.openid }
+              var _like = app.globalData.userInfo.avatarUrl;
               _likeList.push(_like);
               var tempLikeList = _likeList.concat(self.data.likeList);
               var _likeCount = parseInt(self.data.likeCount) + 1;
@@ -364,20 +375,32 @@ Page({
                 getPostSlugRequest
                     .then(res => {
 
-                        var postID = res.data[0].id;
-                        var openLinkCount = wx.getStorageSync('openLinkCount') || 0;
-                        if (openLinkCount > 4) {
-                            wx.redirectTo({
-                                url: '../detail/detail?id=' + postID
-                            })
+                        if (res.data.length !=0)
+                        {
+                            var postID = res.data[0].id;
+                            var openLinkCount = wx.getStorageSync('openLinkCount') || 0;
+                            if (openLinkCount > 4) {
+                                wx.redirectTo({
+                                    url: '../detail/detail?id=' + postID
+                                })
+                            }
+                            else {
+                                wx.navigateTo({
+                                    url: '../detail/detail?id=' + postID
+                                })
+                                openLinkCount++;
+                                wx.setStorageSync('openLinkCount', openLinkCount);
+                            }
                         }
-                        else {
+                        else
+                        {
+                            var url = '../webpage/webpage'
                             wx.navigateTo({
-                                url: '../detail/detail?id=' + postID
-                            })
-                            openLinkCount++;
-                            wx.setStorageSync('openLinkCount', openLinkCount);
+                                url: url + '?url=' + href
+                            })                           
+
                         }
+                        
 
                     })
 

@@ -31,7 +31,7 @@ Page({
     ],
     tab: '1',
     showerror: "none",
-    shownodate:"none"
+    shownodata:"none"
   
   },
 
@@ -43,6 +43,9 @@ Page({
     if (!app.globalData.isGetOpenid) {
         auth.getUsreInfo();
     }
+
+    self = this;
+    self.fetchPostsData('1');
     
   },
 
@@ -80,8 +83,7 @@ Page({
   },  
   onShow: function ()
   {
-      self=this;
-      self.fetchPostsData('1');
+      
   },
   onShareAppMessage: function () {
       var title = "分享我在“" + config.getWebsiteName + "浏览、评论、点赞、赞赏的文章";
@@ -103,18 +105,27 @@ Page({
       
       self.setData({
           showerror: 'none',
-          shownodate:'none',
+          shownodata:'none',
           userInfo: app.globalData.userInfo
       });  
 
+     var count =0;
         
       if (tab == '1')
       {
           self.setData({
               readLogs: (wx.getStorageSync('readLogs') || []).map(function (log) {
+                  count++;
                   return log;
               })
           });
+
+
+          if (count == 0) {
+              self.setData({
+                  shownodata: 'block'
+              });
+          } 
 
           
       }
@@ -131,11 +142,17 @@ Page({
                   if (response.statusCode == 200) { 
                       self.setData({
                           readLogs: self.data.readLogs.concat(response.data.data.map(function (item) {
+                              count++;
                               item[0] = item.post_id;
                               item[1] = item.post_title;
                               return item;
                           }))
                       });
+                      if (count == 0) {
+                          self.setData({
+                              shownodata: 'block'
+                          });
+                      } 
                   }
                   else
                   {
@@ -167,11 +184,17 @@ Page({
                   if (response.statusCode == 200) {
                       this.setData({
                           readLogs: self.data.readLogs.concat(response.data.data.map(function (item) {
+                              count++;
                               item[0] = item.post_id;
                               item[1] = item.post_title;
                               return item;
                           }))
                       });
+                      if (count == 0) {
+                          self.setData({
+                              shownodata: 'block'
+                          });
+                      } 
                   }
                   else {
                       console.log(response);
@@ -188,44 +211,45 @@ Page({
           }
 
       }
-    else if (tab == '4') {
-      this.setData({
-          readLogs: []
-      });
-      if (app.globalData.isGetOpenid) {
-          var openid = app.globalData.openid;
-          var getMyPraisePosts = wxRequest.getRequest(Api.getMyPraiseUrl(openid));
-          getMyPraisePosts.then(response => {
-              if (response.statusCode == 200) {
-                  this.setData({
-                      readLogs: self.data.readLogs.concat(response.data.data.map(function (item) {
-                          item[0] = item.post_id;
-                          item[1] = item.post_title;
-                          return item;
-                      }))
-                  });
-              }
-              else {
-                  console.log(response);
-                  this.setData({
-                      showerror: 'block'
-                  });
+        else if (tab == '4') {
+        this.setData({
+            readLogs: []
+        });
+        if (app.globalData.isGetOpenid) {
+            var openid = app.globalData.openid;
+            var getMyPraisePosts = wxRequest.getRequest(Api.getMyPraiseUrl(openid));
+            getMyPraisePosts.then(response => {
+                if (response.statusCode == 200) {
+                    this.setData({
+                        readLogs: self.data.readLogs.concat(response.data.data.map(function (item) {
+                            count++;
+                            item[0] = item.post_id;
+                            item[1] = item.post_title;
+                            return item;
+                        }))
+                    });
+                    if (count == 0) {
+                        self.setData({
+                            shownodata: 'block'
+                        });
+                    } 
+                }
+                else {
+                    console.log(response);
+                    this.setData({
+                        showerror: 'block'
+                    });
 
-              }
-          })
+                }
+            })
 
-      }
-      else {
-          self.userAuthorization
-      }
+        }
+        else {
+            self.userAuthorization
+        }
+        
 
-      if (self.data.readLogs.length == 0) {
-          self.setData({
-              shownodate: 'block'
-          });
-      }
-
-  }   
+    }
 
   },
   userAuthorization: function () {

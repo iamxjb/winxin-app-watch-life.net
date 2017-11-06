@@ -1,6 +1,7 @@
-
 /**app.wxss**/
-.container {
+
+.readlog-container {
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -8,75 +9,94 @@
   justify-content: space-between;
   /*padding: 50rpx 0; */
   box-sizing: border-box;
+}
+
+/* .userinfo-bg {
+  width: 100%;
+  height: 360rpx;
+  background-color: #0000fe;
 } 
+
+.userinfo-bg image{
+  width: 100%;
+  height: 360rpx;
+  filter: blur(4px);
+}  */
 
 .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #118fff;
+  height: 320rpx;
+  width: 100%;
+  /* position: absolute;
+  z-index: 2;
+  top: 70rpx;
+  left: 311rpx; */
 }
 
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
-  margin: 20rpx;
+  margin: 36rpx 0 24rpx;
   border-radius: 50%;
 }
 
-.dec{
+.dec {
   margin-top: 50rpx;
 }
 
-.dec-text{
-   font-size: 25rpx; 
+.dec-text {
+  font-size: 25rpx;
   color: #757575;
 }
+
 .userinfo-nickname {
-  color: #aaa;
+  color: #fff;
+  font-size: 32rpx;
 }
 
 .log-list {
   display: flex;
   flex-direction: column;
-  padding: 10rpx;
-  margin-top: 5rpx
+  padding: 32rpx 0;
+  /* margin-top: 5rpx; */
 }
-.log-items
-{
-  margin-top: 20rpx; 
+
+.log-items {
+  margin-top: 20rpx;
 }
+
 .log-text {
-  margin: 20rpx;
-  font-size: 30rpx; 
+  margin: 32rpx 0;
+  font-size: 30rpx;
   color: #757575;
   text-align: left;
-
 }
 
 .top-bar {
-  height: 80rpx;
+   height: 100rpx; 
   background: #fff;
-  width:100%;
+  width: 100%;
   /*position: fixed;*/
-  top:0;
-  z-index:1;
- /* margin-top: 200rpx;*/
+  top: 0;
+  z-index: 1;
+  /* margin-top: 200rpx;*/
 }
 
-
-
 .top-bar-item {
-  display:inline-block;
+  display: inline-block;
   background: #fff;
   width: 25%;
-  color: #000;
+  color: #9babba;
   text-align: center;
-  line-height: 36px;
-  font-size: 14px;
+  line-height: 100rpx;
+  font-size: 30rpx;
 }
 
 .top-bar-item-Selected {
- border-bottom: 2px solid cornflowerblue;
-    color: cornflowerblue;
-    font-weight: bold;
+  border-bottom: 1px solid #495056;
+  /* font-weight: bold; */
+  color: #495056;
 }

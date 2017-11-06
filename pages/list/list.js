@@ -131,7 +131,7 @@ Page({
     }
     if (options.search && options.search != '') {
       wx.setNavigationBarTitle({
-        title: "搜索关键字:"+options.search,
+        title: "搜索关键字："+options.search,
         success: function (res) {
           // success
         }

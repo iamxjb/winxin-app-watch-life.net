@@ -10,21 +10,22 @@
  */
 
 .container {
-    padding: 0 25rpx; 
-    background-color: #fff;
-    font-family:Microsoft YaHei,Helvetica, Arial, sans-serif;
-    
-} 
+  padding: 0 24rpx;
+  background-color: #fff;
+  font-family: Microsoft YaHei, Helvetica, Arial, sans-serif;
+}
+
 .header {
-  padding: 50rpx 0; 
+  padding: 50rpx 0;
   text-align: center;
   font-weight: normal;
-    font-size: 30rpx;  
-    line-height: 40rpx;
-    color: #757575;
-    border-bottom: 2rpx solid #ededed;
-    margin-bottom:48rpx;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  color: #757575;
+  border-bottom: 2rpx solid #ededed;
+  margin-bottom: 48rpx;
 }
+
 /*
 .wxParse-p
 {
@@ -32,25 +33,27 @@
 }
 */
 
-
-
-
 /*  more   */
 
-.loadingmore{
-  margin-top: 15rpx;
+.loadingmore {
+  margin-top: 24rpx;
   text-align: center;
-  margin-bottom: 15rpx
+  margin-bottom: 24rpx;
 }
 
 .more-button {
   font-size: 0.785714286rem;
   font-weight: normal;
-  color:  #999;
-  background-color: #fff;
+  color: #959595;
+  background-color: #eee;
   background-repeat: repeat-x;
   margin-top: 30rpx;
-  width: 300rpx;
+  width: 240rpx;
+  border-radius: 300rpx;
+}
+
+.more-button::after {
+  border:none;
 }
 
 .no-more {
@@ -59,88 +62,74 @@
   line-height: 1.8rem;
   margin-bottom: 15rpx;
   text-align: center;
-  margin-top: 15rpx
+  margin-top: 15rpx;
 }
-
 
 /*  more  end  */
 
-
-
 /*common list  for  index  list page */
+
+.common-list {
+  margin-bottom: 24rpx;
+}
 
 .common-list .list-item {
   position: relative;
   border-bottom: 1px solid #eee;
-  padding: 20rpx;
+  padding: 24rpx;
   min-height: 150rpx;
   overflow: hidden;
 }
 
-
-
 .common-list .list-item.has-img image.cover {
   position: absolute;
-  left: 20rpx;
-  top: 20rpx;
-  width: 150rpx;
+  left: 0rpx;
+  top: 24rpx;
+  width: 200rpx;
   height: 150rpx;
-  
 }
 
 .common-list .list-item.has-img .content-title {
-  
   margin-left: 200rpx;
-  height:80rpx;
-  margin-bottom:20rpx;
-  
+  height: 80rpx;
+  margin-bottom: 20rpx;
 }
 
 .common-list .list-item.has-img .content-title text {
-  
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;  
-
-  font-size: 32rpx;
-  line-height: 1.2;
-  font-weight: normal;
+  -webkit-box-orient: vertical;
+  font-size: 30rpx;
+  line-height: 1.4;
+  font-weight: 400;
+  color: #3a4040;
 }
 
 .common-list .list-item.has-img .content-date {
-   margin-left: 200rpx;
+  margin-left: 200rpx;
 }
 
 .common-list .list-item.has-img .content-date image {
- 
-
-  width: 32rpx;
-  height: 32rpx;
-  margin-right:10rpx;
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 10rpx;
   vertical-align: middle;
 }
 
 .common-list .list-item .content-date text {
-  
-  color:#999;
-  margin-right: 30rpx;
-  font-size: 21rpx;
+  color: #959595;
+  margin-right: 32rpx;
+  font-size: 20rpx;
   line-height: 1.2;
   font-weight: normal;
 }
 
-
 /*common list end */
 
-
-
-
-.showerror
-{
-
+.showerror {
   text-align: center;
   font-weight: normal;
   font-size: 30rpx;
@@ -149,20 +138,23 @@
   margin-top: 100rpx;
 }
 
-.errortext
-{
+.errortext {
   margin-top: 50rpx;
   table-layout: center;
 }
 
-.copyright
-{
+.copyright {
   font-size: 26rpx;
-  line-height: 1.2;
-  font-weight: normal;
+  line-height: 1.6;
+  font-weight: 400;
   text-align: center;
-  color:  #999;
-  margin-top: 20rpx;
-  margin-bottom: 50rpx
+  color: #c4c4c4;
+  margin-top: 48rpx;
+  padding-bottom: 80rpx;
+}
 
+.common-gap {
+  width: 100%;
+  height: 24rpx;
+  background-color: #f5f7f7;
 }
