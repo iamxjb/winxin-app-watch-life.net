@@ -14,7 +14,7 @@
 
 5.显示文章评论，提交评论和回复评论，加载评论分页，显示微信用户评论者的头像。
 
-6.显示热点文章。
+6.显示文章排行
 
 7.显示wordpress“页面”类文字（关于页面）。
 
@@ -29,6 +29,10 @@
 12.文章微信用户点赞及点赞的微信用户头像显示。
 
 13.通过微信支付对文章赞赏。
+
+14.赞赏后发送模版消息。
+
+15.web-view内嵌网页跳转。
 
 
 
@@ -54,6 +58,11 @@
 
 ![iamxjb](https://www.watch-life.net/images/iamxjbweixin.jpg) 
 
+# 安装使用说明文档
+
+<a href="https://www.watch-life.net/wordpress/weixin-app-install.html" target="_blank" rel="noopener">WordPress版微信小程序安装使用说明</a>
+
+
 # 程序开发系列文章
 
 <a href="https://www.watch-life.net/wordpress/weixin-connect-wordpress.html" target="_blank" rel="noopener">1.用微信小程序连接WordPress网站</a>
@@ -76,6 +85,10 @@
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-2-8.html" target="_blank">9.WordPress版微信小程序2.2.8版本发布</a>
 
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-app-faq.html" target="_blank">10.WordPress版微信小程序开发系列(二):安装使用问答</a>
+
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-4.html" target="_blank">11.WordPress版微信小程序2.4版发布</a>
+
+
 
 # 优秀WordPress版微信小程序推荐
 
@@ -105,7 +118,25 @@
 
 ![weixinpay](https://www.watch-life.net/images/2017/06/weixinpay150.png) 
 
+# WordPress微信小程序知识星球(小密圈)
+
+考虑到微信群里交流过于庞杂和碎片化，无法提供更专业的技术服务和知识分享，很多好的知识不能很好沉淀和积累，无法提供更好的分享价值，同时我也有意和兴趣相投人一起，创建一个wordpress和微信小程序的知识社区。基于此，我在“知识星球”里创建了一个“Wordpress微信小程序”的圈子，欢迎有兴趣的朋友和我一起创建一个有活力、创造力、有趣、有深度的知识社群。
+
+![zhishixingqiu](https://www.watch-life.net/images/2017/11/xiaomiquan300.jpg) 
+
+
 # 更新历史：
+
+## 2017年11月1日
+
+1.调整“热点”板块为“排行”板块，显示按评论数、浏览数、点攒数、赞赏数的文章排行。
+
+2.增加“我的”板块，显示我浏览、评论、点赞、赞赏过的文章。
+
+3、加入内链的web-view嵌入网页跳转。
+
+4、在关于中显示“赞赏”或“捐赠”人的头像，并致谢。
+
 
 ## 2017年9月16日
 1.增加点赞功能
