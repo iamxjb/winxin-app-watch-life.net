@@ -13,7 +13,7 @@
             <text class="">{{item.total_comments}}</text>
             <image src="../../images/pageviews.png"></image>
             <text class="">{{item.pageviews}}</text>
-            <image src="../../images/like.png"></image>
+            <image src="../../images/home-like.png"></image>
             <text class="">{{item.like_count}}</text>        
         </view>
         <image src="{{item.post_thumbnail_image}}" mode="aspectFill" class="cover"></image>
