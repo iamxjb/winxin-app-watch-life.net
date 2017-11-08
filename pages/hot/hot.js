@@ -134,10 +134,10 @@ Page({
 
             });
 
-        } else if (response.statusCode === 404) {
+        } else if (response.statusCode === 404) {            
             wx.showModal({
                 title: '加载失败',
-                content: '加载数据失败,可能没有文章评论。',
+                content: '加载数据失败,可能缺少相应的数据',
                 showCancel: false,
             });
         }

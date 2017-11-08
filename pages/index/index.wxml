@@ -21,7 +21,7 @@
         <image mode="aspectFill" src="{{item.post_medium_image_300}}" style="width:100%" />
         <view class="swiper-mask"></view>
         <view class="swiper-desc">
-          <text>{{item.title.rendered}}</text>
+          <text>{{item.post_title}}</text>
         </view>
       </swiper-item>
     </block>

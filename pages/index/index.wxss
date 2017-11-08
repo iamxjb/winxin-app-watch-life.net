@@ -52,7 +52,7 @@ swiper .swiper-desc {
   right: 0;
   width: 100%;
   padding: 32rpx 24rpx;
-  /* background: rgba(0, 0, 0, 0.3); */
+  background: rgba(0, 0, 0, 0.3);
   color: #fff;
   font-weight: 600;
   overflow: hidden;
