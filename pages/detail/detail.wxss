@@ -40,7 +40,7 @@
 
 .entry-summary {
   font-size: 32rpx;
-  line-height: 2.4rem;
+  line-height: 64rpx;
   letter-spacing: 1px;
 }
 
