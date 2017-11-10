@@ -34,6 +34,20 @@
 
 15.web-view内嵌网页跳转。
 
+# 开源地址
+
+https://github.com/iamxjb/winxin-app-watch-life.net
+
+如果因为某些原因github无法访问，可以选择以下镜像地址：
+
+1.https://git.oschina.net/iamxjb/winxin-app-watch-life.net
+
+2.https://code.aliyun.com/iamxjb/winxin-app-watch-life.net
+
+3.https://coding.net/u/xjb/p/winxin-app-watch-life.net
+
+4.https://gitlab.com/xiajianbo/winxin-app-watch-life.net
+
 
 
 # 小程序访问微信二维码：
