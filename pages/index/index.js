@@ -98,7 +98,7 @@ Page({
     //取置顶的文章
     var getPostsRequest = wxRequest.getRequest(Api.getSwiperPosts());
     getPostsRequest.then(response => {
-        if (response.data.posts.length > 0) {
+        if (response.data.status =='200' && response.data.posts.length > 0) {
                 self.setData({
                     postsShowSwiperList: response.data.posts,
                     postsShowSwiperList: self.data.postsShowSwiperList.concat(response.data.posts.map(function (item) {
@@ -134,18 +134,15 @@ Page({
             self.fetchPostsData(self.data);
 
         })
-        .catch(function (){
+        .catch(function (response){
+            console.log(response); 
             self.setData({
                 showerror: "block",
                 floatDisplay: "none"
             });
 
-        }
-        )
+        })
         .finally(function () {
-
-            console.log('ok'); 
-            
         
     });            
    
