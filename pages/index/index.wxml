@@ -49,12 +49,10 @@
   <view style="display:{{floatDisplay}}">
     <form catchsubmit="formSubmit" catchreset="formReset">
       <view class="search-pancel">
-        <input value="" name="input" confirm-type="搜索" class="search-input" placeholder="请输入关键字..."></input>
+        <input value="" name="input" confirm-type="搜索" class="search-input" placeholder="搜索你感兴趣的内容..."></input>
         <button class="search-button" form-type="submit" size="mini" plain="true">
           <icon type="search" color="#959595" size="12" />
         </button>
-        <!--
-          <button class="share-button" open-type="share" size="mini" plain="true">转发</button> -->
       </view>
     </form>
   </view>

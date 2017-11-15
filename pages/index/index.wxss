@@ -59,7 +59,7 @@ swiper .swiper-desc {
   white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 30rpx;
-  height: 120rpx;
+ /* height: 120rpx; */
   text-shadow: 0px 0px 16px #646d75;
 }
 

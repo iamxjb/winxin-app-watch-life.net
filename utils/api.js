@@ -90,7 +90,7 @@ module.exports = {
       var url ='';
       //此处的域名不用换
       if (domain =='www.watch-life.net'){
-          url = HOST_URI + 'categories?include=1,1059,98,416,189,374,6&orderby=count&order=desc';
+          url = HOST_URI + 'categories?include=1,1059,98,416,189,374,6,463&orderby=count&order=desc';
 
       }
       else
@@ -106,9 +106,14 @@ module.exports = {
     var dd = HOST_URI + 'categories/' + id;
     return HOST_URI + 'categories/'+id;
   },
-  //获取评论
+  //获取某文章评论
   getComments: function (obj) {
     return HOST_URI + 'comments?parent=0&per_page=100&orderby=date&order=desc&post=' + obj.postID + '&page=' + obj.page
+  },
+
+  //获取网站的最新20条评论
+  getNewComments: function () {
+      return HOST_URI + 'comments?parent=0&per_page=20&orderby=date&order=desc';
   },
 
   //获取回复

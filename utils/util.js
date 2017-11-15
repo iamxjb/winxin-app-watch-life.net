@@ -101,6 +101,7 @@ function cutstr(str, len,flag) {
 
   function removeHTML (s) {
     var str=s.replace(/<\/?.+?>/g,"");    
+    str = str.replace(/[\r\n]/g, ""); //去掉回车换行    
     return str.replace(/ /g,"");
   }
 

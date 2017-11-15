@@ -28,6 +28,7 @@ Page({
         { id: '2', name: '评论', selected: false},
         { id: '3', name: '点赞', selected: false },
         { id: '4', name: '赞赏', selected: false },
+        { id: '5', name: '最新评论', selected: false}
     ],
     tab: '1',
     showerror: "none",
@@ -250,6 +251,43 @@ Page({
         
 
     }
+
+      else if (tab == '5') {
+          this.setData({
+              readLogs: []
+          });
+          var getNewComments = wxRequest.getRequest(Api.getNewComments());
+          getNewComments.then(response => {
+
+              if (response.statusCode == 200) {
+                  this.setData({
+                      readLogs: self.data.readLogs.concat(response.data.map(function (item) {
+                          count++;
+                          item[0] = item.post;
+                          item[1] = util.removeHTML(item.content.rendered + '(' + item.author_name+')');
+                         
+                          return item;
+                      }))
+                  });
+                  if (count == 0) {
+                      self.setData({
+                          shownodata: 'block'
+                      });
+                  }
+              }
+              else {
+                  console.log(response);
+                  this.setData({
+                      showerror: 'block'
+                  });
+
+              }
+          })
+
+
+      }
+
+
 
   },
   userAuthorization: function () {
