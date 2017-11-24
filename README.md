@@ -51,7 +51,7 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 # 小程序访问微信二维码：
 
-![wordpress版微信小程序](https://www.watch-life.net/images/2017/04/weixinapp-watch-life.jpg) 
+![wordpress版微信小程序](https://www.watch-life.net/images/wordpressweixinapp430.jpg) 
 
 
 # 技术支持网站：https://www.watch-life.net
