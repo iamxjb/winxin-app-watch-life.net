@@ -13,13 +13,15 @@
 import config from 'config.js'
 
 var domain = config.getDomain;
+var pageCount = config.getPageCount;
+var categoriesID = config.getCategoriesID;
 var HOST_URI = 'https://' + domain+'/wp-json/wp/v2/';
 var HOST_URI_WATCH_LIFE_JSON = 'https://' + domain + '/wp-json/watch-life-net/v1/';
    
 module.exports = {  
   // 获取文章列表数据
   getPosts: function (obj) {
-      var url = HOST_URI + 'posts?per_page=6&orderby=date&order=desc&page=' + obj.page;
+      var url = HOST_URI + 'posts?per_page=' + pageCount+'&orderby=date&order=desc&page=' + obj.page;
     
     if (obj.categories != 0) {
       url += '&categories=' + obj.categories;
@@ -88,15 +90,14 @@ module.exports = {
   //获取分类列表
   getCategories: function () {
       var url ='';
-      //此处的域名不用换
-      if (domain =='www.watch-life.net'){
-          url = HOST_URI + 'categories?include=1,1059,98,416,189,374,6,463&orderby=count&order=desc';
-
+      if (categoriesID =='all'){
+          
+          url = HOST_URI + 'categories?per_page=100&orderby=count&order=desc';
       }
       else
       {
-          url = HOST_URI + 'categories?per_page=100&orderby=count&order=desc';
-
+          url = HOST_URI + 'categories?include=' + categoriesID+'&orderby=count&order=desc';
+ 
       }
    
     return url
@@ -108,7 +109,8 @@ module.exports = {
   },
   //获取某文章评论
   getComments: function (obj) {
-    return HOST_URI + 'comments?parent=0&per_page=100&orderby=date&order=desc&post=' + obj.postID + '&page=' + obj.page
+    var url = HOST_URI + 'comments?parent=0&per_page=100&orderby=date&order=desc&post=' + obj.postID + '&page=' + obj.page;
+    return url;
   },
 
   //获取网站的最新20条评论

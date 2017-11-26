@@ -26,12 +26,12 @@
   margin-bottom: 48rpx;
 }
 
-/*
-.wxParse-p
+
+ .wxParse-p
 {
-  margin: 0 0 1.714285714rem;
-}
-*/
+  margin-top: 50rpx;
+} 
+
 
 /*  more   */
 

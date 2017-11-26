@@ -43,7 +43,12 @@ Page({
     var self = this;
     if (!app.globalData.isGetOpenid) {
         auth.getUsreInfo();
+        
     }
+        self.setData({            
+            userInfo: app.globalData.userInfo
+        }); 
+
 
     self = this;
     self.fetchPostsData('1');
@@ -102,16 +107,11 @@ Page({
   },
   fetchPostsData: function (tab) {
       self = this;
-      var asdf = app.globalData.userInfo;
-      
       self.setData({
           showerror: 'none',
-          shownodata:'none',
-          userInfo: app.globalData.userInfo
-      });  
-
+          shownodata:'none'
+      }); 
      var count =0;
-        
       if (tab == '1')
       {
           self.setData({
@@ -121,6 +121,9 @@ Page({
               })
           });
 
+          self.setData({
+              userInfo: app.globalData.userInfo
+          }); 
 
           if (count == 0) {
               self.setData({
@@ -149,6 +152,10 @@ Page({
                               return item;
                           }))
                       });
+                      self.setData({
+                          userInfo: app.globalData.userInfo
+                      }); 
+
                       if (count == 0) {
                           self.setData({
                               shownodata: 'block'
@@ -191,6 +198,10 @@ Page({
                               return item;
                           }))
                       });
+                      self.setData({
+                          userInfo: app.globalData.userInfo
+                      }); 
+
                       if (count == 0) {
                           self.setData({
                               shownodata: 'block'
@@ -229,6 +240,10 @@ Page({
                             return item;
                         }))
                     });
+                    self.setData({
+                        userInfo: app.globalData.userInfo
+                    }); 
+
                     if (count == 0) {
                         self.setData({
                             shownodata: 'block'
@@ -329,5 +344,13 @@ Page({
               }
           }
       });
-  },
+  }
+  ,
+    confirm: function () {
+        this.setData({
+            'dialog.hidden': true,
+            'dialog.title': '',
+            'dialog.content': ''
+        })
+    } 
 })

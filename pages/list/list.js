@@ -16,6 +16,9 @@ var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
 
+import config from '../../utils/config.js'
+var pageCount = config.getPageCount;
+
 Page({
   data: {
     title: '文章列表',
@@ -168,7 +171,7 @@ Page({
     getPostsRequest.then(response =>{
 
         if (response.statusCode === 200) {
-            if (response.data.length < 6) {
+            if (response.data.length < pageCount) {
                 self.setData({
                     isLastPage: true
                 });
@@ -187,7 +190,7 @@ Page({
                     }
 
                     if (item.post_thumbnail_image == null || item.post_thumbnail_image == '') {
-                        item.post_thumbnail_image = '../../images/watch-life-logo-128.jpg';
+                        item.post_thumbnail_image = '../../images/logo700.png';
                     }
                     item.date = util.cutstr(strdate, 10, 1);
                     return item;

@@ -50,11 +50,7 @@ module.exports = {
                     else {
                         console.log(response.data.message);
                     }
-                })
-                
-                // .then(response => {
-                //     self.getIslike();
-                // })
+                })               
             }).catch(function (error) {
                 console.log('error: ' + error.errMsg);
             })

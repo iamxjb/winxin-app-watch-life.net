@@ -45,28 +45,39 @@ Page({
       categoriesList: []
     });
 
+    //console.log(Api.getCategories());
     var getCategoriesRequest = wxRequest.getRequest(Api.getCategories());
 
     getCategoriesRequest.then(response =>{
-        self.setData({
-            floatDisplay: "block",
-            categoriesList: self.data.categoriesList.concat(response.data.map(function (item) {
-                if (typeof (item.category_thumbnail_image) == "undefined" || item.category_thumbnail_image == "") {
-                    item.category_thumbnail_image = "../../images/website.png";
+        if (response.statusCode === 200)
+        {
+            self.setData({
+                floatDisplay: "block",
+                categoriesList: self.data.categoriesList.concat(response.data.map(function (item) {
+                    if (typeof (item.category_thumbnail_image) == "undefined" || item.category_thumbnail_image == "") {
+                        item.category_thumbnail_image = "../../images/website.png";
 
-                }
-                return item;
-            })),
-        });        
+                    }
+                    return item;
+                })),
+            });  
+        }
+        else
+        {
+            console.log(response);
+        }
+             
+    }).catch(function (response) {
+        console.log(response);
+
     })
-
     .finally(function () {
         setTimeout(function () {
             wx.hideLoading();
         }, 900)
-        wx.hideNavigationBarLoading();;
+        wx.hideNavigationBarLoading();
 
-        });      
+        })     
   },
 
   onShareAppMessage: function () {

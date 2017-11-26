@@ -10,7 +10,8 @@
         "pages/readlog/readlog",
         "pages/hot/hot",
         "pages/pay/pay",
-        "pages/webpage/webpage"
+        "pages/webpage/webpage",
+        "pages/applist/applist"
     ],
     "window": {
         "backgroundTextStyle": "light",

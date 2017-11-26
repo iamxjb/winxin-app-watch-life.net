@@ -1,4 +1,4 @@
-<import src="../../templates/copyright.wxml" />
+    <import src="../../templates/copyright.wxml" />
 
     <scroll-view style="height:100%;" scroll-y="true" lower-threshold="100rpx">
       <view class="topic-common-list">

@@ -10,39 +10,45 @@
  * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
  *
  */-->
-<import src="../../wxParse/wxParse.wxml"/>
-<import src="../../templates/header.wxml"/>
+<import src="../../wxParse/wxParse.wxml" />
+<import src="../../templates/header.wxml" />
+<import src="../../templates/copyright.wxml" />
+
 <view class="container" style="display:{{display}}">
-  <template is="tempHeader" /> 
+    <template is="tempHeader" />
 
-  <view class="wrapper">
-      <view class="excerpt"> 
-    <!--  <rich-text nodes="{{pageData.content.rendered}}"></rich-text> --> 
-   <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-      
-      </view> 
+    <view class="wrapper">
+        <view class="excerpt">
+            <!--  <rich-text nodes="{{pageData.content.rendered}}"></rich-text> -->
+            <template is="wxParse" data="{{wxParseData:article.nodes}}" />
 
-<view style='text-align:center'>     
-      <button class="gotowebpage-button" formType="submit" size="mini" bindtap="gotowebpage">打开“守望轩”网站</button>
-     <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
-    </view> 
-    <view class="praisePost">  
-    <view style='text-align:center'>
-     <button class="praise-button" formType="submit" size="mini" bindtap="praise">捐赠</button>
+        </view>
 
-     <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
-    </view>  
-      <view class="praiseTitle">
-      <view style='margin-top: 15rpx;'>
-           <text>谢谢以下赞赏或捐赠的朋友</text>
-           </view>
-        </view>    
-      <view class="praiseText">
-        <block wx:key="id" wx:for="{{praiseList}}">
-         <image src="{{item}}" class="gravatarLikeImg"></image>          
-        </block>
-      </view>
+        <view style='text-align:center'>
+            <button class="gotowebpage-button" formType="submit" size="mini" bindtap="gotowebpage">打开“守望轩”网站</button>
+            <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
+        </view>
+        <view class="praisePost">
+            <view style='text-align:center'>
+                <button class="praise-button" formType="submit" size="mini" bindtap="praise">捐赠</button>
+
+                <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
+            </view>
+            <view class="praiseTitle">
+                <view style='margin-top: 15rpx;'>
+                    <text>谢谢以下赞赏或捐赠的朋友</text>
+                </view>
+            </view>
+            <view class="praiseText">
+                <block wx:key="id" wx:for="{{praiseList}}">
+                    <image src="{{item}}" class="gravatarLikeImg"></image>
+                </block>
+            </view>
+        </view>
     </view>
-      </view>
-      
+
+      <view class="copyright">
+        <template is="tempCopyright" />
+    </view>
+
 </view>

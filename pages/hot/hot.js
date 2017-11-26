@@ -123,6 +123,7 @@ Page({
         if (response.statusCode === 200) {
             self.setData({
                 showallDisplay: "block",
+                floatDisplay: "block",
                 postsList: self.data.postsList.concat(response.data.map(function (item) {
                     var strdate = item.post_date
                     if (item.post_thumbnail_image == null || item.post_thumbnail_image == '') {
@@ -134,12 +135,15 @@ Page({
 
             });
 
-        } else if (response.statusCode === 404) {            
-            wx.showModal({
-                title: '加载失败',
-                content: '加载数据失败,可能缺少相应的数据',
-                showCancel: false,
-            });
+        } else if (response.statusCode === 404) { 
+
+            // wx.showModal({
+            //     title: '加载失败',
+            //     content: '加载数据失败,可能缺少相应的数据',
+            //     showCancel: false,
+            // });
+
+            console.log('加载数据失败,可能缺少相应的数据'); 
         }
     })
     .catch(function () {
@@ -148,16 +152,16 @@ Page({
 
             self.setData({
                 showerror: "block",
-                floatDisplay: "none"
+                floatDisplay: "block"
             });
 
         }
         else {
-            wx.showModal({
-                title: '加载失败',
-                content: '加载数据失败,请重试.',
-                showCancel: false,
-            });
+            // wx.showModal({
+            //     title: '加载失败',
+            //     content: '加载数据失败,请重试.',
+            //     showCancel: false,
+            // });
         }
     })
     .finally(function () {

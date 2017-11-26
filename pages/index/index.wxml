@@ -17,7 +17,7 @@
 <view class="index-header" style="display:{{displaySwiper}}">
   <swiper class="index-swiper" indicator-dots="true" interval="10000" autoplay="true" indicator-color="rgba(255, 255, 255, .2)" indicator-active-color="rgba(255, 255, 255, .7)">
     <block wx:key="id" wx:for="{{postsShowSwiperList}}">
-      <swiper-item id="{{item.id}}" index="{{index}}" bindtap="redictDetail">
+      <swiper-item id="{{item.id}}" index="{{index}}" data-redicttype="{{item.type}}" bindtap="redictAppDetail">
         <image mode="aspectFill" src="{{item.post_medium_image_300}}" style="width:100%" />
         <view class="swiper-mask"></view>
         <view class="swiper-desc">
@@ -27,15 +27,6 @@
     </block>
   </swiper>
 </view>
-
-<!-- <view class="header" style="display:{{displayHeader}}">
-    <image src="../../images/logo.gif" style="height:120rpx;width:400rpx"></image>
-    <view>
-      守望生活, 审视自我,宁静雅致的小轩馆.
-    </view>
-  </view> -->
-
-
 
 <view class="showerror" style="display:{{showerror}}">
   <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
@@ -47,9 +38,9 @@
 
 <view style="display:{{showallDisplay}}">
   <view style="display:{{floatDisplay}}">
-    <form catchsubmit="formSubmit" catchreset="formReset">
+    <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
       <view class="search-pancel">
-        <input value="" name="input" confirm-type="搜索" class="search-input" placeholder="搜索你感兴趣的内容..."></input>
+        <input value="" id="search-input" name="input" confirm-type="搜索" class="search-input" placeholder="搜索你感兴趣的内容..." bindconfirm="formSubmit"></input>
         <button class="search-button" form-type="submit" size="mini" plain="true">
           <icon type="search" color="#959595" size="12" />
         </button>

@@ -12,8 +12,8 @@
 
 <template name="tempHeader">
   <view class="header">
-    <image src="../../images/logo.gif" style="height:120rpx;width:400rpx"></image>
-    <view>
+    <image src="../../images/logo.png" style="height:200rpx;width:400rpx"></image>
+    <view style='margin-top:40rpx'>
       守望生活, 审视自我,宁静雅致的小轩馆.
     </view>
   </view>

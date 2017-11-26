@@ -18,6 +18,8 @@ var wxRequest = require('../../utils/wxRequest.js')
 
 import config from '../../utils/config.js'
 
+var pageCount = config.getPageCount;
+
 Page({
   data: {    
     postsList: [],
@@ -33,12 +35,23 @@ Page({
     displayHeader:"none",
     displaySwiper: "none",
     floatDisplay: "none",
+    displayfirstSwiper:"none"
 
   },
   formSubmit: function (e) {
     var url = '../list/list'
-    if (e.detail.value.input != '') {
-      url = url + '?search=' + e.detail.value.input;
+    var key ='';
+    if (e.currentTarget.id =="search-input")
+    {
+        key = e.detail.value;
+    }
+    else{
+
+        key = e.detail.value.input;
+
+    }
+    if (key != '') {
+      url = url + '?search=' +key;
       wx.navigateTo({
         url: url
       })
@@ -47,7 +60,7 @@ Page({
     {
       wx.showModal({
         title: '提示',
-        content: '请输入搜索内容',
+        content: '请输入内容',
         showCancel: false,
       });
 
@@ -80,14 +93,20 @@ Page({
     this.fetchTopFivePosts(); 
     
   },
-  onReachBottom: function () {
-
-    //console.log("xialajiazai");  
+  onReachBottom: function () {  
    
   },
   onLoad: function (options) {
     var self = this; 
-    this.fetchTopFivePosts();   
+    this.fetchTopFivePosts();
+    if (config.getDomain =="www.watch-life.net")
+    {
+        self.setData({
+            displaySwiper: "block"
+
+        });
+
+    }   
   },
   onShow: function (options){
       wx.setStorageSync('openLinkCount', 0);
@@ -169,7 +188,7 @@ Page({
         .then(response => {
             if (response.statusCode === 200) {
 
-                if (response.data.length < 6) {
+                if (response.data.length < pageCount) {
                     self.setData({
                         isLastPage: true
                     });
@@ -188,7 +207,7 @@ Page({
                         }
 
                         if (item.post_thumbnail_image == null || item.post_thumbnail_image == '') {
-                            item.post_thumbnail_image = "../../images/watch-life-logo-128.jpg";
+                            item.post_thumbnail_image = "../../images/logo700.png";
                         }
                         item.date = util.cutstr(strdate, 10, 1);
                         return item;
@@ -276,6 +295,25 @@ Page({
     wx.navigateTo({
       url: url
     })
+  },
+  // 跳转至查看小程序列表页面或文章详情页
+  redictAppDetail: function (e) {
+      // console.log('查看文章');
+      var id = e.currentTarget.id;
+      var redicttype = e.currentTarget.dataset.redicttype;
+      var url='';
+      if (redicttype == 'detailpage')
+      {
+          url = '../detail/detail?id=' + id;
+      }
+      else if (redicttype == 'apppage')
+      {
+          url = '../applist/applist';
+      }
+      
+      wx.navigateTo({
+          url: url
+      })
   },
   //返回首页
   redictHome: function (e) {
