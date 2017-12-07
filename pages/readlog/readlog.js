@@ -25,7 +25,7 @@ Page({
     topBarItems: [
         // id name selected 选中状态
         { id: '1', name: '浏览', selected: true },
-        { id: '2', name: '评论', selected: false},
+        { id: '2', name: '订阅', selected: false},
         { id: '3', name: '点赞', selected: false },
         { id: '4', name: '赞赏', selected: false },
         { id: '5', name: '最新评论', selected: false}
@@ -42,15 +42,19 @@ Page({
   onLoad: function (options) {  
     var self = this;
     if (!app.globalData.isGetOpenid) {
-        auth.getUsreInfo();
+        self.getUsreInfo();
         
     }
-        self.setData({            
+    else
+    {
+        self.setData({
             userInfo: app.globalData.userInfo
-        }); 
+        });
+    }
+         
 
 
-    self = this;
+   
     self.fetchPostsData('1');
     
   },
@@ -58,8 +62,19 @@ Page({
   // 跳转至查看文章详情
   redictDetail: function (e) {
     // console.log('查看文章');
-    var id = e.currentTarget.id,
-      url = '../detail/detail?id=' + id;
+    var id = e.currentTarget.id;
+    var itemtype = e.currentTarget.dataset.itemtype;
+    var url ="";
+    if (itemtype=="1")
+    {
+        url = '../list/list?categoryID=' + id;
+    }
+    else
+    {
+        url = '../detail/detail?id=' + id;
+
+    }
+      
     wx.navigateTo({
       url: url
     })
@@ -141,9 +156,9 @@ Page({
           if (app.globalData.isGetOpenid) {
               var openid = app.globalData.openid;
               var getMyCommentsPosts = wxRequest.getRequest(Api.getWeixinComment(openid));
-              getMyCommentsPosts.then(response=>{
+              getMyCommentsPosts.then(response => {
 
-                  if (response.statusCode == 200) { 
+                  if (response.statusCode == 200) {
                       self.setData({
                           readLogs: self.data.readLogs.concat(response.data.data.map(function (item) {
                               count++;
@@ -154,28 +169,27 @@ Page({
                       });
                       self.setData({
                           userInfo: app.globalData.userInfo
-                      }); 
+                      });
 
                       if (count == 0) {
                           self.setData({
                               shownodata: 'block'
                           });
-                      } 
+                      }
                   }
-                  else
-                  {
+                  else {
                       console.log(response);
                       self.setData({
-                          showerror: 'block' 
+                          showerror: 'block'
                       });
-                      
+
                   }
               })
 
           }
           else
           {
-              self.userAuthorization
+              self.userAuthorization();
           }          
 
        } 
@@ -195,6 +209,7 @@ Page({
                               count++;
                               item[0] = item.post_id;
                               item[1] = item.post_title;
+                              item[2] = "0";
                               return item;
                           }))
                       });
@@ -219,7 +234,7 @@ Page({
 
           }
           else {
-              self.userAuthorization
+              self.userAuthorization();
           }
 
       }
@@ -237,6 +252,7 @@ Page({
                             count++;
                             item[0] = item.post_id;
                             item[1] = item.post_title;
+                            item[2] = "0";
                             return item;
                         }))
                     });
@@ -261,7 +277,7 @@ Page({
 
         }
         else {
-            self.userAuthorization
+            self.userAuthorization();
         }
         
 
@@ -280,7 +296,7 @@ Page({
                           count++;
                           item[0] = item.post;
                           item[1] = util.removeHTML(item.content.rendered + '(' + item.author_name+')');
-                         
+                          item[2] = "0";
                           return item;
                       }))
                   });
@@ -333,7 +349,7 @@ Page({
                                           console.log('打开设置', res.authSetting);
                                           var scopeUserInfo = res.authSetting["scope.userInfo"];
                                           if (scopeUserInfo) {
-                                              auth.getUsreInfo();
+                                              self.getUsreInfo();
                                           }
                                       }
                                   });
@@ -352,5 +368,50 @@ Page({
             'dialog.title': '',
             'dialog.content': ''
         })
+    },
+    getUsreInfo: function () {
+        var self = this;
+        var wxLogin = wxApi.wxLogin();
+        var jscode = '';
+        wxLogin().then(response => {
+            jscode = response.code
+            var wxGetUserInfo = wxApi.wxGetUserInfo()
+            return wxGetUserInfo()
+        }).
+            //获取用户信息
+            then(response => {
+                console.log(response.userInfo);
+                console.log("成功获取用户信息(公开信息)");
+                app.globalData.userInfo = response.userInfo;
+                app.globalData.isGetUserInfo = true;
+                self.setData({
+                    userInfo: response.userInfo
+                });
+
+                var url = Api.getOpenidUrl();
+                var data = {
+                    js_code: jscode,
+                    encryptedData: response.encryptedData,
+                    iv: response.iv,
+                    avatarUrl: response.userInfo.avatarUrl
+                }
+                var postOpenidRequest = wxRequest.postRequest(url, data);
+                //获取openid
+                postOpenidRequest.then(response => {
+                    if (response.data.status == '200') {
+                        //console.log(response.data.openid)
+                        console.log("openid 获取成功");
+                        app.globalData.openid = response.data.openid;
+                        app.globalData.isGetOpenid = true;
+
+                    }
+                    else {
+                        console.log(response.data.message);
+                    }
+                })
+            }).catch(function (error) {
+                console.log('error: ' + error.errMsg);
+                self.userAuthorization();
+            })
     } 
 })

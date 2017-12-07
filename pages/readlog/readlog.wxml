@@ -40,7 +40,7 @@
 
     <view class="log-list">
       <block wx:key="id" wx:for="{{readLogs}}">
-        <view class="log-items" index="{{index}}" id="{{item[0]}}" catchtap="redictDetail">
+        <view class="log-items" index="{{index}}" id="{{item[0]}}" data-itemtype="{{item[2]}}" catchtap="redictDetail">
           <text class="log-text">{{index + 1}}. {{item[1]}}</text>
         </view>
       </block>
