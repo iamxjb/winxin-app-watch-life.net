@@ -12,7 +12,7 @@
 
 @import "../../wxParse/wxParse.wxss";
  .wrapper{
-  padding: 24rpx;
+  padding: 5rpx;
 }
 
 .excerpt{
@@ -39,6 +39,17 @@
 
 .wxParse-a{
     color: #21759b
+}
+
+.wxParse-p{
+    margin-top: 0.8em;
+    margin-bottom: 0.8em
+}
+
+.wxParse-p image{
+    margin: 0 auto;
+    width: 100% !important;
+    box-shadow: 2rpx 4rpx 16rpx #666
 }
 
 .praisePost

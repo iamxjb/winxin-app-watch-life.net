@@ -103,7 +103,20 @@
   font-weight: normal;
   outline: none;
   color: #959595;
-  margin: 24rpx 0;
+  margin: 10rpx 0;
+}
+
+.replay-user {
+  display: flex;
+  align-items: center;
+  /* height: 80rpx; */
+  font-size: 26rpx;
+  /* line-height: 80rpx; */
+  font-weight: normal;
+  outline: none;
+  color: #959595;
+  margin: 10rpx 0;
+  margin-left: 60rpx;
 }
 
 .comment-user image {
@@ -128,9 +141,10 @@
 
 .comment-summary {
   color: #4c4c4c;
-  font-size: 30rpx;
+  font-size: 28rpx;
   line-height: 2rem;
   margin-bottom: 10rpx;
+  margin-left: 60rpx;
 }
 
 .comment-repaly {

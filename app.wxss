@@ -23,7 +23,7 @@
   line-height: 40rpx;
   color: #757575;
   border-bottom: 2rpx solid #ededed;
-  margin-bottom: 48rpx;
+  margin-bottom: 8rpx;
 }
 
 

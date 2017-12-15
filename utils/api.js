@@ -109,7 +109,7 @@ module.exports = {
   },
   //获取某文章评论
   getComments: function (obj) {
-    var url = HOST_URI + 'comments?parent=0&per_page=100&orderby=date&order=desc&post=' + obj.postID + '&page=' + obj.page;
+    var url = HOST_URI + 'comments?per_page=100&orderby=date&order=asc&post=' + obj.postID + '&page=' + obj.page;
     return url;
   },
 
@@ -151,7 +151,7 @@ module.exports = {
   getContentFirstImage: function (content){
     var regex = /<img.*?src=[\'"](.*?)[\'"].*?>/i;
     var arrReg = regex.exec(content);
-    var src ="../../images/watch-life-logo-128.jpg";
+    var src ="../../images/logo700.png";
     if(arrReg){   
       src=arrReg[1];
     }

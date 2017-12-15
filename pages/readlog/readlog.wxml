@@ -13,10 +13,7 @@
 <import src="../../templates/common-list.wxml" />
 <import src="../../templates/copyright.wxml" />
 
-<view class="readlog-container">
-  <!-- <view class="userinfo-bg">
-     <image src="../../images/website-userinfo-bg.png" class="cover"></image>
-  </view> -->
+<view class="readlog-container">  
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>

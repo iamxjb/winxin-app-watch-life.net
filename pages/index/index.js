@@ -35,7 +35,9 @@ Page({
     displayHeader:"none",
     displaySwiper: "none",
     floatDisplay: "none",
-    displayfirstSwiper:"none"
+    displayfirstSwiper:"none",
+    topNav: []
+    
 
   },
   formSubmit: function (e) {
@@ -99,14 +101,11 @@ Page({
   onLoad: function (options) {
     var self = this; 
     this.fetchTopFivePosts();
-    if (config.getDomain =="www.watch-life.net")
-    {
-        self.setData({
-            displaySwiper: "block"
+    self.setData({
+        topNav: config.getIndexNav
 
-        });
-
-    }   
+    });
+       
   },
   onShow: function (options){
       wx.setStorageSync('openLinkCount', 0);
@@ -127,7 +126,7 @@ Page({
                                 item.post_medium_image_300 = item.content_first_image;
                             }
                             else {
-                                item.post_medium_image_300 = "../../images/watch-life-logo-128.jpg";
+                                item.post_medium_image_300 = "../../images/logo700.png";
                             }
 
                         }
@@ -295,6 +294,13 @@ Page({
     wx.navigateTo({
       url: url
     })
+  },
+  //首页图标跳转
+  onNavRedirect:function(e){      
+      var url = e.currentTarget.dataset.redirect;          
+      wx.navigateTo({
+          url: url
+      })
   },
   // 跳转至查看小程序列表页面或文章详情页
   redictAppDetail: function (e) {

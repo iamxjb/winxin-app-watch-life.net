@@ -15,58 +15,67 @@
 <import src="../../templates/copyright.wxml" />
 
 <view class="index-header" style="display:{{displaySwiper}}">
-  <swiper class="index-swiper" indicator-dots="true" interval="10000" autoplay="true" indicator-color="rgba(255, 255, 255, .2)" indicator-active-color="rgba(255, 255, 255, .7)">
-    <block wx:key="id" wx:for="{{postsShowSwiperList}}">
-      <swiper-item id="{{item.id}}" index="{{index}}" data-redicttype="{{item.type}}" bindtap="redictAppDetail">
-        <image mode="aspectFill" src="{{item.post_medium_image_300}}" style="width:100%" />
-        <view class="swiper-mask"></view>
-        <view class="swiper-desc">
-          <text>{{item.post_title}}</text>
-        </view>
-      </swiper-item>
-    </block>
-  </swiper>
+    <swiper class="index-swiper" indicator-dots="true" interval="10000" autoplay="true" indicator-color="rgba(255, 255, 255, .2)" indicator-active-color="rgba(255, 255, 255, .7)">
+        <block wx:key="id" wx:for="{{postsShowSwiperList}}">
+            <swiper-item id="{{item.id}}" index="{{index}}" data-redicttype="{{item.type}}" bindtap="redictAppDetail">
+                <image mode="aspectFill" src="{{item.post_medium_image_300}}" style="width:100%" />
+                <view class="swiper-mask"></view>
+                <view class="swiper-desc">
+                    <text>{{item.post_title}}</text>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
 </view>
 
 <view class="showerror" style="display:{{showerror}}">
-  <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
-  <view class="errortext">
-    暂时无法访问网络,下拉重试...
+    <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
+    <view class="errortext">
+        暂时无法访问网络,下拉重试...
 
-  </view>
+    </view>
 </view>
 
 <view style="display:{{showallDisplay}}">
-  <view style="display:{{floatDisplay}}">
-    <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
-      <view class="search-pancel">
-        <input value="" id="search-input" name="input" confirm-type="搜索" class="search-input" placeholder="搜索你感兴趣的内容..." bindconfirm="formSubmit"></input>
-        <button class="search-button" form-type="submit" size="mini" plain="true">
-          <icon type="search" color="#959595" size="12" />
-        </button>
-      </view>
-    </form>
-  </view>
 
-  <!-- 加载图文列表 -->
-<!-- <view class="common-gap"></view> -->
-  <view class="container">
-    <view class="index-container">
-    <template is="tempCommonList" data="{{postsList}}" />
+    <view style="display:{{floatDisplay}}">
+        <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
+            <view class="search-pancel">
+                <input value="" id="search-input" name="input" confirm-type="search" class="search-input" placeholder="搜索你感兴趣的内容..." bindconfirm="formSubmit"></input>
+                <button class="search-button" form-type="submit" size="mini" plain="true">
+                    <icon type="search" color="#959595" size="12" />
+                </button>
+            </view>
+        </form>
 
-    <view class="loadingmore" style="display:{{floatDisplay}}">
-      <view hidden="{{isLastPage}}">
-        <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>
-      </view>
-
-      <view class="no-more" hidden="{{!isLastPage}}">---无更多文章---</view>
-
+        <!-- 图标导航 -->
+        <view class="top-Nav">
+            <block wx:for="{{topNav}}" wx:key="id">
+                <view class="top-item" catchtap="onNavRedirect" data-redirect="{{item.redirect}}" id="{{item.id}}">
+                    <view>
+                        <image src="{{item.image}}"></image>
+                    </view>
+                    <view>
+                        <text> {{item.name}}</text>
+                    </view>
+                </view>
+            </block>
+        </view>       
     </view>
+    <view class="container">
+     <!-- 加载图文列表 -->
+        <view class="index-container">
+            <template is="tempCommonList" data="{{postsList}}" />
 
-    <view class="copyright" style="display:{{floatDisplay}}">
-      <template is="tempCopyright" />
+            <view class="loadingmore" style="display:{{floatDisplay}}">
+                <view hidden="{{isLastPage}}">
+                    <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>
+                </view>
+                <view class="no-more" hidden="{{!isLastPage}}">---无更多文章---</view>
+            </view>
+            <view class="copyright" style="display:{{floatDisplay}}">
+                <template is="tempCopyright" />
+            </view>
+        </view>
     </view>
-
-  </view>
-</view>
 </view>

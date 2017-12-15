@@ -125,3 +125,24 @@ swiper .swiper-desc {
   margin-left: 20rpx;
   vertical-align: middle;
 }
+
+
+.top-Nav{
+display: flex;
+padding: 25rpx 0;
+background: #fff;
+justify-content:space-around;
+border-bottom: 1px solid #eee;
+
+}
+.top-item{
+text-align: center;
+}
+.top-item image{
+width: 88rpx;
+height: 88rpx;
+}
+.top-item text{
+line-height: 20rpx;
+font-size: 14px;
+}

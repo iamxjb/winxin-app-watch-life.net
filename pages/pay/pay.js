@@ -27,7 +27,7 @@ Page({
     openid:'',
     postid:'',
     total_fee:'',
-    template_id: config.getTemplateId,
+    template_id: config.getPayTemplateId,
     flag:'1'
   },
 

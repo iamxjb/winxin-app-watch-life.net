@@ -42,19 +42,14 @@ Page({
   onLoad: function (options) {  
     var self = this;
     if (!app.globalData.isGetOpenid) {
-        self.getUsreInfo();
-        
+        self.getUsreInfo();        
     }
     else
     {
         self.setData({
             userInfo: app.globalData.userInfo
         });
-    }
-         
-
-
-   
+    } 
     self.fetchPostsData('1');
     
   },
