@@ -1,0 +1,53 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/detail/detail",
+        "pages/logs/logs",
+        "pages/page/page",
+        "pages/about/about",
+        "pages/list/list",
+        "pages/topic/topic",
+        "pages/readlog/readlog",
+        "pages/hot/hot",
+        "pages/pay/pay",
+        "pages/webpage/webpage"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#118fff",
+        "navigationBarTitleText": "守望轩",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "color": "#9BABBA",
+        "selectedColor": "#495056",
+        "borderStyle": "white",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "iconPath": "images/tar-home.png",
+                "selectedIconPath": "images/tar-home-on.png",
+                "text": "首页"
+            },           
+            {
+                "pagePath": "pages/readlog/readlog",
+                "iconPath": "images/tar-person.png",
+                "selectedIconPath": "images/tar-person-on.png",
+                "text": "我的"
+            },
+            {
+                "pagePath": "pages/about/about",
+                "iconPath": "images/tar-about.png",
+                "selectedIconPath": "images/tar-about-on.png",
+                "text": "关于"
+            }
+        ]
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "connectSocket": 10000,
+        "uploadFile": 10000,
+        "downloadFile": 10000
+    }
+}
