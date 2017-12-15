@@ -87,7 +87,7 @@ function getDateDiff(dateStr) {
     } else if (d_days >= 3 && d_days < 30) {
         return M + '月' + D +'日';
     } else if (d_days >= 30) {
-        return Y + '年' + M + '月' + '日';
+        return Y + '年' + M + '月' + D + '日';
     }
 }
 
