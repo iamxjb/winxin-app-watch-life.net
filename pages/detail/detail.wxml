@@ -88,8 +88,8 @@
                 {{commentCount}}
             </view>
             <block wx:key="id" wx:for="{{commentsList}}">
-                <view class="comment">
-                    <view wx:if="{{item.parent ==0}}">
+              <view wx:if="{{item.parent ==0}}">
+                <view class="comment">                   
                         <view class="comment-user" >
                             <image src="{{item.author_url}}" class="gravatarImg"></image>
                             <view style='display:flex;flex-direction: row; justify-content: space-between;width: 100%' >
