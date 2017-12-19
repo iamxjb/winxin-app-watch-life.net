@@ -51,7 +51,7 @@
         <!-- 图标导航 -->
         <view class="top-Nav">
             <block wx:for="{{topNav}}" wx:key="id">
-                <view class="top-item" catchtap="onNavRedirect" data-redirect="{{item.redirect}}" id="{{item.id}}">
+                <view class="top-item" catchtap="onNavRedirect" data-redirectlink="{{item.redirectlink}}" data-redirecttype="{{item.redirecttype}}" data-appid="{{item.appid}}" id="{{item.id}}">
                     <view>
                         <image src="{{item.image}}"></image>
                     </view>
@@ -60,7 +60,9 @@
                     </view>
                 </view>
             </block>
-        </view>       
+        </view>
+        <!-- 图标导航 -->
+
     </view>
     <view class="container">
      <!-- 加载图文列表 -->

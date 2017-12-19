@@ -297,10 +297,31 @@ Page({
   },
   //首页图标跳转
   onNavRedirect:function(e){      
-      var url = e.currentTarget.dataset.redirect;          
-      wx.navigateTo({
-          url: url
-      })
+      var url = e.currentTarget.dataset.redirectlink;
+      var redirectType = e.currentTarget.dataset.redirecttype;
+      var appid = e.currentTarget.dataset.appid; 
+      if (redirectType=='page')
+      {
+          wx.navigateTo({
+              url: url
+          })
+      }
+      else if (redirectType == 'app')
+      {
+          wx.navigateToMiniProgram({
+              appId: appid,
+              envVersion: 'release',
+              path: url,
+              success(res) {
+                  // 打开成功
+              },
+              fail: function (res) {
+                  console.log(res);
+              }
+          })
+
+      }   
+      
   },
   // 跳转至查看小程序列表页面或文章详情页
   redictAppDetail: function (e) {
