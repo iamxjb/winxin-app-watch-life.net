@@ -105,6 +105,8 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-4.html" target="_blank">11.WordPress版微信小程序2.4版发布</a>
 
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-6.html" target="_blank">12.WordPress版微信小程序2.6版发布</a>
+
 
 
 # 优秀WordPress版微信小程序推荐
@@ -122,9 +124,7 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 1、本程序html转wxml的解析采用的是https://github.com/icindy/wxParse
 
-2、专题页面及浏览记录页面的设计思路参考 https://devework.com/  网站的小程序
-
-3.本程序有关es6-promise 部分代码参考 开源程序：https://github.com/cinoliu/-es6-promise
+2.本程序有关es6-promise 部分代码参考 开源程序：https://github.com/cinoliu/-es6-promise
 
 
 在此对上述提供开源及创意表示致谢。
@@ -143,6 +143,14 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 
 # 更新历史：
+
+## 2017年12月15日
+
+1.增加赞赏后发送模板消息。
+
+2.增加回复评论发送模板消息。
+
+3.调整评论和回复的显示方式及提交评论、回复发送方式。
 
 ## 2017年11月1日
 
