@@ -1,5 +1,7 @@
 # WordPress版微信小程序
 
+![wordpress微信小程序](https://www.watch-life.net/images/2017/06/winxinapp-wordpress-watch-life-new-700.jpg)
+
 ![wordpress微信小程序](https://www.watch-life.net/images/wordpresswinxinapp700.png) 
 
 # 功能清单：
@@ -33,6 +35,8 @@
 14.赞赏后发送模版消息。
 
 15.web-view内嵌网页跳转。
+
+16.回复评论发送模板消息。
 
 # 开源地址
 
