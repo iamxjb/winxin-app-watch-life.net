@@ -36,7 +36,7 @@ function strNumDiscode(str){
     str = str.replace(/&oplus;/g, '⊕');
     str = str.replace(/&otimes;/g, '⊗');
     str = str.replace(/&perp;/g, '⊥');
-    str = str.replace(/&sdot;/g, '⋅');
+    str = str.replace(/&sdot;/g, '⋅');    
     return str;
 }
 
@@ -112,6 +112,12 @@ function strcharacterDiscode(str){
     str = str.replace(/&lt;/g, '<');
     str = str.replace(/&gt;/g, '>');
     str = str.replace(/&#8226;/g, '•');
+    str = str.replace(/&/g, '&');
+    str = str.replace(/&#8221;/g, '"');
+    str = str.replace(/&#8216;/g, '\'');
+    str = str.replace(/&#8217;/g, '\'');
+   
+
 
     return str;
 }
