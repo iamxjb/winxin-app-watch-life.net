@@ -83,6 +83,11 @@
       <template is="wxParseVideo" data="{{item}}" />
     </block>
 
+    <!--audio类型-->
+    <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block>
+
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
@@ -168,6 +173,11 @@
       <template is="wxParseVideo" data="{{item}}" />
     </block>
 
+    <!--audio类型-->
+    <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block>
+
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
@@ -243,6 +253,11 @@
     <!--video类型-->
     <block wx:elif="{{item.tag == 'video'}}">
       <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
     </block>
 
     <!--img类型-->
@@ -321,6 +336,11 @@
       <template is="wxParseVideo" data="{{item}}" />
     </block>
 
+    <!--audio类型-->
+    <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block>
+
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
@@ -395,6 +415,11 @@
     <!--video类型-->
     <block wx:elif="{{item.tag == 'video'}}">
       <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
     </block>
 
     <!--img类型-->
@@ -473,6 +498,11 @@
       <template is="wxParseVideo" data="{{item}}" />
     </block>
 
+    <!--audio类型-->
+    <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block>
+
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
@@ -549,6 +579,11 @@
       <template is="wxParseVideo" data="{{item}}" />
     </block>
 
+    <!--audio类型-->
+    <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block>
+
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
@@ -622,6 +657,11 @@
     <!--video类型-->
     <block wx:elif="{{item.tag == 'video'}}">
       <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
     </block>
 
     <!--img类型-->
@@ -700,6 +740,11 @@
       <template is="wxParseVideo" data="{{item}}" />
     </block>
 
+    <!--audio类型-->
+    <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block>
+
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
@@ -774,6 +819,11 @@
     <!--video类型-->
     <block wx:elif="{{item.tag == 'video'}}">
       <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
     </block>
 
     <!--img类型-->
@@ -852,6 +902,11 @@
       <template is="wxParseVideo" data="{{item}}" />
     </block>
 
+    <!--audio类型-->
+    <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
+    </block>
+
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
@@ -926,6 +981,11 @@
     <!--video类型-->
     <block wx:elif="{{item.tag == 'video'}}">
       <template is="wxParseVideo" data="{{item}}" />
+    </block>
+
+    <!--audio类型-->
+    <block wx:elif="{{item.tag == 'audio'}}">
+      <template is="wxParseAudio" data="{{item}}" />
     </block>
 
     <!--img类型-->
