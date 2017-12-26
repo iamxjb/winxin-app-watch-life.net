@@ -22,7 +22,7 @@
   font-weight: bold;
   outline: none;
   color: #3a4040;
-  margin-bottom: 48rpx;
+  margin-bottom: 24rpx; 
 }
 
 .entry-gap-like {
@@ -54,7 +54,9 @@
   color: #959595;
   font-weight: normal;
   outline: none;
-  margin-bottom: 60rpx;
+  margin-bottom: 30rpx;
+  border-bottom:1px solid #eee;
+
   /* border-bottom: 1px solid #ededed; *//* margin-left: 30rpx; */
 }
 
@@ -583,3 +585,24 @@
 }
 
 /*   end menu-box  */
+
+
+.pagination
+{
+ font-weight: normal;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  color: #4c4c4c !important;
+  border-bottom: 1px solid #eee;
+
+}
+.nav-previous {
+    float: left;
+    width: 80%;
+}
+
+.nav-next {
+    float: right;
+    text-align: right;
+    width: 80%;
+} 

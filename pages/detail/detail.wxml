@@ -43,7 +43,15 @@
             </view>
         </view>
 
-
+        <!--  上一篇，下一篇  -->
+        <view wx:if="{{display}}" class="pagination">
+            <view wx:if="{{detail.previous_post_id}}" class="nav-previous">
+                <navigator url="../detail/detail?id={{detail.previous_post_id}}" open-type="redirect" hover-class="relatedNavigator">←{{detail.previous_post_title}}</navigator>
+            </view>
+            <view wx:if="{{detail.next_post_id}}" class="nav-next">
+                <navigator url="../detail/detail?id={{detail.next_post_id}}" open-type="redirect" hover-class="relatedNavigator">{{detail.next_post_title}}→</navigator>
+            </view>
+        </view>
 
         <view class="relatedPost" style="display:{{display}}">
             <view class="relatedTitle">
@@ -88,11 +96,11 @@
                 {{commentCount}}
             </view>
             <block wx:key="id" wx:for="{{commentsList}}">
-              <view wx:if="{{item.parent ==0}}">
-                <view class="comment">                   
-                        <view class="comment-user" >
+                <view wx:if="{{item.parent ==0}}">
+                    <view class="comment">
+                        <view class="comment-user">
                             <image src="{{item.author_url}}" class="gravatarImg"></image>
-                            <view style='display:flex;flex-direction: row; justify-content: space-between;width: 100%' >
+                            <view style='display:flex;flex-direction: row; justify-content: space-between;width: 100%'>
                                 <view style='font-weight:bold;' bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.dateStr}}">{{item.author_name}}</view>
                                 <view bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.dateStr}}">{{item.date}}</view>
                             </view>
@@ -120,7 +128,7 @@
                                                     {{item3.author_name}} 回复 {{item3.parent_name}}:{{item3.summary}}
                                                 </view>
 
-                                                 <!-- 四级回复-->
+                                                <!-- 四级回复-->
                                                 <view wx:for="{{commentsList}}" wx:key="itemid4" wx:for-index="idx" wx:for-item="item4">
                                                     <view wx:if="{{item4.parent===item3.id}}">
                                                         <view class="replay-user">
@@ -128,7 +136,7 @@
                                                         </view>
                                                     </view>
                                                 </view>
-                                                 <!-- 四级回复-->
+                                                <!-- 四级回复-->
 
                                             </view>
                                         </view>
@@ -172,7 +180,7 @@
                         <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
                         <view class="comment-box">
                             <image src="../../images/entry-home.png" class="img-plus" style="margin-left:20rpx;margin-right:20rpx" catchtap="goHome"></image>
-                            <input class="comment-input" type='text' confirm-type="send" cursor-spacing="10" maxlength="30" name="inputComment" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onReplyBlur" bindfocus="onRepleyFocus" />
+                            <input class="comment-input" type='text' confirm-type="send" cursor-spacing="10" maxlength="100" name="inputComment" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onReplyBlur" bindfocus="onRepleyFocus" />
                             <button class="comment-button touch-active" formType="submit">发送</button>
                             <image src="../../images/plus.png" class="img-plus" catchtap="ShowHideMenu" mode=""></image>
                         </view>
