@@ -49,16 +49,7 @@ Page({
   onShow:function(options)
   {
   },
-  onReady:function()
-  {
-      var self=this;
-      var url = self.data.url;
-      self.setData({
-          url: url
-      });
-
-
-  },
+  
   
   onShareAppMessage: function (options){
         var self =this;
