@@ -59,7 +59,7 @@ Page({
     })
   },
   onShareAppMessage: function () {
-    var title = "分享“"+ config.getWebsiteName +"”的热点文章。";
+    var title = "分享“"+ config.getWebsiteName +"”的文章排行。";
     var path ="pages/hot/hot";
     return {
       title: title,

@@ -66,6 +66,8 @@ Page({
       });
 
       this.fetchData(config.getAboutId);
+      //消除下刷新出现空白矩形的问题。
+      wx.stopPullDownRefresh()
 
   },  
   onShareAppMessage: function () {
