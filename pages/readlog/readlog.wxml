@@ -21,7 +21,7 @@
 
   <view class="top-bar">
     <block wx:for="{{topBarItems}}" wx:key="id">
-      <view class="top-bar-item {{item.selected ? 'top-bar-item-Selected': '' }}" catchtap="onTapTag" id="{{item.id}}">{{item.name}}</view>
+      <view class="top-bar-item {{item.selected ? 'top-bar-item-Selected': '' }}"  catchtap="onTapTag" id="{{item.id}}">{{item.name}}</view>
     </block>
   </view>
   <view class="container">

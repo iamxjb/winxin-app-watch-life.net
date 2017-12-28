@@ -73,6 +73,8 @@
   font-size: 30rpx;
   color: #757575;
   text-align: left;
+  word-wrap:break-word;
+ word-break:break-all; 
 }
 
 .top-bar {
