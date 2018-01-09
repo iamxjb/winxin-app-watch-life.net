@@ -14,7 +14,7 @@
 //配置域名,域名只修改此处。
 //如果wordpress没有安装在网站根目录请加上目录路径,例如："www.watch-life.net/blog"
 var DOMAIN = "www.watch-life.net";
-var MINAPPTYPE="1";//小程序的类型，如果是企业小程序请填：0 ，如果是个人小程序请填：1
+var MINAPPTYPE="0";//小程序的类型，如果是企业小程序请填：0 ，如果是个人小程序请填：1
 var WEBSITENAME="守望轩"; //网站名称
 var ABOUTID = 1136; //wordpress网站"页面"的id,注意这个"页面"是wordpress的"页面"，不是"文章"
 var PAGECOUNT='10'; //每页文章数目

@@ -84,12 +84,37 @@ Page({
   },
   gotowebpage:function()
   {
-      var url = '../webpage/webpage'
-      wx.navigateTo({
-          url: url
-      })
+      var self=this;
+      var minAppType = config.getMinAppType;
+      var url = '';
+      if (minAppType == "0") {
+          url = '../webpage/webpage';
+          wx.navigateTo({
+              url: url
+          })
+      }
+      else {
+          self.copyLink(config.getDomain);
+      } 
 
   },
+    copyLink: function (url) {
+        //this.ShowHideMenu();
+        wx.setClipboardData({
+            data: url,
+            success: function (res) {
+                wx.getClipboardData({
+                    success: function (res) {
+                        wx.showToast({
+                            title: '链接已复制',
+                            image: '../../images/link.png',
+                            duration: 2000
+                        })
+                    }
+                })
+            }
+        })
+    },
   //给a标签添加跳转和复制链接事件
   wxParseTagATap: function (e) {
       var self = this;
