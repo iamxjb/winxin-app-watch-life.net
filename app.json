@@ -10,7 +10,8 @@
         "pages/readlog/readlog",
         "pages/hot/hot",
         "pages/pay/pay",
-        "pages/webpage/webpage"
+        "pages/webpage/webpage",
+        "pages/comments/comments"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -29,7 +30,13 @@
                 "iconPath": "images/tar-home.png",
                 "selectedIconPath": "images/tar-home-on.png",
                 "text": "首页"
-            },           
+            },
+            {
+                "pagePath": "pages/comments/comments",
+                "iconPath": "images/tar-comments.png",
+                "selectedIconPath": "images/tar-comments-on.png",
+                "text": "评论"
+            },
             {
                 "pagePath": "pages/readlog/readlog",
                 "iconPath": "images/tar-person.png",

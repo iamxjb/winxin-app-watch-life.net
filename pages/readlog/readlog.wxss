@@ -40,7 +40,7 @@
   width: 128rpx;
   height: 128rpx;
   margin: 36rpx 0 24rpx;
-  border-radius: 50%;
+  /*border-radius: 50%;*/
 }
 
 .dec {

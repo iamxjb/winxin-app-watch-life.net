@@ -102,16 +102,26 @@ Page({
     },
     gotowebpage: function () {
         var self = this;
-        var url = '../webpage/webpage'
-        wx.navigateTo({
-            url: url + '?url=' + this.data.link
-        })
+        self.ShowHideMenu();
+        var minAppType = config.getMinAppType;
+        var url ='';
+        if (minAppType=="0")
+        {
+            url = '../webpage/webpage';
+            wx.navigateTo({
+                url: url + '?url=' + self.data.link
+            })
+        } 
+        else
+        {
+            self.copyLink(self.data.link);
+        }        
 
     },
-    copyLink: function () {
-        this.ShowHideMenu();
+    copyLink: function (url) {
+        //this.ShowHideMenu();
         wx.setClipboardData({
-            data: this.data.link,
+            data: url,
             success: function (res) {
                 wx.getClipboardData({
                     success: function (res) {

@@ -28,11 +28,13 @@ Page({
         { id: '2', name: '评论', selected: false},
         { id: '3', name: '点赞', selected: false },
         { id: '4', name: '赞赏', selected: false },
-        { id: '5', name: '最新评论', selected: false}
+        { id: '5', name: '订阅', selected: false }
     ],
     tab: '1',
     showerror: "none",
-    shownodata:"none"
+    shownodata:"none",
+    subscription:""
+
   
   },
 
@@ -53,6 +55,7 @@ Page({
     self.fetchPostsData('1');
     
   },
+  
 
   // 跳转至查看文章详情
   redictDetail: function (e) {
@@ -96,10 +99,6 @@ Page({
       } else {
           this.fetchPostsData("1");
       }
-  },  
-  onShow: function ()
-  {
-      
   },
   onShareAppMessage: function () {
       var title = "分享我在“" + config.getWebsiteName + "浏览、评论、点赞、赞赏的文章";
@@ -152,7 +151,6 @@ Page({
               var openid = app.globalData.openid;
               var getMyCommentsPosts = wxRequest.getRequest(Api.getWeixinComment(openid));
               getMyCommentsPosts.then(response => {
-
                   if (response.statusCode == 200) {
                       self.setData({
                           readLogs: self.data.readLogs.concat(response.data.data.map(function (item) {
@@ -197,7 +195,6 @@ Page({
               var openid = app.globalData.openid;
               var getMylikePosts = wxRequest.getRequest(Api.getMyLikeUrl(openid));
               getMylikePosts.then(response => {
-
                   if (response.statusCode == 200) {
                       this.setData({
                           readLogs: self.data.readLogs.concat(response.data.data.map(function (item) {
@@ -277,44 +274,52 @@ Page({
         
 
     }
-
       else if (tab == '5') {
-          this.setData({
+          self.setData({
               readLogs: []
           });
-          var getNewComments = wxRequest.getRequest(Api.getNewComments());
-          getNewComments.then(response => {
-
-              if (response.statusCode == 200) {
-                  this.setData({
-                      readLogs: self.data.readLogs.concat(response.data.map(function (item) {
-                          count++;
-                          item[0] = item.post;
-                          item[1] = util.removeHTML(item.content.rendered + '(' + item.author_name+')');
-                          item[2] = "0";
-                          return item;
-                      }))
-                  });
-                  if (count == 0) {
-                      self.setData({
-                          shownodata: 'block'
+          var subscription = self.data.subscription;
+          if (subscription !='')
+          {
+              var url = Api.getPostsByCategories(subscription);
+              var getMysubPost = wxRequest.getRequest(url);
+              getMysubPost.then(response =>{
+                  if (response.statusCode == 200) {
+                      this.setData({
+                          readLogs: self.data.readLogs.concat(response.data.map(function (item) {
+                              count++;
+                              item[0] = item.id;
+                              item[1] = item.title.rendered;
+                              item[2] = "0";
+                              return item;
+                          }))
                       });
+                      self.setData({
+                          userInfo: app.globalData.userInfo
+                      });
+
+                      if (count == 0) {
+                          self.setData({
+                              shownodata: 'block'
+                          });
+                      }
                   }
-              }
-              else {
-                  console.log(response);
-                  this.setData({
-                      showerror: 'block'
-                  });
+                  else {
+                      console.log(response);
+                      this.setData({
+                          showerror: 'block'
+                      });
 
-              }
-          })
+                  }
+              })
 
-
+          }
+          else{
+              this.setData({
+                  showerror: 'block'
+              });
+          }
       }
-
-
-
   },
   userAuthorization: function () {
       var self = this;
@@ -403,10 +408,62 @@ Page({
                     else {
                         console.log(response.data.message);
                     }
+                }).then (response=>{
+
+                    self.getSubscription();
+                    
                 })
+                
             }).catch(function (error) {
                 console.log('error: ' + error.errMsg);
                 self.userAuthorization();
             })
+    },
+    getSubscription: function () {
+        if (app.globalData.isGetOpenid) {
+            var openid = app.globalData.openid;
+            var url = Api.getSubscription() + '?openid=' + app.globalData.openid;
+            var getMysub = wxRequest.getRequest(url);
+            getMysub.then(response => {
+                if (response.statusCode == 200 && response.data.status == '200') {
+                    var _subscription = response.data.substr;
+                    self.setData({
+                        subscription: _subscription
+                    });
+
+                }
+                //   if (response.statusCode == 200 && response.data.status == '200') {
+                //       self.setData({
+                //           readLogs: self.data.readLogs.concat(response.data.usermetaList.map(function (item) {
+                //               count++;
+                //               item[0] = item.catid;
+                //               item[1] = item.catname;
+                //               item[2] = "1";
+                //               return item;
+                //           }))
+                //       });
+                //       self.setData({
+                //           userInfo: app.globalData.userInfo
+                //       });
+
+                //       if (count == 0) {
+                //           self.setData({
+                //               shownodata: 'block'
+                //           });
+                //       }
+                //   }
+                //   else {
+                //       console.log(response);
+                //       self.setData({
+                //           showerror: 'block'
+                //       });
+
+                //   }
+            })
+        }
+        else {
+            self.userAuthorization();
+        }
+
     } 
 })

@@ -33,6 +33,11 @@ module.exports = {
 
   },
 
+  // 获取多个分类文章列表数据
+  getPostsByCategories: function (categories) {
+      var url = HOST_URI + 'posts?per_page=20&orderby=date&order=desc&page=1&categories='+ categories;
+      return url;
+  },
 // 获取置顶的文章
   getStickyPosts: function () {
     var url = HOST_URI + 'posts?sticky=true&per_page=5&page=1';
@@ -245,9 +250,28 @@ module.exports = {
       var url = HOST_URI_WATCH_LIFE_JSON;
       url += "weixin/sendmessage";
       return url;
+  } ,
+
+ //获取订阅的分类
+  getSubscription() {
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      url += "category/getsubscription";
+      return url;
+  },
+
+  //订阅的分类
+  postSubscription() {
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      url += "category/postsubscription";
+      return url;
+  },
+
+  //删除订阅的分类
+  delSubscription() {
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      url += "category/delSubscription";
+      return url;
   }
-
-
 
 
 };

@@ -63,3 +63,20 @@
   white-space: nowrap;
   color: #959595;
 }
+.topic-name {
+ float: left; 
+ width: 70%;
+}
+.topic-img {
+    float: right;
+    text-align: right;
+    width: 30%;
+ 
+}
+
+.img-menu {
+  width: 40rpx;
+  height: 40rpx;
+  display: inline-block;
+  text-align: center;
+}

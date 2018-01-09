@@ -1,24 +1,31 @@
-    <import src="../../templates/copyright.wxml" />
+<import src="../../templates/copyright.wxml" />
 
-    <scroll-view style="height:100%;" scroll-y="true" lower-threshold="100rpx">
-      <view class="topic-common-list">
+<scroll-view style="height:100%;" scroll-y="true" lower-threshold="100rpx">
+    <view class="topic-common-list">
         <block wx:key="id" wx:for="{{categoriesList}}">
-          <view class="list-item" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
-            <view>
-              <image src="{{item.category_thumbnail_image}}" class="cover"></image>
+            <view class="list-item">
+                <view>
+                    <image src="{{item.category_thumbnail_image}}" class="cover" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex"></image>
+                </view>
+                <view class="content-title" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
+                    <view class="topic-name">
+                        <text>{{item.name}}</text>
+                    </view>
+                    <view class="topic-img">
+                        <image src="../../images/{{item.subimg}}" data-subflag="{{item.subflag}}" data-id="{{item.id}}" catchtap="postsub" class="img-menu"></image>
+                    </view>
+                </view>
+                <view class="content-brief" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
+                    <text>{{item.description}}</text>
+                </view>
+
+
             </view>
-            <view class="content-title">
-              <text>{{item.name}}</text>
-            </view>
-            <view class="content-brief">
-              <text>{{item.description}}</text>
-            </view>
-          </view>
 
         </block>
-      </view>
-    </scroll-view>
-
-    <view class="copyright" style="display:{{floatDisplay}}">
-      <template is="tempCopyright" />
     </view>
+</scroll-view>
+
+<view class="copyright" style="display:{{floatDisplay}}">
+    <template is="tempCopyright" />
+</view>
