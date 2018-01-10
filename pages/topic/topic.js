@@ -142,7 +142,7 @@ Page({
             var url = Api.getSubscription() + '?openid=' + app.globalData.openid;
             var getSubscriptionRequest = wxRequest.getRequest(url);
             getSubscriptionRequest.then(res => {
-                var catList = res.data.subscription.wl_sub;
+                var catList = res.data.subscription;
                 var categoriesList = self.data.categoriesList;
                 var newCategoriesList = [];
                 if (categoriesList)

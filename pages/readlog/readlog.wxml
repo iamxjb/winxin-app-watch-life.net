@@ -29,9 +29,10 @@
       <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
       <view class="errortext">
         暂时无法访问网络
+        <!--
         <view class="">
           <button class="more-button" bindtap="reload" size="mini" bindtap="reload">重新加载</button>
-        </view>
+        </view> -->
       </view>
     </view>
 

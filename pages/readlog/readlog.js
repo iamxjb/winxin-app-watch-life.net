@@ -33,9 +33,7 @@ Page({
     tab: '1',
     showerror: "none",
     shownodata:"none",
-    subscription:""
-
-  
+    subscription:""  
   },
 
   /**
@@ -278,18 +276,18 @@ Page({
           self.setData({
               readLogs: []
           });
-          var subscription = self.data.subscription;
-          if (subscription !='')
-          {
-              var url = Api.getPostsByCategories(subscription);
+          if (app.globalData.isGetOpenid) {
+
+              var openid = app.globalData.openid;
+              var url = Api.getSubscription() + '?openid=' + app.globalData.openid;
               var getMysubPost = wxRequest.getRequest(url);
-              getMysubPost.then(response =>{
+              getMysubPost.then(response => {
                   if (response.statusCode == 200) {
                       this.setData({
-                          readLogs: self.data.readLogs.concat(response.data.map(function (item) {
+                          readLogs: self.data.readLogs.concat(response.data.usermetaList.map(function (item) {
                               count++;
-                              item[0] = item.id;
-                              item[1] = item.title.rendered;
+                              item[0] = item.ID;
+                              item[1] = item.post_title;
                               item[2] = "0";
                               return item;
                           }))
@@ -312,15 +310,14 @@ Page({
 
                   }
               })
-
           }
           else{
-              this.setData({
-                  showerror: 'block'
-              });
+              self.userAuthorization();
           }
+
+          
       }
-  },
+  },  
   userAuthorization: function () {
       var self = this;
       // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
@@ -403,17 +400,11 @@ Page({
                         console.log("openid 获取成功");
                         app.globalData.openid = response.data.openid;
                         app.globalData.isGetOpenid = true;
-
                     }
                     else {
                         console.log(response.data.message);
                     }
-                }).then (response=>{
-
-                    self.getSubscription();
-                    
-                })
-                
+                })                
             }).catch(function (error) {
                 console.log('error: ' + error.errMsg);
                 self.userAuthorization();
@@ -430,35 +421,7 @@ Page({
                     self.setData({
                         subscription: _subscription
                     });
-
-                }
-                //   if (response.statusCode == 200 && response.data.status == '200') {
-                //       self.setData({
-                //           readLogs: self.data.readLogs.concat(response.data.usermetaList.map(function (item) {
-                //               count++;
-                //               item[0] = item.catid;
-                //               item[1] = item.catname;
-                //               item[2] = "1";
-                //               return item;
-                //           }))
-                //       });
-                //       self.setData({
-                //           userInfo: app.globalData.userInfo
-                //       });
-
-                //       if (count == 0) {
-                //           self.setData({
-                //               shownodata: 'block'
-                //           });
-                //       }
-                //   }
-                //   else {
-                //       console.log(response);
-                //       self.setData({
-                //           showerror: 'block'
-                //       });
-
-                //   }
+                }                
             })
         }
         else {
