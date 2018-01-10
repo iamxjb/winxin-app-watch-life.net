@@ -65,18 +65,20 @@
 }
 .topic-name {
  float: left; 
- width: 70%;
+ width: 55%;
 }
 .topic-img {
     float: right;
     text-align: right;
-    width: 30%;
+    width: 40%;
+    margin-right: 10rpx;
  
 }
 
 .img-menu {
-  width: 40rpx;
+  width: 80rpx;
   height: 40rpx;
   display: inline-block;
   text-align: center;
+   border-radius: 12rpx;
 }

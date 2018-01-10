@@ -51,8 +51,7 @@ Page({
                     categoriesList: self.data.categoriesList.concat(response.data.map(function (item) {
                         if (typeof (item.category_thumbnail_image) == "undefined" || item.category_thumbnail_image == "") {
                             item.category_thumbnail_image = "../../images/website.png";
-                            
-
+                        
                         }
                         item.subimg = "subscription.png";
                         return item;
@@ -70,7 +69,11 @@ Page({
             }
             else
             {
-                self.getSubscription();
+                setTimeout(function () {
+                    self.getSubscription();
+                }, 500);
+
+               
 
             }
         })
@@ -78,7 +81,6 @@ Page({
             console.log(response);
 
         }).finally(function () {
-                
 
             })
     },
@@ -124,7 +126,11 @@ Page({
                         console.log("openid 获取成功");
                         app.globalData.openid = response.data.openid;
                         app.globalData.isGetOpenid = true;
-                        self.getSubscription();
+
+                        setTimeout(function () {                            
+                            self.getSubscription();
+                        }, 500);
+                       
                         
                     }
                     else {
@@ -185,7 +191,7 @@ Page({
             }).finally(function () {
                 setTimeout(function () {
                     wx.hideLoading();
-                }, 900)
+                }, 500)
                 wx.hideNavigationBarLoading();
 
             })

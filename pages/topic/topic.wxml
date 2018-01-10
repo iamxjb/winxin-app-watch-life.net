@@ -15,7 +15,7 @@
                         <image src="../../images/{{item.subimg}}" data-subflag="{{item.subflag}}" data-id="{{item.id}}" catchtap="postsub" class="img-menu"></image>
                     </view>
                 </view>
-                <view class="content-brief" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
+                <view class="content-brief" data-item="{{item.name}}" data-id="{{item.id}}">
                     <text>{{item.description}}</text>
                 </view>
 
