@@ -281,17 +281,24 @@ Page({
               var openid = app.globalData.openid;
               var url = Api.getSubscription() + '?openid=' + app.globalData.openid;
               var getMysubPost = wxRequest.getRequest(url);
+              var count=0;
               getMysubPost.then(response => {
                   if (response.statusCode == 200) {
-                      this.setData({
-                          readLogs: self.data.readLogs.concat(response.data.usermetaList.map(function (item) {
-                              count++;
-                              item[0] = item.ID;
-                              item[1] = item.post_title;
-                              item[2] = "0";
-                              return item;
-                          }))
-                      });
+                      var usermetaList = response.data.usermetaList;
+                      if (usermetaList)
+                      {
+                          this.setData({
+                              readLogs: self.data.readLogs.concat(usermetaList.map(function (item) {
+                                  count++;
+                                  item[0] = item.ID;
+                                  item[1] = item.post_title;
+                                  item[2] = "0";
+                                  return item;
+                              }))
+                          });
+
+                      }
+                      
                       self.setData({
                           userInfo: app.globalData.userInfo
                       });

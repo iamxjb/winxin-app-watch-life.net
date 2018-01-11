@@ -148,45 +148,51 @@ Page({
             var url = Api.getSubscription() + '?openid=' + app.globalData.openid;
             var getSubscriptionRequest = wxRequest.getRequest(url);
             getSubscriptionRequest.then(res => {
-                var catList = res.data.subscription;
-                var categoriesList = self.data.categoriesList;
-                var newCategoriesList = [];
-                if (categoriesList)
+                if (res.data.status == '200')
                 {
-                    for (var i = 0; i < categoriesList.length; i++) {
-                        var subimg = "subscription.png";
-                        var subflag = "0";
+                    var catList = res.data.subscription;
+                    var categoriesList = self.data.categoriesList;
+                    var newCategoriesList = [];
+                    if (catList && categoriesList) {
+                        for (var i = 0; i < categoriesList.length; i++) {
+                            var subimg = "subscription.png";
+                            var subflag = "0";
 
-                        for (var j = 0; j < catList.length; j++) {
-                            if (categoriesList[i].id == catList[j]) {
-                                subimg = "subscription-on.png";
-                                subflag = "1";
-                            }
-                            var category_thumbnail_image = "";
-                            if (typeof (categoriesList[i].category_thumbnail_image) == "undefined" || categoriesList[i].category_thumbnail_image == "") {
-                                category_thumbnail_image = "../../images/website.png";
-                            }
-                            else {
-                                category_thumbnail_image = categoriesList[i].category_thumbnail_image;
-                            }
+                            for (var j = 0; j < catList.length; j++) {
+                                if (categoriesList[i].id == catList[j]) {
+                                    subimg = "subscription-on.png";
+                                    subflag = "1";
+                                }
+                                var category_thumbnail_image = "";
+                                if (typeof (categoriesList[i].category_thumbnail_image) == "undefined" || categoriesList[i].category_thumbnail_image == "") {
+                                    category_thumbnail_image = "../../images/website.png";
+                                }
+                                else {
+                                    category_thumbnail_image = categoriesList[i].category_thumbnail_image;
+                                }
 
+                            }
+                            var cat = {
+                                "category_thumbnail_image": category_thumbnail_image,
+                                "description": categoriesList[i].description,
+                                "name": categoriesList[i].name,
+                                "id": categoriesList[i].id,
+                                "subimg": subimg,
+                                "subflag": subflag
+                            }
+                            newCategoriesList.push(cat);
                         }
-                        var cat = {
-                            "category_thumbnail_image": category_thumbnail_image,
-                            "description": categoriesList[i].description,
-                            "name": categoriesList[i].name,
-                            "id": categoriesList[i].id,
-                            "subimg": subimg,
-                            "subflag": subflag
+                        if (newCategoriesList.length > 0) {
+                            self.setData({
+                                floatDisplay: "block",
+                                categoriesList: newCategoriesList
+                            });
                         }
-                        newCategoriesList.push(cat);
                     }
-                    if (newCategoriesList.length > 0) {
-                        self.setData({
-                            floatDisplay: "block",
-                            categoriesList: newCategoriesList
-                        });
-                    }
+
+                }
+                else{
+                    console.log(res);
                 }
             }).finally(function () {
                 setTimeout(function () {
