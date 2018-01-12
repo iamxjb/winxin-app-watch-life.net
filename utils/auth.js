@@ -35,7 +35,8 @@ module.exports = {
                     js_code: jscode,
                     encryptedData: response.encryptedData,
                     iv: response.iv,
-                    avatarUrl: response.userInfo.avatarUrl
+                    avatarUrl: response.userInfo.avatarUrl,
+                    nickname: response.userInfo.nickName
                 }
                 var postOpenidRequest = wxRequest.postRequest(url, data);
                 //获取openid
