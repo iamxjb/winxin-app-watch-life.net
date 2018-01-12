@@ -38,6 +38,8 @@
 
 16.回复评论发送模板消息。
 
+17.专题订阅。
+
 # 开源地址
 
 https://github.com/iamxjb/winxin-app-watch-life.net
@@ -118,7 +120,9 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 # 讨论微信群：
 
-由于微信群超过100人，无法再扫描二维码加入。如果你想加入，请先加我的微信：iamxjb ，我拉你入群。
+![wordpress版微信微信群2](https://www.watch-life.net/images/2018/01/qun2.png) 
+
+
 
 # 开源声明：
 
