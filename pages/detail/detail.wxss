@@ -606,3 +606,65 @@
     text-align: right;
     width: 80%;
 } 
+
+
+/*   海报  */
+.goods-qrcode-modal{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 90%;
+    height: 85%;
+    /*z-index: 1000;*/
+    background: rgba(0,0,0,.5);
+    padding: 40rpx;
+    transform: translateY(100%);
+    opacity: .5;
+    transition: opacity 250ms;
+}
+
+.goods-qrcode-modal.active{
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.goods-qrcode-body{
+    background: #fff;
+    height: 100%;
+    border-radius: 10rpx;
+}
+
+.goods-qrcode-modal .goods-qrcode-box{
+    height: 100%;
+    position: relative;
+    box-shadow: 0 0 15rpx rgba(0,0,0,.15);
+}
+
+.goods-qrcode-modal .goods-qrcode-loading{
+    top:0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.goods-qrcode-modal .goods-qrcode{
+    top:0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: none;
+}
+
+.goods-qrcode-modal .goods-qrcode.active{
+    display: block;
+}
+
+.goods-qrcode-modal .goods-qrcode-close{
+    position: absolute;
+    top:40rpx;
+    right: 40rpx;
+    padding: 15rpx;
+}

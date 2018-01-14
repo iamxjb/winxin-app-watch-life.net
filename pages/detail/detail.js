@@ -243,7 +243,6 @@ Page({
         var getPostDetailRequest = wxRequest.getRequest(Api.getPostByID(id));
         var res;
         var _displayLike = 'none';
-
         getPostDetailRequest
             .then(response => {
                 res = response;
@@ -256,7 +255,7 @@ Page({
                 if (response.data.like_count != '0') {
                     _displayLike = "block"
                 }
-
+                WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5);
                 self.setData({
                     detail: response.data,
                     likeCount: _likeCount,
@@ -264,7 +263,7 @@ Page({
                     link: response.data.link,
                     detailDate: util.cutstr(response.data.date, 10, 1),
                     //wxParseData: WxParse('md',response.data.content.rendered)
-                    wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5),
+                    //wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5),
                     display: 'block',
                     displayLike: _displayLike
 
@@ -804,5 +803,100 @@ Page({
             'dialog.title': '',
             'dialog.content': ''
         })
+    },
+    getGoodsQrcode: function () {
+        var page = this;
+        page.ShowHideMenu();
+        page.setData({
+            goods_qrcode_active: "active",            
+        });
+        if (page.data.goods_qrcode)
+            return true;
+        app.request({
+            url: api.default.goods_qrcode,
+            data: {
+                goods_id: page.data.id,
+            },
+            success: function (res) {
+                if (res.code == 0) {
+                    page.setData({
+                        goods_qrcode: res.data.pic_url,
+                    });
+                }
+                if (res.code == 1) {
+                    page.goodsQrcodeClose();
+                    wx.showModal({
+                        title: "提示",
+                        content: res.msg,
+                        showCancel: false,
+                        success: function (res) {
+                            if (res.confirm) {
+
+                            }
+                        }
+                    });
+                }
+            },
+        });
+    },
+
+    goodsQrcodeClose: function () {
+        var page = this;
+        page.setData({
+            goods_qrcode_active: "",
+            no_scroll: false,
+        });
+    },
+
+    saveGoodsQrcode: function () {
+        var page = this;
+        if (!wx.saveImageToPhotosAlbum) {
+            // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
+            wx.showModal({
+                title: '提示',
+                content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+            });
+            return;
+        }
+
+        wx.showLoading({
+            title: "正在保存图片",
+            mask: false,
+        });
+
+        wx.downloadFile({
+            url: page.data.goods_qrcode,
+            success: function (e) {
+                wx.saveImageToPhotosAlbum({
+                    filePath: e.tempFilePath,
+                    success: function () {
+                        wx.showToast({
+                            title: "商品海报保存成功",
+                        });
+                    },
+                    complete: function (e) {
+                        console.log(e);
+                        wx.hideLoading();
+                    }
+                });
+            },
+            complete: function (e) {
+                console.log(e);
+                wx.hideLoading();
+            }
+        });
+
+    },
+
+    goodsQrcodeClick: function (e) {
+        var src = e.currentTarget.dataset.src;
+        wx.previewImage({
+            urls: [src],
+        });
+    },
+    closeCouponBox: function (e) {
+        this.setData({
+            get_coupon_list: ""
+        });
     }
 })

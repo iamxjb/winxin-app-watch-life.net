@@ -15,8 +15,6 @@
 <import src="../../templates/copyright.wxml" />
 <view class="container">
     <view class="container">
-
-
         <view class="content-article-detail" style="display:{{display}}">
             <view class="entry-title">
                 {{detail.title.rendered}}
@@ -37,12 +35,9 @@
 
             </view>
             <view class="entry-summary">
-
                 <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-
             </view>
         </view>
-
         <!--  上一篇，下一篇  -->
         <view wx:if="{{display}}" class="pagination">
             <view wx:if="{{detail.previous_post_id}}" class="nav-previous">
@@ -188,7 +183,7 @@
                         <view class="menu-box {{isShow ? 'emoji-move-in' : 'emoji-move-out'}} {{isLoad ? 'no-emoji-move' : ''}}">
                             <view class="iconList">
                                 <view class="iconLine">
-                                    <view style="width:25%; position: relative; float:left; text-align:center">
+                                    <view style="width:20%; position: relative; float:left; text-align:center">
 
                                         <view>
                                             <image src="../../images/forwarding.png" class="img-menu"></image>
@@ -199,8 +194,17 @@
                                         <button class="share-button share-button touch-active" open-type="share">
                                         </button>
                                     </view>
+                                    <view style="width:20%; float:left; ">
+                                        <view>
+                                            <image src="../../images/poster.png" catchtap="getGoodsQrcode" class="img-menu"></image>
+                                        </view>
+                                        <view>
+                                            <text>海报</text>
+                                        </view>
 
-                                    <view style="width:25%; float:left; text-align:center">
+                                    </view>
+
+                                    <view style="width:20%; float:left; text-align:center">
                                         <view>
                                             <image src="../../images/copy.png" class="img-menu" catchtap="gotowebpage"></image>
                                         </view>
@@ -209,7 +213,7 @@
                                         </view>
                                     </view>
 
-                                    <view style="width:25%; float:left; text-align:center">
+                                    <view style="width:20%; float:left; text-align:center">
                                         <view>
                                             <image src="../../images/{{likeImag}}" catchtap="clickLike" id="likebottom" class="img-menu"></image>
                                         </view>
@@ -217,7 +221,7 @@
                                             <text>点赞</text>
                                         </view>
                                     </view>
-                                    <view style="width:25%; float:left; ">
+                                    <view style="width:20%; float:left; ">
                                         <view>
                                             <image src="../../images/appreciation.png" catchtap="praise" class="img-menu"></image>
                                         </view>
@@ -234,6 +238,7 @@
                 </form>
             </view>
         </view>
-    </view>
 
+
+    </view>
 </view>
