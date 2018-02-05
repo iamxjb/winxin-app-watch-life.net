@@ -194,16 +194,14 @@
                                         <button class="share-button share-button touch-active" open-type="share">
                                         </button>
                                     </view>
-                                    <view style="width:20%; float:left; ">
+                                    <view style="width:20%; float:left; text-align:center">
                                         <view>
-                                            <image src="../../images/poster.png" catchtap="getGoodsQrcode" class="img-menu"></image>
+                                            <image src="../../images/poster.png" catchtap="creatPoster" class="img-menu"></image>
                                         </view>
                                         <view>
                                             <text>海报</text>
                                         </view>
-
                                     </view>
-
                                     <view style="width:20%; float:left; text-align:center">
                                         <view>
                                             <image src="../../images/copy.png" class="img-menu" catchtap="gotowebpage"></image>
@@ -242,3 +240,4 @@
 
     </view>
 </view>
+

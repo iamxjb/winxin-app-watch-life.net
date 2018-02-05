@@ -306,7 +306,7 @@ Page({
               url: url
           })
       }
-      else if (redirectType == 'app')
+      else if (redirectType == 'miniapp')
       {
           wx.navigateToMiniProgram({
               appId: appid,
@@ -328,19 +328,42 @@ Page({
       // console.log('查看文章');
       var id = e.currentTarget.id;
       var redicttype = e.currentTarget.dataset.redicttype;
-      var url='';
-      if (redicttype == 'detailpage')
+      var url = e.currentTarget.dataset.url == null ? '':e.currentTarget.dataset.url;
+      var appid = e.currentTarget.dataset.appid == null ? '' : e.currentTarget.dataset.appid;
+      
+      if (redicttype == 'detailpage')//跳转到内容页
       {
           url = '../detail/detail?id=' + id;
+          wx.navigateTo({
+              url: url
+          })
       }
-      else if (redicttype == 'apppage')
+      if (redicttype == 'apppage') {//跳转到小程序内部页面         
+          wx.navigateTo({
+              url: url
+          })
+      }
+      else if (redicttype == 'webpage')//跳转到web-view内嵌的页面
       {
-          url = '../applist/applist';
+          url = '../webpage/webpage?url=' + url;
+          wx.navigateTo({
+              url: url
+          })          
       }
-      
-      wx.navigateTo({
-          url: url
-      })
+      else if (redicttype == 'miniapp')//跳转到其他app
+      {
+          wx.navigateToMiniProgram({
+              appId: appid,
+              envVersion: 'release',
+              path: url,
+              success(res) {
+                  // 打开成功
+              },
+              fail: function (res) {
+                  console.log(res);
+              }
+          })
+      }
   },
   //返回首页
   redictHome: function (e) {

@@ -46,15 +46,28 @@ Page({
     this.fetchData(config.getAboutId);
   },
   praise: function () {     
+      
       var self = this;
-      if (app.globalData.isGetOpenid) {
-          wx.navigateTo({
-              url: '../pay/pay?flag=2&openid=' + app.globalData.openid + '&postid=' + config.getAboutId
-          })
+      var minAppType = config.getMinAppType;
+      if (minAppType == "0") {
+          if (app.globalData.isGetOpenid) {
+              wx.navigateTo({
+                  url: '../pay/pay?flag=2&openid=' + app.globalData.openid + '&postid=' + config.getAboutId
+              })
+          }
+          else {
+              self.userAuthorization();
+          }
       }
       else {
-          self.userAuthorization();
-      }
+
+          var src = config.getZanImageUrl;
+          wx.previewImage({
+              urls: [src],
+          });
+
+      } 
+      
   },
   onPullDownRefresh: function () {
       var self = this;
@@ -219,10 +232,12 @@ Page({
     var getPageRequest = wxRequest.getRequest(Api.getPageByID(id));
     getPageRequest.then(response =>{
         console.log(response);
+        WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5);
+
         self.setData({
             pageData: response.data,
             // wxParseData: WxParse('md',response.data.content.rendered)
-            wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5)
+            //wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5)
         });
         self.setData({
             display: 'block'

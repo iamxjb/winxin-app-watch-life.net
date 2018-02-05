@@ -88,6 +88,7 @@ Page({
         return {
             title: '分享"' + config.getWebsiteName + '"的文章：' + this.data.detail.title.rendered,
             path: 'pages/detail/detail?id=' + this.data.detail.id,
+            imageUrl: this.data.detail.post_thumbnail_image,
             success: function (res) {
                 // 转发成功
                 console.log(res);
@@ -226,15 +227,29 @@ Page({
     praise: function () {
         this.ShowHideMenu();
         var self = this;
-        if (app.globalData.isGetOpenid) {
+        var minAppType = config.getMinAppType;
+        if (minAppType == "0") {
+            if (app.globalData.isGetOpenid) {
 
-            wx.navigateTo({
-                url: '../pay/pay?flag=1&openid=' + app.globalData.openid + '&postid=' + self.data.postID
-            })
+                wx.navigateTo({
+                    url: '../pay/pay?flag=1&openid=' + app.globalData.openid + '&postid=' + self.data.postID
+                })
+            }
+            else {
+                self.userAuthorization();
+            }
         }
         else {
-            self.userAuthorization();
-        }
+
+            var src = config.getZanImageUrl;
+            wx.previewImage({
+                urls: [src],
+            });
+            
+        } 
+        
+        
+       
     },
 
     //获取文章内容
@@ -804,49 +819,76 @@ Page({
             'dialog.content': ''
         })
     },
-    getGoodsQrcode: function () {
-        var page = this;
-        page.ShowHideMenu();
-        page.setData({
-            goods_qrcode_active: "active",            
-        });
-        if (page.data.goods_qrcode)
+    creatPoster: function () {
+        var self = this;
+        self.ShowHideMenu();
+        if (self.data.posterImageUrl)
+        {
+            url = '../poster/poster?posterImageUrl=' + posterImageUrl;
+            wx.navigateTo({
+                url: url
+            })
+
             return true;
-        app.request({
-            url: api.default.goods_qrcode,
-            data: {
-                goods_id: page.data.id,
-            },
-            success: function (res) {
-                if (res.code == 0) {
-                    page.setData({
-                        goods_qrcode: res.data.pic_url,
-                    });
-                }
-                if (res.code == 1) {
-                    page.goodsQrcodeClose();
-                    wx.showModal({
-                        title: "提示",
-                        content: res.msg,
-                        showCancel: false,
-                        success: function (res) {
-                            if (res.confirm) {
+        }
+        var postid = self.data.detail.id;
+        var title = self.data.detail.title.rendered;        
+        var path = "pages/detail/detail?id="+postid;
+        var postImageUrl="";
+        if (self.data.detail.content_first_image)
+        {
+            postImageUrl = self.data.detail.content_first_image;
 
-                            }
-                        }
-                    });
-                }
-            },
+        }
+        wx.showLoading({
+            title: "正在生成图片",
+            mask: false,
         });
+        
+        if (app.globalData.isGetOpenid) {
+            var openid = app.globalData.openid;
+            var data = {
+                postid: postid,
+                title: title,
+                path: path,
+                postImageUrl: postImageUrl,
+                openid: openid                
+            };
+            var url = Api.creatPoster();
+            var posterImageUrl = Api.getPosterUrl() + "poster-" + postid+".jpg";
+            var creatPosterRequest = wxRequest.postRequest(url, data);
+            creatPosterRequest.then(response => {
+                if (response.statusCode == 200) {
+                    if (response.data.status == '200') {                       
+                        url = '../poster/poster?posterImageUrl=' + posterImageUrl;
+                        wx.navigateTo({
+                            url: url
+                        })
+
+                    }
+                    else{
+
+                        console.log(response);
+
+                    }
+                }
+                else
+                {
+                    console.log(response);
+                }
+
+            }).catch(response => {
+                console.log(response);                
+                }).finally(function (response) {
+                    wx.hideLoading();
+                });
+
+            
+        }   
+
     },
 
-    goodsQrcodeClose: function () {
-        var page = this;
-        page.setData({
-            goods_qrcode_active: "",
-            no_scroll: false,
-        });
-    },
+    
 
     saveGoodsQrcode: function () {
         var page = this;

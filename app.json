@@ -11,10 +11,11 @@
         "pages/hot/hot",
         "pages/pay/pay",
         "pages/webpage/webpage",
-        "pages/comments/comments"
+        "pages/comments/comments",
+        "pages/poster/poster"
     ],
     "window": {
-        "backgroundTextStyle": "light",
+        "backgroundTextStyle": "dark",
         "navigationBarBackgroundColor": "#118fff",
         "navigationBarTitleText": "守望轩",
         "navigationBarTextStyle": "white"
