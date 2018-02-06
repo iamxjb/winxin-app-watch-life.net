@@ -51,12 +51,18 @@
         <!-- 图标导航 -->
         <view class="top-Nav">
             <block wx:for="{{topNav}}" wx:key="id">
-                <view class="top-item" catchtap="onNavRedirect" data-redirectlink="{{item.redirectlink}}" data-redirecttype="{{item.redirecttype}}" data-appid="{{item.appid}}" id="{{item.id}}">
+                <view class="top-item" 
+                catchtap="onNavRedirect" 
+                id="{{item.id}}" 
+                data-redicttype="{{item.redirecttype}}" 
+                data-url="{{item.url}}" 
+                data-appid="{{item.appid}}" 
+                data-extraData="{{item.extraData}}">
                     <view>
                         <image src="{{item.image}}"></image>
                     </view>
                     <view>
-                        <text> {{item.name}}</text>
+                        <text>{{item.name}}</text>
                     </view>
                 </view>
             </block>
