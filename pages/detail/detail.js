@@ -414,10 +414,18 @@ Page({
                                 }
                             }
                             else {
+                                var minAppType = config.getMinAppType;
                                 var url = '../webpage/webpage'
-                                wx.navigateTo({
-                                    url: url + '?url=' + href
-                                })
+                                if (minAppType == "0") {
+                                    url = '../webpage/webpage';
+                                    wx.navigateTo({
+                                        url: url + '?url=' + href
+                                    })
+                                }
+                                else {
+                                    self.copyLink(href);
+                                }
+
 
                             }
 
@@ -426,8 +434,6 @@ Page({
                     }).catch(res => {
                         console.log(response.data.message);
                     })
-
-
             }
         }
 
@@ -886,59 +892,5 @@ Page({
             
         }   
 
-    },
-
-    
-
-    saveGoodsQrcode: function () {
-        var page = this;
-        if (!wx.saveImageToPhotosAlbum) {
-            // 如果希望用户在最新版本的客户端上体验您的小程序，可以这样子提示
-            wx.showModal({
-                title: '提示',
-                content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
-            });
-            return;
-        }
-
-        wx.showLoading({
-            title: "正在保存图片",
-            mask: false,
-        });
-
-        wx.downloadFile({
-            url: page.data.goods_qrcode,
-            success: function (e) {
-                wx.saveImageToPhotosAlbum({
-                    filePath: e.tempFilePath,
-                    success: function () {
-                        wx.showToast({
-                            title: "商品海报保存成功",
-                        });
-                    },
-                    complete: function (e) {
-                        console.log(e);
-                        wx.hideLoading();
-                    }
-                });
-            },
-            complete: function (e) {
-                console.log(e);
-                wx.hideLoading();
-            }
-        });
-
-    },
-
-    goodsQrcodeClick: function (e) {
-        var src = e.currentTarget.dataset.src;
-        wx.previewImage({
-            urls: [src],
-        });
-    },
-    closeCouponBox: function (e) {
-        this.setData({
-            get_coupon_list: ""
-        });
     }
 })
