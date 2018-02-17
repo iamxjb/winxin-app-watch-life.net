@@ -40,6 +40,8 @@
 
 17.专题订阅。
 
+18.文章海报（分享微信朋友圈的卡片）。
+
 # 开源地址
 
 https://github.com/iamxjb/winxin-app-watch-life.net
@@ -109,7 +111,7 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-6.html" target="_blank">12.WordPress版微信小程序2.6版发布</a>
 
-
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-0.html" target="_blank">13.WordPress版微信小程序3.0版发布</a>
 
 # 优秀WordPress版微信小程序推荐
 
@@ -147,6 +149,16 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 
 # 更新历史：
+
+## 2018年2月15日
+
+1.增加文章海报（分享微信朋友圈的卡片）功能。
+
+2.兼容个人主体小程序的功能完善
+
+3.文章分享加题图。
+
+4.首页导航，提供三种方式的跳转
 
 ## 2017年12月15日
 
