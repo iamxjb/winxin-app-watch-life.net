@@ -18,7 +18,7 @@
     <swiper class="index-swiper" indicator-dots="true" interval="10000" autoplay="true" indicator-color="rgba(255, 255, 255, .2)" indicator-active-color="rgba(255, 255, 255, .7)">
         <block wx:key="id" wx:for="{{postsShowSwiperList}}">
             <swiper-item id="{{item.id}}" index="{{index}}" data-redicttype="{{item.type}}" data-appid="{{item.appid}}" data-url="{{item.url}}" bindtap="redictAppDetail">
-                <image mode="aspectFill" src="{{item.post_medium_image_300}}" style="width:100%" />
+                <image mode="aspectFill" src="{{item.content_first_image}}" style="width:100%" />
                 <view class="swiper-mask"></view>
                 <view class="swiper-desc">
                     <text>{{item.post_title}}</text>
