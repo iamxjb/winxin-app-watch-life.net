@@ -39,11 +39,17 @@ App({
       })
     }
   },
-  globalData:{
-    userInfo:null,
-    openid:'',
-    isGetUserInfo:false,
-    isGetOpenid:false
+  globalData: {
+    userInfo: null,
+    openid: '',
+    isGetUserInfo: false,
+    isGetOpenid: false,
+    posterData: {
+      firstImage: '',
+      title: '',
+      excerpt: '',
+      qrcode: ''
+    }
 
   }
 })

@@ -10,7 +10,7 @@
  * 
  */
 
-@import "../../wxParse/wxParse.wxss";
+/* @import "../../wxParse/wxParse.wxss";
  .wrapper{
   padding: 5rpx;
   border: 2rpx solid #eee;
@@ -40,4 +40,45 @@
 
 .gotowebpage-button::after{
    border: none; 
+ }  */
+
+ .container-box {
+  height: 100vh;
+}
+
+.img-box {
+  text-align: center;
+  padding-top: 40rpx;
+}
+
+.img-box image {
+  width: 660rpx;
+  height: 1067rpx;
+  box-shadow: 4rpx 8rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+
+.tips {
+  width: 600rpx;
+  margin: 0 auto;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: coral;
+  font-size: medium;
+  padding-top: 20rpx;
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999999;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.canvas-box {
+  position: fixed;
+  top: 999999rpx;
+  left: 0;
 }

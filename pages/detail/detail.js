@@ -825,72 +825,190 @@ Page({
             'dialog.content': ''
         })
     },
-    creatPoster: function () {
-        var self = this;
-        self.ShowHideMenu();
-        if (self.data.posterImageUrl)
-        {
-            url = '../poster/poster?posterImageUrl=' + posterImageUrl;
-            wx.navigateTo({
-                url: url
-            })
+    // creatPoster: function () {
+    //     var self = this;
+    //     self.ShowHideMenu();
+    //     if (self.data.posterImageUrl)
+    //     {
+    //         url = '../poster/poster?posterImageUrl=' + posterImageUrl;
+    //         wx.navigateTo({
+    //             url: url
+    //         })
 
-            return true;
-        }
-        var postid = self.data.detail.id;
-        var title = self.data.detail.title.rendered;        
-        var path = "pages/detail/detail?id="+postid;
-        var postImageUrl="";
-        if (self.data.detail.content_first_image)
-        {
-            postImageUrl = self.data.detail.content_first_image;
+    //         return true;
+    //     }
+    //     var postid = self.data.detail.id;
+    //     var title = self.data.detail.title.rendered;        
+    //     var path = "pages/detail/detail?id="+postid;
+    //     var postImageUrl="";
+    //     if (self.data.detail.content_first_image)
+    //     {
+    //         postImageUrl = self.data.detail.content_first_image;
 
-        }
-        wx.showLoading({
-            title: "正在生成图片",
-            mask: false,
-        });
+    //     }
+    //     wx.showLoading({
+    //         title: "正在生成图片",
+    //         mask: false,
+    //     });
         
-        if (app.globalData.isGetOpenid) {
-            var openid = app.globalData.openid;
-            var data = {
-                postid: postid,
-                title: title,
-                path: path,
-                postImageUrl: postImageUrl,
-                openid: openid                
-            };
-            var url = Api.creatPoster();
-            var posterImageUrl = Api.getPosterUrl() + "poster-" + postid+".jpg";
-            var creatPosterRequest = wxRequest.postRequest(url, data);
-            creatPosterRequest.then(response => {
-                if (response.statusCode == 200) {
-                    if (response.data.status == '200') {                       
-                        url = '../poster/poster?posterImageUrl=' + posterImageUrl;
-                        wx.navigateTo({
-                            url: url
-                        })
+    //     if (app.globalData.isGetOpenid) {
+    //         var openid = app.globalData.openid;
+    //         var data = {
+    //             postid: postid,
+    //             title: title,
+    //             path: path,
+    //             postImageUrl: postImageUrl,
+    //             openid: openid                
+    //         };
+    //         var url = Api.creatPoster();
+    //         var posterImageUrl = Api.getPosterUrl() + "poster-" + postid+".jpg";
+    //         var creatPosterRequest = wxRequest.postRequest(url, data);
+    //         creatPosterRequest.then(response => {
+    //             if (response.statusCode == 200) {
+    //                 if (response.data.status == '200') {                       
+    //                     url = '../poster/poster?posterImageUrl=' + posterImageUrl;
+    //                     wx.navigateTo({
+    //                         url: url
+    //                     })
 
-                    }
-                    else{
+    //                 }
+    //                 else{
 
-                        console.log(response);
+    //                     console.log(response);
 
-                    }
-                }
-                else
-                {
-                    console.log(response);
-                }
+    //                 }
+    //             }
+    //             else
+    //             {
+    //                 console.log(response);
+    //             }
 
-            }).catch(response => {
-                console.log(response);                
-                }).finally(function (response) {
-                    wx.hideLoading();
-                });
+    //         }).catch(response => {
+    //             console.log(response);                
+    //             }).finally(function (response) {
+    //                 wx.hideLoading();
+    //             });
 
             
-        }   
+    //     }   
+
+    // }
+
+
+    //by David
+    creatPoster: function () {
+
+      var self = this;
+      self.ShowHideMenu();
+
+      wx.showToast({
+        title: "正在生成图片",
+        mask: true,
+        duration: 2000
+      });
+
+      var postid = self.data.detail.id;
+      var title = self.data.detail.title.rendered;
+      var path = "pages/detail/detail?id=" + postid;
+
+      app.globalData.posterData.title = title;//文章题目
+
+      var excerpt = "摘要摘要摘要摘要摘要摘要摘要摘要摘要摘要摘要摘摘要摘要摘要摘要摘要摘要摘要摘要摘要摘要摘要摘摘要摘要摘要摘要摘要摘要摘要摘要摘要摘要摘要摘";
+      app.globalData.posterData.excerpt = excerpt;//文章摘要
+
+      //获取文章首图临时地址，若没有就用默认的图片（绘制网络图片需要下载到本地）
+      if (self.data.detail.content_first_image) {
+        var postImageUrl = self.data.detail.content_first_image;
+        console.log(postImageUrl);
+        const downloadTask1 = wx.downloadFile({
+          url: postImageUrl,
+          success: res => {
+            app.globalData.posterData.firstImage = res.tempFilePath;
+            console.log("首图临时地址" + app.globalData.posterData.firstImage);
+          }
+        });
+
+        downloadTask1.onProgressUpdate((res) => {
+          console.log('下载首图进度：' + res.progress)
+        })
+      }
+      else {
+        app.globalData.posterData.firstImage = '../../images/logo700.png';
+      }
+
+
+      if (app.globalData.isGetOpenid) {
+        var openid = app.globalData.openid;
+        var data = {
+          postid: postid,
+          title: title,
+          path: path,
+          postImageUrl: postImageUrl,
+          openid: openid
+        };
+
+        var url = Api.creatPoster();
+        // var posterImageUrl = Api.getPosterUrl() + "poster-" + postid + ".jpg";
+        // console.log("海报：" + posterImageUrl);
+        var posterQrcodeUrl = Api.getPosterQrcodeUrl() + "qrcode-" + postid + ".png";
+        console.log("二维码：" + posterQrcodeUrl);
+
+        //直接下载二维码，如果是200则直接生成，否则请求生成
+        wx.downloadFile({
+          url: posterQrcodeUrl,
+          success: res => {
+            if (res.statusCode === 200) {
+              app.globalData.posterData.qrcode = res.tempFilePath;
+
+              wx.navigateTo({
+                url: '../poster/poster'
+              })
+            }
+            else {
+              //生成二维码
+              var creatPosterRequest = wxRequest.postRequest(url, data);
+              creatPosterRequest.then(response => {
+                if (response.statusCode == 200) {
+                  if (response.data.status == '200') {
+
+                    const downloadTask2 = wx.downloadFile({
+                      url: posterQrcodeUrl,
+                      success: res => {
+                        app.globalData.posterData.qrcode = res.tempFilePath;
+                        console.log("二维码临时地址：" + app.globalData.posterData.qrcode)
+                      }
+                    });
+
+                    downloadTask2.onProgressUpdate((res) => {
+                      console.log('下载二维码进度', res.progress)
+                    })
+
+
+                    url = '../poster/poster';
+                    wx.navigateTo({
+                      url: url
+                    })
+
+                  }
+                  else {
+
+                    console.log(response);
+
+                  }
+                }
+                else {
+                  console.log(response);
+                }
+
+              }).catch(response => {
+                console.log(response);
+              }).finally(function (response) {
+                wx.hideToast();
+              });
+            }
+          }
+        })
+      }
 
     }
 })
