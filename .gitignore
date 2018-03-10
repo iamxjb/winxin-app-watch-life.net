@@ -1,0 +1,3 @@
+#忽略配置文件
+utils/config.js
+project.config.json
