@@ -136,7 +136,6 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 在此对上述提供开源及创意表示致谢。
 
 
-
 # 捐赠赞赏：请微信扫描以下二维码。感谢您对我的支持，您的支持是我前进的动力
 
 ![weixinpay](https://www.watch-life.net/images/2017/07/zsm400.jpg) 
