@@ -138,7 +138,7 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 # 捐赠赞赏：请微信扫描以下二维码。感谢您对我的支持，您的支持是我前进的动力
 
-![weixinpay](https://www.watch-life.net/images/2017/07/zsm400.jpg) 
+![weixinpay](https://www.watch-life.net/images/2017/07/zsm400-github.jpg) 
 
 # WordPress微信小程序知识星球(小密圈)
 
