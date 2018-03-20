@@ -281,5 +281,10 @@ module.exports = {
   getPosterUrl() {
       var url = 'https://' + domain + "/wp-content/plugins/wp-rest-api-for-app/poster/";
       return url;
+  },
+  //获取二维码
+  getPosterQrcodeUrl() {
+    var url = 'https://' + domain + "/wp-content/plugins/wp-rest-api-for-app/qrcode/";
+    return url;
   }
 };
