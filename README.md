@@ -136,7 +136,6 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 在此对上述提供开源及创意表示致谢。
 
 
-
 # 捐赠赞赏：请微信扫描以下二维码。感谢您对我的支持，您的支持是我前进的动力
 
 ![weixinpay](https://www.watch-life.net/images/2017/07/zsm400.jpg) 
@@ -145,7 +144,8 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 考虑到微信群里交流过于庞杂和碎片化，无法提供更专业的技术服务和知识分享，很多好的知识不能很好沉淀和积累，无法提供更好的分享价值，同时我也有意和兴趣相投人一起，创建一个wordpress和微信小程序的知识社区。基于此，我在“知识星球”里创建了一个“Wordpress微信小程序”的圈子，欢迎有兴趣的朋友和我一起创建一个有活力、创造力、有趣、有深度的知识社群。
 
-![zhishixingqiu](https://www.watch-life.net/images/2017/11/xiaomiquan300.jpg) 
+![zhishixingqiu](https://www.watch-life.net/images/2017/11/xiaomiquan300.jpg)
+ 
 
 
 # 更新历史：
