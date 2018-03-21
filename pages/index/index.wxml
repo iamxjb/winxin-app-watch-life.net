@@ -66,6 +66,16 @@
                     </view>
                 </view>
             </block>
+             <view class="top-item" style='width:10%; position: relative; float:left; text-align:center'>
+                    <view>
+                        <image src="../../images/kefu.png"></image>
+                    </view>
+                    <view>
+                        <text>客服</text>
+                    </view>
+                    <button class="share-button" open-type="contact">
+                    </button>
+                </view>
         </view>
         <!-- 图标导航 -->
 

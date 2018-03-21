@@ -18,8 +18,10 @@ var MINAPPTYPE="0";//小程序的类型，如果是企业小程序请填：0 ，
 var WEBSITENAME="守望轩"; //网站名称
 var ABOUTID = 1136; //wordpress网站"页面"的id,注意这个"页面"是wordpress的"页面"，不是"文章"
 var PAGECOUNT='10'; //每页文章数目
-var CATEGORIESID='all'  //显示全部的分类
-//var CATEGORIESID = '1,1059,98,416,189,374,6,463';//指定显示的分类的id
+var CATEGORIESID='all'  //专题页显示全部的分类
+//var CATEGORIESID = '1,1059,98,416,189,374,6,463';//指定专题页显示的分类的id
+//var INDEXLISTTYPE="all" //首页显示所有分类
+var INDEXLISTTYPE ="1" //指定首页显示分类的id
 var PAYTEMPPLATEID = 'hzKpxuPF2rw7O-qTElkeoE0lMwr0O4t9PJkLyt6v8rk';//赞赏消息模版id
 var REPLAYTEMPPLATEID = 'IiAVoBWP34u1uwt801rI_Crgen7Xl2lvAGP67ofJLo8';//回复评论消息模版id
 var ZANIMAGEURL = 'https://www.watch-life.net/images/2017/07/zsm400.jpg';//微信赞赏的图片链接，用于个人小程序的赞赏
@@ -31,7 +33,7 @@ var INDEXNAV = [
     { id: '1', name: '微店', image: '../../images/shop.png', url: 'pages/shelf/shelf', redirecttype: 'miniapp', appid: 'wx55ea6098e41af5c4', extraData:'' },
     { id: '2', name: '排行', image: '../../images/ranking.png', url: '../hot/hot', redirecttype: 'apppage', appid: '', extraData:''},
     { id: '3', name: '专题', image: '../../images/tar-topic.png', url: '../topic/topic', redirecttype: 'apppage', appid: '', extraData:''},
-    { id: '4', name: '网站', image: '../../images/logo-icon.png', url: 'https://www.watch-life.net', redirecttype: 'webpage', appid: '', extraData: '' }
+   
     ]
 
 export default {
@@ -44,5 +46,6 @@ export default {
   getIndexNav: INDEXNAV,
   getReplayTemplateId: REPLAYTEMPPLATEID,
   getMinAppType: MINAPPTYPE,
-  getZanImageUrl: ZANIMAGEURL
+  getZanImageUrl: ZANIMAGEURL,
+  getIndexListType: INDEXLISTTYPE
 }
