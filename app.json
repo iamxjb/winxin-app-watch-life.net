@@ -16,7 +16,7 @@
     ],
     "window": {
         "backgroundTextStyle": "dark",
-        "navigationBarBackgroundColor": "#118fff",
+        "navigationBarBackgroundColor": "#333333",
         "navigationBarTitleText": "守望轩",
         "navigationBarTextStyle": "white"
     },
