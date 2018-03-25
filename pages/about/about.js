@@ -37,7 +37,7 @@ Page({
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '关于WordPress微信小程序',
+      title: '关于我们',
       success: function (res) {
         // success
       }
