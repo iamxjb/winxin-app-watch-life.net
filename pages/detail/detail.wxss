@@ -9,6 +9,7 @@
  * 
  */
 @import "../../wxParse/wxParse.wxss";
+@import "../../templates/modal-view/modal-view.wxss";
 
 .content-article-detail {
   border-bottom: 1px solid #eee;
@@ -81,6 +82,15 @@
   font-size: 28rpx;
   line-height: 40rpx;
   color: #959595;
+}
+
+.commentheader1 {
+  padding: 5rpx 0;
+  text-align: left;
+  font-weight: normal;
+  font-size: 24rpx;
+  line-height: 10rpx;
+  color: red;
 }
 
 .comment {
@@ -613,3 +623,10 @@
     text-align: right;
     width: 80%;
 } 
+
+.canvas-box {
+  position: fixed;
+  top: 999999rpx;
+  left: 0;
+}
+

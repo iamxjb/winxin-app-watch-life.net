@@ -33,6 +33,10 @@ function obj2uri(obj) {
   }).join('&');
 }
 
+function getStrLength(str){
+    return str.replace(/[\u0391-\uFFE5]/g, "aa").length;
+}
+
 
 function getDateDiff(dateStr) {    
     var publishTime = Date.parse(dateStr.replace(/-/gi, "/"))/ 1000,
@@ -230,6 +234,55 @@ function getymd(dateStr, type) {
     }
 }
 
+//绘制文字：文章题目、摘要、扫码阅读
+function drawTitleExcerpt(context, title, excerpt) {
+
+    context.setFillStyle("#000000");
+    context.setTextAlign('left');
+
+    if (getStrLength(title) <= 14) {
+        //14字以内绘制成一行，美观一点
+        context.setFontSize(40);
+        context.fillText(title, 40, 460);
+    }
+    else {
+        //题目字数很多的，只绘制前36个字（如果题目字数在15到18个字则也是一行，不怎么好看）
+        context.setFontSize(30);
+        context.fillText(title.substring(0, 18), 40, 460);
+        context.fillText(title.substring(19, 36), 40, 510);
+    }
+
+    context.setFontSize(24);
+    context.setTextAlign('left');
+    context.setGlobalAlpha(0.7);
+    
+    for (var i = 0; i <= 50; i += 20) {
+        //摘要只绘制前50个字，这里是用截取字符串
+        if (getStrLength(excerpt)>50)
+        {
+            if ( i == 40) {
+                context.fillText(excerpt.substring(i, i + 20) + "...", 40, 570 + i * 2);
+
+            }
+            else {
+                context.fillText(excerpt.substring(i, i + 20), 40, 570 + i * 2);
+            }
+
+        }
+        else
+        {
+            context.fillText(excerpt.substring(i, i + 20), 40, 570 + i * 2);
+        }
+        
+        
+
+
+    }
+
+    context.stroke();
+    context.save();
+}
+
 module.exports = {
   formatTime: formatTime,
   getDateDiff: getDateDiff,
@@ -243,7 +296,9 @@ module.exports = {
   GetUrlFileName: GetUrlFileName,
   json2Form: json2Form,
   getymd: getymd,
-  getDateOut:getDateOut
+  getDateOut:getDateOut,
+  drawTitleExcerpt: drawTitleExcerpt,
+  getStrLength: getStrLength
   
 }
 

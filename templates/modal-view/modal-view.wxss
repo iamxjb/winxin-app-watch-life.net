@@ -1,0 +1,113 @@
+.show-btn {
+  margin-top: 100rpx;
+  color: #22cc22;
+}
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff;
+}
+.modal-dialog {
+  width: 85%;
+  height: 90%;
+  overflow: hidden;
+  position: fixed;
+  top: 20%;
+  left: 0;
+  z-index: 9999;
+  background: #f9f9f9;
+  margin: -180rpx 65rpx;
+  border-radius: 20rpx;
+}
+.modal-title {
+  padding-top: 50rpx;
+  font-size: 30rpx;
+  color: #030303;
+  text-align: center;
+}
+.modal-content {
+  padding: 60rpx 32rpx 40rpx 32rpx;
+  border-radius: 20rpx;
+}
+.modal-input,.modal-input_solo,.modal-input_hd,.modal-input_bd,.modal-input_ft {
+  display: flex;
+  background: #fff;
+  font-size: 28rpx;
+}
+.modal-input_solo {
+  margin: 0 auto; 
+  border: 2rpx solid #ddd;
+  width: 80%;
+  border-radius: 20rpx;
+}
+.modal-input_hd{
+  border-top: 2rpx solid #ddd;
+  border-left: 2rpx solid #ddd;
+  border-right: 2rpx solid #ddd;
+  padding-left: 24rpx;
+}
+.modal-input_bd {
+  padding-left: 24rpx;
+  border-left: 2rpx solid #ddd;
+  border-right: 2rpx solid #ddd;
+}
+.modal-input_ft {
+  padding-left: 24rpx;
+  border-left: 2rpx solid #ddd;
+  border-right: 2rpx solid #ddd;
+  border-bottom: 2rpx solid #ddd;
+}
+.input,.input_solo,.input_hd,.input_bd,.input_texarea {
+  width: 100%;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 28rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  color: #333;
+}
+.input_bd {
+  border-top: 2rpx solid #ddd;
+}
+.input_texarea {
+  height: 220rpx;
+  line-height: 34rpx;
+  padding: 10rpx 8rpx;
+  border-top: 2rpx solid #ddd;
+}
+.input-holder {
+  color: #666;
+  font-size: 28rpx;
+}
+.input-content {
+  color: #333;
+  font-size: 28rpx;
+}
+.modal-footer {
+  display: flex;
+  flex-direction: row;
+  height: 86rpx;
+  border-top: 1px solid #dedede;
+  font-size: 30rpx;
+  line-height: 86rpx;
+  margin-top:60rpx;
+
+}
+.btn-cancel {
+  width: 50%;
+  color: #000000;
+  text-align: center;
+  border-right: 1px solid #dedede;
+}
+.btn-confirm {
+  width: 50%;
+  color: #3cc51f;
+  text-align: center;
+}

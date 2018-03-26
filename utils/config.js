@@ -25,6 +25,7 @@ var INDEXLISTTYPE ="1" //指定首页显示分类的id
 var PAYTEMPPLATEID = 'hzKpxuPF2rw7O-qTElkeoE0lMwr0O4t9PJkLyt6v8rk';//赞赏消息模版id
 var REPLAYTEMPPLATEID = 'IiAVoBWP34u1uwt801rI_Crgen7Xl2lvAGP67ofJLo8';//回复评论消息模版id
 var ZANIMAGEURL = 'https://www.watch-life.net/images/2017/07/zsm400.jpg';//微信赞赏的图片链接，用于个人小程序的赞赏
+var LOGO = "../../images/logo-icon.png"; // 网站的logo图片
  //首页图标导航
  //参数说明：'name'为名称，'image'为图标路径，'url'为跳转的页面，'redirecttype'为跳转的类型，apppage为本小程序的页面，miniapp为其他微信小程序,webpage为web-view的页面
  //        'appid' 当redirecttype为miniapp时，这个值为其他微信小程序的appid，如果redirecttype为apppage，webpage时，这个值设置为空。
@@ -47,5 +48,6 @@ export default {
   getReplayTemplateId: REPLAYTEMPPLATEID,
   getMinAppType: MINAPPTYPE,
   getZanImageUrl: ZANIMAGEURL,
-  getIndexListType: INDEXLISTTYPE
+  getIndexListType: INDEXLISTTYPE,
+  getLogo: LOGO
 }

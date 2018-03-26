@@ -1,0 +1,35 @@
+<template  name="modalView">
+  <view class="modal-mask" bindtap="__modalView__onHideModal" catchtouchmove="__modalView__onPreventTouchMove" wx:if="{{reveal}}"></view>
+  <view class="modal-dialog" wx:if="{{reveal}}">
+    <view class="modal-title">{{title}}</view>
+    <view class="modal-content">
+      <view wx:for="{{inputFields}}" wx:for-index="i" wx:key="fieldName">
+        <view class="{{inputFields.length == 1 ? 'modal-input_solo':(i == 0?'modal-input_hd':(inputFields.length-1 == i?'modal-input_ft':'modal-input_bd'))}}">
+          <block wx:if="{{item.fieldType == 'Picker'}}">
+            <picker class="{{inputFields.length == 1 ? 'input_solo':(i == 0?'input_hd':'input_bd')}}" bindchange="__modalView__onPickerChange" value="{{formData[i]}}" range="{{item.fieldDatasource}}" data-field_index="{{i}}">
+              <view class="{{formData[i]?'input-content':'input-holder'}}">
+                {{formData[i]?formData[i]:item.fieldPlaceHolder}}
+              </view>
+            </picker>
+          </block>
+          <block wx:elif="{{item.fieldType == 'Text'}}">
+            <input class="{{inputFields.length == 1 ? 'input_solo':(i == 0?'input_hd':'input_bd')}}" type="text" placeholder-class="input-holder" value="{{formData[i]}}" placeholder="{{item.fieldPlaceHolder}}" bindblur="__modalView__onTextBlur" data-field_index="{{i}}"/> 
+          </block>
+          <block wx:elif="{{item.fieldType == 'Number'}}">
+            <input class="{{inputFields.length == 1 ? 'input_solo':(i == 0?'input_hd':'input_bd')}}" type="number" placeholder-class="input-holder" value="{{formData[i]}}" placeholder="{{item.fieldPlaceHolder}}" bindblur="__modalView__onTextBlur" data-field_index="{{i}}"/> 
+          </block>
+          <block wx:elif="{{item.fieldType == 'Textarea'}}">
+            <textarea class="input_texarea" placeholder-class="input-holder" value="{{formData[i]}}" placeholder="{{item.fieldPlaceHolder}}" bindblur="__modalView__onTextBlur" data-field_index="{{i}}"/> 
+          </block>
+          <block wx:elif="{{item.fieldType == 'Image'}}">
+            <image style="background-color: #eeeeee;" mode="widthFix" src="{{item.fieldDatasource}}" data-src="{{item.fieldDatasource}}"  bindtap="posterImageClick" ></image>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class="modal-footer">
+      <view class="btn-cancel" bindtap="__modalView__onCancel" data-status="cancel">取消</view>
+      <view class="btn-confirm" bindtap="__modalView__onConfirm" data-status="confirm">保存到本地相册</view>
+    </view>
+  </view>
+</template>

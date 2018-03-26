@@ -11,8 +11,8 @@
  */-->
 
 <import src="../../wxParse/wxParse.wxml" />
-<import src="../../templates/header.wxml" />
 <import src="../../templates/copyright.wxml" />
+<import src="../../templates/modal-view/modal-view.wxml" />
 <view class="container">
     <view class="container">
         <view class="content-article-detail" style="display:{{display}}">
@@ -84,12 +84,13 @@
 
         <view style="display:{{display}}">
             <view class="relatedTitle">
-                评论交流
+                评论交流 (点击评论内容可以回复)
             </view>
             <view class="entry-gap-like"></view>
             <view class="commentheader">
                 {{commentCount}}
             </view>
+
             <block wx:key="id" wx:for="{{commentsList}}">
                 <view wx:if="{{item.parent ==0}}">
                     <view class="comment">
@@ -162,7 +163,10 @@
             </view>
             <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
         </view>
-
+        <template is="modalView" data="{{...__modalView__}}" />
+        <view class="canvas-box">
+            <canvas style="width: 600px;height: 970px;" canvas-id="mycanvas" />
+        </view>
         <view class="ditail-copyright" style="display:{{display}}">
             <template is="tempCopyright" />
         </view>
@@ -196,7 +200,7 @@
                                     </view>
                                     <view style="width:20%; float:left; text-align:center">
                                         <view>
-                                            <image src="../../images/poster.png" catchtap="creatPoster" class="img-menu"></image>
+                                            <image src="../../images/poster.png" catchtap="downimageTolocal" class="img-menu"></image>
                                         </view>
                                         <view>
                                             <text>海报</text>
@@ -236,8 +240,6 @@
                 </form>
             </view>
         </view>
-
-
+        <!-- 评论区 -->
     </view>
 </view>
-

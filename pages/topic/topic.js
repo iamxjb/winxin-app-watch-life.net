@@ -30,15 +30,12 @@ Page({
                 // success
             }
         });
-        wx.showLoading({
-            title: '正在加载',
-            mask: true
-        })
+        
         this.fetchCategoriesData();
     },
     //获取分类列表
     fetchCategoriesData: function () {
-        var self = this;
+        var self = this;        
         self.setData({
             categoriesList: []
         });
@@ -71,9 +68,7 @@ Page({
             {
                 setTimeout(function () {
                     self.getSubscription();
-                }, 500);
-
-               
+                }, 500);               
 
             }
         })
@@ -144,6 +139,10 @@ Page({
     },
     getSubscription: function () {
         var self= this;
+        wx.showLoading({
+            title: '正在加载',
+            mask: true
+        })
         if (app.globalData.isGetOpenid) {
             var url = Api.getSubscription() + '?openid=' + app.globalData.openid;
             var getSubscriptionRequest = wxRequest.getRequest(url);
