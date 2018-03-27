@@ -281,7 +281,7 @@ module.exports = {
   //生成海报
   creatPoster() {
       var url = HOST_URI_WATCH_LIFE_JSON;
-      url += "weixin/qrcode";
+      url += "weixin/qrcodeimg";
       return url;
   },
   //获取海报

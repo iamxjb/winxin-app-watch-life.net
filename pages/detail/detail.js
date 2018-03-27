@@ -838,136 +838,83 @@ Page({
         var posterImagePath = "";
         var qrcodeImagePath = "";
         var flag = false;
+        var imageInlocalFlag = false;
+        var domain = config.getDomain;
 
-        //获取文章首图临时地址，若没有就用默认的图片（绘制网络图片需要下载到本地）
-        if (self.data.detail.content_first_image) {
-            postImageUrl = self.data.detail.content_first_image;
+        var fristImage = self.data.detail.content_first_image; 
+
+        //获取文章首图临时地址，若没有就用默认的图片,如果图片不是request域名，使用本地图片
+        if (fristImage && fristImage.indexOf(domain) !=-1) {
+            postImageUrl = fristImage;
         }
         else {
-            postImageUrl = '../../images/logo700.png';
+            postImageUrl = config.getPostImageUrl;
+            posterImagePath = postImageUrl;
+            imageInlocalFlag=true;
         }
 
         console.log(postImageUrl);
         if (app.globalData.isGetOpenid) {
             var openid = app.globalData.openid;
             var data = {
-                postid: postid,
-                title: title,
-                path: path,
-                postImageUrl: postImageUrl,
+                postid: postid,                
+                path: path,               
                 openid: openid
             };
 
             var url = Api.creatPoster();
             var qrcodeUrl = "";
             var posterQrcodeUrl = Api.getPosterQrcodeUrl() + "qrcode-" + postid + ".png";
-            console.log("二维码图片：" + posterQrcodeUrl);
-            //直接下载二维码，如果是200则直接生成，否则请求生成
-            wx.downloadFile({
-                url: posterQrcodeUrl,
-                success: res => {
-                    if (res.statusCode === 200) {
-                        qrcodeImagePath = res.tempFilePath;
-                        console.log("二维码图片本地位置：" + res.tempFilePath);
-                        flag = true;
-                        const downloadTaskForPostImage = wx.downloadFile({
-                            url: postImageUrl,
+            //生成二维码
+            var creatPosterRequest = wxRequest.postRequest(url, data);
+            creatPosterRequest.then(response => {
+                if (response.statusCode == 200) {
+                    if (response.data.status == '200') {
+                        const downloadTaskQrcodeImage = wx.downloadFile({
+                            url: posterQrcodeUrl,
                             success: res => {
                                 if (res.statusCode === 200) {
-                                    posterImagePath = res.tempFilePath;
-                                    console.log("文章图片本地位置：" + res.tempFilePath);
-                                    flag = true;
+                                    qrcodeImagePath = res.tempFilePath;
+                                    console.log("二维码图片本地位置：" + res.tempFilePath);
+                                    if (!imageInlocalFlag) {
+                                        const downloadTaskForPostImage = wx.downloadFile({
+                                            url: postImageUrl,
+                                            success: res => {
+                                                if (res.statusCode === 200) {
+                                                    posterImagePath = res.tempFilePath;
+                                                    console.log("文章图片本地位置：" + res.tempFilePath);
+                                                    flag = true;
+                                                    if (posterImagePath && qrcodeImagePath) {
+                                                        self.createPosterLocal(posterImagePath, qrcodeImagePath, title, excerpt);
+                                                    }
+                                                }
+                                                else {
+                                                    console.log(res);
+                                                    wx.hideLoading();
+                                                    wx.showToast({
+                                                        title: "生成海报失败...",
+                                                        mask: true,
+                                                        duration: 2000
+                                                    });
+                                                    return false;
 
-                                    if (posterImagePath && qrcodeImagePath) {
-                                        self.createPosterLocal(posterImagePath, qrcodeImagePath, title, excerpt);
+
+                                                }
+                                            }
+                                        });
+                                        downloadTaskForPostImage.onProgressUpdate((res) => {
+                                            console.log('下载文章图片进度：' + res.progress)
+
+                                        })
+                                    }
+                                    else {
+                                        if (posterImagePath && qrcodeImagePath) {
+                                            self.createPosterLocal(posterImagePath, qrcodeImagePath, title, excerpt);
+                                        }
                                     }
                                 }
                                 else {
                                     console.log(res);
-                                    wx.hideLoading();
-                                    wx.showToast({
-                                        title: "生成海报失败...",
-                                        mask: true,
-                                        duration: 2000
-                                    });
-                                    return false;
-
-
-                                }
-                            }
-                        });
-                        downloadTaskForPostImage.onProgressUpdate((res) => {
-                            console.log('下载文章图片进度：' + res.progress)
-
-                        })
-                    }
-                    else {
-                        //生成二维码
-                        var creatPosterRequest = wxRequest.postRequest(url, data);
-                        creatPosterRequest.then(response => {
-                            if (response.statusCode == 200) {
-                                if (response.data.status == '200') {
-                                    const downloadTaskQrcodeImage = wx.downloadFile({
-                                        url: posterQrcodeUrl,
-                                        success: res => {
-                                            if (res.statusCode === 200) {
-                                                qrcodeImagePath = res.tempFilePath;
-                                                console.log("二维码图片本地位置：" + res.tempFilePath);
-
-                                                const downloadTaskForPostImage = wx.downloadFile({
-                                                    url: postImageUrl,
-                                                    success: res => {
-                                                        if (res.statusCode === 200) {
-                                                            posterImagePath = res.tempFilePath;
-                                                            console.log("文章图片本地位置：" + res.tempFilePath);
-                                                            flag = true;
-
-                                                            if (posterImagePath && qrcodeImagePath) {
-                                                                self.createPosterLocal(posterImagePath, qrcodeImagePath, title, excerpt);
-                                                            }
-                                                        }
-                                                        else {
-                                                            console.log(res);
-                                                            wx.hideLoading();
-                                                            wx.showToast({
-                                                                title: "生成海报失败...",
-                                                                mask: true,
-                                                                duration: 2000
-                                                            });
-                                                            return false;
-
-
-                                                        }
-                                                    }
-                                                });
-                                                downloadTaskForPostImage.onProgressUpdate((res) => {
-                                                    console.log('下载文章图片进度：' + res.progress)
-
-                                                })
-
-
-                                            }
-                                            else {
-                                                console.log(res);
-                                                //wx.hideLoading();
-                                                flag = false;
-                                                wx.showToast({
-                                                    title: "生成海报失败...",
-                                                    mask: true,
-                                                    duration: 2000
-                                                });
-                                                return false;
-                                            }
-                                        }
-                                    });
-                                    downloadTaskQrcodeImage.onProgressUpdate((res) => {
-                                        console.log('下载二维码进度', res.progress)
-
-
-                                    })
-                                }
-                                else {
-                                    console.log(response);
                                     //wx.hideLoading();
                                     flag = false;
                                     wx.showToast({
@@ -978,23 +925,36 @@ Page({
                                     return false;
                                 }
                             }
-                            else {
-                                console.log(response);
-                                //wx.hideLoading();
-                                flag = false;
-                                wx.showToast({
-                                    title: "生成海报失败...",
-                                    mask: true,
-                                    duration: 2000
-                                });
-                                return false;
-                            }
-
                         });
+                        downloadTaskQrcodeImage.onProgressUpdate((res) => {
+                            console.log('下载二维码进度', res.progress)
+                        })
+                    }
+                    else {
+                        console.log(response);
+                        //wx.hideLoading();
+                        flag = false;
+                        wx.showToast({
+                            title: "生成海报失败...",
+                            mask: true,
+                            duration: 2000
+                        });
+                        return false;
                     }
                 }
-            })
-            //wx.hideLoading();
+                else {
+                    console.log(response);
+                    //wx.hideLoading();
+                    flag = false;
+                    wx.showToast({
+                        title: "生成海报失败...",
+                        mask: true,
+                        duration: 2000
+                    });
+                    return false;
+                }
+
+            });
         }
 
     },
