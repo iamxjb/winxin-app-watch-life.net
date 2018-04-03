@@ -285,7 +285,7 @@ Page({
         self.setData({
             categoriesList: response.data,
             categoriesImage: catImage,
-            categoriesName: response.name
+            categoriesName: response.data.name
         });
 
         wx.setNavigationBarTitle({
