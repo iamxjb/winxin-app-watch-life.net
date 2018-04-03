@@ -84,7 +84,7 @@
 
         <view style="display:{{display}}">
             <view class="relatedTitle">
-                评论交流 (点击评论内容可以回复)
+                评论交流 {{enableComment?'(点击评论内容可以回复)':''}}
             </view>
             <view class="entry-gap-like"></view>
             <view class="commentheader">
@@ -171,73 +171,75 @@
             <template is="tempCopyright" />
         </view>
         <!--评论区-->
-        <view class="menuBackground" catchtap="hiddenMenubox" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
-        <view style="display:{{display}}">
-            <view class="comment-fixed">
-                <form catchsubmit="formSubmit" report-submit="true">
-                    <view class="comment-respond">
-                        <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
-                        <view class="comment-box">
-                            <image src="../../images/entry-home.png" class="img-plus" style="margin-left:20rpx;margin-right:20rpx" catchtap="goHome"></image>
-                            <input class="comment-input" type='text' confirm-type="send" cursor-spacing="10" maxlength="100" name="inputComment" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onReplyBlur" bindfocus="onRepleyFocus" />
-                            <button class="comment-button touch-active" formType="submit">发送</button>
-                            <image src="../../images/plus.png" class="img-plus" catchtap="ShowHideMenu" mode=""></image>
-                        </view>
-                        <!--功能图标-->
-                        <view class="menu-box {{isShow ? 'emoji-move-in' : 'emoji-move-out'}} {{isLoad ? 'no-emoji-move' : ''}}">
-                            <view class="iconList">
-                                <view class="iconLine">
-                                    <view style="width:20%; position: relative; float:left; text-align:center">
+        <view style="display:{{enableComment?'block':'none'}}">
+            <view class="menuBackground" catchtap="hiddenMenubox" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
+            <view style="display:{{display}}">
+                <view class="comment-fixed">
+                    <form catchsubmit="formSubmit" report-submit="true">
+                        <view class="comment-respond">
+                            <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
+                            <view class="comment-box">
+                                <image src="../../images/entry-home.png" class="img-plus" style="margin-left:20rpx;margin-right:20rpx" catchtap="goHome"></image>
+                                <input class="comment-input" type='text' confirm-type="send" cursor-spacing="10" maxlength="100" name="inputComment" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onReplyBlur" bindfocus="onRepleyFocus" />
+                                <button class="comment-button touch-active" formType="submit">发送</button>
+                                <image src="../../images/plus.png" class="img-plus" catchtap="ShowHideMenu" mode=""></image>
+                            </view>
+                            <!--功能图标-->
+                            <view class="menu-box {{isShow ? 'emoji-move-in' : 'emoji-move-out'}} {{isLoad ? 'no-emoji-move' : ''}}">
+                                <view class="iconList">
+                                    <view class="iconLine">
+                                        <view style="width:20%; position: relative; float:left; text-align:center">
 
-                                        <view>
-                                            <image src="../../images/forwarding.png" class="img-menu"></image>
+                                            <view>
+                                                <image src="../../images/forwarding.png" class="img-menu"></image>
+                                            </view>
+                                            <view>
+                                                <text>转发</text>
+                                            </view>
+                                            <button class="share-button share-button touch-active" open-type="share">
+                                            </button>
                                         </view>
-                                        <view>
-                                            <text>转发</text>
+                                        <view style="width:20%; float:left; text-align:center">
+                                            <view>
+                                                <image src="../../images/poster.png" catchtap="downimageTolocal" class="img-menu"></image>
+                                            </view>
+                                            <view>
+                                                <text>海报</text>
+                                            </view>
                                         </view>
-                                        <button class="share-button share-button touch-active" open-type="share">
-                                        </button>
-                                    </view>
-                                    <view style="width:20%; float:left; text-align:center">
-                                        <view>
-                                            <image src="../../images/poster.png" catchtap="downimageTolocal" class="img-menu"></image>
-                                        </view>
-                                        <view>
-                                            <text>海报</text>
-                                        </view>
-                                    </view>
-                                    <view style="width:20%; float:left; text-align:center">
-                                        <view>
-                                            <image src="../../images/copy.png" class="img-menu" catchtap="gotowebpage"></image>
-                                        </view>
-                                        <view>
-                                            <text>阅读原文</text>
-                                        </view>
-                                    </view>
-
-                                    <view style="width:20%; float:left; text-align:center">
-                                        <view>
-                                            <image src="../../images/{{likeImag}}" catchtap="clickLike" id="likebottom" class="img-menu"></image>
-                                        </view>
-                                        <view>
-                                            <text>点赞</text>
-                                        </view>
-                                    </view>
-                                    <view style="width:20%; float:left; ">
-                                        <view>
-                                            <image src="../../images/appreciation.png" catchtap="praise" class="img-menu"></image>
-                                        </view>
-                                        <view>
-                                            <text>赞赏</text>
+                                        <view style="width:20%; float:left; text-align:center">
+                                            <view>
+                                                <image src="../../images/copy.png" class="img-menu" catchtap="gotowebpage"></image>
+                                            </view>
+                                            <view>
+                                                <text>阅读原文</text>
+                                            </view>
                                         </view>
 
+                                        <view style="width:20%; float:left; text-align:center">
+                                            <view>
+                                                <image src="../../images/{{likeImag}}" catchtap="clickLike" id="likebottom" class="img-menu"></image>
+                                            </view>
+                                            <view>
+                                                <text>点赞</text>
+                                            </view>
+                                        </view>
+                                        <view style="width:20%; float:left; ">
+                                            <view>
+                                                <image src="../../images/appreciation.png" catchtap="praise" class="img-menu"></image>
+                                            </view>
+                                            <view>
+                                                <text>赞赏</text>
+                                            </view>
+
+                                        </view>
                                     </view>
                                 </view>
                             </view>
-                        </view>
 
-                    </view>
-                </form>
+                        </view>
+                    </form>
+                </view>
             </view>
         </view>
         <!-- 评论区 -->

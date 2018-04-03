@@ -62,13 +62,12 @@ Page({
         toFromId: "",
         commentdate: "",
         flag: 1,
-        logo: config.getLogo
-
-
-
+        logo: config.getLogo,
+        enableComment:true
     },
     onLoad: function (options) {
-        this.fetchDetailData(options.id);
+        this.getEnableComment();
+        this.fetchDetailData(options.id);        
         new ModalView;
 
     },
@@ -253,6 +252,31 @@ Page({
         }
     },
 
+
+    //获取是否开启评论设置
+    getEnableComment: function (id) {
+        var self = this;
+        var getEnableCommentRequest = wxRequest.getRequest(Api.getEnableComment());
+        getEnableCommentRequest
+            .then(response => {
+                if (response.data.enableComment != null && response.data.enableComment != '') {
+                    if (response.data.enableComment === "1")
+                    {
+                        self.setData({
+                            enableComment: true
+                        });
+                    }
+                    else
+                    {
+                        self.setData({
+                            enableComment: false
+                        });
+                    }
+                    
+                };
+
+            });
+    },
     //获取文章内容
     fetchDetailData: function (id) {
         var self = this;
@@ -576,14 +600,17 @@ Page({
         var toFromId = e.target.dataset.formid;
         var commentdate = e.target.dataset.commentdate;
         isFocusing = true;
-        self.setData({
-            parentID: id,
-            placeholder: "回复" + name + ":",
-            focus: true,
-            userid: userid,
-            toFromId: toFromId,
-            commentdate: commentdate
-        });
+        if (self.data.enableComment == "1") {
+            self.setData({
+                parentID: id,
+                placeholder: "回复" + name + ":",
+                focus: true,
+                userid: userid,
+                toFromId: toFromId,
+                commentdate: commentdate
+            });
+
+        }
         console.log('toFromId', toFromId);
         console.log('replay', isFocusing);
     },
@@ -840,12 +867,31 @@ Page({
         var flag = false;
         var imageInlocalFlag = false;
         var domain = config.getDomain;
+        var downloadFileDomain = config.getDownloadFileDomain;
 
         var fristImage = self.data.detail.content_first_image; 
 
         //获取文章首图临时地址，若没有就用默认的图片,如果图片不是request域名，使用本地图片
-        if (fristImage && fristImage.indexOf(domain) !=-1) {
-            postImageUrl = fristImage;
+        if (fristImage) {
+            var n = 0;
+            for (var i = 0; i < downloadFileDomain.length; i++) {
+
+                if (fristImage.indexOf(downloadFileDomain[i].domain) != -1) {
+                    n++;
+                    break;
+                }
+            }
+            if (n > 0) {
+                imageInlocalFlag = false;
+                postImageUrl = fristImage;
+
+            }
+            else {
+                postImageUrl = config.getPostImageUrl;
+                posterImagePath = postImageUrl;
+                imageInlocalFlag = true;
+            }
+
         }
         else {
             postImageUrl = config.getPostImageUrl;

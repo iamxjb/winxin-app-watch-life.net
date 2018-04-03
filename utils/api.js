@@ -59,6 +59,12 @@ module.exports = {
       return url;
   },
 
+  //获取是否开启评论的设置
+  getEnableComment: function () {
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      url += 'options/enableComment';
+      return url;
+  },
 
   // 获取tag相关的文章列表
   getPostsByTags: function (id,tags) {

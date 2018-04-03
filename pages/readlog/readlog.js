@@ -28,7 +28,8 @@ Page({
         { id: '2', name: '评论', selected: false},
         { id: '3', name: '点赞', selected: false },
         { id: '4', name: '赞赏', selected: false },
-        { id: '5', name: '订阅', selected: false }
+        { id: '5', name: '订阅', selected: false },
+        { id: '6', name: '言论', selected: false }
     ],
     tab: '1',
     showerror: "none",
@@ -116,11 +117,10 @@ Page({
       self = this;
       self.setData({
           showerror: 'none',
-          shownodata:'none'
-      }); 
-     var count =0;
-      if (tab == '1')
-      {
+          shownodata: 'none'
+      });
+      var count = 0;
+      if (tab == '1') {
           self.setData({
               readLogs: (wx.getStorageSync('readLogs') || []).map(function (log) {
                   count++;
@@ -130,18 +130,17 @@ Page({
 
           self.setData({
               userInfo: app.globalData.userInfo
-          }); 
+          });
 
           if (count == 0) {
               self.setData({
                   shownodata: 'block'
               });
-          } 
+          }
 
-          
+
       }
-      else if (tab == '2')
-       {
+      else if (tab == '2') {
           self.setData({
               readLogs: []
           });
@@ -178,15 +177,14 @@ Page({
               })
 
           }
-          else
-          {
+          else {
               self.userAuthorization();
-          }          
+          }
 
-       } 
+      }
 
       else if (tab == '3') {
-          this.setData({
+          self.setData({
               readLogs: []
           });
           if (app.globalData.isGetOpenid) {
@@ -194,7 +192,7 @@ Page({
               var getMylikePosts = wxRequest.getRequest(Api.getMyLikeUrl(openid));
               getMylikePosts.then(response => {
                   if (response.statusCode == 200) {
-                      this.setData({
+                      self.setData({
                           readLogs: self.data.readLogs.concat(response.data.data.map(function (item) {
                               count++;
                               item[0] = item.post_id;
@@ -205,13 +203,56 @@ Page({
                       });
                       self.setData({
                           userInfo: app.globalData.userInfo
-                      }); 
+                      });
 
                       if (count == 0) {
                           self.setData({
                               shownodata: 'block'
                           });
-                      } 
+                      }
+                  }
+                  else {
+                      console.log(response);
+                      self.setData({
+                          showerror: 'block'
+                      });
+
+                  }
+              })
+
+          }
+          else {
+              self.userAuthorization();
+          }
+
+      }
+      else if (tab == '4') {
+          self.setData({
+              readLogs: []
+          });
+          if (app.globalData.isGetOpenid) {
+              var openid = app.globalData.openid;
+              var getMyPraisePosts = wxRequest.getRequest(Api.getMyPraiseUrl(openid));
+              getMyPraisePosts.then(response => {
+                  if (response.statusCode == 200) {
+                      self.setData({
+                          readLogs: self.data.readLogs.concat(response.data.data.map(function (item) {
+                              count++;
+                              item[0] = item.post_id;
+                              item[1] = item.post_title;
+                              item[2] = "0";
+                              return item;
+                          }))
+                      });
+                      self.setData({
+                          userInfo: app.globalData.userInfo
+                      });
+
+                      if (count == 0) {
+                          self.setData({
+                              shownodata: 'block'
+                          });
+                      }
                   }
                   else {
                       console.log(response);
@@ -227,51 +268,8 @@ Page({
               self.userAuthorization();
           }
 
+
       }
-        else if (tab == '4') {
-        this.setData({
-            readLogs: []
-        });
-        if (app.globalData.isGetOpenid) {
-            var openid = app.globalData.openid;
-            var getMyPraisePosts = wxRequest.getRequest(Api.getMyPraiseUrl(openid));
-            getMyPraisePosts.then(response => {
-                if (response.statusCode == 200) {
-                    this.setData({
-                        readLogs: self.data.readLogs.concat(response.data.data.map(function (item) {
-                            count++;
-                            item[0] = item.post_id;
-                            item[1] = item.post_title;
-                            item[2] = "0";
-                            return item;
-                        }))
-                    });
-                    self.setData({
-                        userInfo: app.globalData.userInfo
-                    }); 
-
-                    if (count == 0) {
-                        self.setData({
-                            shownodata: 'block'
-                        });
-                    } 
-                }
-                else {
-                    console.log(response);
-                    this.setData({
-                        showerror: 'block'
-                    });
-
-                }
-            })
-
-        }
-        else {
-            self.userAuthorization();
-        }
-        
-
-    }
       else if (tab == '5') {
           self.setData({
               readLogs: []
@@ -281,13 +279,11 @@ Page({
               var openid = app.globalData.openid;
               var url = Api.getSubscription() + '?openid=' + app.globalData.openid;
               var getMysubPost = wxRequest.getRequest(url);
-              var count=0;
               getMysubPost.then(response => {
                   if (response.statusCode == 200) {
                       var usermetaList = response.data.usermetaList;
-                      if (usermetaList)
-                      {
-                          this.setData({
+                      if (usermetaList) {
+                          self.setData({
                               readLogs: self.data.readLogs.concat(usermetaList.map(function (item) {
                                   count++;
                                   item[0] = item.ID;
@@ -298,7 +294,7 @@ Page({
                           });
 
                       }
-                      
+
                       self.setData({
                           userInfo: app.globalData.userInfo
                       });
@@ -318,13 +314,53 @@ Page({
                   }
               })
           }
-          else{
+          else {
               self.userAuthorization();
           }
 
-          
+
       }
-  },  
+      else if (tab == '6') {
+          self.setData({
+              readLogs: []
+          });
+
+
+          var getNewComments = wxRequest.getRequest(Api.getNewComments());
+          getNewComments.then(response => {
+              if (response.statusCode == 200) {
+                  self.setData({
+                      readLogs: self.data.readLogs.concat(response.data.map(function (item) {
+                          count++;
+                          item[0] = item.post;
+                          item[1] = util.removeHTML(item.content.rendered + '(' + item.author_name + ')');
+                          item[2] = "0";
+                          return item;
+                      }))
+                  });
+                  if (count == 0) {
+                      self.setData({
+                          shownodata: 'block'
+                      });
+                  }
+
+              }
+              else {
+                  console.log(response);
+                  self.setData({
+                      showerror: 'block'
+                  });
+
+              }
+          }).catch(function () {
+              console.log(response);
+              self.setData({
+                  showerror: 'block'
+              });
+
+          })
+      }
+  },   
   userAuthorization: function () {
       var self = this;
       // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
