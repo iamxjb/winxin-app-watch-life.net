@@ -78,6 +78,21 @@ Page({
       }
     }
   },
+  onReachBottom: function () {
+
+      var self = this;
+      if (!self.data.isLastPage) {
+          self.setData({
+              page: self.data.page + 1
+          });
+          console.log('当前页' + self.data.page);
+          this.fetchPostsData(self.data);
+      }
+      else {
+          console.log('最后一页');
+      }
+     
+  },
   reload:function(e)
   {
     var self = this;

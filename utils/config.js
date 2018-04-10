@@ -41,7 +41,8 @@ var DOWNLOADFILEDOMAIN = [
 var INDEXNAV = [
     { id: '1', name: '微店', image: '../../images/shop.png', url: 'pages/shelf/shelf', redirecttype: 'miniapp', appid: 'wx55ea6098e41af5c4', extraData:'' },
     { id: '2', name: '排行', image: '../../images/ranking.png', url: '../hot/hot', redirecttype: 'apppage', appid: '', extraData:''},   
-    ]
+    { id: '3', name: '教程', image: '../../images/app.png', url: '../list/list?categoryID=98', redirecttype: 'apppage', appid: '', extraData: '' },
+   ]
 
 export default {
   getDomain: DOMAIN,

@@ -63,11 +63,14 @@ Page({
         commentdate: "",
         flag: 1,
         logo: config.getLogo,
-        enableComment:true
+        enableComment: true,
+        isLoading:false,
+        total_comments:0
+
     },
     onLoad: function (options) {
         this.getEnableComment();
-        this.fetchDetailData(options.id);        
+        this.fetchDetailData(options.id);
         new ModalView;
 
     },
@@ -87,7 +90,27 @@ Page({
         self.setData({
             likeList: likes
         });
-
+    },
+    onReachBottom: function () { 
+        var self = this;
+        if (!self.data.isLastPage) {            
+            console.log('当前页' + self.data.page);            
+            this.fetchCommentData(self.data);
+            self.setData({
+                page: self.data.page + 1,                
+            });            
+        }
+        else
+        {            
+            console.log('评论已经是最后一页了');
+        }
+        // else {
+        //     wx.showToast({
+        //         title: '没有更多内容',
+        //         mask: false,
+        //         duration: 1000
+        //     });
+        // }
     },
     onShareAppMessage: function (res) {
         this.ShowHideMenu();
@@ -252,7 +275,6 @@ Page({
         }
     },
 
-
     //获取是否开启评论设置
     getEnableComment: function (id) {
         var self = this;
@@ -260,19 +282,17 @@ Page({
         getEnableCommentRequest
             .then(response => {
                 if (response.data.enableComment != null && response.data.enableComment != '') {
-                    if (response.data.enableComment === "1")
-                    {
+                    if (response.data.enableComment === "1") {
                         self.setData({
                             enableComment: true
                         });
                     }
-                    else
-                    {
+                    else {
                         self.setData({
                             enableComment: false
                         });
                     }
-                    
+
                 };
 
             });
@@ -305,7 +325,8 @@ Page({
                     //wxParseData: WxParse('md',response.data.content.rendered)
                     //wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5),
                     display: 'block',
-                    displayLike: _displayLike
+                    displayLike: _displayLike,
+                    total_comments: response.data.total_comments
 
                 });
 
@@ -367,7 +388,7 @@ Page({
             }).then(response => {//获取点赞记录
                 self.showLikeImg();
             }).then(response => {//获取评论
-                self.fetchCommentData(self.data, '0');
+               // self.fetchCommentData(self.data);
             }).then(resonse => {
                 if (!app.globalData.isGetOpenid) {
                     auth.getUsreInfo();
@@ -464,10 +485,12 @@ Page({
 
     },
     //获取评论
-    fetchCommentData: function (data, flag) {
+    fetchCommentData: function (data) {
         var self = this;
         if (!data) data = {};
         if (!data.page) data.page = 1;
+
+        self.setData({ isLoading: true })
 
         self.setData({
             commentsList: [],
@@ -508,12 +531,20 @@ Page({
 
                 }
 
-            })
+            }).then(response => {
+                
+
+            }) 
             .catch(response => {
                 console.log(response.data.message);
-            })
+                
+            }).finally(function () {
 
+                self.setData({
+                    isLoading: false
+                });
 
+            });     
     },
 
     //获取回复
@@ -548,7 +579,7 @@ Page({
                     //wx.hideLoading();
                     if (flag == '1') {
                         wx.showToast({
-                            title: '评论发布成功。',
+                            title: '评论发布成功',
                             icon: 'success',
                             duration: 900,
                             success: function () {
@@ -582,7 +613,7 @@ Page({
                 page: self.data.page + 1
             });
             console.log('当前页' + self.data.page);
-            this.fetchCommentData(self.data, '0');
+            this.fetchCommentData(self.data);
         }
         else {
             wx.showToast({
@@ -600,7 +631,8 @@ Page({
         var toFromId = e.target.dataset.formid;
         var commentdate = e.target.dataset.commentdate;
         isFocusing = true;
-        if (self.data.enableComment == "1") {
+        if (self.data.enableComment=="1")
+        {
             self.setData({
                 parentID: id,
                 placeholder: "回复" + name + ":",
@@ -610,7 +642,7 @@ Page({
                 commentdate: commentdate
             });
 
-        }
+        }        
         console.log('toFromId', toFromId);
         console.log('replay', isFocusing);
     },
@@ -692,7 +724,7 @@ Page({
                                     userid: 0,
                                     placeholder: "评论...",
                                     focus: false,
-                                    commentsList: []
+                                    //commentsList: []
 
                                 });
 
@@ -700,7 +732,7 @@ Page({
                                     //wx.hideLoading();
                                     //if (flag == '1') {
                                     wx.showToast({
-                                        title: '评论发布成功。',
+                                        title: '评论发布成功',
                                         icon: 'success',
                                         duration: 900,
                                         success: function () {
@@ -742,8 +774,17 @@ Page({
                                     });
 
                                 }
-                                // console.log(res.data.code);
-                                self.fetchCommentData(self.data, '1');
+                                console.log(res.data.code);
+                                var commentCounts = parseInt(self.data.total_comments)+1;
+                                var curPage = Math.ceil(commentCounts/100);
+                                self.setData({
+                                    page: curPage,
+                                    isLastPage:false,
+                                    total_comments:commentCounts,                                   
+                                    commentCount: "有" + commentCounts + "条评论"                                   
+                                    
+                                    });
+                                self.fetchCommentData(self.data);                                
                             }
                             else if (res.data.status == '500') {
                                 self.setData({
@@ -874,24 +915,27 @@ Page({
         //获取文章首图临时地址，若没有就用默认的图片,如果图片不是request域名，使用本地图片
         if (fristImage) {
             var n = 0;
-            for (var i = 0; i < downloadFileDomain.length; i++) {
-
-                if (fristImage.indexOf(downloadFileDomain[i].domain) != -1) {
-                    n++;
+            for (var i = 0; i < downloadFileDomain.length;i++)
+            {
+                
+                if(fristImage.indexOf(downloadFileDomain[i].domain) != -1)
+                {
+                    n++;                   
                     break;
                 }
             }
-            if (n > 0) {
+            if(n>0)
+            {
                 imageInlocalFlag = false;
                 postImageUrl = fristImage;
 
             }
-            else {
+            else{
                 postImageUrl = config.getPostImageUrl;
                 posterImagePath = postImageUrl;
                 imageInlocalFlag = true;
             }
-
+            
         }
         else {
             postImageUrl = config.getPostImageUrl;

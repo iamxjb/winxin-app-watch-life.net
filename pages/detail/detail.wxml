@@ -12,6 +12,7 @@
 
 <import src="../../wxParse/wxParse.wxml" />
 <import src="../../templates/copyright.wxml" />
+<import src="../../templates/loading.wxml" />
 <import src="../../templates/modal-view/modal-view.wxml" />
 <view class="container">
     <view class="container">
@@ -27,7 +28,7 @@
                     <text class="entry-icon-text">{{detail.category_name}}</text>
                 </block>
                 <image src="../../images/comments.png" style="height:24rpx;width:24rpx;margin-left: 20rpx;"></image>
-                <text class="entry-icon-text">{{detail.total_comments}}</text>
+                <text class="entry-icon-text">{{total_comments}}</text>
                 <image src="../../images/pageviews.png" style="height:24rpx;width:24rpx;margin-left: 20rpx;"></image>
                 <text class="entry-icon-text">{{detail.pageviews}}</text>
                 <image src="../../images/home-like.png" style="height:24rpx;width:24rpx;margin-left: 20rpx;"></image>
@@ -83,14 +84,13 @@
         </view>
 
         <view style="display:{{display}}">
-            <view class="relatedTitle">
+            <view class="relatedTitle" id="relatedTitle">
                 评论交流 {{enableComment?'(点击评论内容可以回复)':''}}
             </view>
             <view class="entry-gap-like"></view>
             <view class="commentheader">
                 {{commentCount}}
             </view>
-
             <block wx:key="id" wx:for="{{commentsList}}">
                 <view wx:if="{{item.parent ==0}}">
                     <view class="comment">
@@ -153,12 +153,11 @@
 
             <view style="display:{{display}}">
 
-                <view class="more-comment" bindtap="loadMore" hidden="{{isLastPage}}">
-                    点击加载更多评论...
+                <view style='display:{{isLoading?"block":"none"}}'>
+                <template is="tempLoading" />
                 </view>
-
-                <view hidden="{{!isNoComment}}">
-                    <view class="no-more" hidden="{{!isLastPage}}">---无更多评论---</view>
+                <view style="display:{{isLastPage?'block':'none'}}">
+                    <view class="no-more" >---无更多评论---</view>
                 </view>
             </view>
             <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
