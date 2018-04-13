@@ -720,27 +720,13 @@ Page({
                             if (res.data.status == '200') {
                                 self.setData({
                                     content: '',
-                                    parent: "0",
+                                    parentID: "0",
                                     userid: 0,
                                     placeholder: "评论...",
                                     focus: false,
-                                    //commentsList: []
+                                    commentsList: []
 
                                 });
-
-                                setTimeout(function () {
-                                    //wx.hideLoading();
-                                    //if (flag == '1') {
-                                    wx.showToast({
-                                        title: '评论发布成功',
-                                        icon: 'success',
-                                        duration: 900,
-                                        success: function () {
-
-                                        }
-                                    })
-                                    // }
-                                }, 900);
                                 console.log(res.data.message);
                                 if (parent != "0" && !util.getDateOut(commentdate) && toFromId != "") {
                                     var useropenid = res.data.useropenid;
@@ -783,8 +769,7 @@ Page({
                                     total_comments:commentCounts,                                   
                                     commentCount: "有" + commentCounts + "条评论"                                   
                                     
-                                    });
-                                self.fetchCommentData(self.data);                                
+                                    });                                                              
                             }
                             else if (res.data.status == '500') {
                                 self.setData({
@@ -794,8 +779,6 @@ Page({
 
                                 });
                             }
-
-
                         }
                         else {
 
@@ -825,6 +808,18 @@ Page({
                                 });
                             }
                         }
+                    }).then(response =>{                    
+                        //self.fetchCommentData(self.data); 
+                        self.onReachBottom();
+                        setTimeout(function () {                           
+                            wx.showToast({
+                                title: '评论发布成功',
+                                icon: 'success',
+                                duration: 900,
+                                success: function () {
+                                }
+                            })                            
+                        }, 900); 
                     }).catch(response => {
                         console.log(response)
                         self.setData({
