@@ -92,63 +92,53 @@
                 {{commentCount}}
             </view>
             <block wx:key="id" wx:for="{{commentsList}}">
-                <view wx:if="{{item.parent ==0}}">
-                    <view class="comment">
-                        <view class="comment-user">
-                            <image src="{{item.author_url}}" class="gravatarImg"></image>
-                            <view style='display:flex;flex-direction: row; justify-content: space-between;width: 100%'>
-                                <view style='font-weight:bold;' bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.dateStr}}">{{item.author_name}}</view>
-                                <view bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.dateStr}}">{{item.date}}</view>
-                            </view>
+                <view class="comment">
+                    <view class="comment-user">
+                        <image src="{{item.author_url}}" class="gravatarImg"></image>
+                        <view style='display:flex;flex-direction: row; justify-content: space-between;width: 100%'>
+                            <view style='font-weight:bold;' bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.date}}">{{item.author_name}}</view>
+                            <view bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.date}}">{{item.date}}</view>
                         </view>
-                        <view class="comment-summary" bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.dateStr}}"> {{item.summary}}</view>
-                        <!-- 一级回复-->
-                        <view wx:for="{{commentsList}}" wx:key="itemid1" wx:for-index="idx" wx:for-item="item1">
-                            <view wx:if="{{item1.parent===item.id}}">
-                                <view class="replay-user" bindtap="replay" data-id="{{item1.id}}" data-name="{{item1.author_name}}" data-userid="{{item1.userid}}" data-formId="{{item1.formId}}" data-commentdate="{{item1.dateStr}}">
-                                    {{item1.author_name}} 回复{{item1.parent_name}}:{{item1.summary}}
+                    </view>
+                    <view class="comment-summary" bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.date}}"> {{item.content}}</view>
+                     
+                      <!-- 一级回复-->
+                    <view wx:for="{{item.child}}" wx:key="itemid1" wx:for-index="idx" wx:for-item="item1">
+                        <view class="replay-user" bindtap="replay" data-id="{{item1.id}}" data-name="{{item1.author_name}}" data-userid="{{item1.userid}}" data-formId="{{item1.formId}}" data-commentdate="{{item1.date}}">
+                            {{item1.author_name}} 回复{{item.author_name}}:{{item1.content}}
+                        </view>
+
+
+                        <!-- 二级回复-->
+                        <view wx:for="{{item1.child}}" wx:key="itemid2" wx:for-index="idx" wx:for-item="item2">
+                            <view class="replay-user" bindtap="replay" data-id="{{item2.id}}" data-name="{{item2.author_name}}" data-userid="{{item2.userid}}" data-formId="{{item2.formId}}" data-commentdate="{{item2.date}}">
+                                {{item2.author_name}} 回复 {{item1.author_name}}:{{item2.content}}
+                            </view>
+
+                            <!-- 三级回复-->
+                            <view wx:for="{{item2.child}}" wx:key="itemid3"  wx:for-index="idx" wx:for-item="item3">
+                                <view class="replay-user" bindtap="replay" data-id="{{item3.id}}" data-name="{{item3.author_name}}" data-userid="{{item3.userid}}" data-formId="{{item3.formId}}" data-commentdate="{{item3.date}}">
+                                    {{item3.author_name}} 回复 {{item2.author_name}}:{{item3.content}}
                                 </view>
 
-
-                                <!-- 二级回复-->
-                                <view wx:for="{{commentsList}}" wx:key="itemid2" wx:for-index="idx" wx:for-item="item2">
-                                    <view wx:if="{{item2.parent===item1.id}}">
-                                        <view class="replay-user" bindtap="replay" data-id="{{item2.id}}" data-name="{{item2.author_name}}" data-userid="{{item2.userid}}" data-formId="{{item2.formId}}" data-commentdate="{{item2.dateStr}}">
-                                            {{item2.author_name}} 回复 {{item2.parent_name}}:{{item2.summary}}
-                                        </view>
-
-                                        <!-- 三级回复-->
-                                        <view wx:for="{{commentsList}}" wx:key="itemid3" wx:for-index="idx" wx:for-item="item3">
-                                            <view wx:if="{{item3.parent===item2.id}}">
-                                                <view class="replay-user" bindtap="replay" data-id="{{item3.id}}" data-name="{{item3.author_name}}" data-userid="{{item3.userid}}" data-formId="{{item3.formId}}" data-commentdate="{{item3.dateStr}}">
-                                                    {{item3.author_name}} 回复 {{item3.parent_name}}:{{item3.summary}}
-                                                </view>
-
-                                                <!-- 四级回复-->
-                                                <view wx:for="{{commentsList}}" wx:key="itemid4" wx:for-index="idx" wx:for-item="item4">
-                                                    <view wx:if="{{item4.parent===item3.id}}">
-                                                        <view class="replay-user">
-                                                            {{item4.author_name}} 回复 {{item4.parent_name}}:{{item4.summary}}
-                                                        </view>
-                                                    </view>
-                                                </view>
-                                                <!-- 四级回复-->
-
-                                            </view>
-                                        </view>
-                                        <!-- 三级回复-->
-
+                                  <!-- 四级回复-->
+                                <view wx:for="{{item3.child}}" wx:key="itemid4" wx:for-index="idx" wx:for-item="item4">
+                                    <view class="replay-user">
+                                        {{item4.author_name}} 回复 {{item3.author_name}}:{{item4.content}}
                                     </view>
                                 </view>
-                                <!-- 二级回复-->
-
+                                <!-- 四级回复-->
+                              
                             </view>
+                            <!-- 三级回复-->
+                            
                         </view>
-                        <!-- 一级回复-->
-
+                        <!-- 二级回复-->
+                        
                     </view>
-                </view>
+                    <!-- 一级回复-->
 
+                </view>
             </block>
 
             <view style="display:{{display}}">

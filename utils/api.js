@@ -130,6 +130,12 @@ module.exports = {
     return url;
   },
 
+  //获取文章评论及其回复
+  getCommentsReplay: function (obj) {
+      var url = HOST_URI_WATCH_LIFE_JSON;
+      url += 'comment/getcomments?postid=' + obj.postId + '&limit=' + obj.limit + '&page=' + obj.page + '&order=desc';
+      return url;
+  },
   //获取网站的最新20条评论
   getNewComments: function () {
       return HOST_URI + 'comments?parent=0&per_page=20&orderby=date&order=desc';

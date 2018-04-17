@@ -20,7 +20,7 @@ var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
 var app = getApp();
 let isFocusing = false
-
+const pageCount = config.getPageCount;
 
 import { ModalView } from '../../templates/modal-view/modal-view.js'
 
@@ -95,7 +95,7 @@ Page({
         var self = this;
         if (!self.data.isLastPage) {            
             console.log('当前页' + self.data.page);            
-            this.fetchCommentData(self.data);
+            self.fetchCommentData();
             self.setData({
                 page: self.data.page + 1,                
             });            
@@ -485,21 +485,22 @@ Page({
 
     },
     //获取评论
-    fetchCommentData: function (data) {
-        var self = this;
-        if (!data) data = {};
-        if (!data.page) data.page = 1;
-
+    fetchCommentData: function () {
+        var self=this;
+        let args = {};
+        args.postId = self.data.postID;
+        args.limit = pageCount;
+        args.page = self.data.page;
         self.setData({ isLoading: true })
 
-        self.setData({
-            commentsList: [],
-        });
-        var getCommentsRequest = wxRequest.getRequest(Api.getComments(data));
+        // self.setData({
+        //     commentsList: [],
+        // });
+        var getCommentsRequest = wxRequest.getRequest(Api.getCommentsReplay(args));
         getCommentsRequest
             .then(response => {
                 if (response.statusCode == 200) {
-                    if (response.data.length < 100) {
+                    if (response.data.data.length < pageCount) {
                         self.setData({
                             isLastPage: true
                         });
@@ -507,24 +508,25 @@ Page({
                     if (response.data) {
                         self.setData({
                             //commentsList: response.data, 
-                            commentsList: self.data.commentsList.concat(response.data.map(function (item) {
-                                var strSummary = util.removeHTML(item.content.rendered);
-                                var dateStr = item.date;
-                                dateStr = dateStr.replace("T", " ");
-                                var strdate = util.getDateDiff(dateStr);
-                                item.date = strdate;
-                                item.dateStr = dateStr;
-                                item.summary = strSummary;
-                                if (item.author_url.indexOf('wx.qlogo.cn') != -1) {
-                                    if (item.author_url.indexOf('https') == -1) {
-                                        item.author_url = item.author_url.replace("http", "https");
-                                    }
-                                }
-                                else {
-                                    item.author_url = "../../images/gravatar.png";
-                                }
-                                return item;
-                            }))
+                            commentsList: [].concat(self.data.commentsList, response.data.data)
+                            // commentsList: self.data.commentsList.concat(response.data.map(function (item) {
+                            //     var strSummary = util.removeHTML(item.content.rendered);
+                            //     var dateStr = item.date;
+                            //     dateStr = dateStr.replace("T", " ");
+                            //     var strdate = util.getDateDiff(dateStr);
+                            //     item.date = strdate;
+                            //     item.dateStr = dateStr;
+                            //     item.summary = strSummary;
+                            //     if (item.author_url.indexOf('wx.qlogo.cn') != -1) {
+                            //         if (item.author_url.indexOf('https') == -1) {
+                            //             item.author_url = item.author_url.replace("http", "https");
+                            //         }
+                            //     }
+                            //     else {
+                            //         item.author_url = "../../images/gravatar.png";
+                            //     }
+                            //     return item;
+                            // }))
 
                         });
                     }
@@ -613,7 +615,7 @@ Page({
                 page: self.data.page + 1
             });
             console.log('当前页' + self.data.page);
-            this.fetchCommentData(self.data);
+            this.fetchCommentData();
         }
         else {
             wx.showToast({
@@ -700,7 +702,7 @@ Page({
                 var author_url = app.globalData.userInfo.avatarUrl;
                 var email = app.globalData.openid + "@qq.com";
                 var openid = app.globalData.openid;
-                var fromUser = app.globalData.userInfo.nickName;
+                var fromUser = app.globalData.userInfo.nickName;                
                 var data = {
                     post: postID,
                     author_name: name,
@@ -729,7 +731,7 @@ Page({
                                 });
                                 console.log(res.data.message);
                                 if (parent != "0" && !util.getDateOut(commentdate) && toFromId != "") {
-                                    var useropenid = res.data.useropenid;
+                                    var useropenid = res.data.useropenid;                                    
                                     var data =
                                         {
                                             openid: useropenid,
@@ -761,11 +763,8 @@ Page({
 
                                 }
                                 console.log(res.data.code);
-                                var commentCounts = parseInt(self.data.total_comments)+1;
-                                var curPage = Math.ceil(commentCounts/100);
+                                var commentCounts = parseInt(self.data.total_comments)+1;                                
                                 self.setData({
-                                    page: curPage,
-                                    isLastPage:false,
                                     total_comments:commentCounts,                                   
                                     commentCount: "有" + commentCounts + "条评论"                                   
                                     
@@ -810,7 +809,16 @@ Page({
                         }
                     }).then(response =>{                    
                         //self.fetchCommentData(self.data); 
+                        self.setData(
+                            {
+                                page:1,
+                                commentsList:[],
+                                isLastPage:false
+
+                            }
+                        )
                         self.onReachBottom();
+                        //self.fetchCommentData();
                         setTimeout(function () {                           
                             wx.showToast({
                                 title: '评论发布成功',
