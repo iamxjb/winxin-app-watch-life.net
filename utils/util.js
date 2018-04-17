@@ -248,7 +248,7 @@ function drawTitleExcerpt(context, title, excerpt) {
     else {
         //题目字数很多的，只绘制前36个字（如果题目字数在15到18个字则也是一行，不怎么好看）
         context.setFontSize(30);
-        context.fillText(title.substring(0, 18), 40, 460);
+        context.fillText(title.substring(0, 19), 40, 460);
         context.fillText(title.substring(19, 36), 40, 510);
     }
 
