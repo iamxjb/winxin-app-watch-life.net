@@ -306,6 +306,7 @@ Page({
         getPostDetailRequest
             .then(response => {
                 res = response;
+                WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5);
                 if (response.data.total_comments != null && response.data.total_comments != '') {
                     self.setData({
                         commentCount: "有" + response.data.total_comments + "条评论"
@@ -315,8 +316,7 @@ Page({
                 if (response.data.like_count != '0') {
                     _displayLike = "block"
                 }
-                WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5);
-                self.setData({
+                  self.setData({
                     detail: response.data,
                     likeCount: _likeCount,
                     postID: id,
