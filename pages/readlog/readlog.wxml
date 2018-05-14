@@ -12,6 +12,7 @@
  */-->
 <import src="../../templates/common-list.wxml" />
 <import src="../../templates/copyright.wxml" />
+<import src="../../templates/login-popup.wxml" />
 
 <view class="readlog-container">  
   <view class="userinfo">
@@ -35,7 +36,8 @@
         </view> -->
       </view>
     </view>
-
+ <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
+       
     <view class="log-list">
       <block wx:key="id" wx:for="{{readLogs}}">
         <view class="log-items" index="{{index}}" id="{{item[0]}}" data-itemtype="{{item[2]}}" catchtap="redictDetail">

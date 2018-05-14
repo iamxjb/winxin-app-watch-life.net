@@ -1,0 +1,7 @@
+<template name="zan-toptips">
+    <view class="zan-toptips {{ zanTopTips.show ? 'zan-toptips--show' : '' }}">
+        <block wx:for="{{ zanTopTips.content }}">
+            <text>{{item}}</text>
+        </block>
+    </view>
+</template>

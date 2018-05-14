@@ -14,6 +14,10 @@
 <import src="../../templates/copyright.wxml" />
 <import src="../../templates/loading.wxml" />
 <import src="../../templates/modal-view/modal-view.wxml" />
+<import src="../../templates/login-popup.wxml" />
+
+
+
 <view class="container">
     <view class="container">
         <view class="content-article-detail" style="display:{{display}}">
@@ -37,7 +41,7 @@
             </view>
             <view class="entry-summary">
                 <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-            </view>
+          </view>
         </view>
         <!--  上一篇，下一篇  -->
         <view wx:if="{{display}}" class="pagination">
@@ -159,14 +163,17 @@
         <view class="ditail-copyright" style="display:{{display}}">
             <template is="tempCopyright" />
         </view>
-        <!--评论区-->
+
+        <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
+       
+       <!--评论区-->
         <view style="display:{{enableComment?'block':'none'}}">
             <view class="menuBackground" catchtap="hiddenMenubox" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
             <view style="display:{{display}}">
                 <view class="comment-fixed">
                     <form catchsubmit="formSubmit" report-submit="true">
                         <view class="comment-respond">
-                            <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
+                            <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />                           
                             <view class="comment-box">
                                 <image src="../../images/entry-home.png" class="img-plus" style="margin-left:20rpx;margin-right:20rpx" catchtap="goHome"></image>
                                 <input class="comment-input" type='text' confirm-type="send" cursor-spacing="10" maxlength="100" name="inputComment" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onReplyBlur" bindfocus="onRepleyFocus" />

@@ -21,7 +21,7 @@ Page({
     data: {
         text: "Page topic",
         categoriesList: {},
-        floatDisplay: "none"
+        floatDisplay: "none",        
     },
     onLoad: function (options) {
         wx.setNavigationBarTitle({
@@ -32,6 +32,9 @@ Page({
         });
         
         this.fetchCategoriesData();
+    },
+    onShow:function(){            
+
     },
     //获取分类列表
     fetchCategoriesData: function () {
@@ -61,8 +64,8 @@ Page({
 
         })
         .then(res=>{
-            if (!app.globalData.isGetOpenid) {
-                self.getUsreInfo();
+            if (!app.globalData.isGetOpenid) {                
+                self.userAuthorization();
             }
             else
             {
@@ -90,52 +93,6 @@ Page({
                 // 转发失败
             }
         }
-    },    
-    getUsreInfo: function () {
-        var self = this;
-        var wxLogin = wxApi.wxLogin();
-        var jscode = '';
-        wxLogin().then(response => {
-            jscode = response.code
-            var wxGetUserInfo = wxApi.wxGetUserInfo();
-            return wxGetUserInfo()
-        }).
-            //获取用户信息
-            then(response => {
-                console.log(response.userInfo);
-                console.log("成功获取用户信息(公开信息)");
-                app.globalData.userInfo = response.userInfo;
-                app.globalData.isGetUserInfo = true;
-                var url = Api.getOpenidUrl();
-                var data = {
-                    js_code: jscode,
-                    encryptedData: response.encryptedData,
-                    iv: response.iv,
-                    avatarUrl: response.userInfo.avatarUrl
-                }
-                var postOpenidRequest = wxRequest.postRequest(url, data);
-                //获取openid
-                postOpenidRequest.then(response => {
-                    if (response.data.status == '200') {
-                        //console.log(response.data.openid)
-                        console.log("openid 获取成功");
-                        app.globalData.openid = response.data.openid;
-                        app.globalData.isGetOpenid = true;
-
-                        setTimeout(function () {                            
-                            self.getSubscription();
-                        }, 500);
-                       
-                        
-                    }
-                    else {
-                        console.log(response.data.message);
-                    }
-                })
-            })
-            .catch(function (error) {
-                console.log('error: ' + error.errMsg);                
-            })
     },
     getSubscription: function () {
         var self= this;
@@ -341,6 +298,8 @@ Page({
                 var authSetting = res.authSetting;
                 if (util.isEmptyObject(authSetting)) {
                     console.log('第一次授权');
+                    self.setData({ isLoginPopup: true })
+
                 } else {
                     console.log('不是第一次授权', authSetting);
                     // 没有授权的提醒
@@ -360,7 +319,7 @@ Page({
                                             console.log('打开设置', res.authSetting);
                                             var scopeUserInfo = res.authSetting["scope.userInfo"];
                                             if (scopeUserInfo) {
-                                                self.getUsreInfo();
+                                                self.getUsreInfo(null);
                                             }
                                         }
                                     });
@@ -368,9 +327,85 @@ Page({
                             }
                         })
                     }
+                    else {
+                        self.setData({ isLoginPopup: true })
+
+                    }
                 }
             }
         });
+    },
+    agreeGetUser: function (e) {
+
+        var userInfo = e.detail.userInfo;
+        if (userInfo) {
+            this.getUsreInfo(e.detail);
+            this.setData({ userInfo: userInfo })
+
+        }
+        else {
+            this.setData({ isLoginPopup: false })
+        }
+    },
+    closeLoginPopup() {
+        this.setData({ isLoginPopup: false });
+    },
+    openLoginPopup() {
+        this.setData({ isLoginPopup: true });
+    },
+    //获取用户信息和openid
+    getUsreInfo: function (userInfoDetail) {
+        var wxLogin = wxApi.wxLogin();
+        var jscode = '';
+
+        wxLogin().then(response => {
+            jscode = response.code
+            if (userInfoDetail == null) {
+                var userInfo = wxApi.wxGetUserInfo();
+                return userInfo();
+            }
+            else {
+                return userInfoDetail;
+            }
+        }).then(response => {         //获取用户信息
+            console.log(response.userInfo);
+            console.log("成功获取用户信息(公开信息)");
+            app.globalData.userInfo = response.userInfo;
+            app.globalData.isGetUserInfo = true;
+
+            var data = {
+                js_code: jscode,
+                encryptedData: response.encryptedData,
+                iv: response.iv,
+                avatarUrl: response.userInfo.avatarUrl,
+                nickname: response.userInfo.nickName
+            }
+            this.getOpenId(data);
+        }).catch(function (error) {
+            console.log('error: ' + error.errMsg);
+        })
+    },
+    getOpenId(data) {
+        var url = Api.getOpenidUrl();
+        var self  = this;
+        var postOpenidRequest = wxRequest.postRequest(url, data);
+        //获取openid
+        postOpenidRequest.then(response => {
+            if (response.data.status == '200') {
+                //console.log(response.data.openid)
+                console.log("openid 获取成功");
+                app.globalData.openid = response.data.openid;
+                app.globalData.isGetOpenid = true;
+
+            }
+            else {
+                console.log(response);
+            }
+        }).then(res=>{
+            setTimeout(function () {
+                self.getSubscription();               
+            }, 500);
+        })
     },
     confirm: function () {
         this.setData({

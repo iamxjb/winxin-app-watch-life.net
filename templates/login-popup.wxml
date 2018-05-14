@@ -1,0 +1,15 @@
+<!--templates/login-popup.wxml-->
+<import src="login.wxml" />
+
+<template name="login-popup">
+    <view class="zan-popup zan-popup--center login-popup {{show ? 'zan-popup--show' : ''}}">
+        <!-- 遮罩层 -->
+        <view class="zan-popup__mask" bindtap="closeLoginPopup"></view>
+        <!-- 弹出层内容 -->
+        <view class="zan-popup__container">
+            <view class="login-popup-wrapper">
+				<template is="login" data="{{userInfo: userInfo}}"></template>
+            </view>
+        </view>
+    </view>
+</template>

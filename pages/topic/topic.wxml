@@ -1,4 +1,5 @@
 <import src="../../templates/copyright.wxml" />
+<import src="../../templates/login-popup.wxml" />
 
 <scroll-view style="height:100%;" scroll-y="true" lower-threshold="100rpx">
     <view class="topic-common-list">
@@ -25,7 +26,8 @@
         </block>
     </view>
 </scroll-view>
-
+ <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
+     
 <view class="copyright" style="display:{{floatDisplay}}">
     <template is="tempCopyright" />
 </view>

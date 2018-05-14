@@ -34,7 +34,9 @@ Page({
     tab: '1',
     showerror: "none",
     shownodata:"none",
-    subscription:""  
+    subscription:"",
+    userInfo: app.globalData.userInfo,
+    isLoginPopup: false  
   },
 
   /**
@@ -43,7 +45,8 @@ Page({
   onLoad: function (options) {  
     var self = this;
     if (!app.globalData.isGetOpenid) {
-        self.getUsreInfo();        
+        //self.getUsreInfo();
+        self.userAuthorization();     
     }
     else
     {
@@ -117,10 +120,11 @@ Page({
       self = this;
       self.setData({
           showerror: 'none',
-          shownodata: 'none'
-      });
-      var count = 0;
-      if (tab == '1') {
+          shownodata:'none'
+      }); 
+     var count =0;
+      if (tab == '1')
+      {
           self.setData({
               readLogs: (wx.getStorageSync('readLogs') || []).map(function (log) {
                   count++;
@@ -130,17 +134,18 @@ Page({
 
           self.setData({
               userInfo: app.globalData.userInfo
-          });
+          }); 
 
           if (count == 0) {
               self.setData({
                   shownodata: 'block'
               });
-          }
+          } 
 
-
+          
       }
-      else if (tab == '2') {
+      else if (tab == '2')
+       {
           self.setData({
               readLogs: []
           });
@@ -177,11 +182,12 @@ Page({
               })
 
           }
-          else {
+          else
+          {
               self.userAuthorization();
-          }
+          }          
 
-      }
+       } 
 
       else if (tab == '3') {
           self.setData({
@@ -203,13 +209,13 @@ Page({
                       });
                       self.setData({
                           userInfo: app.globalData.userInfo
-                      });
+                      }); 
 
                       if (count == 0) {
                           self.setData({
                               shownodata: 'block'
                           });
-                      }
+                      } 
                   }
                   else {
                       console.log(response);
@@ -226,50 +232,50 @@ Page({
           }
 
       }
-      else if (tab == '4') {
+        else if (tab == '4') {
           self.setData({
-              readLogs: []
-          });
-          if (app.globalData.isGetOpenid) {
-              var openid = app.globalData.openid;
-              var getMyPraisePosts = wxRequest.getRequest(Api.getMyPraiseUrl(openid));
-              getMyPraisePosts.then(response => {
-                  if (response.statusCode == 200) {
-                      self.setData({
-                          readLogs: self.data.readLogs.concat(response.data.data.map(function (item) {
-                              count++;
-                              item[0] = item.post_id;
-                              item[1] = item.post_title;
-                              item[2] = "0";
-                              return item;
-                          }))
-                      });
-                      self.setData({
-                          userInfo: app.globalData.userInfo
-                      });
+            readLogs: []
+        });
+        if (app.globalData.isGetOpenid) {
+            var openid = app.globalData.openid;
+            var getMyPraisePosts = wxRequest.getRequest(Api.getMyPraiseUrl(openid));
+            getMyPraisePosts.then(response => {
+                if (response.statusCode == 200) {
+                    self.setData({
+                        readLogs: self.data.readLogs.concat(response.data.data.map(function (item) {
+                            count++;
+                            item[0] = item.post_id;
+                            item[1] = item.post_title;
+                            item[2] = "0";
+                            return item;
+                        }))
+                    });
+                    self.setData({
+                        userInfo: app.globalData.userInfo
+                    }); 
 
-                      if (count == 0) {
-                          self.setData({
-                              shownodata: 'block'
-                          });
-                      }
-                  }
-                  else {
-                      console.log(response);
-                      this.setData({
-                          showerror: 'block'
-                      });
+                    if (count == 0) {
+                        self.setData({
+                            shownodata: 'block'
+                        });
+                    } 
+                }
+                else {
+                    console.log(response);
+                    this.setData({
+                        showerror: 'block'
+                    });
 
-                  }
-              })
+                }
+            })
 
-          }
-          else {
-              self.userAuthorization();
-          }
+        }
+        else {
+            self.userAuthorization();
+        }
+        
 
-
-      }
+    }
       else if (tab == '5') {
           self.setData({
               readLogs: []
@@ -278,11 +284,12 @@ Page({
 
               var openid = app.globalData.openid;
               var url = Api.getSubscription() + '?openid=' + app.globalData.openid;
-              var getMysubPost = wxRequest.getRequest(url);
+              var getMysubPost = wxRequest.getRequest(url);              
               getMysubPost.then(response => {
                   if (response.statusCode == 200) {
                       var usermetaList = response.data.usermetaList;
-                      if (usermetaList) {
+                      if (usermetaList)
+                      {
                           self.setData({
                               readLogs: self.data.readLogs.concat(usermetaList.map(function (item) {
                                   count++;
@@ -294,7 +301,7 @@ Page({
                           });
 
                       }
-
+                      
                       self.setData({
                           userInfo: app.globalData.userInfo
                       });
@@ -314,18 +321,18 @@ Page({
                   }
               })
           }
-          else {
+          else{
               self.userAuthorization();
           }
 
-
+          
       }
-      else if (tab == '6') {
+      else if (tab == '6'){
           self.setData({
               readLogs: []
           });
 
-
+          
           var getNewComments = wxRequest.getRequest(Api.getNewComments());
           getNewComments.then(response => {
               if (response.statusCode == 200) {
@@ -360,7 +367,7 @@ Page({
 
           })
       }
-  },   
+  },  
   userAuthorization: function () {
       var self = this;
       // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
@@ -370,6 +377,8 @@ Page({
               var authSetting = res.authSetting;
               if (util.isEmptyObject(authSetting)) {
                   console.log('第一次授权');
+                  self.setData({ isLoginPopup: true })
+
               } else {
                   console.log('不是第一次授权', authSetting);
                   // 没有授权的提醒
@@ -389,7 +398,7 @@ Page({
                                           console.log('打开设置', res.authSetting);
                                           var scopeUserInfo = res.authSetting["scope.userInfo"];
                                           if (scopeUserInfo) {
-                                              self.getUsreInfo();
+                                              auth.getUsreInfo(null);
                                           }
                                       }
                                   });
@@ -397,9 +406,31 @@ Page({
                           }
                       })
                   }
+                  else {
+                      self.setData({ isLoginPopup: true })
+
+                  }
               }
           }
       });
+  },
+  agreeGetUser: function (e) {
+      var userInfo = e.detail.userInfo;
+      if (userInfo) {
+          auth.getUsreInfo(e.detail);
+
+          this.setData({ userInfo: userInfo })
+
+      }
+      else {
+          this.setData({ isLoginPopup: false })
+      }
+  },
+  closeLoginPopup() {
+      this.setData({ isLoginPopup: false });
+  },
+  openLoginPopup() {
+      this.setData({ isLoginPopup: true });
   }
   ,
     confirm: function () {

@@ -18,6 +18,9 @@ var auth = require('../../utils/auth.js');
 var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
+
+//const Zan = require('../../vendor/ZanUI/index')
+
 var app = getApp();
 let isFocusing = false
 const pageCount = config.getPageCount;
@@ -33,7 +36,7 @@ Page({
         commentCount: '',
         detailDate: '',
         commentValue: '',
-        wxParseData: [],
+        wxParseData: {},
         display: 'none',
         page: 1,
         isLastPage: false,
@@ -65,7 +68,9 @@ Page({
         logo: config.getLogo,
         enableComment: true,
         isLoading:false,
-        total_comments:0
+        total_comments:0,
+        userInfo:app.globalData.userInfo,
+        isLoginPopup:false
 
     },
     onLoad: function (options) {
@@ -316,7 +321,8 @@ Page({
                 if (response.data.like_count != '0') {
                     _displayLike = "block"
                 }
-                  self.setData({
+                
+                self.setData({
                     detail: response.data,
                     likeCount: _likeCount,
                     postID: id,
@@ -329,7 +335,6 @@ Page({
                     total_comments: response.data.total_comments
 
                 });
-
                 // 调用API从本地缓存中获取阅读记录并记录
                 var logs = wx.getStorageSync('readLogs') || [];
                 // 过滤重复值
@@ -391,7 +396,7 @@ Page({
                // self.fetchCommentData(self.data);
             }).then(resonse => {
                 if (!app.globalData.isGetOpenid) {
-                    auth.getUsreInfo();
+                    //auth.getUsreInfo();
                 }
 
             }).then(response => {//获取是否已经点赞
@@ -401,9 +406,10 @@ Page({
             })
             .catch(function (response) {
 
-            }).finally(function (response) {
+            })
+            // .finally(function (response) {
 
-            });
+            // });
 
 
     },
@@ -492,10 +498,6 @@ Page({
         args.limit = pageCount;
         args.page = self.data.page;
         self.setData({ isLoading: true })
-
-        // self.setData({
-        //     commentsList: [],
-        // });
         var getCommentsRequest = wxRequest.getRequest(Api.getCommentsReplay(args));
         getCommentsRequest
             .then(response => {
@@ -506,28 +508,8 @@ Page({
                         });
                     }
                     if (response.data) {
-                        self.setData({
-                            //commentsList: response.data, 
+                        self.setData({                            
                             commentsList: [].concat(self.data.commentsList, response.data.data)
-                            // commentsList: self.data.commentsList.concat(response.data.map(function (item) {
-                            //     var strSummary = util.removeHTML(item.content.rendered);
-                            //     var dateStr = item.date;
-                            //     dateStr = dateStr.replace("T", " ");
-                            //     var strdate = util.getDateDiff(dateStr);
-                            //     item.date = strdate;
-                            //     item.dateStr = dateStr;
-                            //     item.summary = strSummary;
-                            //     if (item.author_url.indexOf('wx.qlogo.cn') != -1) {
-                            //         if (item.author_url.indexOf('https') == -1) {
-                            //             item.author_url = item.author_url.replace("http", "https");
-                            //         }
-                            //     }
-                            //     else {
-                            //         item.author_url = "../../images/gravatar.png";
-                            //     }
-                            //     return item;
-                            // }))
-
                         });
                     }
 
@@ -856,6 +838,8 @@ Page({
                 var authSetting = res.authSetting;
                 if (util.isEmptyObject(authSetting)) {
                     console.log('第一次授权');
+                    self.setData({ isLoginPopup:true})
+
                 } else {
                     console.log('不是第一次授权', authSetting);
                     // 没有授权的提醒
@@ -875,7 +859,7 @@ Page({
                                             console.log('打开设置', res.authSetting);
                                             var scopeUserInfo = res.authSetting["scope.userInfo"];
                                             if (scopeUserInfo) {
-                                                auth.getUsreInfo();
+                                                auth.getUsreInfo(null);
                                             }
                                         }
                                     });
@@ -883,9 +867,35 @@ Page({
                             }
                         })
                     }
+                    else
+                    {
+                        self.setData({ isLoginPopup: true })
+
+                    }
                 }
             }
         });
+    },
+    agreeGetUser:function(e)
+    {
+       var userInfo = e.detail.userInfo;
+        if (userInfo)
+        {
+            auth.getUsreInfo(e.detail);
+
+            this.setData({ userInfo: userInfo})
+            
+        }
+        else
+        {
+            this.setData({ isLoginPopup: false })
+        }
+    },
+    closeLoginPopup() {
+        this.setData({ isLoginPopup: false });
+    },
+    openLoginPopup() {
+        this.setData({ isLoginPopup: true });
     },
     confirm: function () {
         this.setData({
