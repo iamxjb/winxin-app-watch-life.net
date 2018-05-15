@@ -225,6 +225,7 @@
 
 .login-popup-wrapper {
     margin: 0 25px;
+    
 }
 
 .login-popup button {
@@ -235,6 +236,7 @@
 .login-popup .login-inner {
     background-color: #fff;
     padding: 10px 15px;
+    border-radius:5px;
 }
 
 .login-inner {
@@ -308,6 +310,8 @@
 .zan-popup .zan-popup__container {
     width: 100%;
     overflow: visible;
+  
+
 }
 
 .zan-popup .popup-wrapper {
@@ -315,6 +319,7 @@
     padding: 0 15px;
     padding-bottom: 10px;
     overflow: visible;
+    
 }
 
 .zan-popup .popup-wrapper .popup-title {

@@ -65,7 +65,7 @@ Page({
         })
         .then(res=>{
             if (!app.globalData.isGetOpenid) {                
-                self.userAuthorization();
+                //self.userAuthorization();
             }
             else
             {
@@ -328,24 +328,22 @@ Page({
                         })
                     }
                     else {
-                        self.setData({ isLoginPopup: true })
-
+                        auth.getUsreInfo(null);
                     }
                 }
             }
         });
     },
     agreeGetUser: function (e) {
-
         var userInfo = e.detail.userInfo;
+        var self = this;
         if (userInfo) {
-            this.getUsreInfo(e.detail);
-            this.setData({ userInfo: userInfo })
-
+            auth.getUsreInfo(e.detail);
+            self.setData({ userInfo: userInfo })
         }
-        else {
-            this.setData({ isLoginPopup: false })
-        }
+        setTimeout(function () {
+            self.setData({ isLoginPopup: false })
+        }, 1200);
     },
     closeLoginPopup() {
         this.setData({ isLoginPopup: false });

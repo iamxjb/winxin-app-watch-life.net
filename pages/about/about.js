@@ -228,7 +228,7 @@ Page({
                       })
                   }
                   else {
-                      self.setData({ isLoginPopup: true })
+                      auth.getUsreInfo(null);
 
                   }
               }
@@ -237,15 +237,14 @@ Page({
   },
   agreeGetUser: function (e) {
       var userInfo = e.detail.userInfo;
+      var self = this;
       if (userInfo) {
           auth.getUsreInfo(e.detail);
-
-          this.setData({ userInfo: userInfo })
-
+          self.setData({ userInfo: userInfo });
       }
-      else {
-          this.setData({ isLoginPopup: false })
-      }
+      setTimeout(function () {
+          self.setData({ isLoginPopup: false })
+      }, 1200);
   },
   closeLoginPopup() {
       this.setData({ isLoginPopup: false });
@@ -302,7 +301,7 @@ Page({
     })    
     .then(res =>{
         if (!app.globalData.isGetOpenid) {
-            auth.getUsreInfo();
+           // auth.getUsreInfo();
         }
 
     })

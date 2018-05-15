@@ -223,7 +223,7 @@ Page({
                 })
         }
         else {
-            self.userAuthorization();
+            self.userAuthorization('1');
         }
     },
     getIslike: function () { //判断当前用户是否点赞
@@ -267,7 +267,7 @@ Page({
                 })
             }
             else {
-                self.userAuthorization();
+                self.userAuthorization('1');
             }
         }
         else {
@@ -396,7 +396,7 @@ Page({
                // self.fetchCommentData(self.data);
             }).then(resonse => {
                 if (!app.globalData.isGetOpenid) {
-                    //auth.getUsreInfo();
+                    self.userAuthorization('0');
                 }
 
             }).then(response => {//获取是否已经点赞
@@ -822,14 +822,14 @@ Page({
 
             }
             else {
-                self.userAuthorization();
+                self.userAuthorization('1');
 
             }
 
         }
 
     },
-    userAuthorization: function () {
+    userAuthorization: function (flag) {
         var self = this;
         // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
         wx.getSetting({
@@ -838,38 +838,46 @@ Page({
                 var authSetting = res.authSetting;
                 if (util.isEmptyObject(authSetting)) {
                     console.log('第一次授权');
-                    self.setData({ isLoginPopup:true})
+                    if(flag=='1')
+                    {
+                        self.setData({ isLoginPopup: true })
+                    }
+                    
 
                 } else {
                     console.log('不是第一次授权', authSetting);
                     // 没有授权的提醒
                     if (authSetting['scope.userInfo'] === false) {
-                        wx.showModal({
-                            title: '用户未授权',
-                            content: '如需正常使用评论、点赞、赞赏等功能需授权获取用户信息。是否在授权管理中选中“用户信息”?',
-                            showCancel: true,
-                            cancelColor: '#296fd0',
-                            confirmColor: '#296fd0',
-                            confirmText: '设置权限',
-                            success: function (res) {
-                                if (res.confirm) {
-                                    console.log('用户点击确定')
-                                    wx.openSetting({
-                                        success: function success(res) {
-                                            console.log('打开设置', res.authSetting);
-                                            var scopeUserInfo = res.authSetting["scope.userInfo"];
-                                            if (scopeUserInfo) {
-                                                auth.getUsreInfo(null);
+                        if(flag=='1')
+                        {
+                            wx.showModal({
+                                title: '用户未授权',
+                                content: '如需正常使用评论、点赞、赞赏等功能需授权获取用户信息。是否在授权管理中选中“用户信息”?',
+                                showCancel: true,
+                                cancelColor: '#296fd0',
+                                confirmColor: '#296fd0',
+                                confirmText: '设置权限',
+                                success: function (res) {
+                                    if (res.confirm) {
+                                        console.log('用户点击确定')
+                                        wx.openSetting({
+                                            success: function success(res) {
+                                                console.log('打开设置', res.authSetting);
+                                                var scopeUserInfo = res.authSetting["scope.userInfo"];
+                                                if (scopeUserInfo) {
+                                                    auth.getUsreInfo(null);
+                                                }
                                             }
-                                        }
-                                    });
+                                        });
+                                    }
                                 }
-                            }
-                        })
+                            })
+                        }
+                        
                     }
                     else
                     {
-                        self.setData({ isLoginPopup: true })
+                        auth.getUsreInfo(null);
 
                     }
                 }
@@ -879,17 +887,16 @@ Page({
     agreeGetUser:function(e)
     {
        var userInfo = e.detail.userInfo;
+       var self=this;
         if (userInfo)
         {
             auth.getUsreInfo(e.detail);
-
-            this.setData({ userInfo: userInfo})
-            
-        }
-        else
-        {
-            this.setData({ isLoginPopup: false })
-        }
+            self.setData({ userInfo: userInfo});            
+        }       
+        setTimeout(function () {
+            self.setData({ isLoginPopup: false })
+        }, 1200);
+        
     },
     closeLoginPopup() {
         this.setData({ isLoginPopup: false });
