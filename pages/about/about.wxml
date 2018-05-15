@@ -13,7 +13,6 @@
 <import src="../../wxParse/wxParse.wxml" />
 <import src="../../templates/header.wxml" />
 <import src="../../templates/copyright.wxml" />
-<import src="../../templates/copyright.wxml" />
 <import src="../../templates/login-popup.wxml" />
 
 <view class="container" style="display:{{display}}">
