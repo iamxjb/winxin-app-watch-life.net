@@ -836,7 +836,8 @@ Page({
             success: function success(res) {
                 console.log(res.authSetting);
                 var authSetting = res.authSetting;
-                if (util.isEmptyObject(authSetting)) {
+                if (!('scope.userInfo' in authSetting)) {
+                //if (util.isEmptyObject(authSetting)) {
                     console.log('第一次授权');
                     if(flag=='1')
                     {
