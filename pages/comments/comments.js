@@ -28,7 +28,7 @@ Page({
 
     },
     onShareAppMessage: function () {
-        var title = "分享“+config.getWebsiteName+”的最新评论";
+        var title = "分享"+config.getWebsiteName+"的最新评论";
         var path = "pages/comments/comments";
         return {
             title: title,

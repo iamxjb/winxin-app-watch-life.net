@@ -120,7 +120,8 @@ function strcharacterDiscode(str){
     str = str.replace(/&#8230;/g, '...');
     str = str.replace(/&#8220;/g, '"');
     str = str.replace(/&#038;/g, '&');
-    
+    str = str.replace(/&#8211;/g, '-');
+    str = str.replace(/&#8212;/g, '--');
    
 
 
