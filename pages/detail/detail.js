@@ -383,12 +383,12 @@ Page({
 
                 }
             }).then(response => {
-                var updatePageviewsRequest = wxRequest.getRequest(Api.updatePageviews(id));
-                updatePageviewsRequest
-                    .then(result => {
-                        console.log(result.data.message);
+                // var updatePageviewsRequest = wxRequest.getRequest(Api.updatePageviews(id));
+                // updatePageviewsRequest
+                //     .then(result => {
+                //         console.log(result.data.message);
 
-                    })
+                //     })
 
             }).then(response => {//获取点赞记录
                 self.showLikeImg();
