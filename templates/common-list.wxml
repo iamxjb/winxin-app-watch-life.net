@@ -16,7 +16,7 @@
             <image src="../../images/home-like.png"></image>
             <text class="">{{item.like_count}}</text>        
         </view>
-        <image src="{{item.post_thumbnail_image}}" mode="aspectFill" class="cover"></image>
+        <image src="{{item.post_medium_image}}" mode="aspectFill" class="cover"></image>
       </view>
     </block>
   </view>  
