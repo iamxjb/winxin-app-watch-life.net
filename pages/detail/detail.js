@@ -931,7 +931,7 @@ Page({
         var domain = config.getDomain;
         var downloadFileDomain = config.getDownloadFileDomain;
 
-        var fristImage = self.data.detail.content_first_image; 
+        var fristImage = self.data.detail.post_medium_image; 
 
         //获取文章首图临时地址，若没有就用默认的图片,如果图片不是request域名，使用本地图片
         if (fristImage) {
