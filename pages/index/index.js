@@ -84,14 +84,15 @@ Page({
     var self = this;
     self.setData({
       showerror: "none",
-      showallDisplay:"none",
+      showallDisplay:"block",
       displaySwiper:"none",
       floatDisplay:"none",
       isLastPage:false,
-      page:0,
+      page:1,
       postsShowSwiperList:[]
     });
     this.fetchTopFivePosts(); 
+    this.fetchPostsData(self.data);
     
   },
   onReachBottom: function () {  

@@ -46,6 +46,12 @@
   width: 80%;
   border-radius: 20rpx; */
 }
+
+.modal-input_solo image {
+  width: 100%;
+  height: 1000rpx;
+}
+
 .modal-input_hd{
   border-top: 2rpx solid #ddd;
   border-left: 2rpx solid #ddd;

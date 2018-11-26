@@ -22,7 +22,7 @@
             <textarea class="input_texarea" placeholder-class="input-holder" value="{{formData[i]}}" placeholder="{{item.fieldPlaceHolder}}" bindblur="__modalView__onTextBlur" data-field_index="{{i}}"/> 
           </block>
           <block wx:elif="{{item.fieldType == 'Image'}}">
-            <image style="background-color: #eeeeee;" mode="widthFix" src="{{item.fieldDatasource}}" data-src="{{item.fieldDatasource}}"  bindtap="posterImageClick" ></image>
+            <image style="background-color: #eeeeee;" mode="aspectFill" src="{{item.fieldDatasource}}" data-src="{{item.fieldDatasource}}"  bindtap="posterImageClick" ></image>
           </block>
         </view>
       </view>
