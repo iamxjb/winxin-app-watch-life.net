@@ -153,7 +153,7 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 2.完善小程序的登录机制。
 
-3、修复bug。
+3.修复bug。
 
 ## 2018年4月13日
 
@@ -161,9 +161,9 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 2.给翻页增加进度显示。
 
-3、增加配置：指定显示的分类。
+3.增加配置：指定显示的分类。
 
-4、增加配置：是否开启评论。
+4.增加配置：是否开启评论。
 
 ## 2018年2月15日
 
@@ -189,9 +189,9 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 2.增加“我的”板块，显示我浏览、评论、点赞、赞赏过的文章。
 
-3、加入内链的web-view嵌入网页跳转。
+3.加入内链的web-view嵌入网页跳转。
 
-4、在关于中显示“赞赏”或“捐赠”人的头像，并致谢。
+4.在关于中显示“赞赏”或“捐赠”人的头像，并致谢。
 
 
 ## 2017年9月16日
