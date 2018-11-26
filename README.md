@@ -67,7 +67,7 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 # 小程序配套wordpress插件：
 
-本小程序完整使用需要配合我编写的wordpress插件rest-api-to-miniprogram，才能完整使用，插件下载地址： https://github.com/iamxjb/rest-api-to-miniprogram
+本小程序完整使用需要配合我编写的wordpress插件REST API TO MiniProgram，才能完整使用，插件下载地址： https://github.com/iamxjb/rest-api-to-miniprogram
 
 
 # 开源协议：MIT
@@ -147,6 +147,24 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 # 更新历史：
 
+## 2018年11月26日
+
+1.完全重构wordpress插件，启用新的插件版本：REST API TO MiniProgram ：https://github.com/iamxjb/rest-api-to-miniprogram
+
+2.完善小程序的登录机制。
+
+3.修复bug。
+
+## 2018年4月13日
+
+1.完善海报功能，在小程序端生成海报。
+
+2.给翻页增加进度显示。
+
+3.增加配置：指定显示的分类。
+
+4.增加配置：是否开启评论。
+
 ## 2018年2月15日
 
 1.增加文章海报（分享微信朋友圈的卡片）功能。
@@ -171,9 +189,9 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 2.增加“我的”板块，显示我浏览、评论、点赞、赞赏过的文章。
 
-3、加入内链的web-view嵌入网页跳转。
+3.加入内链的web-view嵌入网页跳转。
 
-4、在关于中显示“赞赏”或“捐赠”人的头像，并致谢。
+4.在关于中显示“赞赏”或“捐赠”人的头像，并致谢。
 
 
 ## 2017年9月16日
