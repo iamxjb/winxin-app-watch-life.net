@@ -67,7 +67,7 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 # 小程序配套wordpress插件：
 
-本小程序完整使用需要配合我编写的wordpress插件rest-api-to-miniprogram，才能完整使用，插件下载地址： https://github.com/iamxjb/rest-api-to-miniprogram
+本小程序完整使用需要配合我编写的wordpress插件REST API TO MiniProgram，才能完整使用，插件下载地址： https://github.com/iamxjb/rest-api-to-miniprogram
 
 
 # 开源协议：MIT
