@@ -58,21 +58,20 @@ Page({
 
 
   /**
-   * 选中赞赏金额
+   * 选中鼓励金额
    */
   selectItem: function (event) {
-    var total_fee = event.currentTarget.dataset.item;
-    var money = total_fee ;
-    total_fee = total_fee*100;
+    var totalfee = event.currentTarget.dataset.item;
+    var money = totalfee ;
+    totalfee = totalfee;
     var that = this;    
     var url = Api.postPraiseUrl();
     var data = {
       openid: that.data.openid,
-      total_fee: total_fee
+      totalfee: totalfee
     }
-    var postLikeRequest = wxRequest.getRequest(url, data);
-    postLikeRequest
-      .then(response => {
+    var postPraiseRequest = wxRequest.postRequest(url, data);
+    postPraiseRequest.then(response => {
         if (response.data) {
           var temp = response.data;
           wx.requestPayment({
@@ -82,30 +81,27 @@ Page({
             'signType': 'MD5',
             'paySign': response.data.paySign,
             'success': function (res) {
-
               var url = Api.updatePraiseUrl();
-
               var data ={
-                openid: app.globalData.openid,
+                openid: that.data.openid,
                 postid: that.data.postid,
                 orderid: response.data.nonceStr,
-                money: total_fee
+                money: totalfee
               }
               var form_id = response.data.package;
-              form_id = form_id.substring(10);
-              
-              var updatePraiseRequest = wxRequest.postRequest(url, data); //更新赞赏数据
-              updatePraiseRequest
-                .then(response => {
+              form_id = form_id.substring(10);              
+              var updatePraiseRequest = wxRequest.postRequest(url, data); //更新鼓励数据
+              updatePraiseRequest.then(response => {
                   console.log(response.data.message);
-                }).then(res => {
+                })
+              .then(res => {
                   wx.showToast({
-                    title: '谢谢赞赏！',
+                    title: '谢谢鼓励！',
                     uration: 2000,
                     success: function () {
                         data =
                             {
-                                openid: app.globalData.openid,
+                                openid: that.data.openid,
                                 postid: that.data.postid,
                                 template_id: that.data.template_id,
                                 form_id: form_id,
@@ -145,7 +141,7 @@ Page({
               if (res.errMsg =='requestPayment:fail cancel')
               {
                 wx.showToast({
-                  title: '取消赞赏',
+                  title: '取消鼓励',
                   icon: 'success'
                 });
               }

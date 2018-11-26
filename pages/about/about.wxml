@@ -38,7 +38,7 @@
             </view>
             <view class="praiseTitle">
                 <view style='margin-top: 15rpx;'>
-                    <text>谢谢以下赞赏或捐赠的朋友</text>
+                    <text>谢谢以下鼓励或捐赠的朋友</text>
                 </view>
             </view>
             <view class="praiseText">

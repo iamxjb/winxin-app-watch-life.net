@@ -44,7 +44,7 @@ Page({
         { id: '1', name: '评论数', selected: true },
         { id: '2', name: '浏览数', selected: false },        
         { id: '3', name: '点赞数', selected: false },
-        { id: '4', name: '赞赏数', selected: false }
+        { id: '4', name: '鼓励数', selected: false }
     ],
     tab: '1',
 

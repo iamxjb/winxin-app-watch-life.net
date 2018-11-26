@@ -16,7 +16,7 @@
 <view class="container">
   <template is="tempHeader" /> 
 
-  <view class='title'>请选择赞赏的金额</view>
+  <view class='title'>请选择鼓励的金额</view>
 
   <view class="price-list">
     <view class="item" wx:for="{{prices}}" wx:key="item" data-item="{{item}}" bindtap="selectItem">

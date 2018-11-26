@@ -36,7 +36,7 @@ Page({
      */
     onLoad: function (options) {
         var self = this;
-        console.log(decodeURIComponent(options.url));
+        //console.log(decodeURIComponent(options.url));
         console.log(options);
         if (options.url != null) {
             var url = decodeURIComponent(options.url);

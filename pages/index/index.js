@@ -111,7 +111,8 @@ Page({
   },
   onLoad: function (options) {
     var self = this; 
-    this.fetchTopFivePosts();
+    self.fetchTopFivePosts();
+    self.fetchPostsData(self.data);
     self.setData({
         topNav: config.getIndexNav
 
@@ -129,7 +130,7 @@ Page({
     getPostsRequest.then(response => {
         if (response.data.status =='200' && response.data.posts.length > 0) {
                 self.setData({
-                    postsShowSwiperList: response.data.posts,
+                    // postsShowSwiperList: response.data.posts,
                     postsShowSwiperList: self.data.postsShowSwiperList.concat(response.data.posts.map(function (item) {
                         //item.firstImage = Api.getContentFirstImage(item.content.rendered);
                         if (item.post_medium_image_300 == null || item.post_medium_image_300 == '') {
@@ -142,28 +143,19 @@ Page({
 
                         }
                         return item;
-                    })),
-                    showallDisplay: "block",
+                    })),                    
                     displaySwiper: "block"
                 });
                 
             }
             else {
                 self.setData({
-                    displaySwiper: "none",
-                    displayHeader: "block",
-                    showallDisplay: "block",
-
+                    displaySwiper: "none"  
                 });
                 
             }
      
-    })
-        .then(response=>{
-            self.fetchPostsData(self.data);
-
-        })
-        .catch(function (response){
+    }).catch(function (response){
             console.log(response); 
             self.setData({
                 showerror: "block",
