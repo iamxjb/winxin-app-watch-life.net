@@ -147,6 +147,24 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 # 更新历史：
 
+## 2018年11月26日
+
+1.完全重构wordpress插件，启用新的插件版本：REST API TO MiniProgram ：https://github.com/iamxjb/rest-api-to-miniprogram
+
+2.完善小程序的登录机制。
+
+3、修复bug。
+
+## 2018年4月13日
+
+1.完善海报功能，在小程序端生成海报。
+
+2.给翻页增加进度显示。
+
+3、增加配置：指定显示的分类。
+
+4、增加配置：是否开启评论。
+
 ## 2018年2月15日
 
 1.增加文章海报（分享微信朋友圈的卡片）功能。
