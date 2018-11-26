@@ -67,11 +67,8 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 # 小程序配套wordpress插件：
 
-本小程序完整使用需要配合我编写的wordpress插件wp-rest-api-for-app，才能完整使用，插件下载地址： https://github.com/iamxjb/wp-rest-api-for-app
+本小程序完整使用需要配合我编写的wordpress插件rest-api-to-miniprogram，才能完整使用，插件下载地址： https://github.com/iamxjb/rest-api-to-miniprogram
 
-# 小程序配套赞赏（微信支付）功能服务端程序：
-
-本小程序赞赏功能需要配合我编写微信支付服务端php程序，才能使用，程序下载地址： https://github.com/iamxjb/weixin-app-wxpay
 
 # 开源协议：MIT
 
