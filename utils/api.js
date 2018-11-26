@@ -10,8 +10,7 @@
  */
 
 
-import config from 'config.js'
-
+import config from 'config.js';
 var domain = config.getDomain;
 var pageCount = config.getPageCount;
 var categoriesID = config.getCategoriesID;
@@ -236,27 +235,28 @@ module.exports = {
       return url;
   },
 
-  //赞赏,获取支付密钥
-  postPraiseUrl() {   
-    var url = 'https://' + domain  + "/wp-wxpay/pay/app.php";
+  //鼓励,获取支付密钥
+  postPraiseUrl() { 
+    var url = HOST_URI_WATCH_LIFE_JSON;  
+    url += "payment";
     return url;
   },
 
-  //更新赞赏数据
+  //更新鼓励数据
   updatePraiseUrl() {
     var url = HOST_URI_WATCH_LIFE_JSON;
     url += "post/praise";
     return url;
   },
 
-  //获取我的赞赏数据
+  //获取我的鼓励数据
   getMyPraiseUrl(openid) {
       var url = HOST_URI_WATCH_LIFE_JSON;
       url += "post/mypraise?openid=" + openid;
       return url;
   },
 
-  //获取所有的赞赏数据
+  //获取所有的鼓励数据
   getAllPraiseUrl() {
       var url = HOST_URI_WATCH_LIFE_JSON;
       url += "post/allpraise";
@@ -298,12 +298,12 @@ module.exports = {
   },
   //获取海报
   getPosterUrl() {
-      var url = 'https://' + domain + "/wp-content/plugins/wp-rest-api-for-app/poster/";
+      var url = 'https://' + domain + "/wp-content/plugins/rest-api-to-miniprogram/poster/";
       return url;
   },
   //获取二维码
   getPosterQrcodeUrl() {
-      var url = 'https://' + domain + "/wp-content/plugins/wp-rest-api-for-app/qrcode/";
+      var url = 'https://' + domain + "/wp-content/plugins/rest-api-to-miniprogram/qrcode/";
       return url;
   }
 };

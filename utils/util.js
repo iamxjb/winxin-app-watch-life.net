@@ -251,32 +251,24 @@ function drawTitleExcerpt(context, title, excerpt) {
         context.fillText(title.substring(0, 19), 40, 460);
         context.fillText(title.substring(19, 36), 40, 510);
     }
-
     context.setFontSize(24);
     context.setTextAlign('left');
-    context.setGlobalAlpha(0.7);
-    
+    context.setGlobalAlpha(0.7);    
     for (var i = 0; i <= 50; i += 20) {
         //摘要只绘制前50个字，这里是用截取字符串
         if (getStrLength(excerpt)>50)
         {
             if ( i == 40) {
                 context.fillText(excerpt.substring(i, i + 20) + "...", 40, 570 + i * 2);
-
             }
             else {
                 context.fillText(excerpt.substring(i, i + 20), 40, 570 + i * 2);
             }
-
         }
         else
         {
             context.fillText(excerpt.substring(i, i + 20), 40, 570 + i * 2);
         }
-        
-        
-
-
     }
 
     context.stroke();
