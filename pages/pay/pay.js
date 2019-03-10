@@ -97,7 +97,7 @@ Page({
               .then(res => {
                   wx.showToast({
                     title: '谢谢鼓励！',
-                    uration: 2000,
+                    duration: 2000,
                     success: function () {
                         data =
                             {
@@ -106,7 +106,8 @@ Page({
                                 template_id: that.data.template_id,
                                 form_id: form_id,
                                 total_fee: money,
-                                flag: that.data.flag
+                                flag: that.data.flag,
+                                fromUser: "None"
                             };
                         url = Api.sendMessagesUrl();
                         var sendMessageRequest = wxRequest.postRequest(url, data);
