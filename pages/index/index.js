@@ -133,14 +133,8 @@ Page({
                 self.setData({
                     // postsShowSwiperList: response.data.posts,
                     postsShowSwiperList: self.data.postsShowSwiperList.concat(response.data.posts.map(function (item) {
-                        //item.firstImage = Api.getContentFirstImage(item.content.rendered);
-                        if (item.post_medium_image_300 == null || item.post_medium_image_300 == '') {
-                            if (item.content_first_image != null && item.content_first_image != '') {
-                                item.post_medium_image_300 = item.content_first_image;
-                            }
-                            else {
-                                item.post_medium_image_300 = "../../images/logo700.png";
-                            }
+                        if (item.post_medium_image == null || item.post_medium_image == '') {
+                            item.post_medium_image = "../../images/logo700.png";
 
                         }
                         return item;
@@ -209,8 +203,8 @@ Page({
                             item.categoryImage = "";
                         }
 
-                        if (item.post_thumbnail_image == null || item.post_thumbnail_image == '') {
-                            item.post_thumbnail_image = "../../images/logo700.png";
+                        if (item.post_medium_image == null || item.post_medium_image == '') {
+                            item.post_medium_image = "../../images/logo700.png";
                         }
                         item.date = util.cutstr(strdate, 10, 1);
                         return item;
