@@ -126,7 +126,7 @@ Page({
   },  
   fetchTopFivePosts: function () {
     var self = this;
-    //取置顶的文章
+    //获取滑动图片的文章
     var getPostsRequest = wxRequest.getRequest(Api.getSwiperPosts());
     getPostsRequest.then(response => {
         if (response.data.status =='200' && response.data.posts.length > 0) {
@@ -184,57 +184,58 @@ Page({
     getPostsRequest
         .then(response => {
             if (response.statusCode === 200) {
+                if (response.data.length) {
+                    if(response.data.length < pageCount)
+                    {
+                        self.setData({
+                            isLastPage: true
+                        });
+                    }
 
-                if (response.data.length < pageCount) {
                     self.setData({
-                        isLastPage: true
+                        floatDisplay: "block",
+                        postsList: self.data.postsList.concat(response.data.map(function (item) {
+    
+                            var strdate = item.date
+                            if (item.category_name != null) {
+    
+                                item.categoryImage = "../../images/category.png";
+                            }
+                            else {
+                                item.categoryImage = "";
+                            }
+    
+                            if (item.post_medium_image == null || item.post_medium_image == '') {
+                                item.post_medium_image = "../../images/logo700.png";
+                            }
+                            item.date = util.cutstr(strdate, 10, 1);
+                            return item;
+                        })),
+    
                     });
-                }
-                self.setData({
-                    floatDisplay: "block",
-                    postsList: self.data.postsList.concat(response.data.map(function (item) {
-
-                        var strdate = item.date
-                        if (item.category_name != null) {
-
-                            item.categoryImage = "../../images/category.png";
-                        }
-                        else {
-                            item.categoryImage = "";
-                        }
-
-                        if (item.post_medium_image == null || item.post_medium_image == '') {
-                            item.post_medium_image = "../../images/logo700.png";
-                        }
-                        item.date = util.cutstr(strdate, 10, 1);
-                        return item;
-                    })),
-
-                });
-                setTimeout(function () {
-                    wx.hideLoading();
-                }, 900);
-            }
-            else {
-                if (response.data.code == "rest_post_invalid_page_number") {
-                    self.setData({
-                        isLastPage: true
-                    });
-                    wx.showToast({
-                        title: '没有更多内容',
-                        mask: false,
-                        duration: 1500
-                    });
+                    setTimeout(function () {
+                        wx.hideLoading();
+                    }, 900);
                 }
                 else {
-                    wx.showToast({
-                        title: response.data.message,
-                        duration: 1500
-                    })
+                    if (response.data.code == "rest_post_invalid_page_number") {
+                        self.setData({
+                            isLastPage: true
+                        });
+                        wx.showToast({
+                            title: '没有更多内容',
+                            mask: false,
+                            duration: 1500
+                        });
+                    }
+                    else {
+                        wx.showToast({
+                            title: response.data.message,
+                            duration: 1500
+                        })
+                    }
                 }
             }
-
-
         })
         .catch(function (response)
         {

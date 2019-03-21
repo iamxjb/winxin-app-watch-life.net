@@ -18,10 +18,12 @@ var MINAPPTYPE="0";//小程序的类型，如果是企业小程序请填：0 ，
 var WEBSITENAME="守望轩"; //网站名称
 var ABOUTID = 1136; //wordpress网站"页面"的id,注意这个"页面"是wordpress的"页面"，不是"文章"
 var PAGECOUNT='10'; //每页文章数目
+//CATEGORIESID 指定为all或者指定具体的分类id，请选择其一。
 var CATEGORIESID='all';  //专题页显示全部的分类
 //var CATEGORIESID = '1,1059,98,416,189,374,6,463';//指定专题页显示的分类的id
+//INDEXLISTTYPE 指定为all或者指定具体的分类id，请选择其一。
 var INDEXLISTTYPE="all"; //首页显示所有分类
-//var INDEXLISTTYPE ="1" //指定首页显示分类的id
+//var INDEXLISTTYPE ="11" //指定首页显示分类的id
 var PAYTEMPPLATEID = 'hzKpxuPF2rw7O-qTElkeoE0lMwr0O4t9PJkLyt6v8rk';//鼓励消息模版id
 var REPLAYTEMPPLATEID = 'IiAVoBWP34u1uwt801rI_Crgen7Xl2lvAGP67ofJLo8';//回复评论消息模版id
 var ZANIMAGEURL = 'https://www.watch-life.net/images/2017/07/zsm400.jpg';//微信鼓励的图片链接，用于个人小程序的赞赏
