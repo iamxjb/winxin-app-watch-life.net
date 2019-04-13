@@ -133,6 +133,8 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 2.本程序有关es6-promise 部分代码参考 开源程序：https://github.com/cinoliu/-es6-promise
 
+# 3.如果本程序对你有所帮助，请不吝在github上Star
+
 
 在此对上述提供开源及创意表示致谢。
 
