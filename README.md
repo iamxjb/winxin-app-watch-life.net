@@ -64,15 +64,14 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 # 技术支持网站：https://www.watch-life.net
 
+# 技术支持微信：iamxjb
+
+# 开源协议：MIT
+
 
 # 小程序配套wordpress插件：
 
 本小程序完整使用需要配合我编写的wordpress插件REST API TO MiniProgram，才能完整使用，插件下载地址： https://github.com/iamxjb/rest-api-to-miniprogram
-
-
-# 开源协议：MIT
-
-# 技术支持微信：iamxjb
 
 ![iamxjb](https://www.watch-life.net/images/iamxjbweixin.jpg) 
 
@@ -133,15 +132,18 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 2.本程序有关es6-promise 部分代码参考 开源程序：https://github.com/cinoliu/-es6-promise
 
-# 3.如果本程序对你有所帮助，请不吝在github上Star
-
-
 在此对上述提供开源及创意表示致谢。
 
+
+## 3.如果本程序对你有所帮助，请不吝在github上Star
+
+## 4.如果使用本程序商业化，请告知我协商利益分享，请尊重作者版权
 
 # 捐赠赞赏：请微信扫描以下二维码。感谢您对我的支持，您的支持是我前进的动力
 
 ![weixinpay](https://www.watch-life.net/images/2017/07/zsm400-github.jpg) 
+
+
 
 # WordPress微信小程序知识星球(小密圈)
 
