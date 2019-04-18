@@ -157,9 +157,11 @@
             <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
         </view>
         <template is="modalView" data="{{...__modalView__}}" />
-        <view class="canvas-box">
+        <!-- <view class="canvas-box">
             <canvas style="width: 600px;height: 970px;" canvas-id="mycanvas" />
-        </view>
+        </view> -->
+        <poster id="poster" hide-loading="{{false}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
+         </poster>
         <view class="ditail-copyright" style="display:{{display}}">
             <template is="tempCopyright" />
         </view>
@@ -197,7 +199,7 @@
                                         </view>
                                         <view style="width:20%; float:left; text-align:center">
                                             <view>
-                                                <image src="../../images/poster.png" catchtap="downimageTolocal" class="img-menu"></image>
+                                                <image src="../../images/poster.png" catchtap="onCreatePoster" class="img-menu"></image>
                                             </view>
                                             <view>
                                                 <text>海报</text>

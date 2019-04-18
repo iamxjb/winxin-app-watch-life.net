@@ -26,6 +26,8 @@ let isFocusing = false
 const pageCount = config.getPageCount;
 
 import { ModalView } from '../../templates/modal-view/modal-view.js'
+import Poster from '../../templates/components/wxa-plugin-canvas-poster/poster/poster';
+
 
 Page({
     data: {
@@ -72,7 +74,8 @@ Page({
         isLoginPopup:false,
         openid:"",
         userInfo:{},
-        system:''
+        system:'',
+        downloadFileDomain:config.getDownloadFileDomain,
 
     },
     onLoad: function (options) {
@@ -652,6 +655,7 @@ Page({
                 };
                 var url = Api.postWeixinComment();
                 var postCommentRequest = wxRequest.postRequest(url, data);
+                var postCommentMessage="";
                 postCommentRequest
                     .then(res => {
                         if (res.statusCode == 200) {
@@ -666,6 +670,7 @@ Page({
 
                                 });
                                 console.log(res.data.message);
+                                postCommentMessage=res.data.message;
                                 if (parent != "0" && !util.getDateOut(commentdate) && toFromId != "") {
                                     var useropenid = res.data.useropenid;                                    
                                     var data =
@@ -757,8 +762,8 @@ Page({
                         //self.fetchCommentData();
                         setTimeout(function () {                           
                             wx.showToast({
-                                title: '评论发布成功',
-                                icon: 'success',
+                                title: postCommentMessage,
+                                icon: 'none',
                                 duration: 900,
                                 success: function () {
                                 }
@@ -800,7 +805,7 @@ Page({
             'dialog.title': '',
             'dialog.content': ''
         })
-    },
+    },    
     downimageTolocal: function () {
         var self = this;
         self.ShowHideMenu();
@@ -1021,5 +1026,227 @@ Page({
                 }
             });
         }, 900);
-    }    
+    },
+    onPosterSuccess(e) {
+        const { detail } = e;        
+        this.showModal(detail);
+      },
+      onPosterFail(err) {  
+        wx.showToast({
+            title: err,
+            mask: true,
+            duration: 2000
+        });
+      },
+
+    onCreatePoster:function() {      
+        var self = this;    
+        this.ShowHideMenu();     
+        if (self.data.openid) {
+            self.creatArticlePoster(self,Api,util,self.modalView,Poster);
+        }
+        else {
+            Auth.checkSession(self,'isLoginNow');
+                    
+        }
+        
+    },
+
+    showModal:function(posterPath){
+        this.modalView.showModal({
+                    title: '保存至相册可以分享给好友',
+                    confirmation: false,
+                    confirmationText: '',
+                    inputFields: [{
+                        fieldName: 'posterImage',
+                        fieldType: 'Image',
+                        fieldPlaceHolder: '',
+                        fieldDatasource: posterPath,
+                        isRequired: false,
+                    }],
+                    confirm: function (res) {
+                        console.log(res)
+                              }
+                })
+    },
+    
+     creatArticlePoster:function(appPage, api, util, modalView,poster)
+    {
+
+        var postId = appPage.data.detail.id;
+        var title =appPage.data.detail.title.rendered;        
+        var excerpt = appPage.data.detail.excerpt.rendered?appPage.data.detail.excerpt.rendered:'';
+        if(excerpt && excerpt.length !=0 &&  excerpt !='' )
+        {
+            excerpt = util.removeHTML(excerpt);
+        } 
+
+
+        var postImageUrl = "";//海报图片地址
+        var posterImagePath = "";
+        var qrcodeImagePath = "";//二维码图片的地址
+        var flag = false;
+        var imageInlocalFlag = false;  
+        var downloadFileDomain = appPage.data.downloadFileDomain;
+        var logo = appPage.data.logo;
+        var defaultPostImageUrl = appPage.data.postImageUrl;
+        var postImageUrl = appPage.data.detail.post_full_image;
+
+
+        //获取文章首图临时地址，若没有就用默认的图片,如果图片不是request域名，使用本地图片
+        if (postImageUrl) {
+            var n = 0;
+            for (var i = 0; i < downloadFileDomain.length; i++) {
+
+            if (postImageUrl.indexOf(downloadFileDomain[i].domain) != -1) {
+                n++;
+                break;
+            }
+            }
+            if (n == 0) {
+            imageInlocalFlag = true;
+            postImageUrl = defaultPostImageUrl;
+
+            }
+
+        } else {
+            postImageUrl = defaultPostImageUrl;
+        }
+        var posterConfig = {
+            width: 750,
+            height: 1200,
+            backgroundColor: '#fff',
+            debug: false
+            
+        }
+        var blocks= [
+            {
+                width: 690,
+                height: 808,
+                x: 30,
+                y: 183,
+                borderWidth: 2,
+                borderColor: '#f0c2a0',
+                borderRadius: 20,
+            },
+            {
+                width: 634,
+                height: 74,
+                x: 59,
+                y: 680,
+                backgroundColor: '#fff',
+                opacity: 0.5,
+                zIndex: 100,
+            }
+        ]
+        var texts=[];
+        texts= [
+            {
+                x: 113,
+                y: 61,
+                baseLine: 'middle',
+                text: appPage.data.userInfo.nickName,
+                fontSize: 32,
+                color: '#8d8d8d',
+                width: 570,
+                lineNum: 1
+            },
+            {
+                x: 32,
+                y: 113,
+                baseLine: 'top',
+                text: '发现不错的文章推荐给你',
+                fontSize: 38,
+                color: '#080808',
+            },            
+            {
+                x: 59,
+                y: 770,
+                baseLine: 'middle',
+                text: title,
+                fontSize: 38,
+                color: '#080808',
+                marginLeft: 30,
+                width: 570,
+                lineNum: 2,
+                lineHeight:50
+            },    
+            {
+                x: 59,
+                y: 875,
+                baseLine: 'middle',
+                text: excerpt,
+                fontSize: 28,
+                color: '#929292',
+                width: 560,
+                lineNum: 2,
+                lineHeight:50
+            },
+            {
+                x: 350,
+                y: 1130,
+                baseLine: 'top',
+                text: '长按识别小程序码,立即阅读',
+                fontSize: 30,
+                color: '#080808',
+            }
+        ];
+        
+    
+        posterConfig.blocks=blocks;//海报内图片的外框
+        posterConfig.texts=texts; //海报的文字
+        var url = Api.creatPoster();
+        var path = "pages/detail/detail?id=" + postId;
+        var data = {
+            postid: postId,                
+            path: path               
+            
+        };
+        var creatPosterRequest = wxRequest.postRequest(url, data);
+        creatPosterRequest.then(res => {
+            if (res.data.code=='success') {
+            qrcodeImagePath=res.data.qrcodeimgUrl;
+
+
+            var images= [
+                {
+                    width: 62,
+                    height: 62,
+                    x: 32,
+                    y: 30,
+                    borderRadius: 62,
+                    url:appPage.data.userInfo.avatarUrl, //用户头像
+                },
+                {
+                    width: 634,
+                    height: 475,
+                    x: 59,
+                    y: 210,
+                    url: postImageUrl,//海报主图
+                },
+                {
+                    width: 220,
+                    height: 220,
+                    x: 92,
+                    y: 1020,
+                    url: qrcodeImagePath,//二维码的图
+                }
+            ];
+
+            posterConfig.images=images;//海报内的图片
+                appPage.setData({ posterConfig: posterConfig }, () => {
+                poster.create(true);    //生成海报图片
+            });
+            
+            }
+            else{            
+                wx.showToast({
+                    title: res.message,
+                    mask: true,
+                    duration: 2000
+                });
+            }
+        });
+    }
+
 })

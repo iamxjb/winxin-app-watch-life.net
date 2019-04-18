@@ -276,7 +276,7 @@
 
 .gravatarImg {
   /* margin-top: 4px; */
-  border-radius: 50%;
+  /* border-radius: 50%; */
   /*
   opacity: 1;
   transform: scale(1);
@@ -380,15 +380,15 @@
 
 .gravatarLikeImg {
   margin-top: 4px;
-  border-radius: 50%;
-  /*
+  /*border-radius: 50%;
+  
   opacity: 1;
   transform: scale(1);
   perspective-origin: top center;
   transition: all ease-in-out 0.3s;
   */
-  height: 60rpx;
-  width: 60rpx;
+  height: 48rpx;
+  width: 48rpx;
   margin-right: 20rpx;
 }
 
