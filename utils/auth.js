@@ -59,8 +59,10 @@ Auth.checkAgreeGetUser=function(e,app,appPage,authFlag)
                 if (res.errcode==""){                    
                     wx.setStorageSync('userInfo',res.userInfo);
                     wx.setStorageSync('openid',res.openid);
+                    wx.setStorageSync('userLevel',res.userLevel);
                     appPage.setData({openid:res.openid});
-                    appPage.setData({userInfo:res.userInfo});                
+                    appPage.setData({userInfo:res.userInfo});
+                    appPage.setData({userLevel:res.userLevel});                 
                    
                 }
                 else
@@ -122,6 +124,17 @@ Auth.agreeGetUser=function(e,wxLoginInfo,authFlag){
                         //console.log(response.data.openid)
                         console.log("授权登录获取成功");
                         data.openid= response.data.openid;
+                        var userLevel={};
+                        if(response.data.userLevel)
+                        {
+                            userLevel=response.data.userLevel;
+                        }
+                        else 
+                        {
+                            userLevel.level="0";
+                            userLevel.levelName="订阅者";
+                        }
+                        data.userLevel=userLevel;
                         data.errcode="";                        
                         resolve(data);
 
@@ -158,7 +171,8 @@ Auth.setUserInfoData = function(appPage)
     if(!appPage.data.openid){
           appPage.setData({
             userInfo: wx.getStorageSync('userInfo'),
-            openid:wx.getStorageSync('openid')
+            openid:wx.getStorageSync('openid'),
+            userLevel:wx.getStorageSync('userLevel')
         })
       
     }
@@ -180,5 +194,19 @@ Auth.wxLogin=function(){
         })
 
     }
+
+Auth.logout=function(appPage){
+    appPage.setData({
+        openid:'',
+        userLevel:{},
+        userInfo:{},
+        wxLoginInfo:{}
+        }
+    )
+    wx.removeStorageSync('userInfo');
+    wx.removeStorageSync('openid');
+    wx.removeStorageSync('userLevel');
+    wx.removeStorageSync('wxLoginInfo');
+}
 
 module.exports = Auth;
