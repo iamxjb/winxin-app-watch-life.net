@@ -14,18 +14,43 @@
 <import src="../../templates/copyright.wxml" />
 <import src="../../templates/login-popup.wxml" />
 
-<view class="readlog-container">  
+<view class="readlog-container">
+
+  <view class="usertool">
+    <image class="usertool-img" src="../../images/exit.png" catchtap="exit"></image>
+    <!-- <image class="usertool-img" src="../../images/clear.png" catchtap="clear"></image>     -->
+  </view>
+
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+
+    <block wx:if="{{openid !=''}}">
+      <view class='userinfo_text_box'>
+        <text class="userinfo_nickname">{{userInfo.nickName}}</text>
+        <view class='userinfo_des_box'>
+          <view><text class="userinfo_des" decode="{{true}}">角色&nbsp;I&nbsp;{{userLevel.levelName}}</text></view>
+          <view class="update_btn_box">
+            <button class="update-button" open-type="getUserInfo" bindgetuserinfo="refresh">
+              <view class="login-inner">
+                <image class="userinfo-img" src="../../images/refresh.png"></image>更新信息
+              </view>
+            </button>
+          </view>
+        </view>
+
+      </view>
+    </block>
+
   </view>
+
+
 
   <view class="top-bar">
     <block wx:for="{{topBarItems}}" wx:key="id">
-      <view class="top-bar-item {{item.selected ? 'top-bar-item-Selected': '' }}"  catchtap="onTapTag" id="{{item.id}}">{{item.name}}</view>
+      <view class="top-bar-item {{item.selected ? 'top-bar-item-Selected': '' }}" catchtap="onTapTag" id="{{item.id}}">{{item.name}}</view>
     </block>
   </view>
-  <view class="container">
+  <view class="list_container">
     <view class="showerror" style="display:{{showerror}}">
       <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
       <view class="errortext">
@@ -36,8 +61,8 @@
         </view> -->
       </view>
     </view>
- <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
-       
+    <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
+
     <view class="log-list">
       <block wx:key="id" wx:for="{{readLogs}}">
         <view class="log-items" index="{{index}}" id="{{item[0]}}" data-itemtype="{{item[2]}}" catchtap="redictDetail">
@@ -45,7 +70,7 @@
         </view>
       </block>
       <view class="log-items" style="display:{{shownodata}}">
-        <text class="log-text">没有相关文章</text>
+        <text class="log_tips">没有相关文章！</text>
       </view>
     </view>
     <view class="copyright" style="display:{{floatDisplay}}">

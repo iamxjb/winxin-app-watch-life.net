@@ -35,6 +35,7 @@ Page({
     shownodata:"none",
     subscription:"",
     userInfo:{},
+    userLevel:{},
     openid:'',
     isLoginPopup: false  
   },
@@ -60,6 +61,68 @@ Page({
     Auth.checkAgreeGetUser(e,app,self,'0');        
         
   }, 
+
+  refresh:function(e)
+  {
+    var self=this;
+    if (self.data.openid) {
+        var args={};
+        var userInfo=e.detail.userInfo;
+        args.openid=self.data.openid;
+        args.avatarUrl=userInfo.avatarUrl;
+        args.nickname =userInfo.nickName;
+        var url = Api.getUpdateUserInfo();        
+        var postUpdateUserInfoRequest = wxRequest.postRequest(url, args);
+        postUpdateUserInfoRequest.then(res => {
+            if (res.data.status == '200') {
+                    var userLevel= res.data.userLevel;                            
+                    wx.setStorageSync('userInfo',userInfo);                           
+                    wx.setStorageSync('userLevel',userLevel);                            
+                    self.setData({userInfo:userInfo});
+                    self.setData({userLevel:userLevel});
+                    wx.showToast({
+                        title: res.data.message,
+                        icon: 'success',
+                        duration: 900,
+                        success: function () {
+                        }
+                    })   
+            }
+            else{               
+                wx.showToast({
+                    title: res.data.message,
+                    icon: 'success',
+                    duration: 900,
+                    success: function () {
+                    }
+                })
+            }
+
+
+        });
+    }
+    else {
+        Auth.checkSession(self,'isLoginNow');
+        
+    }
+           
+  },
+
+  exit:function(e)
+  {
+
+    Auth.logout(this);
+    wx.reLaunch({
+        url: '../index/index'
+      })
+
+  },
+  clear:function(e)
+  {
+
+    Auth.logout(this); 
+
+  },
 
   // 跳转至查看文章详情
   redictDetail: function (e) {
