@@ -32,9 +32,8 @@ var POSTERIMGURL ="../../images/logo700.png"; //生成海报如果没有首图�
 //设置downloadFile合法域名,不带https ,在中括号([])里增加域名，格式：{id=**,domain:'www.**.com'}，用英文逗号分隔。
 //此处设置的域名和小程序与小程序后台设置的downloadFile合法域名要一致。
 var DOWNLOADFILEDOMAIN = [
-    { id: 1, domain: 'www.watch-life.net' },
-    { id: 2, domain: 'watch-life.net' },
-    { id: 3, domain: 'worldcup.minapper.com' }
+    { id: 1, domain: 'www.watch-life.net'}
+
 ];
  //首页图标导航
  //参数说明：'name'为名称，'image'为图标路径，'url'为跳转的页面，'redirecttype'为跳转的类型，apppage为本小程序的页面，miniapp为其他微信小程序,webpage为web-view的页面
