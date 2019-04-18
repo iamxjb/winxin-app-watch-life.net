@@ -208,9 +208,16 @@ module.exports = {
       return url;
   },
   //获取用户openid
-  getOpenidUrl(id) {
+  getOpenidUrl() {
     var url = HOST_URI_WATCH_LIFE_JSON;
     url += "weixin/getopenid";
+    return url;
+  },
+
+   //获取用户信息
+   getUpdateUserInfo() {
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    url += "weixin/updateuserinfo";
     return url;
   },
 
