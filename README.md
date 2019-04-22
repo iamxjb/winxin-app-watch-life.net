@@ -113,6 +113,8 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-2.html" target="_blank">15.WordPress版微信小程序3.2.0版发布</a>
 
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-5.html" target="_blank">16.WordPress版微信小程序3.5.0版发布</a>
+
 # 优秀WordPress版微信小程序推荐
 
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-app-for-you-1.html" target="_blank">优秀WordPress版微信小程序推荐(一)</a>
