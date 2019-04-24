@@ -1,4 +1,4 @@
-# WordPress版微信小程序
+# WordPress版微信小程序 for Tanox
 
 # 功能清单：
 
