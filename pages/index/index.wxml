@@ -31,8 +31,7 @@
 <view class="showerror" style="display:{{showerror}}">
   <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
   <view class="errortext">
-    暂时无法访问网络,下拉重试...
-
+     暂时无法访问网络,下拉重试...
   </view>
 </view>
 
