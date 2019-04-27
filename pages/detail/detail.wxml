@@ -20,6 +20,17 @@
 
 <view class="container">
     <view class="container">
+
+    <view class="showerror" style="display:{{showerror}}">
+  <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
+  <view class="errortext">
+     {{errMessage}}
+  </view>
+</view>
+
+
+
+
         <view class="content-article-detail" style="display:{{display}}">
             <view class="entry-title">
                 {{detail.title.rendered}}
