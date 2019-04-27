@@ -1,1 +1,7 @@
-{}
+{
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "usingComponents": {
+        "poster": "../../templates/components/wxa-plugin-canvas-poster/poster/index"
+    }
+}

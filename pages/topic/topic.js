@@ -12,7 +12,7 @@
 import config from '../../utils/config.js'
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
-var auth = require('../../utils/auth.js');
+var Auth = require('../../utils/auth.js');
 var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js');
@@ -21,7 +21,9 @@ Page({
     data: {
         text: "Page topic",
         categoriesList: {},
-        floatDisplay: "none",        
+        floatDisplay: "none",
+        openid:"",
+        userInfo:{}        
     },
     onLoad: function (options) {
         wx.setNavigationBarTitle({
@@ -32,6 +34,8 @@ Page({
         });
         
         this.fetchCategoriesData();
+        Auth.setUserInfoData(this); 
+        Auth.checkLogin(this);
     },
     onShow:function(){            
 
@@ -64,16 +68,12 @@ Page({
 
         })
         .then(res=>{
-            if (!app.globalData.isGetOpenid) {                
-                //self.userAuthorization();
-            }
-            else
-            {
+            if (self.data.openid) {                
                 setTimeout(function () {
                     self.getSubscription();
-                }, 500);               
-
+                }, 500);  
             }
+            
         })
         .catch(function (response) {
             console.log(response);
@@ -100,8 +100,8 @@ Page({
             title: '正在加载',
             mask: true
         })
-        if (app.globalData.isGetOpenid) {
-            var url = Api.getSubscription() + '?openid=' + app.globalData.openid;
+        if (self.data.openid) {
+            var url = Api.getSubscription() + '?openid=' + self.data.openid;
             var getSubscriptionRequest = wxRequest.getRequest(url);
             getSubscriptionRequest.then(res => {
                 if (res.data.status == '200')
@@ -160,15 +160,16 @@ Page({
             
         }
 
+
     },
     postsub: function (e) {
         var self = this;
-        if (!app.globalData.isGetOpenid) {
-            self.userAuthorization();
+        if (!self.data.openid) {
+            Auth.checkSession(self,'isLoginNow');
         }
         else {
             var categoryid = e.currentTarget.dataset.id;
-            var openid = app.globalData.openid;
+            var openid = self.data.openid;
             var url = Api.postSubscription();
             var subflag = e.currentTarget.dataset.subflag;
             var data = {
@@ -351,38 +352,6 @@ Page({
     },
     openLoginPopup() {
         this.setData({ isLoginPopup: true });
-    },
-    //获取用户信息和openid
-    getUsreInfo: function (userInfoDetail) {
-        var wxLogin = wxApi.wxLogin();
-        var jscode = '';
-
-        wxLogin().then(response => {
-            jscode = response.code
-            if (userInfoDetail == null) {
-                var userInfo = wxApi.wxGetUserInfo();
-                return userInfo();
-            }
-            else {
-                return userInfoDetail;
-            }
-        }).then(response => {         //获取用户信息
-            console.log(response.userInfo);
-            console.log("成功获取用户信息(公开信息)");
-            app.globalData.userInfo = response.userInfo;
-            app.globalData.isGetUserInfo = true;
-
-            var data = {
-                js_code: jscode,
-                encryptedData: response.encryptedData,
-                iv: response.iv,
-                avatarUrl: response.userInfo.avatarUrl,
-                nickname: response.userInfo.nickName
-            }
-            this.getOpenId(data);
-        }).catch(function (error) {
-            console.log('error: ' + error.errMsg);
-        })
     },
     getOpenId(data) {
         var url = Api.getOpenidUrl();

@@ -64,18 +64,14 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 # 技术支持网站：https://www.watch-life.net
 
-
-# 小程序配套wordpress插件：
-
-本小程序完整使用需要配合我编写的wordpress插件wp-rest-api-for-app，才能完整使用，插件下载地址： https://github.com/iamxjb/wp-rest-api-for-app
-
-# 小程序配套赞赏（微信支付）功能服务端程序：
-
-本小程序赞赏功能需要配合我编写微信支付服务端php程序，才能使用，程序下载地址： https://github.com/iamxjb/weixin-app-wxpay
+# 技术支持微信：iamxjb
 
 # 开源协议：MIT
 
-# 技术支持微信：iamxjb
+
+# 小程序配套wordpress插件：
+
+本小程序完整使用需要配合我编写的wordpress插件REST API TO MiniProgram，才能完整使用，插件下载地址： https://github.com/iamxjb/rest-api-to-miniprogram
 
 ![iamxjb](https://www.watch-life.net/images/iamxjbweixin.jpg) 
 
@@ -113,6 +109,12 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-0.html" target="_blank">13.WordPress版微信小程序3.0版发布</a>
 
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-1-5-update.html" target="_blank">14.WordPress版微信小程序3.1.5版发布</a>
+
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-2.html" target="_blank">15.WordPress版微信小程序3.2.0版发布</a>
+
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-5.html" target="_blank">16.WordPress版微信小程序3.5.0版发布</a>
+
 # 优秀WordPress版微信小程序推荐
 
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-app-for-you-1.html" target="_blank">优秀WordPress版微信小程序推荐(一)</a>
@@ -132,13 +134,18 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 2.本程序有关es6-promise 部分代码参考 开源程序：https://github.com/cinoliu/-es6-promise
 
-
 在此对上述提供开源及创意表示致谢。
 
+
+## 3.如果本程序对你有所帮助，请不吝在github上Star
+
+## 4.如果使用本程序商业化，请告知我协商利益分享，请尊重作者版权
 
 # 捐赠赞赏：请微信扫描以下二维码。感谢您对我的支持，您的支持是我前进的动力
 
 ![weixinpay](https://www.watch-life.net/images/2017/07/zsm400-github.jpg) 
+
+
 
 # WordPress微信小程序知识星球(小密圈)
 
@@ -149,6 +156,24 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 
 # 更新历史：
+
+## 2018年11月26日
+
+1.完全重构wordpress插件，启用新的插件版本：REST API TO MiniProgram ：https://github.com/iamxjb/rest-api-to-miniprogram
+
+2.完善小程序的登录机制。
+
+3.修复bug。
+
+## 2018年4月13日
+
+1.完善海报功能，在小程序端生成海报。
+
+2.给翻页增加进度显示。
+
+3.增加配置：指定显示的分类。
+
+4.增加配置：是否开启评论。
 
 ## 2018年2月15日
 
@@ -174,9 +199,9 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 2.增加“我的”板块，显示我浏览、评论、点赞、赞赏过的文章。
 
-3、加入内链的web-view嵌入网页跳转。
+3.加入内链的web-view嵌入网页跳转。
 
-4、在关于中显示“赞赏”或“捐赠”人的头像，并致谢。
+4.在关于中显示“赞赏”或“捐赠”人的头像，并致谢。
 
 
 ## 2017年9月16日

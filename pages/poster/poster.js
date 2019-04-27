@@ -81,45 +81,5 @@ Page({
         wx.previewImage({
             urls: [src],
         });
-    },
-    userAuthorization: function () {
-        var self = this;
-        // 判断是否是第一次授权，非第一次授权且授权失败则进行提醒
-        wx.getSetting({
-            success: function success(res) {
-                console.log(res.authSetting);
-                var authSetting = res.authSetting;
-                if (util.isEmptyObject(authSetting)) {
-                    console.log('第一次授权');
-                } else {
-                    console.log('不是第一次授权', authSetting);
-                    // 没有授权的提醒
-                    if (authSetting['scope.userInfo'] === false) {
-                        wx.showModal({
-                            title: '用户未授权',
-                            content: '如需正常使用评论、点赞、赞赏等功能需授权获取用户信息。是否在授权管理中选中“用户信息”?',
-                            showCancel: true,
-                            cancelColor: '#296fd0',
-                            confirmColor: '#296fd0',
-                            confirmText: '设置权限',
-                            success: function (res) {
-                                if (res.confirm) {
-                                    console.log('用户点击确定')
-                                    wx.openSetting({
-                                        success: function success(res) {
-                                            console.log('打开设置', res.authSetting);
-                                            var scopeUserInfo = res.authSetting["scope.userInfo"];
-                                            if (scopeUserInfo) {
-                                                auth.getUsreInfo();
-                                            }
-                                        }
-                                    });
-                                }
-                            }
-                        })
-                    }
-                }
-            }
-        });
     }
 })

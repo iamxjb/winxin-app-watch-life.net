@@ -88,6 +88,7 @@
   top: 24rpx;
   width: 200rpx;
   height: 150rpx;
+   border-radius: 8rpx;
 }
 
 .common-list .list-item.has-img .content-title {
