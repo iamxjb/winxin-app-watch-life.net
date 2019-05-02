@@ -53,17 +53,6 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 4.https://gitlab.com/xiajianbo/winxin-app-watch-life.net
 
 
-# 小程序访问微信二维码：
-
-![wordpress版微信小程序](https://www.watch-life.net/images/wordpressweixinapp430.jpg) 
-
-
-# 技术支持网站：https://www.watch-life.net
-
-# 技术支持微信：iamxjb
-
-# 开源协议：MIT
-
 
 # 小程序配套wordpress插件：
 
@@ -79,10 +68,6 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 # 程序开发系列文章
 
 <a href="https://www.watch-life.net/wordpress/weixin-connect-wordpress.html" target="_blank" rel="noopener">1.用微信小程序连接WordPress网站</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-1-5.html" target="_blank" rel="noopener">2.WordPress版微信小程序1.5版本发布</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2.html" target="_blank" rel="noopener">3.WordPress版微信小程序2.0版本发布</a>
 
 <a href="https://www.watch-life.net/wordpress/wordpress-rest-api-weixin-weapp.html" target="_blank" rel="noopener">4.利用WordPress REST API 开发微信小程序从入门到放弃</a>
 
