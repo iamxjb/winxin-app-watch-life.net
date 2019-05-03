@@ -27,7 +27,7 @@
  <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
      
         <view style='text-align:center'>
-            <button class="gotowebpage-button" formType="submit" size="mini" bindtap="gotowebpage">打开“守望轩”网站</button>
+            <button class="gotowebpage-button" formType="submit" size="mini" bindtap="gotowebpage">打开“太牛旅行”网站</button>
             <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
         </view>
         <view class="praisePost">

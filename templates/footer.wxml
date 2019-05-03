@@ -12,7 +12,7 @@
 <template name="tempFooter"> 
   <view class="header">    
     <view>
-      © 2002-2017 守望轩 watch-life.net is proudly powered by WordPress
+      © 2017-2019 Tanox
     </view>
   </view>
 </template>
