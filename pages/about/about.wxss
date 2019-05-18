@@ -135,8 +135,8 @@ margin-top:8rpx;
 .gotowebpage-button {
   font-size: 0.785714286rem;
   font-weight: normal;
-  color:  #fff;
-  background-color: #118fff;
+  color:  #000f;
+  background-color: #F6AE45;
   background-repeat: repeat-x;
   line-height: 80rpx;
   margin-top: 40rpx;
