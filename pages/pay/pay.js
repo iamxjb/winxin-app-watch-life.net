@@ -22,7 +22,7 @@ var app = getApp();
 Page({
   data: {    
     prices: [
-      6, 8, 18, 66, 88,188
+      1, 5, 10, 50, 100, 1000
     ],
     openid:'',
     postid:'',
@@ -142,7 +142,7 @@ Page({
               if (res.errMsg =='requestPayment:fail cancel')
               {
                 wx.showToast({
-                  title: '取消鼓励',
+                  title: '取消付款',
                   icon: 'success'
                 });
               }
