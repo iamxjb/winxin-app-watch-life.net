@@ -20,7 +20,7 @@
 
 .userinfo_text_box {
   margin-left: 40rpx;
-  color: #fff;
+  color: #000;
 }
 
 .userinfo_nickname {
@@ -79,7 +79,7 @@
 
 .update_btn_box {
   font-size: 20rpx;
-  color: #fff;
+  color: #333;
 }
 
 .update-button {
@@ -90,7 +90,7 @@
   opacity: 0.4;
   font-size: 24rpx;
   font-weight: 500;
-  color: #fff;
+  color: #333;
 }
 
 .update-button::after {
