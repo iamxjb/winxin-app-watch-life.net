@@ -43,8 +43,8 @@ var DOWNLOADFILEDOMAIN = [
  //'appid' 当redirecttype为miniapp时，这个值为其他微信小程序的appid，如果redirecttype为apppage，webpage时，这个值设置为空。
  //'extraData'当redirecttype为miniapp时，这个值为提交到其他微信小程序的参数，如果redirecttype为apppage，webpage时，这个值设置为空。
 var INDEXNAV = [
-  { id: '1', name: '热卖', image: '../../images/nav-icon1.png', url: 'pages/list/list?tag_ID=138', redirecttype: 'apppage', appid: '', extraData: '' },
-  { id: '2', name: '拼团', image: '../../images/nav-icon2.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wx5253f27598e4f3ca', extraData: '' },
+  { id: '1', name: '热卖', image: '../../images/nav-icon1.png', url: '../../pages/list/list?categoryID=138', redirecttype: 'apppage', appid: '', extraData: '' },
+  { id: '2', name: 'ClubMed', image: '../../images/nav-icon2.png', url: '../../pages/list/list?categoryID=1494', redirecttype: 'apppage', appid: '', extraData: '' },
   { id: '3', name: '分类', image: '../../images/nav-icon3.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wxa43aaa8416cdbd61wxfa27ce693278cae1', extraData: '' },
   { id: '4', name: '优惠券', image: '../../images/nav-icon4.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wx5253f27598e4f3ca', extraData: ''},
   { id: '5', name: '推荐', image: '../../images/nav-icon5.png', url: 'pages/shelf/shelf', redirecttype: 'miniapp', appid: 'wx5253f27598e4f3ca', extraData: ''}
