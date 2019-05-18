@@ -47,7 +47,7 @@ var INDEXNAV = [
   { id: '2', name: 'ClubMed', image: '../../images/nav-icon2.png', url: '../../pages/list/list?categoryID=1494', redirecttype: 'apppage', appid: '', extraData: '' },
   { id: '3', name: '分类', image: '../../images/nav-icon3.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wxa43aaa8416cdbd61wxfa27ce693278cae1', extraData: '' },
   { id: '4', name: '优惠券', image: '../../images/nav-icon4.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wx5253f27598e4f3ca', extraData: ''},
-  { id: '5', name: '商城', image: '../../images/nav-icon5.png', url: '../../pages/list/list?product_cat', redirecttype: 'apppage', appid: '', extraData: ''}
+ // { id: '5', name: '商城', image: '../../images/nav-icon5.png', url: '../../pages/list/list?product_cat', redirecttype: 'apppage', appid: '', extraData: ''}
   // { id: '6', name: '教程', image: '../../images/app.png', url: '../../pages/list/list?categoryID=1059', redirecttype: 'apppage', appid: '', extraData: ''}
     
     ];
