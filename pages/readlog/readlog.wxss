@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #118fff;
+  background-color: #F6AE45;
   height: 348rpx;
   width: 100%;
 }
@@ -50,7 +50,7 @@
 }
 
 .usertool {
-  background-color: #118fff;
+  background-color: #F6AE45;
   height: 60rpx;
   text-align: right;
   position: absolute;
@@ -85,7 +85,7 @@
 .update-button {
   border-radius: 24rpx;
   line-height: 42rpx;
-  background-color: #118fff;
+  background-color: #F6AE45;
   padding: 0 16rpx;
   opacity: 0.4;
   font-size: 24rpx;
@@ -117,7 +117,7 @@
 }
 
 .top-bar-item-Selected {
-  border-bottom: 1px solid #118fff;
+  border-bottom: 1px solid #F6AE45;
   font-weight: bold;
   color: #118fff;
 }

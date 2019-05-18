@@ -76,16 +76,16 @@
       <navigator url='../hot/hot' hover-class='none'>
         <view class="top-Nav2-item">
           <view class="top-Nav2-item-word">
-            <text>排行榜单</text>
+            <text>热门排行</text>
           </view>
         </view>
       </navigator>
 
 
-      <navigator url="../../pages/list/list?categoryID=1059" hover-class='none'>
+      <navigator url="../../pages/list/list?tag_ID=1347" hover-class='none'>
         <view class="top-Nav2-item2">
           <view class="top-Nav2-item-word">
-            <text>微信小程序</text>
+            <text>在线商城</text>
           </view>
         </view>
       </navigator>
