@@ -15,7 +15,7 @@
 //如果wordpress没有安装在网站根目录请加上目录路径,例如："www.watch-life.net/blog"
 var DOMAIN = "www.tanox.cn";
 var MINAPPTYPE="0";//小程序的类型，如果是企业小程序请填：0 ，如果是个人小程序请填：1
-var WEBSITENAME ="太牛旅行官网"; //网站名称
+var WEBSITENAME ="太牛旅行"; //网站名称
 var ABOUTID = 31; //小程序“关于”页面的id,此id是wordpress网站"页面"的id,注意这个"页面"是wordpress的"页面"，不是"文章"
 var PAGECOUNT='10'; //每页文章数目
 //CATEGORIESID 指定为all或者指定具体的分类id，请选择其一。
@@ -32,7 +32,7 @@ var POSTERIMGURL ="../../images/logo700.png"; //生成海报如果没有首图�
 //设置downloadFile合法域名,不带https ,在中括号([])里增加域名，格式：{id=**,domain:'www.**.com'}，用英文逗号分隔。
 //此处设置的域名和小程序与小程序后台设置的downloadFile合法域名要一致。
 var DOWNLOADFILEDOMAIN = [
-    { id: 1, domain: 'www.tanox.cn'}
+    { id: 1, domain: 'tanox.cn'}
 
 ];
  //首页图标导航
@@ -44,9 +44,9 @@ var DOWNLOADFILEDOMAIN = [
  //'extraData'当redirecttype为miniapp时，这个值为提交到其他微信小程序的参数，如果redirecttype为apppage，webpage时，这个值设置为空。
 var INDEXNAV = [
   { id: '1', name: '热卖', image: '../../images/nav-icon1.png', url: '../../pages/list/list?categoryID=138', redirecttype: 'apppage', appid: '', extraData: '' },
-  { id: '2', name: 'ClubMed', image: '../../images/nav-icon2.png', url: '../../pages/list/list?categoryID=1494', redirecttype: 'apppage', appid: '', extraData: '' },
-  { id: '3', name: '分类', image: '../../images/nav-icon3.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wxa43aaa8416cdbd61wxfa27ce693278cae1', extraData: '' },
-  { id: '4', name: '优惠券', image: '../../images/nav-icon4.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wx5253f27598e4f3ca', extraData: ''},
+  { id: '2', name: '促销', image: '../../images/nav-icon4.png', url: '../../pages/list/list?categoryID=1559', redirecttype: 'apppage', appid: '', extraData: '' },
+  { id: '3', name: '资讯', image: '../../images/nav-icon3.png', url: '../../pages/list/list?categoryID=1560', redirecttype: 'apppage', appid: '', extraData: '' },
+  { id: '4', name: '度假', image: '../../images/nav-icon2.png', url: '../../pages/list/list?categoryID=1494', redirecttype: 'apppage', appid: '', extraData: '' },
  // { id: '5', name: '商城', image: '../../images/nav-icon5.png', url: '../../pages/list/list?product_cat', redirecttype: 'apppage', appid: '', extraData: ''}
   // { id: '6', name: '教程', image: '../../images/app.png', url: '../../pages/list/list?categoryID=1059', redirecttype: 'apppage', appid: '', extraData: ''}
     
