@@ -72,7 +72,7 @@
         </view>
 -->
 
-        <view class="no-more" hidden="{{!isLastPage}}">到底啦</view>
+        <view class="no-more" hidden="{{!isLastPage}}">这是一条底线 :)</view>
 
       </view>
 
