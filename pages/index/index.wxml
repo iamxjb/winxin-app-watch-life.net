@@ -41,7 +41,7 @@
   <view style="display:{{floatDisplay}}">
     <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
       <view class="search-pancel">
-        <input value="" id="search-input" name="input" confirm-type="search" class="search-input" placeholder="搜索你感兴趣的内容..." bindconfirm="formSubmit"></input>
+        <input value="" id="search-input" name="input" confirm-type="search" class="search-input" placeholder="搜索一下..." bindconfirm="formSubmit"></input>
         <button class="search-button" form-type="submit" size="mini" plain="true">
           <icon type="search" color="#959595" size="12" />
         </button>
@@ -73,19 +73,19 @@
     <!-- 图标导航 -->
 
     <view class='top-Nav2'>
-      <navigator url='../hot/hot' hover-class='none'>
+      <navigator url='../../pages/list/list?categoryID=1528' hover-class='none'>
         <view class="top-Nav2-item">
           <view class="top-Nav2-item-word">
-            <text>热门排行</text>
+            <text>自由行配套</text>
           </view>
         </view>
       </navigator>
 
 
-      <navigator url="../../pages/list/list?tag_ID=1347" hover-class='none'>
+      <navigator url="../../pages/list/list?categoryID=1310" hover-class='none'>
         <view class="top-Nav2-item2">
           <view class="top-Nav2-item-word">
-            <text>在线商城</text>
+            <text>酒店度假村</text>
           </view>
         </view>
       </navigator>
