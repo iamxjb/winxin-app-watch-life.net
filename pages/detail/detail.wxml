@@ -29,6 +29,7 @@
                 <template is="wxParse" data="{{wxParseData:article.nodes}}" />
           </view>
         </view>
+        <!--  文章meta  -->
         <view class="entry-date">
                 <image src="../../images/calendar.png" style="height:24rpx;width:24rpx;"></image>
                 <text class="entry-date-text">{{detailDate}}</text>
