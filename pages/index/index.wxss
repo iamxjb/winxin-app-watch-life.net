@@ -201,11 +201,10 @@ font-weight: 500;
   justify-content: center;
   align-items: center;
   line-height: 20rpx;
-  font-size: 24rpx;
+  font-size: 28rpx;
   font-weight: 500;
   height: 60rpx;
   width: 200rpx;
   background-color: #fff;
   border-radius: 30rpx;
-  border: 1rpx #c4c4c4 solid;
 }
