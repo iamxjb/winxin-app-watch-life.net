@@ -151,7 +151,7 @@
                 <template is="tempLoading" />
                 </view>
                 <view style="display:{{isLastPage?'block':'none'}}">
-                    <view class="no-more" >---无更多评论---</view>
+                    <view class="no-more" >-期待您的评论-</view>
                 </view>
             </view>
             <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>

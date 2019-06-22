@@ -104,7 +104,7 @@
                 <view hidden="{{isLastPage}}">
                     <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>
                 </view>-->
-        <view class="no-more" hidden="{{!isLastPage}}">---无更多文章---</view>
+        <view class="no-more" hidden="{{!isLastPage}}">-已到达底线-</view>
       </view>
       <view class="copyright" style="display:{{floatDisplay}}">
         <template is="tempCopyright" />
