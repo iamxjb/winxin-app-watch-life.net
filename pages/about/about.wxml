@@ -32,15 +32,16 @@
         </view>
         <view class="praisePost">
             <view style='text-align:center'>
-                <button class="praise-button" formType="submit" size="mini" bindtap="praise">捐赠</button>
+                <button class="praise-button" formType="submit" size="mini" bindtap="praise">付款</button>
 
                 <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
             </view>
             <view class="praiseTitle">
                 <view style='margin-top: 15rpx;'>
-                    <text>谢谢以下鼓励或捐赠的朋友</text>
+                    <text>服务热线 0755-33101005</text>
                 </view>
             </view>
+            <!-- <image src="../../images/qrcode.png" ></image>-->
             <view class="praiseText">
                 <block wx:key="id" wx:for="{{praiseList}}">
                     <image src="{{item}}" class="gravatarLikeImg"></image>

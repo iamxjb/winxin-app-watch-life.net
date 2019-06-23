@@ -13,14 +13,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: #118fff;
+  background-color: #FFC926;
   height: 348rpx;
   width: 100%;
 }
 
 .userinfo_text_box {
   margin-left: 40rpx;
-  color: #fff;
+  color: #000;
 }
 
 .userinfo_nickname {
@@ -50,7 +50,7 @@
 }
 
 .usertool {
-  background-color: #118fff;
+ /*  background-color: #F6AE45; */
   height: 60rpx;
   text-align: right;
   position: absolute;
@@ -79,15 +79,15 @@
 
 .update_btn_box {
   font-size: 20rpx;
-  color: #fff;
+  color: #333;
 }
 
 .update-button {
   border-radius: 24rpx;
   line-height: 42rpx;
-  background-color: #118fff;
+  background-color: #333;
   padding: 0 16rpx;
-  opacity: 0.4;
+  opacity: 0.6;
   font-size: 24rpx;
   font-weight: 500;
   color: #fff;
@@ -117,7 +117,7 @@
 }
 
 .top-bar-item-Selected {
-  border-bottom: 1px solid #118fff;
+  border-bottom: 1px solid #F6AE45;
   font-weight: bold;
   color: #118fff;
 }

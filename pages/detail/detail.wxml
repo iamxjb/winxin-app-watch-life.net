@@ -24,7 +24,13 @@
             <view class="entry-title">
                 {{detail.title.rendered}}
             </view>
-            <view class="entry-date">
+            <!-- 原详情页日期位置-->
+            <view class="entry-summary">
+                <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+          </view>
+        </view>
+        <!--  文章meta  -->
+        <view class="entry-date">
                 <image src="../../images/calendar.png" style="height:24rpx;width:24rpx;"></image>
                 <text class="entry-date-text">{{detailDate}}</text>
                 <block wx:if="{{detail.category_name !=null}}">
@@ -37,12 +43,7 @@
                 <text class="entry-icon-text">{{detail.pageviews}}</text>
                 <image src="../../images/home-like.png" style="height:24rpx;width:24rpx;margin-left: 20rpx;"></image>
                 <text class="entry-icon-text">{{likeCount}}</text>
-
             </view>
-            <view class="entry-summary">
-                <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-          </view>
-        </view>
         <!--  上一篇，下一篇  -->
         <view wx:if="{{display}}" class="pagination">
             <view wx:if="{{detail.previous_post_id}}" class="nav-previous">
@@ -151,7 +152,7 @@
                 <template is="tempLoading" />
                 </view>
                 <view style="display:{{isLastPage?'block':'none'}}">
-                    <view class="no-more" >---无更多评论---</view>
+                    <view class="no-more" >-期待您的评论-</view>
                 </view>
             </view>
             <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>

@@ -41,7 +41,7 @@
   <view style="display:{{floatDisplay}}">
     <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
       <view class="search-pancel">
-        <input value="" id="search-input" name="input" confirm-type="search" class="search-input" placeholder="搜索你感兴趣的内容..." bindconfirm="formSubmit"></input>
+        <input value="" id="search-input" name="input" confirm-type="search" class="search-input" placeholder="搜索一下..." bindconfirm="formSubmit"></input>
         <button class="search-button" form-type="submit" size="mini" plain="true">
           <icon type="search" color="#959595" size="12" />
         </button>
@@ -73,19 +73,19 @@
     <!-- 图标导航 -->
 
     <view class='top-Nav2'>
-      <navigator url='../hot/hot' hover-class='none'>
+      <navigator url='../../pages/list/list?categoryID=1528' hover-class='none'>
         <view class="top-Nav2-item">
           <view class="top-Nav2-item-word">
-            <text>排行榜单</text>
+            <text>自由行配套</text>
           </view>
         </view>
       </navigator>
 
 
-      <navigator url="../../pages/list/list?categoryID=1059" hover-class='none'>
+      <navigator url="../../pages/list/list?categoryID=1310" hover-class='none'>
         <view class="top-Nav2-item2">
           <view class="top-Nav2-item-word">
-            <text>微信小程序</text>
+            <text>酒店度假村</text>
           </view>
         </view>
       </navigator>
@@ -104,7 +104,7 @@
                 <view hidden="{{isLastPage}}">
                     <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>
                 </view>-->
-        <view class="no-more" hidden="{{!isLastPage}}">---无更多文章---</view>
+        <view class="no-more" hidden="{{!isLastPage}}">-已到达底线-</view>
       </view>
       <view class="copyright" style="display:{{floatDisplay}}">
         <template is="tempCopyright" />
