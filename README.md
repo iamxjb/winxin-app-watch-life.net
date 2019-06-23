@@ -170,6 +170,24 @@ https://www.minapper.com
 
 # 更新历史：
 
+## 2019年04月18日
+
+1.调整海报程序
+
+2.增加评论审核
+
+3.调整支付代码
+
+4.修复获取文章是否点赞的bug
+
+5。评论的数量过滤掉未通过审核的评论
+
+6。排行数据里过滤非文章类的内容
+
+7.增加sitemap.json，支持微信优先收录
+
+8.修复腾讯视频过多导致的加载失败的问题
+
 ## 2018年11月26日
 
 1.完全重构wordpress插件，启用新的插件版本：REST API TO MiniProgram ：https://github.com/iamxjb/rest-api-to-miniprogram
