@@ -89,7 +89,7 @@ https://www.minapper.com
 
 ##为专业人士提供更专业、功能更强的的WordPress小程序，了解详情请访问：https://www.minapper.com
 
-![微慕小程序增强版和专业版](http://www.minapper.com/images/minapper-free-plus-pro.png)
+![微慕小程序增强版和专业版](http://www.minapper.com/images/minapper-free-plus-pro-price.png)
 
 
 
