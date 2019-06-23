@@ -37,7 +37,7 @@ Page({
     userInfo:{},
     userLevel:{},
     openid:'',
-    isLoginPopup: false  a
+    isLoginPopup: false
   },
 
   /**
