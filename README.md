@@ -68,7 +68,9 @@ https://www.watch-life.net
 
 https://www.minapper.com
 
-# 技术支持微信：iamxjb
+# 技术支持微信号：iamxjb
+
+![iamxjb](https://www.watch-life.net/images/iamxjbweixin.jpg) 
 
 # 开源协议：MIT
 
@@ -77,7 +79,7 @@ https://www.minapper.com
 
 本小程序完整使用需要配合我编写的wordpress插件REST API TO MiniProgram，才能完整使用，插件下载地址： https://github.com/iamxjb/rest-api-to-miniprogram
 
-![iamxjb](https://www.watch-life.net/images/iamxjbweixin.jpg) 
+
 
 # 安装使用说明文档
 
@@ -85,7 +87,7 @@ https://www.minapper.com
 
 # 微慕小程序增强版和专业版
 
-为专业人士提供更专业、功能更强的的WordPress小程序，了解详情请访问：https://www.minapper.com
+##为专业人士提供更专业、功能更强的的WordPress小程序，了解详情请访问：https://www.minapper.com
 
 ![微慕小程序增强版和专业版](http://www.minapper.com/images/minapper-free-plus-pro.png)
 
