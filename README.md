@@ -83,9 +83,11 @@ https://www.minapper.com
 
 <a href="https://www.watch-life.net/wordpress/weixin-app-install.html" target="_blank" rel="noopener">WordPress版微信小程序安装使用说明</a>
 
-# <font color="red">微慕小程序增强版和专业版</font>
+# 微慕小程序增强版和专业版
 
 为专业人士提供更专业、功能更强的的WordPress小程序，了解详情请访问：https://www.minapper.com
+
+![微慕小程序增强版和专业版](http://www.minapper.com/images/minapper-free-plus-pro.png)
 
 
 
