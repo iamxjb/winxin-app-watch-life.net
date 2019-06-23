@@ -1,4 +1,4 @@
-# WordPress版微信小程序
+# 微慕小程序开源版-WordPress版微信小程序
 
 ![wordpress微信小程序](https://www.watch-life.net/images/2017/06/winxinapp-wordpress-watch-life-new-700.jpg)
 
@@ -62,7 +62,11 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 ![wordpress版微信小程序](https://www.watch-life.net/images/wordpressweixinapp430.jpg) 
 
 
-# 技术支持网站：https://www.watch-life.net
+# 技术支持网站：
+
+https://www.watch-life.net
+
+https://www.minapper.com
 
 # 技术支持微信：iamxjb
 
@@ -78,6 +82,11 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 # 安装使用说明文档
 
 <a href="https://www.watch-life.net/wordpress/weixin-app-install.html" target="_blank" rel="noopener">WordPress版微信小程序安装使用说明</a>
+
+# <font color="red">微慕小程序增强版和专业版</font>
+
+为专业人士提供更专业、功能更强的的WordPress小程序，了解详情请访问：https://www.minapper.com
+
 
 
 # 程序开发系列文章
