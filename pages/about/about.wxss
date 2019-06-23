@@ -117,15 +117,15 @@ margin-top:8rpx;
 }
 
 .praise-button {
-  font-size: 0.785714286rem;
+  font-size: 1rem;
   font-weight: normal;
   color:  #fff;
   background-color: #23BD81;
   background-repeat: repeat-x;
   margin-top: 24rpx;
   width: 320rpx;
-  height: 60rpx;
-  border-radius: 60rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
 }
 
 .praise-button::after{

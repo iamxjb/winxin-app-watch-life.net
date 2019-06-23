@@ -50,7 +50,6 @@
 }
 
 .usertool {
-  background-color: #F6AE45;
   height: 60rpx;
   text-align: right;
   position: absolute;
@@ -61,8 +60,7 @@
 .usertool-img {
   width: 40rpx;
   height: 40rpx;
-  margin-right: 32rpx;
-  opacity: 0.6;
+  margin: 20rpx;
 }
 
 .userinfo-avatar {
@@ -85,9 +83,7 @@
 .update-button {
   border-radius: 24rpx;
   line-height: 42rpx;
-  background-color: #F6AE45;
   padding: 0 16rpx;
-  opacity: 0.6;
   font-size: 24rpx;
   font-weight: 500;
   color: #333;
