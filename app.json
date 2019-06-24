@@ -18,7 +18,7 @@
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#FFC926",
     "navigationBarTitleText": "太牛旅行",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#9BABBA",
@@ -36,7 +36,7 @@
         "pagePath": "pages/topic/topic",
         "iconPath": "images/tar-topic.png",
         "selectedIconPath": "images/tar-topic-on.png",
-        "text": "产品"
+        "text": "分类"
       },
       {
         "pagePath": "pages/readlog/readlog",
