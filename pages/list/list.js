@@ -51,7 +51,7 @@ Page({
   },
   onShareAppMessage: function () {
 
-    var title = "分享“守望轩”";
+    var title = "分享太牛旅行";
     var path =""
 
     if (this.data.categories && this.data.categories != 0)

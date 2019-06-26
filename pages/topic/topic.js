@@ -336,14 +336,16 @@ Page({
             }
         });
     },
-    agreeGetUser: function (e) {        
-        let self= this;
-        Auth.checkAgreeGetUser(e,app,self,'0');   
-
+    agreeGetUser: function (e) {
+        var userInfo = e.detail.userInfo;
+        var self = this;
+        if (userInfo) {
+            auth.getUsreInfo(e.detail);
+            self.setData({ userInfo: userInfo })
+        }
         setTimeout(function () {
-            self.fetchCategoriesData();             
-        }, 1000);
-        
+            self.setData({ isLoginPopup: false })
+        }, 1200);
     },
     closeLoginPopup() {
         this.setData({ isLoginPopup: false });

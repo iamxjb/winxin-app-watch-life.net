@@ -70,7 +70,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '“' + config.getWebsiteName+'”网站微信小程序,基于WordPress版小程序构建.技术支持：www.watch-life.net',
+      title: '“' + config.getWebsiteName+'”微信小程序',
       path: 'pages/index/index',
       success: function (res) {
         // 转发成功

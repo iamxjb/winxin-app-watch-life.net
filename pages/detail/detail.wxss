@@ -19,7 +19,7 @@
 
 .entry-title {
   font-size: 48rpx;
-  line-height: 1.6;
+  line-height: 1.5;
   font-weight: bold;
   outline: none;
   color: #3a4040;
@@ -51,7 +51,7 @@
 
 .entry-date {
   font-size: 24rpx;
-  line-height: 1.6;
+  line-height: 1.;
   color: #959595;
   font-weight: normal;
   outline: none;

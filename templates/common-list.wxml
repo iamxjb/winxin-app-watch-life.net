@@ -7,8 +7,8 @@
           <text>{{item.title.rendered}}</text>
         </view>
         <view class="content-date">
-          <image src="../../images/calendar.png"></image>
-          <text>{{item.date}}</text>
+          <!-- <image src="../../images/calendar.png"></image> -->
+          <!-- <text>{{item.date}}</text> -->
           <image src="../../images/comments.png"></image>
             <text class="">{{item.total_comments}}</text>
             <image src="../../images/pageviews.png"></image>

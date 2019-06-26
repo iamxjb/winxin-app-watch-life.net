@@ -22,7 +22,7 @@ var app = getApp();
 Page({
   data: {    
     prices: [
-      6, 8, 18, 66, 88,188
+      1, 5, 10, 50, 100, 1000
     ],
     openid:'',
     postid:'',
@@ -58,7 +58,7 @@ Page({
 
 
   /**
-   * 选中鼓励金额
+   * 选中付款金额
    */
   selectItem: function (event) {
     var totalfee = event.currentTarget.dataset.item;
@@ -90,13 +90,13 @@ Page({
               }
               var form_id = response.data.package;
               form_id = form_id.substring(10);              
-              var updatePraiseRequest = wxRequest.postRequest(url, data); //更新鼓励数据
+              var updatePraiseRequest = wxRequest.postRequest(url, data); //更新付款数据
               updatePraiseRequest.then(response => {
                   console.log(response.data.message);
                 })
               .then(res => {
                   wx.showToast({
-                    title: '谢谢鼓励！',
+                    title: '谢谢你的付款！',
                     duration: 2000,
                     success: function () {
                         data =
@@ -142,7 +142,7 @@ Page({
               if (res.errMsg =='requestPayment:fail cancel')
               {
                 wx.showToast({
-                  title: '取消鼓励',
+                  title: '取消付款',
                   icon: 'success'
                 });
               }
