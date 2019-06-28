@@ -202,15 +202,17 @@ Page({
 
   },
   agreeGetUser: function (e) {
-      var userInfo = e.detail.userInfo;
-      var self = this;
-      if (userInfo) {
-          auth.getUsreInfo(e.detail);
-          self.setData({ userInfo: userInfo });
-      }
-      setTimeout(function () {
-          self.setData({ isLoginPopup: false })
-      }, 1200);
+    //   var userInfo = e.detail.userInfo;
+    //   var self = this;
+    //   if (userInfo) {
+    //       Auth.getUsreInfo(e.detail);
+    //       self.setData({ userInfo: userInfo });
+    //   }
+    //   setTimeout(function () {
+    //       self.setData({ isLoginPopup: false })
+    //   }, 1200);
+    let self= this;
+    Auth.checkAgreeGetUser(e,app,self,'0');;
   },
   closeLoginPopup() {
       this.setData({ isLoginPopup: false });
