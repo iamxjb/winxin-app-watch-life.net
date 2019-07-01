@@ -57,7 +57,6 @@
   position: relative;
   text-align: left;
   margin-top: 30rpx;
-  /* border-bottom:2rpx solid #ededed; */
   margin-bottom: 30rpx;
   
   
@@ -70,14 +69,13 @@
   line-height: 40rpx;  
   margin-top: 50rpx;
   margin-bottom: 20rpx;
- /* margin-left: 280rpx; */
   font-size: 28rpx;
   color:#959595 !important;
   vertical-align:middle;  
- /* width:500rpx; */
+
   height:70rpx;
   border-radius: 30rpx;
-  /* border: 1rpx solid #21759b; */
+
   
  
 }
@@ -104,13 +102,7 @@ margin-top:8rpx;
 
 .gravatarLikeImg {
   margin-top: 4px;
-  /*border-radius: 50%;
-  
-  opacity: 1;
-  transform: scale(1);
-  perspective-origin: top center;
-  transition: all ease-in-out 0.3s;
-  */
+ 
   height: 48rpx;
   width: 48rpx;
   margin-right:20rpx;

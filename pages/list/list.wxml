@@ -65,12 +65,7 @@
       <template is="tempCommonList" data="{{postsList}}" />
 
       <view class="loadingmore" style="display:{{floatDisplay}}">
-        <!-- 
-        
-        <view hidden="{{isLastPage}}">
-          <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>
-        </view>
--->
+  
 
         <view class="no-more" hidden="{{!isLastPage}}">----------无更多文章...---------</view>
 

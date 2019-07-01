@@ -202,15 +202,7 @@ Page({
 
   },
   agreeGetUser: function (e) {
-    //   var userInfo = e.detail.userInfo;
-    //   var self = this;
-    //   if (userInfo) {
-    //       Auth.getUsreInfo(e.detail);
-    //       self.setData({ userInfo: userInfo });
-    //   }
-    //   setTimeout(function () {
-    //       self.setData({ isLoginPopup: false })
-    //   }, 1200);
+  
     let self= this;
     Auth.checkAgreeGetUser(e,app,self,'0');;
   },
@@ -230,9 +222,7 @@ Page({
 
         self.setData({
             pageData: response.data,
-            // wxParseData: WxParse('md',response.data.content.rendered)
-            //wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5)
-        });
+              });
         self.setData({
             display: 'block'
         });
@@ -269,7 +259,7 @@ Page({
     })    
     .then(res =>{
         if (!app.globalData.isGetOpenid) {
-           // auth.getUsreInfo();
+           
         }
 
     })

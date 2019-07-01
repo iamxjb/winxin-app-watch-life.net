@@ -23,15 +23,15 @@
 /*topic list*/
 
 .topic-common-list {
-  /* padding:30rpx 30rpx; */
+
 }
 
 .topic-list-item {
   position: relative;
-  /* border-bottom: 1px solid #eee;   */
+
   overflow: hidden;
   clear: both;
-  /* border: 1px solid #ccc; *//* border-radius: 6px; */
+
   margin-bottom: 30rpx;
   background: #fff;
 }

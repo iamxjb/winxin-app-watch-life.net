@@ -58,7 +58,7 @@
   margin-bottom: 30rpx;
   border-bottom:1px solid #eee;
 
-  /* border-bottom: 1px solid #ededed; *//* margin-left: 30rpx; */
+  
 }
 
 .entry-date-text {
@@ -94,7 +94,7 @@
 }
 
 .comment {
-  /* border-bottom: 8px solid #fff; */
+
   background-color: #f5f7f7;
   padding: 0 24rpx;
   border-radius: 8px;
@@ -109,9 +109,8 @@
 .comment-user {
   display: flex;
   align-items: center;
-  /* height: 80rpx; */
+
   font-size: 28rpx;
-  /* line-height: 80rpx; */
   font-weight: normal;
   outline: none;
   color: #959595;
@@ -121,9 +120,9 @@
 .replay-user {
   display: flex;
   align-items: center;
-  /* height: 80rpx; */
+
   font-size: 26rpx;
-  /* line-height: 80rpx; */
+
   font-weight: normal;
   outline: none;
   color: #959595;
@@ -194,7 +193,7 @@
   background-color: #fff;
   box-shadow: 0 0 6px rgba(30, 20, 20, 0.1);
   z-index: 100;
-  /*margin-bottom:2rpx; */
+
 }
 
 .comment-box {
@@ -238,10 +237,7 @@
   flex-direction: column;
   justify-content: center;
   margin-right: 0rpx;
-  /* border-bottom-left-radius: 6px !important;
-  border-top-left-radius: 6px !important;
-  border-top-right-radius: 6px !important;
-  border-bottom-right-radius: 6px !important; */
+
   text-align: center;
   padding: 0px !important;
   font-size: 12px;
@@ -275,14 +271,7 @@
 }
 
 .gravatarImg {
-  /* margin-top: 4px; */
-  /* border-radius: 50%; */
-  /*
-  opacity: 1;
-  transform: scale(1);
-  perspective-origin: top center;
-  transition: all ease-in-out 0.3s;
-  */
+
   height: 48rpx;
   width: 48rpx;
 }
@@ -308,7 +297,7 @@
   position: relative;
   text-align: left;
   margin: 32rpx 0 60rpx;
-  /* border-bottom: 1px solid #eee; */
+
 }
 
 .relatedTitle {
@@ -333,22 +322,21 @@
   position: relative;
   text-align: left;
   margin-top: 30rpx;
-  /* border-bottom: 1px solid #ededed; */
+
   margin-bottom: 60rpx;
 }
 
 .likeTitle {
   text-align: left;
   font-weight: normal;
-  /* line-height: 30rpx; */
+
   margin-top: 20rpx;
   margin-bottom: 20rpx;
-  /* margin-left: 280rpx; */
+
   font-size: 28rpx;
   color: #959595 !important;
   vertical-align: middle;
-  /* width: 140rpx;
-  height: 70rpx; *//* border-radius: 35rpx; *//* border: 1rpx solid #c4c4c4; */
+  
   position: absolute;
   top: 120rpx;
   left: 0;
@@ -380,13 +368,7 @@
 
 .gravatarLikeImg {
   margin-top: 4px;
-  /*border-radius: 50%;
-  
-  opacity: 1;
-  transform: scale(1);
-  perspective-origin: top center;
-  transition: all ease-in-out 0.3s;
-  */
+ 
   height: 48rpx;
   width: 48rpx;
   margin-right: 20rpx;
@@ -402,38 +384,6 @@
   margin-top: 30rpx;
 }
 
-/*
-
-.share-button {
-  width: 50rpx;
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 5px;
-  margin-right: 20rpx;
-  border-radius: 2px;
-  text-align: center;
-  padding: 0 2px !important;
-  font-size: 12px;
-  background-color: #5599FF;
-  color: #fff;  
-}
-
-
-.share-button, .share-button::after {
-  position: relative;
-  width: auto;
-  height: auto;
-  margin: 0;
-  padding: 0;
-  line-height: 1;
-  border-radius: none;
-  -webkit-tap-highlight-color: transparent;
-  background-color: transparent;
-  border: none !important;
-  color: #333;
-}
-*/
 .share-button{
   opacity: 0; 
   position:absolute;

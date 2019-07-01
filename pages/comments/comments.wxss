@@ -26,11 +26,9 @@
 
 .topic-list-item {
   position: relative;
-  /* border-bottom: 1px solid #eee;   */
   overflow: hidden;
   clear: both;
-  /* border: 1px solid #ccc; *//* border-radius: 6px; 
-  margin-bottom: 30rpx;*/
+ 
   background: #fff;
 }
 
@@ -44,8 +42,7 @@
 .log-list {
   display: flex;
   flex-direction: column;
-  /*padding: 32rpx 0;
-   margin-top: 5rpx; */
+
 }
 
 .log-items {

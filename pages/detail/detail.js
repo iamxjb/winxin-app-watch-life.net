@@ -1014,14 +1014,11 @@ Page({
                 canvasId: 'mycanvas',
                 success: function (res) {
                     var tempFilePath = res.tempFilePath;
-                    // that.setData({
-                    //     imagePath: tempFilePath,
-                    //     maskHidden: "none"
-                    // });
+                  
                     wx.hideLoading();
                     console.log("海报图片路径：" + res.tempFilePath);                    
                     that.modalView.showModal({
-                        title: '保存至相册可以分享到朋友圈',
+                        title: '保存至相册可以分享',
                         confirmation: false,
                         confirmationText: '',
                         inputFields: [{
@@ -1107,7 +1104,7 @@ Page({
         var imageInlocalFlag = false;  
         var downloadFileDomain = appPage.data.downloadFileDomain;
         var logo = appPage.data.logo;
-        var defaultPostImageUrl = appPage.data.postImageUrl;
+        var defaultPostImageUrl = appPage.data.detail.postImageUrl;
         var postImageUrl = appPage.data.detail.post_full_image;
 
 

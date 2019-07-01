@@ -1,11 +1,6 @@
 .container {
   height: 100%;
-    /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0;
-  box-sizing: border-box;   */
+   
 }
 .topic-container{
   background-color: #fff;
@@ -22,12 +17,11 @@
 .list-item {
   position: relative;
   float: left;
-  /* border-bottom: 1px solid #eee; */
+
   overflow: hidden;
-  /* clear: both;  */
+
   width: 303rpx;
-   /* border: 1px solid #ccc; 
-  border-radius: 6rpx; */
+
   margin-bottom: 60rpx;
   margin-right: 48rpx;
   background: #fff;
@@ -49,7 +43,7 @@
 .content-title text {
   font-size: 30rpx;
   line-height: 30rpx;
-  /* font-weight: bold; */
+
   color: #1b1b1b;
 }
 
