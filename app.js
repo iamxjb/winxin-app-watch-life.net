@@ -18,7 +18,7 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     // 小程序主动更新
-    that.updateManager();
+    this.updateManager();
 
     
   },
