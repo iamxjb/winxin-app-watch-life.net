@@ -46,7 +46,7 @@ var INDEXNAV = [
   { id: '2', name: '企业版', image: '../../images/nav-icon2.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wxc1771b619b83316b', extraData: '' },
   { id: '3', name: '旅游版', image: '../../images/nav-icon3.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wxa43aaa8416cdbd61', extraData: '' },
   { id: '4', name: '图片版', image: '../../images/nav-icon4.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wxe9440e3d24b04152', extraData: ''},
-  { id: '5', name: '微店', image: '../../images/nav-icon5.png', url: 'pages/shelf/shelf', redirecttype: 'miniapp', appid: 'wx55ea6098e41af5c4', extraData: ''}
+  { id: '5', name: '微慕+', image: '../../images/nav-icon5.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wx46926513e9b706d3', extraData: ''}
  
     
     ];
