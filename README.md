@@ -1,8 +1,8 @@
 # 微慕小程序开源版-WordPress版微信小程序
 
-![wordpress微信小程序](https://www.watch-life.net/images/2017/06/winxinapp-wordpress-watch-life-new-700.jpg)
+![微慕wordpress微信小程序](https://www.watch-life.net/images/minapper-weixin-wp.jpg)
 
-![wordpress微信小程序](https://www.watch-life.net/images/wordpresswinxinapp700.png) 
+![微慕wordpress微信小程序](https://www.watch-life.net/images/wordpresswinxinapp700.png) 
 
 # 功能清单：
 
@@ -85,12 +85,51 @@ https://www.minapper.com
 
 <a href="https://www.watch-life.net/wordpress/weixin-app-install.html" target="_blank" rel="noopener">WordPress版微信小程序安装使用说明</a>
 
-# 微慕小程序增强版和专业版
+# 微慕WordPress小程序增强版和专业版
 
-##为专业人士提供更专业、功能更强的的WordPress小程序，了解详情请访问：https://www.minapper.com
+# 为专业人士提供更专业、功能更强的的WordPress小程序，了解详情请访问：https://www.minapper.com
 
 ![微慕小程序增强版和专业版](http://www.minapper.com/images/minapper-free-plus-pro-price.png)
 
+# 微慕WordPress小程序专业版二维码
+1.微慕WordPress小程序专业标准版
+
+![微慕WordPress小程序专业标准版](https://wpimg.minapper.com/wp-content/uploads/2019/06/1560148526-%E6%A0%87%E5%87%86%E7%89%88%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.jpg)
+
+2.微慕WordPress小程序专业旅游版
+![微慕WordPress小程序专业旅游版](https://wpimg.minapper.com/wp-content/uploads/2019/06/1560151814-%E6%97%85%E6%B8%B8%E7%89%88%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.jpg)
+
+3.微慕WordPress小程序专业企业版
+![微慕WordPress小程序专业企业版](https://wpimg.minapper.com/wp-content/uploads/2019/06/1560151736-%E4%BC%81%E4%B8%9A%E7%89%88%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.jpg)
+
+4.微慕WordPress小程序专业图片版
+![微慕WordPress小程序专业图片版](https://wpimg.minapper.com/wp-content/uploads/2019/06/1560151788-%E5%9B%BE%E7%89%87%E7%89%88%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.jpg)
+
+# 微慕WordPress小程序增强版版二维码
+
+
+1.微慕WordPress小程序增强版微信版
+![微慕WordPress小程序增强版微信版](https://wpimg.minapper.com/wp-content/uploads/2019/06/2019062015344522.jpg)
+
+2.微慕WordPress小程序增强版QQ版
+
+![微慕WordPress小程序增强版QQ版](https://wpimg.minapper.com/wp-content/uploads/2019/07/2019070613461611.jpg)
+
+3.微慕WordPress小程序增强版百度版
+
+![微慕WordPress小程序增强版百度版](https://wpimg.minapper.com/wp-content/uploads/2019/07/1561966121.png)
+
+4.微慕WordPress小程序增强版头条版
+
+![微慕WordPress小程序增强版头条版](https://wpimg.minapper.com/wp-content/uploads/2019/07/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190715234917_%E5%89%AF%E6%9C%AC.png
+
+5.微慕WordPress小程序增强版抖音版
+
+![微慕WordPress小程序增强版抖音版](https://wpimg.minapper.com/wp-content/uploads/2019/07/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190715234917_%E5%89%AF%E6%9C%AC.png)
+
+5.微慕WordPress小程序增强版支付宝版
+
+![微慕WordPress小程序增强版支付宝版](https://wpimg.minapper.com/wp-content/uploads/2019/07/1561966166.png)
 
 
 # 程序开发系列文章
