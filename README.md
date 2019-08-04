@@ -96,23 +96,28 @@ https://www.minapper.com
 ![微慕小程序增强版和专业版](http://www.minapper.com/images/minapper-free-plus-pro-price.png)
 
 # 微慕WordPress小程序专业版二维码
+
 1.微慕WordPress小程序专业标准版
 
 ![微慕WordPress小程序专业标准版](https://www.watch-life.net/images/minapper.jpg)
 
 2.微慕WordPress小程序专业旅游版
+
 ![微慕WordPress小程序专业旅游版](https://www.watch-life.net/images/minapper-lv.jpg)
 
 3.微慕WordPress小程序专业企业版
+
 ![微慕WordPress小程序专业企业版](https://www.watch-life.net/images/minapper-bi.jpg)
 
 4.微慕WordPress小程序专业图片版
+
 ![微慕WordPress小程序专业图片版](https://www.watch-life.net/images/minapper-tu.jpg)
 
 # 微慕WordPress小程序增强版版二维码
 
 
 1.微慕WordPress小程序增强版微信版
+
 ![微慕WordPress小程序增强版微信版](https://www.watch-life.net/images/minapper-plus-wx.jpg)
 
 2.微慕WordPress小程序增强版QQ版
