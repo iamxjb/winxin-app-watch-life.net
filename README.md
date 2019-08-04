@@ -136,7 +136,7 @@ https://www.minapper.com
 
 ![微慕WordPress小程序增强版抖音版](https://www.watch-life.net/images/minapper-plus-toutiao.jpg)
 
-5.微慕WordPress小程序增强版支付宝版
+6.微慕WordPress小程序增强版支付宝版
 
 ![微慕WordPress小程序增强版支付宝版](https://www.watch-life.net/images/minapper-plus-alipay.jpg)
 
