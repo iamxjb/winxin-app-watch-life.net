@@ -138,7 +138,7 @@ Page({
         return {
             title: '分享"' + config.getWebsiteName + '"的文章：' + this.data.detail.title.rendered,
             path: 'pages/detail/detail?id=' + this.data.detail.id,
-            imageUrl: this.data.detail.post_thumbnail_image,
+            imageUrl: this.data.detail.post_full_image,
             success: function (res) {
                 // 转发成功
                 console.log(res);
