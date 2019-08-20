@@ -40,6 +40,7 @@ Page({
         commentValue: '',
         wxParseData: {},
         display: 'none',
+        showerror:'none',
         page: 1,
         isLastPage: false,
         parentID: "0",
@@ -75,22 +76,23 @@ Page({
         openid:"",
         userInfo:{},
         system:'',
-        downloadFileDomain:config.getDownloadFileDomain,
+        downloadFileDomain:config.getDownloadFileDomain
 
     },
     onLoad: function (options) {
         var self=this;
         self.getEnableComment();
-        self.fetchDetailData(options.id);
+        self.fetchDetailData(options.id);        
         Auth.setUserInfoData(self); 
         Auth.checkLogin(self);
         wx.getSystemInfo({
-            success: function (t) {
+            success: function (t) {           
             var system = t.system.indexOf('iOS') != -1 ? 'iOS' : 'Android';
             self.setData({ system: system });
-
           }
         })
+
+        
         new ModalView;
 
     },
@@ -98,6 +100,10 @@ Page({
         var self = this;
         var flag = false;
         var _likes = self.data.detail.avatarurls;
+        if(!_likes){
+            return;
+        }
+        
         var likes = [];
         for (var i = 0; i < _likes.length; i++) {
             var avatarurl = "../../images/gravatar.png";
@@ -132,7 +138,7 @@ Page({
         return {
             title: '分享"' + config.getWebsiteName + '"的文章：' + this.data.detail.title.rendered,
             path: 'pages/detail/detail?id=' + this.data.detail.id,
-            imageUrl: this.data.detail.post_thumbnail_image,
+            imageUrl: this.data.detail.post_full_image,
             success: function (res) {
                 // 转发成功
                 console.log(res);
@@ -321,6 +327,20 @@ Page({
         getPostDetailRequest
             .then(response => {
                 res = response;
+                if(response.data.code  && (response.data.data.status=="404"))
+                {
+                    self.setData({
+                        showerror:'block',
+                        display: 'none',
+                        errMessage:response.data.message   
+                    });
+
+                    return false;
+
+                }
+                wx.setNavigationBarTitle({
+                    title: res.data.title.rendered
+                });
                 WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5);
                 if (response.data.total_comments != null && response.data.total_comments != '') {
                     self.setData({
@@ -342,7 +362,8 @@ Page({
                     //wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5),
                     display: 'block',
                     displayLike: _displayLike,
-                    total_comments: response.data.total_comments
+                    total_comments: response.data.total_comments,
+                    postImageUrl:response.data.postImageUrl
 
                 });
                 // 调用API从本地缓存中获取阅读记录并记录
@@ -363,14 +384,16 @@ Page({
 
             })
             .then(response => {
-                wx.setNavigationBarTitle({
-                    title: res.data.title.rendered
-                });
+                
 
             })
             .then(response => {
                 var tagsArr = [];
                 tagsArr = res.data.tags
+                if(!tagsArr)
+                {
+                    return false;
+                }
                 var tags = "";
                 for (var i = 0; i < tagsArr.length; i++) {
                     if (i == 0) {
@@ -405,7 +428,7 @@ Page({
                 }
             })
             .catch(function (error) {
-                console.log('error: ' + error);
+               console.log('error: ' + error);
 
             })
             
@@ -579,12 +602,12 @@ Page({
             });
 
         }        
-        console.log('toFromId', toFromId);
-        console.log('replay', isFocusing);
+       // console.log('toFromId', toFromId);
+       // console.log('replay', isFocusing);
     },
     onReplyBlur: function (e) {
         var self = this;
-        console.log('onReplyBlur', isFocusing);
+       // console.log('onReplyBlur', isFocusing);
         if (!isFocusing) {
             {
                 const text = e.detail.value.trim();
@@ -600,12 +623,12 @@ Page({
 
             }
         }
-        console.log(isFocusing);
+       // console.log(isFocusing);
     },
     onRepleyFocus: function (e) {
         var self = this;
         isFocusing = false;
-        console.log('onRepleyFocus', isFocusing);
+        //console.log('onRepleyFocus', isFocusing);
         if (!self.data.focus) {
             self.setData({ focus: true })
         }
@@ -658,6 +681,7 @@ Page({
                 var postCommentMessage="";
                 postCommentRequest
                     .then(res => {
+                        console.log(res)
                         if (res.statusCode == 200) {
                             if (res.data.status == '200') {
                                 self.setData({
@@ -668,8 +692,7 @@ Page({
                                     focus: false,
                                     commentsList: []
 
-                                });
-                                console.log(res.data.message);
+                                });                                
                                 postCommentMessage=res.data.message;
                                 if (parent != "0" && !util.getDateOut(commentdate) && toFromId != "") {
                                     var useropenid = res.data.useropenid;                                    
@@ -689,11 +712,7 @@ Page({
                                     var sendMessageRequest = wxRequest.postRequest(url, data);
                                     sendMessageRequest.then(response => {
                                         if (response.data.status == '200') {
-                                            console.log(response.data.message);
-                                            // wx.navigateBack({
-                                            //     delta: 1
-                                            // })
-
+                                            //console.log(response.data.message);
                                         }
                                         else {
                                             console.log(response.data.message);
@@ -702,8 +721,7 @@ Page({
 
                                     });
 
-                                }
-                                console.log(res.data.code);
+                                }                               
                                 var commentCounts = parseInt(self.data.total_comments)+1;                                
                                 self.setData({
                                     total_comments:commentCounts,                                   
@@ -739,7 +757,7 @@ Page({
                                 });
                             }
                             else {
-                                console.log(res.data.code)
+                                console.log(res)
                                 self.setData({
                                     'dialog.hidden': false,
                                     'dialog.title': '提示',
@@ -996,14 +1014,11 @@ Page({
                 canvasId: 'mycanvas',
                 success: function (res) {
                     var tempFilePath = res.tempFilePath;
-                    // that.setData({
-                    //     imagePath: tempFilePath,
-                    //     maskHidden: "none"
-                    // });
+                  
                     wx.hideLoading();
                     console.log("海报图片路径：" + res.tempFilePath);                    
                     that.modalView.showModal({
-                        title: '保存至相册可以分享到朋友圈',
+                        title: '保存至相册可以分享',
                         confirmation: false,
                         confirmationText: '',
                         inputFields: [{
@@ -1089,7 +1104,7 @@ Page({
         var imageInlocalFlag = false;  
         var downloadFileDomain = appPage.data.downloadFileDomain;
         var logo = appPage.data.logo;
-        var defaultPostImageUrl = appPage.data.postImageUrl;
+        var defaultPostImageUrl = appPage.data.detail.postImageUrl;
         var postImageUrl = appPage.data.detail.post_full_image;
 
 

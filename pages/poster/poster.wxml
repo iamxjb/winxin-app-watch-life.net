@@ -22,7 +22,7 @@
             <button class="gotowebpage-button" formType="submit" size="mini" bindtap="savePosterImage">保存图片</button>
             <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
         </view>
-        <view style="color: #888;font-size: 9pt;text-align: center;margin-top:10rpx">保存至相册可以分享到朋友圈</view>
+        <view style="color: #888;font-size: 9pt;text-align: center;margin-top:10rpx">保存至相册后进行分享</view>
 
 <view class="copyright">
     <template is="tempCopyright" />

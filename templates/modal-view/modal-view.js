@@ -102,7 +102,7 @@ function ModalViewClass() {
                     console.log(result)
                     wx.showModal({
                         title: '提示',
-                        content: '二维码海报已存入手机相册，赶快分享到朋友圈吧',
+                        content: '二维码海报已存入手机相册，赶快分享吧',
                         showCancel: false,
                         success: function (res) {
 
