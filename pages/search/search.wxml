@@ -1,0 +1,33 @@
+<!--
+/*
+ * 
+ * 微慕小程序
+ * author: jianbo
+ * organization:  微慕 www.minapper.com 
+ * 技术支持微信号：Jianbo
+ * Copyright (c) 2018 https://www.minapper.com All rights reserved.
+ *
+ */-->
+<import src="../../templates/copyright.wxml" />
+
+
+<view style="display:{{isArticlesList?'block':'none'}}">
+ <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
+      <view class="search-box">
+        <input value="" id="search-input" name="input" confirm-type="search" class="search-input" placeholder="搜索你感兴趣的内容..." bindconfirm="formSubmit"></input>
+        <button class="search-button" form-type="submit" size="mini" plain="true">
+          <icon type="search" color="#959595" size="16" />
+        </button>
+      </view>
+    </form> 
+  <view class="list-container">
+    <!-- <template is="tempCommonList" />
+    <view style='display:{{isLoading?"block":"none"}}'>
+      <template is="threepoint" />
+    </view> -->
+    <!-- <view class="no-more" style="display:{{isLastPage?'block':'none'}}">- 到底啦 -</view> -->
+    <view class="copyright">{{memberUserInfo.level}}
+      <template is="tempCopyright" data="{{copyright}}" />
+    </view>
+  </view>
+</view>

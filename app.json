@@ -12,7 +12,9 @@
         "pages/pay/pay",
         "pages/webpage/webpage",
         "pages/comments/comments",
-        "pages/poster/poster"
+        "pages/poster/poster",
+        "pages/search/search"
+        
     ],
     "window": {
         "backgroundTextStyle": "dark",
