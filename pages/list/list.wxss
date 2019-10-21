@@ -9,88 +9,48 @@
  * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
  */
 
-.list-header {
-  padding: 50rpx 0;
-  text-align: left;
-  font-weight: normal;
-  font-size: 40rpx;
-  line-height: 40rpx;
-  color: #21759b;
-  border-bottom: 2rpx solid #ededed;
-  margin-bottom: 48rpx;
-}
-
-/*topic list*/
-
-.topic-common-list {
-
-}
-
 .topic-list-item {
+  height: 240rpx;
+  overflow: hidden;
   position: relative;
-
-  overflow: hidden;
-  clear: both;
-
-  margin-bottom: 30rpx;
-  background: #fff;
 }
 
-.topic-list-item  image.cover {
+.cover {
   width: 100%;
-  height: 375rpx;
-  filter: blur(4px);
-}
-
-.topic-content-title {
-  padding: 16rpx 0rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  height: 240rpx;
+  filter: brightness(80%);
   position: absolute;
-  /* border-bottom: 1px solid #fff; */
-  z-index: 2;
-  left: 60rpx;
-  top: 120rpx;
 }
-
-.topic-content-title text {
-  font-size: 48rpx;
-  line-height: 48rpx;
-  color: #fff;
-}
-
-.topic-content-title-line{
-  width: 48px;
-  padding: 16rpx 0rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  position: absolute;
-  border-bottom: 1px solid #fff; 
-  z-index: 2;
-  left: 64rpx;
-  top: 180rpx;
-}
-
 
 .topic-content-brief {
-  /* padding: 0rpx 30rpx 30rpx; */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  width: 80%;
   position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
   z-index: 2;
-  left: 60rpx;
-  top: 240rpx;
+  text-align: center;
 }
 
 .topic-content-brief text {
-  font-size: 32rpx;
-  line-height: 32rpx;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #fff;
+}
+
+/* 搜索列表 */
+
+.topic-content-title text {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
   color: #fff;
 }
 
 .searchKey {
   color: #121b23;
+}
+
+.search-tips {
+  font-size: 10px;
 }

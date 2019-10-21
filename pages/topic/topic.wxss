@@ -1,78 +1,49 @@
-.container {
-  height: 100%;
-   
-}
-.topic-container{
-  background-color: #fff;
-}
-
-
-/*topic list*/
-
-.topic-common-list {
-   padding: 48rpx 0rpx 48rpx 48rpx; 
-   margin: 0 auto;
+.topic-list {
+  padding: 48rpx 0 0;
 }
 
 .list-item {
-  position: relative;
-  float: left;
-
-  overflow: hidden;
-
   width: 303rpx;
-
   margin-bottom: 60rpx;
-  margin-right: 48rpx;
-  background: #fff;
+  margin-left: 48rpx;
+  float: left;
+  overflow: hidden;
 }
 
-.list-item  image.cover {
+.topic-img {
   width: 303rpx;
   height: 303rpx;
   border-radius: 12rpx;
 }
 
-.content-title {
+.topic-name-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 16rpx 0rpx;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.content-title text {
-  font-size: 30rpx;
-  line-height: 30rpx;
 
-  color: #1b1b1b;
+/* 订阅按钮 */
+
+.btn-box image {
+  width: 80rpx;
+  height: 40rpx;
+  display: block;
 }
 
-.content-brief {
-  padding: 0rpx 0rpx 30rpx;
-  font-size: 28rpx;
-  line-height: 40rpx;
-  font-weight: 400;
+/* 专题描述 */
+
+.topic-brief {
+  font-size: 13px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #959595;
-}
-.topic-name {
- float: left; 
- width: 55%;
-}
-.topic-img {
-    float: right;
-    text-align: right;
-    width: 40%;
-    margin-right: 10rpx;
- 
-}
-
-.img-menu {
-  width: 80rpx;
-  height: 40rpx;
-  display: inline-block;
-  text-align: center;
-   border-radius: 12rpx;
 }

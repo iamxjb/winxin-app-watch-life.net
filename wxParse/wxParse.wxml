@@ -1,7 +1,7 @@
 <!--**
  * author: Di (微信小程序开发工程师)
- * organization: WeAppDev(微信小程序开发论坛)(http://weappdev.com)
- *               垂直微信小程序开发交流社区
+ * organization: WeAppDev(微信小程序开发)(http://weappdev.com)
+ *               垂直微信小程序开发
  * 
  * github地址: https://github.com/icindy/wxParse
  * 
@@ -23,7 +23,7 @@
   </view>
 </template>
 <template name="wxParseImg">
-  <image class="{{item.classStr}} wxParse-{{item.tag}}" show-menu-by-longpress="true" lazy-load="true" data-from="{{item.from}}" data-src="{{item.attr.src}}" data-idx="{{item.imgIndex}}" src="{{item.attr.src}}" mode="aspectFit" bindload="wxParseImgLoad" bindtap="wxParseImgTap" mode="widthFix" style="width:{{item.width}}px;"
+  <image class="{{item.classStr}} wxParse-{{item.tag}}" show-menu-by-longpress="true" lazy-load="true" data-from="{{item.from}}" data-src="{{item.attr.src}}" data-idx="{{item.imgIndex}}" src="{{item.attr.src}}" bindload="wxParseImgLoad" bindtap="wxParseImgTap" mode="widthFix" style="width:100%;"
   />
 </template>
 <!--33行加入text组件，用于复制文字-->
@@ -40,6 +40,10 @@
 
 <template name="WxParseBr">
   <text>\n</text>
+</template>
+
+<template name="wxParseStyle">
+  <text></text>
 </template>
 <!--入口模版-->
 
@@ -84,13 +88,18 @@
     </block>
 
     <!--audio类型-->
-    <block wx:elif="{{item.tag == 'audio'}}">
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
       <template is="wxParseAudio" data="{{item}}" />
-    </block>
+    </block> -->
 
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+     <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
     </block>
 
     <!--a类型-->
@@ -108,7 +117,24 @@
         </block>
       </view>
     </block>
-
+    <!-- 112至127行加入pre code支持 -->
+    <!-- pre 类型 -->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParse1" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+     <!-- code 类型 -->
+    <block wx:elif="{{item.tag == 'code'}}">
+      <view class="{{item.classStr}} wxParser-{{item.tag}}" style="{{item.styleStr}}">
+        <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
+          <template is="wxParse1" data="{{item}}"/>
+        </block>
+      </view>
+    </block>
+    <!-- 112至127行加入pre code支持 -->
     <block wx:elif="{{item.tag == 'br'}}">
       <template is="WxParseBr"></template>
     </block>
@@ -174,13 +200,18 @@
     </block>
 
     <!--audio类型-->
-    <block wx:elif="{{item.tag == 'audio'}}">
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
       <template is="wxParseAudio" data="{{item}}" />
-    </block>
+    </block> -->
 
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+     <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
     </block>
 
     <!--a类型-->
@@ -256,13 +287,18 @@
     </block>
 
     <!--audio类型-->
-    <block wx:elif="{{item.tag == 'audio'}}">
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
       <template is="wxParseAudio" data="{{item}}" />
-    </block>
+    </block> -->
 
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+     <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
     </block>
 
     <!--a类型-->
@@ -337,13 +373,18 @@
     </block>
 
     <!--audio类型-->
-    <block wx:elif="{{item.tag == 'audio'}}">
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
       <template is="wxParseAudio" data="{{item}}" />
-    </block>
+    </block> -->
 
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+     <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
     </block>
 
     <!--a类型-->
@@ -418,13 +459,18 @@
     </block>
 
     <!--audio类型-->
-    <block wx:elif="{{item.tag == 'audio'}}">
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
       <template is="wxParseAudio" data="{{item}}" />
-    </block>
+    </block> -->
 
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+     <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
     </block>
 
     <!--a类型-->
@@ -499,13 +545,18 @@
     </block>
 
     <!--audio类型-->
-    <block wx:elif="{{item.tag == 'audio'}}">
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
       <template is="wxParseAudio" data="{{item}}" />
-    </block>
+    </block> -->
 
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+     <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
     </block>
 
     <!--a类型-->
@@ -580,13 +631,18 @@
     </block>
 
     <!--audio类型-->
-    <block wx:elif="{{item.tag == 'audio'}}">
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
       <template is="wxParseAudio" data="{{item}}" />
-    </block>
+    </block> -->
 
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+     <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
     </block>
 
     <!--a类型-->
@@ -660,13 +716,18 @@
     </block>
 
     <!--audio类型-->
-    <block wx:elif="{{item.tag == 'audio'}}">
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
       <template is="wxParseAudio" data="{{item}}" />
-    </block>
+    </block> -->
 
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+     <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
     </block>
 
     <!--a类型-->
@@ -741,13 +802,18 @@
     </block>
 
     <!--audio类型-->
-    <block wx:elif="{{item.tag == 'audio'}}">
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
       <template is="wxParseAudio" data="{{item}}" />
-    </block>
+    </block> -->
 
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+     <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
     </block>
 
     <!--a类型-->
@@ -822,13 +888,18 @@
     </block>
 
     <!--audio类型-->
-    <block wx:elif="{{item.tag == 'audio'}}">
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
       <template is="wxParseAudio" data="{{item}}" />
-    </block>
+    </block> -->
 
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+     <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
     </block>
 
     <!--a类型-->
@@ -903,13 +974,18 @@
     </block>
 
     <!--audio类型-->
-    <block wx:elif="{{item.tag == 'audio'}}">
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
       <template is="wxParseAudio" data="{{item}}" />
-    </block>
+    </block> -->
 
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+     <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
     </block>
 
     <!--a类型-->
@@ -984,13 +1060,18 @@
     </block>
 
     <!--audio类型-->
-    <block wx:elif="{{item.tag == 'audio'}}">
+    <!-- <block wx:elif="{{item.tag == 'audio'}}">
       <template is="wxParseAudio" data="{{item}}" />
-    </block>
+    </block> -->
 
     <!--img类型-->
     <block wx:elif="{{item.tag == 'img'}}">
       <template is="wxParseImg" data="{{item}}" />
+    </block>
+
+     <!--style类型-->
+    <block wx:elif="{{item.tag == 'style'}}">
+      <template is="wxParseStyle" data="{{item}}" />
     </block>
 
     <!--a类型-->

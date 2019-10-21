@@ -15,7 +15,7 @@
 //如果wordpress没有安装在网站根目录请加上目录路径,例如："www.watch-life.net/blog"
 var DOMAIN = "www.watch-life.net";
 var MINAPPTYPE="0";//小程序的类型，如果是企业小程序请填：0 ，如果是个人小程序请填：1
-var WEBSITENAME="守望轩"; //网站名称
+var WEBSITENAME="微慕开源版"; //网站名称
 var ABOUTID = 1136; //小程序“关于”页面的id,此id是wordpress网站"页面"的id,注意这个"页面"是wordpress的"页面"，不是"文章"
 var PAGECOUNT='10'; //每页文章数目
 //CATEGORIESID 指定为all或者指定具体的分类id，请选择其一。
@@ -42,14 +42,14 @@ var DOWNLOADFILEDOMAIN = [
  //'appid' 当redirecttype为miniapp时，这个值为其他微信小程序的appid，如果redirecttype为apppage，webpage时，这个值设置为空。
  //'extraData'当redirecttype为miniapp时，这个值为提交到其他微信小程序的参数，如果redirecttype为apppage，webpage时，这个值设置为空。
 var INDEXNAV = [
-  { id: '1', name: '微慕', image: '../../images/nav-icon1.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wx074a216a7aabc30c', extraData: '' },
-  { id: '2', name: '企业版', image: '../../images/nav-icon2.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wxc1771b619b83316b', extraData: '' },
-  { id: '3', name: '旅游版', image: '../../images/nav-icon3.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wxa43aaa8416cdbd61', extraData: '' },
-  { id: '4', name: '图片版', image: '../../images/nav-icon4.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wxe9440e3d24b04152', extraData: ''},
-  { id: '5', name: '微慕+', image: '../../images/nav-icon5.png', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wx46926513e9b706d3', extraData: ''}
+  { id: '1', name: '微慕', image: '../../images/uploads/minapper.jpg', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wx074a216a7aabc30c', extraData: '' },
+  { id: '2', name: '微慕+', image: '../../images/uploads/minapper-plus.jpg', url: 'pages/index/index', redirecttype: 'miniapp', appid: 'wx46926513e9b706d3', extraData: ''},
+  { id: '3', name: '排行', image: '../../images/uploads/rankings.jpg', url: '../hot/hot', redirecttype: 'apppage', appid: '', extraData: '' },
  
-    
-    ];
+  { id: '4', name: '小程序', image: '../../images/uploads/miniprogram.png', url: '../list/list?categoryID=1059', redirecttype: 'apppage', appid: '', extraData: '' },
+  { id: '5', name: '官网', image: '../../images/uploads/watch-life.png', url: 'https://www.watch-life.net', redirecttype: 'webpage', appid: '', extraData: '' },
+  { id: '6', name: '言论', image: '../../images/uploads/comment.png', url: '../comments/comments', redirecttype: 'apppage', appid: '', extraData: '' }
+];
 
 export default {
   getDomain: DOMAIN,

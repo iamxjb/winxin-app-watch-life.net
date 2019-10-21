@@ -275,6 +275,8 @@ function drawTitleExcerpt(context, title, excerpt) {
     context.save();
 }
 
+
+
 module.exports = {
   formatTime: formatTime,
   getDateDiff: getDateDiff,
@@ -291,6 +293,7 @@ module.exports = {
   getDateOut:getDateOut,
   drawTitleExcerpt: drawTitleExcerpt,
   getStrLength: getStrLength
+
   
 }
 

@@ -18,237 +18,290 @@
 
 
 
-<view class="container">
-    <view class="container">
+<view>
 
-    <view class="showerror" style="display:{{showerror}}">
-  <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
-  <view class="errortext">
-     {{errMessage}}
-  </view>
-</view>
+  <!-- 文章 -->
+  <view class="detail-content" style="display:{{display}}">
+    <!-- 标题 -->
+    <view class="entry-title">{{detail.title.rendered}}</view>
+    <!-- 文章互动数据 -->
+    <view class="entry-data">
+      <image src="../../images/calendar.png"></image>
+      <text>{{detailDate}}</text>
+      <image src="../../images/comments.png"></image>
+      <text>{{total_comments}}</text>
+      <image src="../../images/pageviews.png"></image>
+      <text>{{detail.pageviews}}</text>
+      <image src="../../images/home-like.png"></image>
+      <text>{{likeCount}}</text>
+    </view>
+    <!-- 文章正文 -->
+    <view class="entry-summary">
 
+        <!-- 音频 -->
+        <view class='audioPlayer' style="display:{{displayAudio}}">
+          <view class='player'>
+            <view class='audioControls'>
+              <view class='flex'>
+                <view class='audio_left'>
+                  <image src='{{detail.post_medium_image}}' class='audio_img' mode="aspectFill"></image>
+                  <view class='audio_btn' catchtap='playAudio'>
+                    <!-- 按钮 -->
+                    <view wx:if="{{isPlayAudio}}">
+                      <image src='../../images/pause.png' class='audio_btn_icon' />
+                    </view>
+                    <view wx:else>
+                      <image src='../../images/play.png' class='audio_btn_icon' />
+                    </view>
+                  </view>
+                </view>
 
+                <view class='audio_right'>
+                  <view class='audio_title'>{{detail.audios[0].title}}</view>
+                  <view class='audio_singer'>{{detail.audios[0].singer}}</view>
+                  <view class='slider'>
+                    <slider bindchange='sliderChange' activeColor='red' block-size="12" value='{{audioTime}}' />
+                  </view>
+                  <view class='time_box'>
+                    <view class='time'>
+                      {{showTime1}}
+                    </view>
+                    <view class='time'>
+                      {{showTime2}}
+                    </view>
+                  </view>
+                </view>
 
-
-        <view class="content-article-detail" style="display:{{display}}">
-            <view class="entry-title">
-                {{detail.title.rendered}}
+              </view>
             </view>
-            <view class="entry-date">
-                <image src="../../images/calendar.png" style="height:24rpx;width:24rpx;"></image>
-                <text class="entry-date-text">{{detailDate}}</text>
-                <block wx:if="{{detail.category_name !=null}}">
-                    <image src="../../images/category.png" style="height:24rpx;width:24rpx;margin-left: 20rpx;"></image>
-                    <text class="entry-icon-text">{{detail.category_name}}</text>
-                </block>
-                <image src="../../images/comments.png" style="height:24rpx;width:24rpx;margin-left: 20rpx;"></image>
-                <text class="entry-icon-text">{{total_comments}}</text>
-                <image src="../../images/pageviews.png" style="height:24rpx;width:24rpx;margin-left: 20rpx;"></image>
-                <text class="entry-icon-text">{{detail.pageviews}}</text>
-                <image src="../../images/home-like.png" style="height:24rpx;width:24rpx;margin-left: 20rpx;"></image>
-                <text class="entry-icon-text">{{likeCount}}</text>
-
-            </view>
-            <view class="entry-summary">
-                <template is="wxParse" data="{{wxParseData:article.nodes}}" />
           </view>
         </view>
-        <!--  上一篇，下一篇  -->
-        <view wx:if="{{display}}" class="pagination">
-            <view wx:if="{{detail.previous_post_id}}" class="nav-previous">
-                <navigator url="../detail/detail?id={{detail.previous_post_id}}" open-type="redirect" hover-class="relatedNavigator">←{{detail.previous_post_title}}</navigator>
-            </view>
-            <view wx:if="{{detail.next_post_id}}" class="nav-next">
-                <navigator url="../detail/detail?id={{detail.next_post_id}}" open-type="redirect" hover-class="relatedNavigator">{{detail.next_post_title}}→</navigator>
-            </view>
-        </view>
-
-        <view class="relatedPost" style="display:{{display}}">
-            <view class="relatedTitle">
-                猜你喜欢
-            </view>
-            <view class="entry-gap-like"></view>
-            <view class="relatedText">
-                <block wx:key="id" wx:for="{{postList}}">
-
-                    <navigator url="../detail/detail?id={{item.id}}" open-type="redirect" hover-class="relatedNavigator">{{index+1}}.{{item.title.rendered}}</navigator>
-
-                </block>
-            </view>
-        </view>
-
-        <view class="likePost" style="display:{{displayLike}}">
-            <view class="relatedTitle">
-                点 赞
-            </view>
-            <view class="entry-gap-zan"></view>
-
-            <view class="likeTitle">
-                <text>{{likeCount}}人已赞</text>
-            </view>
-
-            <view class="likeTitle-img">
-                <image src="../../images/like-on.png" class="img-like" id="liketop" catchtap="clickLike"></image>
-            </view>
-            <view class="likeText">
-                <block wx:key="id" wx:for="{{likeList}}">
-                    <image src="{{item}}" class="gravatarLikeImg"></image>
-                </block>
-            </view>
-        </view>
-
-        <view style="display:{{display}}">
-            <view class="relatedTitle" id="relatedTitle">
-                评论交流 {{enableComment?'(点击评论内容可以回复)':''}}
-            </view>
-            <view class="entry-gap-like"></view>
-            <view class="commentheader">
-                {{commentCount}}
-            </view>
-            <block wx:key="id" wx:for="{{commentsList}}">
-                <view class="comment">
-                    <view class="comment-user">
-                        <image src="{{item.author_url}}" class="gravatarImg"></image>
-                        <view style='display:flex;flex-direction: row; justify-content: space-between;width: 100%'>
-                            <view style='font-weight:bold;' bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.date}}">{{item.author_name}}</view>
-                            <view bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.date}}">{{item.date}}</view>
-                        </view>
-                    </view>
-                    <view class="comment-summary" bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.date}}"> {{item.content}}</view>
-                     
-                      <!-- 一级回复-->
-                    <view wx:for="{{item.child}}" wx:key="itemid1" wx:for-index="idx" wx:for-item="item1">
-                        <view class="replay-user" bindtap="replay" data-id="{{item1.id}}" data-name="{{item1.author_name}}" data-userid="{{item1.userid}}" data-formId="{{item1.formId}}" data-commentdate="{{item1.date}}">
-                            {{item1.author_name}} 回复{{item.author_name}}:{{item1.content}}
-                        </view>
 
 
-                        <!-- 二级回复-->
-                        <view wx:for="{{item1.child}}" wx:key="itemid2" wx:for-index="idx" wx:for-item="item2">
-                            <view class="replay-user" bindtap="replay" data-id="{{item2.id}}" data-name="{{item2.author_name}}" data-userid="{{item2.userid}}" data-formId="{{item2.formId}}" data-commentdate="{{item2.date}}">
-                                {{item2.author_name}} 回复 {{item1.author_name}}:{{item2.content}}
-                            </view>
-
-                            <!-- 三级回复-->
-                            <view wx:for="{{item2.child}}" wx:key="itemid3"  wx:for-index="idx" wx:for-item="item3">
-                                <view class="replay-user" bindtap="replay" data-id="{{item3.id}}" data-name="{{item3.author_name}}" data-userid="{{item3.userid}}" data-formId="{{item3.formId}}" data-commentdate="{{item3.date}}">
-                                    {{item3.author_name}} 回复 {{item2.author_name}}:{{item3.content}}
-                                </view>
-
-                                  <!-- 四级回复-->
-                                <view wx:for="{{item3.child}}" wx:key="itemid4" wx:for-index="idx" wx:for-item="item4">
-                                    <view class="replay-user">
-                                        {{item4.author_name}} 回复 {{item3.author_name}}:{{item4.content}}
-                                    </view>
-                                </view>
-                                <!-- 四级回复-->
-                              
-                            </view>
-                            <!-- 三级回复-->
-                            
-                        </view>
-                        <!-- 二级回复-->
-                        
-                    </view>
-                    <!-- 一级回复-->
-
-                </view>
-            </block>
-
-            <view style="display:{{display}}">
-
-                <view style='display:{{isLoading?"block":"none"}}'>
-                <template is="tempLoading" />
-                </view>
-                <view style="display:{{isLastPage?'block':'none'}}">
-                    <view class="no-more" >---无更多评论---</view>
-                </view>
-            </view>
-            <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
-        </view>
-        <template is="modalView" data="{{...__modalView__}}" />
-     
-        <poster id="poster" hide-loading="{{false}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
-         </poster>
-        <view class="ditail-copyright" style="display:{{display}}">
-            <template is="tempCopyright" />
-        </view>
-
-        <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
-       
-       <!--评论区-->
-        <view style="display:{{enableComment?'block':'none'}}">
-            <view class="menuBackground" catchtap="hiddenMenubox" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
-            <view style="display:{{display}}">
-                <view class="comment-fixed">
-                    <form catchsubmit="formSubmit" report-submit="true">
-                        <view class="comment-respond">
-                            <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />                           
-                            <view class="comment-box">
-                                <image src="../../images/entry-home.png" class="img-plus" style="margin-left:20rpx;margin-right:20rpx" catchtap="goHome"></image>
-                                <input class="comment-input" type='text' confirm-type="send" cursor-spacing="10" maxlength="100" name="inputComment" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onReplyBlur" bindfocus="onRepleyFocus" />
-                                <button class="comment-button touch-active" formType="submit">发送</button>
-                                <image src="../../images/plus.png" class="img-plus" catchtap="ShowHideMenu" mode=""></image>
-                            </view>
-                            <!--功能图标-->
-                            <view class="menu-box {{isShow ? 'emoji-move-in' : 'emoji-move-out'}} {{isLoad ? 'no-emoji-move' : ''}}">
-                                <view class="iconList">
-                                    <view class="iconLine">
-                                        <view style="width:20%; position: relative; float:left; text-align:center">
-
-                                            <view>
-                                                <image src="../../images/forwarding.png" class="img-menu"></image>
-                                            </view>
-                                            <view>
-                                                <text>转发</text>
-                                            </view>
-                                            <button class="share-button share-button touch-active" open-type="share">
-                                            </button>
-                                        </view>
-                                        <view style="width:20%; float:left; text-align:center">
-                                            <view>
-                                                <image src="../../images/poster.png" catchtap="onCreatePoster" class="img-menu"></image>
-                                            </view>
-                                            <view>
-                                                <text>海报</text>
-                                            </view>
-                                        </view>
-                                        <view style="width:20%; float:left; text-align:center">
-                                            <view>
-                                                <image src="../../images/copy.png" class="img-menu" catchtap="gotowebpage"></image>
-                                            </view>
-                                            <view>
-                                                <text>阅读原文</text>
-                                            </view>
-                                        </view>
-
-                                        <view style="width:20%; float:left; text-align:center">
-                                            <view>
-                                                <image src="../../images/{{likeImag}}" catchtap="clickLike" id="likebottom" class="img-menu"></image>
-                                            </view>
-                                            <view>
-                                                <text>点赞</text>
-                                            </view>
-                                        </view>
-                                        <view style="width:20%; float:left; ">
-                                            <view>
-                                                <image src="../../images/appreciation.png" catchtap="praise" class="img-menu"></image>
-                                            </view>
-                                            <view>
-                                                <text>鼓励</text>
-                                            </view>
-
-                                        </view>
-                                    </view>
-                                </view>
-                            </view>
-
-                        </view>
-                    </form>
-                </view>
-            </view>
-        </view>
-        <!-- 评论区 -->
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
     </view>
+
+    <!--  上下文  -->
+    <view wx:if="{{detail.previous_post_id || detail.next_post_id}}" class="up-down-post">
+      <!-- 上一篇 -->
+      <view wx:if="{{detail.previous_post_id}}" class="up-post">
+        <navigator url="../detail/detail?id={{detail.previous_post_id}}" open-type="redirect" hover-class="relatedNavigator">上一篇：{{detail.previous_post_title}}</navigator>
+      </view>
+      <!-- 下一篇 -->
+      <view wx:if="{{detail.next_post_id}}" class="down-post">
+        <navigator url="../detail/detail?id={{detail.next_post_id}}" open-type="redirect" hover-class="relatedNavigator">{{detail.next_post_title}}：下一篇</navigator>
+      </view>
+    </view>
+
+    <!-- 猜你喜欢 -->
+    <view wx:if="{{postList.length != 0}}" class="relatedPost" style="display:{{display}}">
+      <view class="subTitle">猜你喜欢</view>
+      <view class="subTitle_line"></view>
+      <block wx:key="id" wx:for="{{postList}}">
+        <navigator url="../detail/detail?id={{item.id}}" open-type="redirect" hover-class="relatedNavigator">
+          <view class="relatedText">{{index+1}}. {{item.title.rendered}}</view>
+        </navigator>
+      </block>
+    </view>
+
+    <!-- 点个赞 -->
+    <view class="likePost" style="display:{{displayLike}}">
+      <view class="subTitle">点个赞</view>
+      <view class="subTitle_line"></view>
+
+      <view class="likeTitle">
+        <text>{{likeCount}}人已赞</text>
+      </view>
+
+      <view class="like-btn-icon">
+        <image src="../../images/like-on.png" class="img-like" id="liketop" catchtap="clickLike"></image>
+      </view>
+      <view class="likeText">
+        <block wx:key="id" wx:for="{{likeList}}">
+          <image src="{{item}}" class="like-gravatar"></image>
+        </block>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 评论列表 -->
+  <view style="display:{{display}}" class="comment-container">
+    <!-- 小标题 -->
+    <view class="subTitle" id="relatedTitle">
+      <view>评论交流</view>
+      <view class="comment-num">{{commentCount}}</view>
+    </view>
+    <view class="subTitle_line subTitle_line_comment"></view>
+
+    <!-- 列表 -->
+    <block wx:key="id" wx:for="{{commentsList}}">
+      <view class="comment">
+        <view class="comment-user">
+          <image src="{{item.author_url}}" class="comment-gravatar"></image>
+          <view class="comment-user-right">
+            <view bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.date}}">{{item.author_name}}</view>
+            <view class="time" bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.date}}">{{item.date}}</view>
+          </view>
+        </view>
+        <view class="comment-summary" bindtap="replay" data-id="{{item.id}}" data-name="{{item.author_name}}" data-userid="{{item.userid}}" data-formId="{{item.formId}}" data-commentdate="{{item.date}}"> {{item.content}}</view>
+
+        <!-- 一级回复-->
+        <view wx:for="{{item.child}}" wx:key="itemid1" wx:for-index="idx" wx:for-item="item1">
+          <view class="replay-user" bindtap="replay" data-id="{{item1.id}}" data-name="{{item1.author_name}}" data-userid="{{item1.userid}}" data-formId="{{item1.formId}}" data-commentdate="{{item1.date}}">
+            <text class="comment-username">{{item1.author_name}}</text>
+            <text style="margin: 0 6rpx; color: #959595;">回复</text>
+            <text class="comment-username">{{item.author_name}}</text> ：{{item1.content}}
+          </view>
+
+
+          <!-- 二级回复-->
+          <view wx:for="{{item1.child}}" wx:key="itemid2" wx:for-index="idx" wx:for-item="item2">
+            <view class="replay-user" bindtap="replay" data-id="{{item2.id}}" data-name="{{item2.author_name}}" data-userid="{{item2.userid}}" data-formId="{{item2.formId}}" data-commentdate="{{item2.date}}">
+              <text class="comment-username">{{item2.author_name}}</text>
+              <text style="margin: 0 6rpx; color: #959595;">回复</text>
+              <text class="comment-username">{{item1.author_name}}</text> ：{{item2.content}}
+            </view>
+
+            <!-- 三级回复-->
+            <view wx:for="{{item2.child}}" wx:key="itemid3" wx:for-index="idx" wx:for-item="item3">
+              <view class="replay-user" bindtap="replay" data-id="{{item3.id}}" data-name="{{item3.author_name}}" data-userid="{{item3.userid}}" data-formId="{{item3.formId}}" data-commentdate="{{item3.date}}">
+                <text class="comment-username">{{item3.author_name}}</text>
+                <text style="margin: 0 6rpx; color: #959595;">回复</text>
+                <text class="comment-username">{{item2.author_name}}</text> ：{{item3.content}}
+              </view>
+
+              <!-- 四级回复-->
+              <view wx:for="{{item3.child}}" wx:key="itemid4" wx:for-index="idx" wx:for-item="item4">
+                <view class="replay-user">
+                  <text class="comment-username">{{item4.author_name}}</text>
+                  <text style="margin: 0 6rpx; color: #959595;">回复</text>
+                  <text class="comment-username">{{item3.author_name}}</text> ：{{item4.content}}
+                </view>
+              </view>
+              <!-- 四级回复-->
+
+            </view>
+            <!-- 三级回复-->
+
+          </view>
+          <!-- 二级回复-->
+
+        </view>
+        <!-- 一级回复-->
+
+      </view>
+    </block>
+
+    <view style="display:{{display}}">
+      <view style='display:{{isLoading?"block":"none"}}'>
+        <template is="tempLoading" />
+      </view>
+      <view style="display:{{isLastPage?'block':'none'}}">
+        <view class="no-more">- 无更多评论 -</view>
+      </view>
+    </view>
+    <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
+  </view>
+  <template is="modalView" data="{{...__modalView__}}" />
+
+  <poster id="poster" hide-loading="{{false}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
+  </poster>
+  <view class="ditail-copyright" style="display:{{display}}">
+    <template is="tempCopyright" />
+  </view>
+
+  <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
+
+  <!--评论区-->
+  <view style="display:{{enableComment?'block':'none'}}">
+    <view class="menuBackground" catchtap="hiddenMenubox" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
+    <view style="display:{{display}}">
+
+      <view class="comment-fixed">
+
+        <form catchsubmit="formSubmit" report-submit="true">
+          <view class="comment-respond">
+            <input class="comment-input" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
+
+            <view class="comment-box">
+
+              <!-- 返回首页 -->
+              <image src="../../images/entry-home.png" class="comment_icon_home" catchtap="goHome"></image>
+
+              <!-- 评论输入框和发送按钮 -->
+              <view class="comment_input_box">
+                <input class="comment-input" type='text' confirm-type="send" cursor-spacing="10" maxlength="100" name="inputComment" value="{{content}}" placeholder="{{placeholder}}" focus="{{focus}}" bindblur="onReplyBlur" bindfocus="onRepleyFocus" />
+                <button class="comment-button touch-active" formType="submit">发送</button>
+              </view>
+              <!-- 更多按钮 -->
+              <image src="../../images/entry-more.png" class="comment_icon_more" catchtap="ShowHideMenu" mode=""></image>
+
+            </view>
+
+            <!--功能图标-->
+            <view class="menu-box {{isShow ? 'emoji-move-in' : 'emoji-move-out'}} {{isLoad ? 'no-emoji-move' : ''}}">
+              <view class="iconList">
+                <view class="iconLine">
+                  <view style="width:20%; position: relative; float:left; text-align:center">
+                    <view>
+                      <image src="../../images/forwarding.png" class="img-menu"></image>
+                    </view>
+                    <view>
+                      <text>转发</text>
+                    </view>
+                    <button class="share-button share-button touch-active" open-type="share">
+                    </button>
+                  </view>
+                  <view style="width:20%; float:left; text-align:center">
+                    <view>
+                      <image src="../../images/poster.png" catchtap="onCreatePoster" class="img-menu"></image>
+                    </view>
+                    <view>
+                      <text>海报</text>
+                    </view>
+                  </view>
+                  <view style="width:20%; float:left; text-align:center">
+                    <view>
+                      <image src="../../images/copy.png" class="img-menu" catchtap="gotowebpage"></image>
+                    </view>
+                    <view>
+                      <text>阅读原文</text>
+                    </view>
+                  </view>
+
+                  <view style="width:20%; float:left; text-align:center">
+                    <view>
+                      <image src="../../images/{{likeImag}}" catchtap="clickLike" id="likebottom" class="img-menu"></image>
+                    </view>
+                    <view>
+                      <text>点赞</text>
+                    </view>
+                  </view>
+                  <view style="width:20%; float:left; ">
+                    <view>
+                      <image src="../../images/appreciation.png" catchtap="praise" class="img-menu"></image>
+                    </view>
+                    <view>
+                      <text>鼓励</text>
+                    </view>
+
+                  </view>
+                </view>
+              </view>
+            </view>
+
+          </view>
+        </form>
+      </view>
+
+    </view>
+  </view>
+
+  <!-- 无法访问网络时 -->
+  <view class="showerror" style="display:{{showerror}}">
+    <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
+    <view class="errortext">{{errMessage}}</view>
+  </view>
+
 </view>

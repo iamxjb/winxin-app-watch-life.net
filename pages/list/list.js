@@ -99,7 +99,6 @@ Page({
     if (self.data.categories && self.data.categories != 0) {
       
       self.setData({
-       // categories: options.categoryID,
         isCategoryPage: "block",
         showallDisplay: "none",
         showerror: "none",
@@ -109,7 +108,6 @@ Page({
     }
     if (self.data.search && self.data.search != '') {
       self.setData({
-        //search: options.search,
         isSearchPage: "block",
         showallDisplay: "none",
         showerror: "none",
@@ -149,10 +147,7 @@ Page({
     }
     if (options.search && options.search != '') {
       wx.setNavigationBarTitle({
-        title: "搜索关键字："+options.search,
-        success: function (res) {
-          // success
-        }
+        title: "搜索"
       });
       self.setData({
         search: options.search,

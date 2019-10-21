@@ -28,7 +28,7 @@ Page({
         { id: '3', name: '点赞', selected: false },
         { id: '4', name: '鼓励', selected: false },
         { id: '5', name: '订阅', selected: false },
-        { id: '6', name: '言论', selected: false }
+        // { id: '6', name: '言论', selected: false }
     ],
     tab: '1',
     showerror: "none",
@@ -97,8 +97,6 @@ Page({
                     }
                 })
             }
-
-
         });
     }
     else {
@@ -115,7 +113,6 @@ Page({
     wx.reLaunch({
         url: '../index/index'
       })
-
   },
   clear:function(e)
   {
@@ -308,10 +305,8 @@ Page({
                   this.setData({
                       showerror: 'block'
                   });
-
               }
           })
-
     }
       else if (tab == '5') {
           self.setData({
@@ -333,7 +328,6 @@ Page({
                               return item;
                           }))
                       });
-
                   }
                   if (count == 0) {
                       self.setData({
@@ -346,7 +340,6 @@ Page({
                   this.setData({
                       showerror: 'block'
                   });
-
               }
           })
 

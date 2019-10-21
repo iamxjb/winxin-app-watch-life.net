@@ -23,33 +23,33 @@
         "pageOrientation": "auto"
     },
     "tabBar": {
-        "color": "#9BABBA",
-        "selectedColor": "#495056",
+        "color": "#959595",
+        "selectedColor": "#118fff",
         "borderStyle": "white",
         "backgroundColor": "#ffffff",
         "list": [
             {
                 "pagePath": "pages/index/index",
-                "iconPath": "images/tar-home.png",
-                "selectedIconPath": "images/tar-home-on.png",
+                "iconPath": "images/tab-home.png",
+                "selectedIconPath": "images/tab-home-on.png",
                 "text": "首页"
             },
             {
                 "pagePath": "pages/topic/topic",
-                "iconPath": "images/tar-topic.png",
-                "selectedIconPath": "images/tar-topic-on.png",
+                "iconPath": "images/tab-topic.png",
+                "selectedIconPath": "images/tab-topic-on.png",
                 "text": "专题"
             },
             {
                 "pagePath": "pages/readlog/readlog",
-                "iconPath": "images/tar-person.png",
-                "selectedIconPath": "images/tar-person-on.png",
+                "iconPath": "images/tab-my.png",
+                "selectedIconPath": "images/tab-my-on.png",
                 "text": "我的"
             },
             {
                 "pagePath": "pages/about/about",
-                "iconPath": "images/tar-about.png",
-                "selectedIconPath": "images/tar-about-on.png",
+                "iconPath": "images/tab-about.png",
+                "selectedIconPath": "images/tab-about-on.png",
                 "text": "关于"
             }
         ]
@@ -67,7 +67,9 @@
         "wxc1771b619b83316b",
         "wx074a216a7aabc30c",
         "wx55ea6098e41af5c4",
-        "wx46926513e9b706d3"
+        "wx46926513e9b706d3",
+        "wxf5e9b64958a243b6",
+        "wxfd6bb7114494fd82"
     ],
     "sitemapLocation": "sitemap.json",
     "resizable":false

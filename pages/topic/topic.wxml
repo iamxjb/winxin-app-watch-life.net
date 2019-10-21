@@ -1,33 +1,31 @@
 <import src="../../templates/copyright.wxml" />
 <import src="../../templates/login-popup.wxml" />
 
-<scroll-view style="height:100%;" scroll-y="true" lower-threshold="100rpx">
-    <view class="topic-common-list">
-        <block wx:key="id" wx:for="{{categoriesList}}">
-            <view class="list-item">
-                <view>
-                    <image src="{{item.category_thumbnail_image}}" class="cover" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex"></image>
-                </view>
-                <view class="content-title" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
-                    <view class="topic-name">
-                        <text>{{item.name}}</text>
-                    </view>
-                    <view class="topic-img">
-                        <image src="../../images/{{item.subimg}}" data-subflag="{{item.subflag}}" data-id="{{item.id}}" catchtap="postsub" class="img-menu"></image>
-                    </view>
-                </view>
-                <view class="content-brief" data-item="{{item.name}}" data-id="{{item.id}}">
-                    <text>{{item.description}}</text>
-                </view>
-
-
-            </view>
-
-        </block>
+<view class="topic-list clearfix">
+  <block wx:key="id" wx:for="{{categoriesList}}">
+    <view class="list-item">
+      <view>
+        <image src="{{item.category_thumbnail_image}}" class="topic-img" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex" mode="aspectFill"></image>
+      </view>
+      <view class="topic-name-box" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
+        <view class="topic-name">
+          <text>{{item.name}}</text>
+        </view>
+        <view class="btn-box">
+          <image src="../../images/{{item.subimg}}" data-subflag="{{item.subflag}}" data-id="{{item.id}}" catchtap="postsub"></image>
+        </view>
+      </view>
+      <view class="topic-brief" data-item="{{item.name}}" data-id="{{item.id}}">
+        <text>{{item.description}}</text>
+      </view>
     </view>
-</scroll-view>
- <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
-     
+  </block>
+</view>
+
+<!-- 未登录时弹出的登录框 -->
+<template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
+
+<!-- 版权信息 -->
 <view class="copyright" style="display:{{floatDisplay}}">
-    <template is="tempCopyright" />
+  <template is="tempCopyright" />
 </view>

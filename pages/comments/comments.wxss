@@ -46,12 +46,12 @@
 }
 
 .log-items {
-  margin-top: 20rpx;
+  margin-top: 15rpx;
 }
 
 .log-text {
   margin: 32rpx 0;
-  font-size: 30rpx;
+  font-size: 28rpx;
   color: #757575;
   text-align: left;
   word-wrap:break-word;

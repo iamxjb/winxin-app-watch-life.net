@@ -56,12 +56,34 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
 					"name": "评论",
 					"pathName": "pages/comments/comments",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "专题页",
+					"pathName": "pages/topic/topic",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/readlog/readlog",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "文章详情",
+					"pathName": "pages/detail/detail",
+					"query": "id=1553",
 					"scene": null
 				}
 			]
