@@ -158,9 +158,9 @@ Page({
   gotowebpage: function () {
     var self = this;
     self.ShowHideMenu();
-    var minAppType = config.getMinAppType;
+    var enterpriseMinapp = self.data.detail.enterpriseMinapp;
     var url = '';
-    if (minAppType == "0") {
+    if (enterpriseMinapp == "1") {
       var url = '../webpage/webpage';
       wx.navigateTo({
         url: url + '?url=' + self.data.link
@@ -277,20 +277,20 @@ Page({
   praise: function () {
     this.ShowHideMenu();
     var self = this;
-    var minAppType = config.getMinAppType;
+    var enterpriseMinapp = self.data.detail.enterpriseMinapp;
     var system = self.data.system;
-    if (minAppType == "0" && system == 'Android') {
+    var praiseWord=self.data.detail.praiseWord;
+    if (enterpriseMinapp == "1" && system == 'Android') {
       if (self.data.openid) {
-
         wx.navigateTo({
-          url: '../pay/pay?flag=1&openid=' + self.data.openid + '&postid=' + self.data.postID
+          url: '../pay/pay?flag=1&openid=' + self.data.openid + '&postid=' + self.data.postID+'&praiseWord='+praiseWord
         })
       }
       else {
         Auth.checkSession(self, 'isLoginNow');
       }
     }
-    else {
+    else if(enterpriseMinapp == "0" || system=='iOS'){
 
       var src = config.getZanImageUrl;
       wx.previewImage({
@@ -335,6 +335,7 @@ Page({
           self.setData({
             showerror: 'block',
             display: 'none',
+            detailAdsuccess:true,
             errMessage: response.data.message
           });
           return false;
@@ -619,9 +620,9 @@ Page({
                 }
               }
               else {
-                var minAppType = config.getMinAppType;
+                var enterpriseMinapp = self.data.detail.enterpriseMinapp;
                 var url = '../webpage/webpage'
-                if (minAppType == "0") {
+                if (enterpriseMinapp == "1") {
                   url = '../webpage/webpage';
                   wx.navigateTo({
                     url: url + '?url=' + href
@@ -1160,5 +1161,12 @@ Page({
         });
       }
     });
-  }
+  },
+  detailAdbinderror: function (e) {
+    var self = this;
+    if (e.errCode) {
+      self.setData({ detailAdsuccess: false })
+
+    }
+  },
 })

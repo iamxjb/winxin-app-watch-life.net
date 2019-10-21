@@ -19,6 +19,7 @@ var wxRequest = require('../../utils/wxRequest.js');
 import config from '../../utils/config.js'
 
 var app = getApp();
+var praiseWord="鼓励";
 Page({
   data: {    
     prices: [
@@ -41,11 +42,13 @@ Page({
     var openid = options.openid;
     var postid = options.postid;
     var flag = options.flag;
+    praiseWord=options.praiseWord;
 
     that.setData({
       openid: openid,
       postid: postid,
-      flag:flag
+      flag:flag,
+      praiseWord:praiseWord
         });
 
   },
@@ -96,7 +99,7 @@ Page({
                 })
               .then(res => {
                   wx.showToast({
-                    title: '谢谢鼓励！',
+                    title: '谢谢'+praiseWord+'！',
                     duration: 2000,
                     success: function () {
                         data =
@@ -142,7 +145,7 @@ Page({
               if (res.errMsg =='requestPayment:fail cancel')
               {
                 wx.showToast({
-                  title: '取消鼓励',
+                  title: '取消'+praiseWord,
                   icon: 'success'
                 });
               }

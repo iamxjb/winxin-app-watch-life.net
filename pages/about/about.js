@@ -43,7 +43,7 @@ Page({
   onLoad: function (options) {
     var self = this;
     wx.setNavigationBarTitle({
-      title: '关于WordPress微信小程序',
+      title: '关于微慕WordPress微信小程序',
       success: function (res) {
         // success
       }
@@ -62,19 +62,20 @@ Page({
   praise: function () {     
       
       var self = this;
-      var minAppType = config.getMinAppType;
+      var enterpriseMinapp = self.data.detail.enterpriseMinapp;
       var system  =self.data.system;
-      if (minAppType == "0"  && system=='Android') {
+      var praiseWord=self.data.pageData.praiseWord;
+      if (enterpriseMinapp == "1"  && system=='Android') {
           if (self.data.openid) {
               wx.navigateTo({
-                  url: '../pay/pay?flag=2&openid=' + self.data.openid + '&postid=' + config.getAboutId
+                  url: '../pay/pay?flag=2&openid=' + self.data.openid + '&postid=' + config.getAboutId+'&praiseWord='+praiseWord
               })
           }
           else {
                 Auth.checkSession(self,'isLoginNow');
             }
       }
-      else {
+      else if(enterpriseMinapp == "0" || system=='iOS') {
 
           var src = config.getZanImageUrl;
           wx.previewImage({
@@ -113,9 +114,9 @@ Page({
   gotowebpage:function()
   {
       var self=this;
-      var minAppType = config.getMinAppType;
+      var enterpriseMinapp = self.data.detail.enterpriseMinapp;
       var url = '';
-      if (minAppType == "0") {
+      if (enterpriseMinapp == "1") {
           url = '../webpage/webpage?';
           wx.navigateTo({
               url: url

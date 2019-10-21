@@ -30,15 +30,16 @@
             <button class="gotowebpage-button" formType="submit" size="mini" bindtap="gotowebpage">打开“守望轩”网站</button>
             <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
         </view>
-        <view class="praisePost">
+        <view class="praisePost" >
             <view style='text-align:center'>
-                <button class="praise-button" formType="submit" size="mini" bindtap="praise">捐赠</button>
+                <button class="praise-button" formType="submit" size="mini" bindtap="praise">{{pageData.praiseWord}}</button>
 
                 <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
             </view>
+            <block  wx:if="{{system !='iOS'}}">
             <view class="praiseTitle">
                 <view style='margin-top: 15rpx;'>
-                    <text>谢谢以下鼓励或捐赠的朋友</text>
+                    <text>谢谢以下{{pageData.praiseWord}}的朋友</text>
                 </view>
             </view>
             <view class="praiseText">
@@ -46,6 +47,7 @@
                     <image src="{{item}}" class="gravatarLikeImg"></image>
                 </block>
             </view>
+            </block>
         </view>
     </view>
    

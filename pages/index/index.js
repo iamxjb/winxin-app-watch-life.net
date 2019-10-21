@@ -35,7 +35,8 @@ Page({
     displaySwiper: "none",
     floatDisplay: "none",
     displayfirstSwiper: "none",
-    topNav: []
+    topNav: [],
+    listAdsuccess:true,
 
 
   },
@@ -64,7 +65,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '“' + config.getWebsiteName + '”网站微信小程序,基于WordPress版小程序构建.技术支持：www.watch-life.net',
+      title: '“' + config.getWebsiteName + '”小程序,基于微慕WordPress版小程序构建',
       path: 'pages/index/index',
       success: function (res) {
         // 转发成功
@@ -83,7 +84,9 @@ Page({
       floatDisplay: "none",
       isLastPage: false,
       page: 1,
-      postsShowSwiperList: []
+      postsShowSwiperList: [],
+      listAdsuccess:true
+
     });
     this.fetchTopFivePosts();
     this.fetchPostsData(self.data);
@@ -175,6 +178,7 @@ Page({
 
             self.setData({
               floatDisplay: "block",
+
               postsList: self.data.postsList.concat(response.data.map(function (item) {
 
                 var strdate = item.date
@@ -348,5 +352,15 @@ Page({
     wx.switchTab({
       url: url
     });
-  }
+  },
+  listAdbinderror:function(e)
+  {
+    var self=this;
+    if(e.errCode)
+    {
+      self.setData({listAdsuccess:false})
+      
+    }
+
+  },
 })

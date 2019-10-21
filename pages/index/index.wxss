@@ -164,3 +164,7 @@ font-weight: 500;
   font-size: 26rpx;
   color: #333;
 }
+
+.list-item-ad {
+  margin-bottom: 16rpx;
+}

@@ -81,6 +81,9 @@
       <template is="wxParse" data="{{wxParseData:article.nodes}}" />
     </view>
 
+    
+
+
     <!--  上下文  -->
     <view wx:if="{{detail.previous_post_id || detail.next_post_id}}" class="up-down-post">
       <!-- 上一篇 -->
@@ -92,6 +95,11 @@
         <navigator url="../detail/detail?id={{detail.next_post_id}}" open-type="redirect" hover-class="relatedNavigator">{{detail.next_post_title}}：下一篇</navigator>
       </view>
     </view>
+
+     <!-- 小程序广告 -->
+      <view class="ad-box-video" wx:if="{{detail.detailAdId !='' && detail.detailAd=='1' && detailAdsuccess}}">
+        <ad unit-id="{{detail.detailAdId}}" ad-intervals="30" ad-type="video" binderror="detailAdbinderror"></ad>
+      </view>
 
     <!-- 猜你喜欢 -->
     <view wx:if="{{postList.length != 0}}" class="relatedPost" style="display:{{display}}">
@@ -193,6 +201,7 @@
       </view>
     </block>
 
+
     <view style="display:{{display}}">
       <view style='display:{{isLoading?"block":"none"}}'>
         <template is="tempLoading" />
@@ -283,7 +292,7 @@
                       <image src="../../images/appreciation.png" catchtap="praise" class="img-menu"></image>
                     </view>
                     <view>
-                      <text>鼓励</text>
+                      <text>{{detail.praiseWord}}</text>
                     </view>
 
                   </view>

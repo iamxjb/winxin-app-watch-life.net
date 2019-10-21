@@ -94,7 +94,7 @@
   <!-- 文章列表 -->
   <view class="container">
     <!-- 列表template模板 -->
-    <template is="tempCommonList" data="{{postsList}}" />
+    <template is="tempCommonList" data="{{postsList:postsList,listAdsuccess:listAdsuccess}}" />
     <!-- 无更多文章提示 -->
     <view class="loadingmore" style="display:{{floatDisplay}}">
       <view class="no-more" hidden="{{!isLastPage}}">- 无更多文章 -</view>

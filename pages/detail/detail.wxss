@@ -697,3 +697,13 @@
 }
 
 /* 音频 */
+
+/* 小程序广告 */
+
+.ad-box-video {
+  /* padding: 20 5rpx; */
+  margin: 12rpx auto 0;
+  overflow: hidden;
+  /* width: 400px !important; */
+
+}
