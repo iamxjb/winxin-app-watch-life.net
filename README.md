@@ -93,7 +93,7 @@ https://www.minapper.com
 
 2.<a href="https://www.watch-life.net/wordpress/minapper-plus.html" target="_blank" rel="noopener">微慕WordPress小程序增强发布</a>
 
-![微慕小程序增强版和专业版](http://www.minapper.com/images/minapper-free-plus-pro-price.png)
+![微慕小程序增强版和专业版](http://www.minapper.com/images/minapper-free-plus-pro-price-20191104.jpg)
 
 # 微慕WordPress小程序专业版二维码
 
