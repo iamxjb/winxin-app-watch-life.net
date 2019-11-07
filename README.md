@@ -151,38 +151,24 @@ https://www.minapper.com
 
 # 程序开发系列文章
 
-<a href="https://www.watch-life.net/wordpress/weixin-connect-wordpress.html" target="_blank" rel="noopener">1.用微信小程序连接WordPress网站</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-1-5.html" target="_blank" rel="noopener">2.WordPress版微信小程序1.5版本发布</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2.html" target="_blank" rel="noopener">3.WordPress版微信小程序2.0版本发布</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-rest-api-weixin-weapp.html" target="_blank" rel="noopener">4.利用WordPress REST API 开发微信小程序从入门到放弃</a>
-
-<a href="https://www.watch-life.net/wechat/wordpress-weixin-2-1-5.html" target="_blank">5.WordPress版微信小程序2.1.5版发布</a></p>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-1-8.html" target="_blank" rel="noopener">6.WordPress版微信小程序2.1.8版发布</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-rest-api.html" rel="bookmark">WordPress版微信小程序开发系列(一)：WordPress REST API</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-2-0.html" target="_blank">8.WordPress版微信小程序2.2.0版发布</a>
-
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-2-8.html" target="_blank">9.WordPress版微信小程序2.2.8版本发布</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-app-faq.html" target="_blank">10.WordPress版微信小程序开发系列(二):安装使用问答</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-4.html" target="_blank">11.WordPress版微信小程序2.4版发布</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-6.html" target="_blank">12.WordPress版微信小程序2.6版发布</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-0.html" target="_blank">13.WordPress版微信小程序3.0版发布</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-1-5-update.html" target="_blank">14.WordPress版微信小程序3.1.5版发布</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-2.html" target="_blank">15.WordPress版微信小程序3.2.0版发布</a>
-
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-5.html" target="_blank">16.WordPress版微信小程序3.5.0版发布</a>
+<a href="https://www.watch-life.net/wordpress/weixin-connect-wordpress.html" target="_blank" rel="noopener noreferrer">1.用微信小程序连接WordPress网站</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-1-5.html" target="_blank" rel="noopener noreferrer">2.WordPress版微信小程序1.5版本发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2.html" target="_blank" rel="noopener noreferrer">3.WordPress版微信小程序2.0版本发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-rest-api-weixin-weapp.html" target="_blank" rel="noopener noreferrer">4.利用WordPress REST API 开发微信小程序从入门到放弃</a>
+<a href="https://www.watch-life.net/wechat/wordpress-weixin-2-1-5.html">5.WordPress版微信小程序2.1.5版发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-1-8.html" target="_blank" rel="noopener noreferrer">6.WordPress版微信小程序2.1.8版发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-rest-api.html" rel="bookmark">7.WordPress版微信小程序开发系列(一)：WordPress REST API</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-2-0.html" target="_blank" rel="noopener noreferrer">8.WordPress版微信小程序2.2.0版发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-2-8.html" target="_blank" rel="noopener noreferrer">9.WordPress版微信小程序2.2.8版发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-app-faq.html" target="_blank" rel="noopener noreferrer">10.WordPress版微信小程序开发系列(二):安装使用问答</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-4.html">11.WordPress版微信小程序2.4版发布</a>
+<a href="https://www.watch-life.net/wordpress/weixin-app-install.html" target="_blank" rel="noopener noreferrer">12.WordPress版微信小程序安装使用说明</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-6.html" target="_blank" rel="noopener noreferrer">13.WordPress版微信小程序2.6版发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-0.html" target="_blank" rel="noopener noreferrer">14.WordPress版微信小程序3.0版发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-1-5-update.html" target="_blank" rel="noopener noreferrer">15.WordPress版微信小程序3.1.5版的新功能</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-2.html" target="_blank" rel="noopener noreferrer">16.WordPress版微信小程序3.2版发布</a>
+<a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-5.html" rel="noopener noreferrer" target="_blank">17.WordPress版微信小程序3.5版发布</a>
+<a href="https://www.watch-life.net/wordpress/minapper-free-3-6.html" rel="noopener noreferrer" target="_blank">18.微慕WordPress小程序开源版v3.6发布</a>
 
 # 优秀微慕小程序推荐
 
