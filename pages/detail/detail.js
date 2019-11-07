@@ -115,7 +115,9 @@ Page({
   onUnload: function () {
     //卸载页面，清除计步器
     clearInterval(this.data.durationIntval);
-    if (rewardedVideoAd.destroy) { rewardedVideoAd.destroy() }
+    if (rewardedVideoAd && rewardedVideoAd.destroy) { 
+      rewardedVideoAd.destroy() 
+    }
     innerAudioContext.destroy()
     ctx=null;
 
