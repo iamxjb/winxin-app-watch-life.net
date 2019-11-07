@@ -42,6 +42,10 @@
 
 18.文章海报（分享微信朋友圈的卡片）。
 
+19.加入微信广告。
+
+20.支持PC端微信。
+
 # 开源地址
 
 https://github.com/iamxjb/winxin-app-watch-life.net
