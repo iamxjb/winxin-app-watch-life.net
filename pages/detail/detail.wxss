@@ -20,8 +20,15 @@
 /* 文章正文样式 */
 
 .entry-summary {
-  font-size: 15px;
-  line-height: 2;
+  /* font-size: 15px;
+  line-height: 2; */
+
+  font-size: 32rpx;
+  line-height: 64rpx;
+  letter-spacing: 1px;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
 }
 
 .entry-summary image {
@@ -706,4 +713,47 @@
   overflow: hidden;
   /* width: 400px !important; */
 
+}
+
+
+/* “阅读更多”样式 */
+
+.detail-read-more {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.detail-readmore-mask {
+  height: 200rpx;
+  width: 100%;
+  box-sizing: border-box;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 80%);
+}
+
+.detail-readmore-btn {
+  width: 100%;
+  height: 64rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  color: #2f80ed;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.detail-readmore-btn::after {
+  content: "";
+  display: inline-block;
+  border: solid #2f80ed;
+  border-width: 0 0 2px 2px;
+  padding: 3px;
+  position: absolute;
+  right: 50%;
+  bottom: 6rpx;
+  transform: translateX(4px) rotate(-45deg);
+  opacity: 0.6;
 }

@@ -18,6 +18,8 @@ var wxRequest = require('../../utils/wxRequest.js')
 
 import config from '../../utils/config.js'
 var pageCount = config.getPageCount;
+var webSiteName= config.getWebsiteName;
+var domain =config.getDomain
 
 Page({
   data: {
@@ -39,6 +41,8 @@ Page({
     displaySwiper: "block",
     floatDisplay: "none",
     searchKey:"",
+    webSiteName:webSiteName,
+    domain:domain
   },
   formSubmit: function (e) {
     var url = '../list/list'
@@ -51,7 +55,7 @@ Page({
   },
   onShareAppMessage: function () {
 
-    var title = "分享“守望轩”";
+    var title = "分享“"+webSiteName+"”";
     var path =""
 
     if (this.data.categories && this.data.categories != 0)

@@ -69,7 +69,7 @@
 
   <!-- 版权信息 -->
   <view class="copyright" style="display:{{(shownodata === 'none') ? 'block' : 'none'}}">
-    <template is="tempCopyright" />
+     <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
   </view>
 
 </view>

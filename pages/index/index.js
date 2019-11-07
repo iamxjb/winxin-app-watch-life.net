@@ -18,6 +18,9 @@ var wxRequest = require('../../utils/wxRequest.js')
 import config from '../../utils/config.js'
 var pageCount = config.getPageCount;
 
+var webSiteName = config.getWebsiteName;
+var domain =config.getDomain
+
 
 Page({
   data: {
@@ -37,6 +40,10 @@ Page({
     displayfirstSwiper: "none",
     topNav: [],
     listAdsuccess:true,
+    webSiteName:webSiteName,
+    domain:domain,
+    isFirst: false, // 是否第一次打开,
+    
 
 
   },
@@ -65,7 +72,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '“' + config.getWebsiteName + '”小程序,基于微慕WordPress版小程序构建',
+      title: '“' + webSiteName + '”小程序,基于微慕WordPress版小程序构建',
       path: 'pages/index/index',
       success: function (res) {
         // 转发成功
@@ -115,9 +122,41 @@ Page({
 
     });
 
+    // 判断用户是不是第一次打开，弹出添加到我的小程序提示
+    var isFirstStorage = wx.getStorageSync('isFirst');
+    // console.log(isFirstStorage);
+    if (!isFirstStorage) {
+      self.setData({
+        isFirst: true
+      });
+      wx.setStorageSync('isFirst', 'no')
+      // console.log(wx.getStorageSync('isFirst'));
+      setTimeout(function () {
+        self.setData({
+          isFirst: false
+        });
+      }, 5000)
+    }
+
   },
   onShow: function (options) {
     wx.setStorageSync('openLinkCount', 0);
+
+    var nowDate = new Date();
+    nowDate = nowDate.getFullYear()+"-"+(nowDate.getMonth() + 1)+'-'+nowDate.getDate();
+    nowDate= new Date(nowDate).getTime();   
+    var _openAdLogs =wx.getStorageSync('openAdLogs')|| [];
+    var openAdLogs=[];
+    _openAdLogs.map(function (log) {   
+      if(new Date(log["date"]).getTime() >= nowDate)
+      {
+        openAdLogs.unshift(log);
+      }
+    
+    })
+    
+    wx.setStorageSync('openAdLogs',openAdLogs);
+    console.log(wx.getStorageSync('openAdLogs'));
 
   },
   fetchTopFivePosts: function () {
@@ -165,84 +204,97 @@ Page({
       title: '正在加载',
       mask: true
     });
-    var getPostsRequest = wxRequest.getRequest(Api.getPosts(data));
-    getPostsRequest
-      .then(response => {
-        if (response.statusCode === 200) {
-          if (response.data.length) {
-            if (response.data.length < pageCount) {
-              self.setData({
-                isLastPage: true
-              });
-            }
+    var getCategoriesRequest = wxRequest.getRequest(Api.getCategoriesIds());
+    getCategoriesRequest.then(res=>{
+        if(!res.data.Ids=="")
+        {
+          data.categories=res.data.Ids;
+          self.setData({categories:res.data.Ids})
 
-            self.setData({
-              floatDisplay: "block",
+        }
 
-              postsList: self.data.postsList.concat(response.data.map(function (item) {
-
-                var strdate = item.date
-                if (item.category_name != null) {
-
-                  item.categoryImage = "../../images/category.png";
+        var getPostsRequest = wxRequest.getRequest(Api.getPosts(data));
+        getPostsRequest
+          .then(response => {
+            if (response.statusCode === 200) {
+              if (response.data.length) {
+                if (response.data.length < pageCount) {
+                  self.setData({
+                    isLastPage: true
+                  });
+                }
+    
+                self.setData({
+                  floatDisplay: "block",
+    
+                  postsList: self.data.postsList.concat(response.data.map(function (item) {
+    
+                    var strdate = item.date
+                    if (item.category_name != null) {
+    
+                      item.categoryImage = "../../images/category.png";
+                    } else {
+                      item.categoryImage = "";
+                    }
+    
+                    if (item.post_medium_image == null || item.post_medium_image == '') {
+                      item.post_medium_image = "../../images/logo700.png";
+                    }
+                    item.date = util.cutstr(strdate, 10, 1);
+                    return item;
+                  })),
+    
+                });
+                setTimeout(function () {
+                  wx.hideLoading();
+                }, 900);
+              } else {
+                if (response.data.code == "rest_post_invalid_page_number") {
+                  self.setData({
+                    isLastPage: true
+                  });
+                  wx.showToast({
+                    title: '没有更多内容',
+                    mask: false,
+                    duration: 1500
+                  });
                 } else {
-                  item.categoryImage = "";
+                  wx.showToast({
+                    title: response.data.message,
+                    duration: 1500
+                  })
                 }
-
-                if (item.post_medium_image == null || item.post_medium_image == '') {
-                  item.post_medium_image = "../../images/logo700.png";
-                }
-                item.date = util.cutstr(strdate, 10, 1);
-                return item;
-              })),
-
-            });
-            setTimeout(function () {
-              wx.hideLoading();
-            }, 900);
-          } else {
-            if (response.data.code == "rest_post_invalid_page_number") {
-              self.setData({
-                isLastPage: true
-              });
-              wx.showToast({
-                title: '没有更多内容',
-                mask: false,
-                duration: 1500
-              });
-            } else {
-              wx.showToast({
-                title: response.data.message,
-                duration: 1500
-              })
+              }
             }
-          }
-        }
-      })
-      .catch(function (response) {
-        if (data.page == 1) {
-
-          self.setData({
-            showerror: "block",
-            floatDisplay: "none"
+          })
+          .catch(function (response) {
+            if (data.page == 1) {
+    
+              self.setData({
+                showerror: "block",
+                floatDisplay: "none"
+              });
+    
+            } else {
+              wx.showModal({
+                title: '加载失败',
+                content: '加载数据失败,请重试.',
+                showCancel: false,
+              });
+              self.setData({
+                page: data.page - 1
+              });
+            }
+    
+          })
+          .finally(function (response) {
+            wx.hideLoading();
+            wx.stopPullDownRefresh();
           });
 
-        } else {
-          wx.showModal({
-            title: '加载失败',
-            content: '加载数据失败,请重试.',
-            showCancel: false,
-          });
-          self.setData({
-            page: data.page - 1
-          });
-        }
+    })
 
-      })
-      .finally(function (response) {
-        wx.hideLoading();
-        wx.stopPullDownRefresh();
-      });
+   
   },
   //加载分页
   loadMore: function (e) {

@@ -18,6 +18,9 @@ var wxApi = require('../../utils/wxApi.js');
 var wxRequest = require('../../utils/wxRequest.js');
 import config from '../../utils/config.js'
 
+var webSiteName= config.getWebsiteName;
+var domain =config.getDomain
+
 var app = getApp();
 var praiseWord="鼓励";
 Page({
@@ -29,7 +32,9 @@ Page({
     postid:'',
     total_fee:'',
     template_id: config.getPayTemplateId,
-    flag:'1'
+    flag:'1',
+    webSiteName:webSiteName,
+    domain:domain
   },
 
   /**

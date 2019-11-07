@@ -1,3 +1,3 @@
 <template name="tempCopyright">
-<view>  © 2019 守望轩 watch-life.net      </view>
+<view>  © 2019 {{webSiteName}} {{domain}} </view>
 </template>

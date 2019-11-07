@@ -16,6 +16,9 @@ var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
 
+var webSiteName= config.getWebsiteName;
+var domain =config.getDomain
+
 import config from '../../utils/config.js'
 
 
@@ -47,6 +50,8 @@ Page({
         { id: '4', name: '鼓励数', selected: false }
     ],
     tab: '1',
+    webSiteName:webSiteName,
+    domain:domain
 
   },
   formSubmit: function (e) {
@@ -59,7 +64,7 @@ Page({
     })
   },
   onShareAppMessage: function () {
-    var title = "分享“"+ config.getWebsiteName +"”的文章排行。";
+    var title = "分享“"+ webSiteName +"”的文章排行。";
     var path ="pages/hot/hot";
     return {
       title: title,

@@ -23,4 +23,8 @@
                     <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
                     </view>
                 </view>
+
+            <view class="ditail-copyright" style="display:{{display}}">
+    <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
+  </view>
 </view>

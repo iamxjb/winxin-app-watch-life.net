@@ -403,3 +403,14 @@
 .clearfix {
   zoom: 1;
 }
+
+.ditail-copyright {
+  font-size: 26rpx;
+  line-height: 1.2;
+  font-weight: normal;
+  text-align: center;
+  color: #999;
+  margin-top: 20rpx;
+  margin-bottom: 120rpx;
+}
+

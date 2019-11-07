@@ -19,6 +19,9 @@ var Auth = require('../../utils/auth.js');
 import config from '../../utils/config.js'
 var app = getApp();
 
+var webSiteName=config.getWebsiteName;
+var domain =config.getDomain
+
 
 Page({
   data: {
@@ -36,21 +39,17 @@ Page({
     userInfo: {},
     isLoginPopup: false,
     openid:"",
-    system:""
+    system:"",
+    webSiteName:webSiteName,
+    domain:domain
    
     
   },
   onLoad: function (options) {
-    var self = this;
-    wx.setNavigationBarTitle({
-      title: '关于微慕WordPress微信小程序',
-      success: function (res) {
-        // success
-      }
-    });
+    var self = this;    
     Auth.setUserInfoData(self); 
     Auth.checkLogin(self);
-    this.fetchData(config.getAboutId);
+    this.fetchData();
     wx.getSystemInfo({
           success: function (t) {
           var system = t.system.indexOf('iOS') != -1 ? 'iOS' : 'Android';
@@ -62,7 +61,7 @@ Page({
   praise: function () {     
       
       var self = this;
-      var enterpriseMinapp = self.data.detail.enterpriseMinapp;
+      var enterpriseMinapp = self.data.pageData.enterpriseMinapp;
       var system  =self.data.system;
       var praiseWord=self.data.pageData.praiseWord;
       if (enterpriseMinapp == "1"  && system=='Android') {
@@ -94,7 +93,7 @@ Page({
 
       });
 
-      this.fetchData(config.getAboutId);
+      this.fetchData();
       //消除下刷新出现空白矩形的问题。
       wx.stopPullDownRefresh()
 
@@ -114,7 +113,7 @@ Page({
   gotowebpage:function()
   {
       var self=this;
-      var enterpriseMinapp = self.data.detail.enterpriseMinapp;
+      var enterpriseMinapp = self.data.pageData.enterpriseMinapp;
       var url = '';
       if (enterpriseMinapp == "1") {
           url = '../webpage/webpage?';
@@ -214,12 +213,18 @@ Page({
       this.setData({ isLoginPopup: true });
   }
     ,
-  fetchData: function (id) {
+  fetchData: function () {
     var self = this; 
-    var getPageRequest = wxRequest.getRequest(Api.getPageByID(id));
+    var getPageRequest = wxRequest.getRequest(Api.getAboutPage());
     getPageRequest.then(response =>{
         console.log(response);
-        WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5);
+        wx.setNavigationBarTitle({
+            title: response.data.post_title,
+            success: function (res) {
+              // success
+            }
+          });
+        WxParse.wxParse('article', 'html', response.data.post_content, self, 5);
 
         self.setData({
             pageData: response.data,

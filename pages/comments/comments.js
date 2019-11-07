@@ -18,17 +18,20 @@ var wxRequest = require('../../utils/wxRequest.js')
 
 import config from '../../utils/config.js'
 var pageCount = config.getPageCount;
-
+var webSiteName= config.getWebsiteName;
+var domain =config.getDomain
 Page({
     data: {
         title: '最新评论列表',
         showerror: "none",
         showallDisplay: "block",
-        readLogs: []
+        readLogs: [],
+        webSiteName:webSiteName,
+        domain:domain
 
     },
     onShareAppMessage: function () {
-        var title = "分享"+config.getWebsiteName+"的最新评论";
+        var title = "分享"+webSiteName+"的最新评论";
         var path = "pages/comments/comments";
         return {
             title: title,

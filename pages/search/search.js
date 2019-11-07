@@ -15,6 +15,8 @@ var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
 import config from '../../utils/config.js'
 var pageCount = config.getPageCount;
+var webSiteName= config.getWebsiteName;
+var domain =config.getDomain
 const app = getApp()
 
 Page({
@@ -28,7 +30,9 @@ Page({
     shareTitle: config.getWebsiteName,
     pageTitle: '搜索',
     articlesList: [],
-    postype:"post"
+    postype:"post",
+    webSiteName:webSiteName,
+    domain:domain
     
   
   },

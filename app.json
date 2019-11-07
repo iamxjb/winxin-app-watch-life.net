@@ -47,12 +47,6 @@
                 "iconPath": "images/tab-my.png",
                 "selectedIconPath": "images/tab-my-on.png",
                 "text": "我的"
-            },
-            {
-                "pagePath": "pages/about/about",
-                "iconPath": "images/tab-about.png",
-                "selectedIconPath": "images/tab-about-on.png",
-                "text": "关于"
             }
         ]
     },

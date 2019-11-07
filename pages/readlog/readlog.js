@@ -17,6 +17,9 @@ var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js');
 var app = getApp();
+var webSiteName= config.getWebsiteName;
+var domain =config.getDomain
+
 Page({
 
   data: {    
@@ -37,7 +40,9 @@ Page({
     userInfo:{},
     userLevel:{},
     openid:'',
-    isLoginPopup: false  
+    isLoginPopup: false ,
+    webSiteName:webSiteName,
+    domain:domain 
   },
 
   /**

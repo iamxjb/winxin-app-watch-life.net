@@ -42,7 +42,7 @@ swiper image {
 /* 图标导航 */
 .nav-box{
 display: flex;
-padding: 40rpx 0;
+padding: 24rpx 0;
 background: #fff;
 justify-content:space-around;
 }
@@ -118,7 +118,7 @@ font-weight: 500;
   justify-content: space-between;
   align-items: center;
   height: 130rpx;
-  padding: 0 40rpx;
+  padding: 0 24rpx;
   background: #fff;
 }
 
@@ -142,7 +142,7 @@ font-weight: 500;
 
 .selected-nav-list {
   display: flex;
-  padding: 0 40rpx 40rpx;
+  padding: 0 24rpx 40rpx;
   background: #fff;
   justify-content: space-between;
 }
@@ -167,4 +167,39 @@ font-weight: 500;
 
 .list-item-ad {
   margin-bottom: 16rpx;
+}
+
+/* 引导添加到我的小程序 */
+.addMyMiniapp {
+  color: #333;
+  line-height: 1.2;
+  background: #fff;
+  padding: 24rpx 24rpx;
+  border-radius: 12rpx;
+  position: fixed;
+  top: 20rpx;
+  right: 24rpx;
+  z-index: 999;
+  box-shadow: 0 16rpx 30rpx -12rpx rgba(88, 88, 88, 0.2);
+}
+
+.addMyMiniapp>view {
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.addMyMiniapp>text {
+  font-size: 20rpx;
+  font-weight: 200;
+}
+
+.addMyMiniapp::before {
+  content: '';
+  width: 20rpx;
+  height: 20rpx;
+  background: #fff;
+  transform: rotate(45deg);
+  position: absolute;
+  right: 118rpx;
+  top: -10rpx;
 }

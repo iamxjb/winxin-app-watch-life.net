@@ -27,5 +27,5 @@
 
 <!-- 版权信息 -->
 <view class="copyright" style="display:{{floatDisplay}}">
-  <template is="tempCopyright" />
+   <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
 </view>

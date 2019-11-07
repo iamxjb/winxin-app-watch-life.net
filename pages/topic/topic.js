@@ -16,6 +16,8 @@ var Auth = require('../../utils/auth.js');
 var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js');
+var webSiteName= config.getWebsiteName;
+var domain =config.getDomain
 var app = getApp();
 Page({
     data: {
@@ -23,16 +25,19 @@ Page({
         categoriesList: {},
         floatDisplay: "none",
         openid:"",
-        userInfo:{}        
+        userInfo:{},
+        webSiteName:webSiteName,
+    domain:domain        
     },
     onLoad: function (options) {
+        Auth.setUserInfoData(this); 
+        Auth.checkLogin(this);
         wx.setNavigationBarTitle({
             title: '专题'
         });
         
         this.fetchCategoriesData();
-        Auth.setUserInfoData(this); 
-        Auth.checkLogin(this);
+        
     },
     onShow:function(){            
 
@@ -44,40 +49,52 @@ Page({
             categoriesList: []
         });
         //console.log(Api.getCategories());
-        var getCategoriesRequest = wxRequest.getRequest(Api.getCategories());
-        getCategoriesRequest.then(response => {
-            if (response.statusCode === 200) {
-                self.setData({
-                    floatDisplay: "block",
-                    categoriesList: self.data.categoriesList.concat(response.data.map(function (item) {
-                        if (typeof (item.category_thumbnail_image) == "undefined" || item.category_thumbnail_image == "") {
-                            item.category_thumbnail_image = "../../images/website.png";
-                        
-                        }
-                        item.subimg = "subscription.png";
-                        return item;
-                    })),
-                });
-            }
-            else {
-                console.log(response);
-            }
-
-        })
-        .then(res=>{
-            if (self.data.openid) {                
-                setTimeout(function () {
-                    self.getSubscription();
-                }, 500);  
-            }
+        var getCategoriesIdsRequest = wxRequest.getRequest(Api.getCategoriesIds());
+        getCategoriesIdsRequest.then(res=>{
             
+
+            var ids="";
+            var openid= self.data.openid
+            if(!res.data.Ids=="")
+            {
+                ids=res.data.Ids;
+            }
+            var getCategoriesRequest = wxRequest.getRequest(Api.getCategories(ids,openid));
+                getCategoriesRequest.then(response => {
+                    if (response.statusCode === 200) {
+                        self.setData({
+                            floatDisplay: "block",
+                            categoriesList: self.data.categoriesList.concat(response.data.map(function (item) {
+                                if (typeof (item.category_thumbnail_image) == "undefined" || item.category_thumbnail_image == "") {
+                                    item.category_thumbnail_image = "../../images/website.png";
+                                
+                                }
+                                // item.subimg = "subscription.png";
+                                return item;
+                            })),
+                        });
+                    }
+                    else {
+                        console.log(response);
+                    }
+
+                    })
+                    // .then(res=>{
+                    //     if (self.data.openid) {                
+                    //         setTimeout(function () {
+                    //             self.getSubscription();
+                    //         }, 500);  
+                    //     }
+                        
+                    // })
+                    .catch(function (response) {
+                        console.log(response);
+
+                    }).finally(function () {
+
+                    })
         })
-        .catch(function (response) {
-            console.log(response);
-
-        }).finally(function () {
-
-            })
+        
     },
     onShareAppMessage: function () {
         return {
@@ -90,75 +107,7 @@ Page({
                 // 转发失败
             }
         }
-    },
-    getSubscription: function () {
-        var self= this;
-        wx.showLoading({
-            title: '正在加载',
-            mask: true
-        })
-        if (self.data.openid) {
-            var url = Api.getSubscription() + '?openid=' + self.data.openid;
-            var getSubscriptionRequest = wxRequest.getRequest(url);
-            getSubscriptionRequest.then(res => {
-                if (res.data.status == '200')
-                {
-                    var catList = res.data.subscription;
-                    var categoriesList = self.data.categoriesList;
-                    var newCategoriesList = [];
-                    if (catList && categoriesList) {
-                        for (var i = 0; i < categoriesList.length; i++) {
-                            var subimg = "subscription.png";
-                            var subflag = "0";
-
-                            for (var j = 0; j < catList.length; j++) {
-                                if (categoriesList[i].id == catList[j]) {
-                                    subimg = "subscription-on.png";
-                                    subflag = "1";
-                                }
-                                var category_thumbnail_image = "";
-                                if (typeof (categoriesList[i].category_thumbnail_image) == "undefined" || categoriesList[i].category_thumbnail_image == "") {
-                                    category_thumbnail_image = "../../images/website.png";
-                                }
-                                else {
-                                    category_thumbnail_image = categoriesList[i].category_thumbnail_image;
-                                }
-
-                            }
-                            var cat = {
-                                "category_thumbnail_image": category_thumbnail_image,
-                                "description": categoriesList[i].description,
-                                "name": categoriesList[i].name,
-                                "id": categoriesList[i].id,
-                                "subimg": subimg,
-                                "subflag": subflag
-                            }
-                            newCategoriesList.push(cat);
-                        }
-                        if (newCategoriesList.length > 0) {
-                            self.setData({
-                                floatDisplay: "block",
-                                categoriesList: newCategoriesList
-                            });
-                        }
-                    }
-
-                }
-                else{
-                    console.log(res);
-                }
-            }).finally(function () {
-                setTimeout(function () {
-                    wx.hideLoading();
-                }, 500)
-                wx.hideNavigationBarLoading();
-
-            })
-            
-        }
-
-
-    },
+    },    
     postsub: function (e) {
         var self = this;
         if (!self.data.openid) {

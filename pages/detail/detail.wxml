@@ -36,7 +36,7 @@
       <text>{{likeCount}}</text>
     </view>
     <!-- 文章正文 -->
-    <view class="entry-summary">
+    <view class="entry-summary" id="entry-summary" style="height:{{detailSummaryHeight}}">
 
         <!-- 音频 -->
         <view class='audioPlayer' style="display:{{displayAudio}}">
@@ -79,6 +79,14 @@
 
 
       <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+
+      <!-- 阅读更多 -->
+        <view class="detail-read-more" wx:if="{{detailSummaryHeight != ''}}">
+          <view class="detail-readmore-mask">
+            <view class="detail-readmore-btn" bindtap="readMore">观看视频，阅读更多...</view>
+          </view>
+        </view>
+
     </view>
 
     
@@ -217,7 +225,7 @@
   <poster id="poster" hide-loading="{{false}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
   </poster>
   <view class="ditail-copyright" style="display:{{display}}">
-    <template is="tempCopyright" />
+    <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
   </view>
 
   <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>

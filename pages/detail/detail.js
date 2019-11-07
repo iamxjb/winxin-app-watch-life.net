@@ -24,13 +24,18 @@ var app = getApp();
 let isFocusing = false
 const pageCount = config.getPageCount;
 
+var webSiteName= config.getWebsiteName;
+var domain =config.getDomain
+
 import { ModalView } from '../../templates/modal-view/modal-view.js'
 import Poster from '../../templates/components/wxa-plugin-canvas-poster/poster/poster';
+let rewardedVideoAd = null
 
 
 Page({
   data: {
     title: '文章内容',
+    webSiteName:webSiteName,
     detail: {},
     commentsList: [],
     ChildrenCommentsList: [],
@@ -87,7 +92,10 @@ Page({
     shareImagePath: '',
     detailSummaryHeight: '',
     detailAdsuccess: true,
-    fristOpen: false
+    fristOpen: false,
+    domain:domain,
+    detailSummaryHeight: '',
+    platform: ''
 
   },
   onLoad: function (options) {
@@ -99,10 +107,19 @@ Page({
     wx.getSystemInfo({
       success: function (t) {
         var system = t.system.indexOf('iOS') != -1 ? 'iOS' : 'Android';
-        self.setData({ system: system });
+        self.setData({ system: system ,platform: t.platform});
       }
     })
     new ModalView;
+  },
+  onUnload: function () {
+    //卸载页面，清除计步器
+    clearInterval(this.data.durationIntval);
+    if (rewardedVideoAd.destroy) { rewardedVideoAd.destroy() }
+    innerAudioContext.destroy()
+    ctx=null;
+
+
   },
   showLikeImg: function () {
     var self = this;
@@ -142,7 +159,7 @@ Page({
     this.ShowHideMenu();
     console.log(res);
     return {
-      title: '分享"' + config.getWebsiteName + '"的文章：' + this.data.detail.title.rendered,
+      title: '分享"' + webSiteName + '"的文章：' + this.data.detail.title.rendered,
       path: 'pages/detail/detail?id=' + this.data.detail.id,
       imageUrl: this.data.detail.post_full_image,
       success: function (res) {
@@ -355,18 +372,7 @@ Page({
         if (response.data.like_count != '0') {
           _displayLike = "block"
         }
-        self.setData({
-          detail: response.data,
-          likeCount: _likeCount,
-          postID: id,
-          link: response.data.link,
-          detailDate: util.cutstr(response.data.date, 10, 1),
-          display: 'block',
-          displayLike: _displayLike,
-          total_comments: response.data.total_comments,
-          postImageUrl: response.data.postImageUrl
-
-        });
+        
         // 调用API从本地缓存中获取阅读记录并记录
         var logs = wx.getStorageSync('readLogs') || [];
         // 过滤重复值
@@ -381,6 +387,40 @@ Page({
         }
         logs.unshift([id, response.data.title.rendered]);
         wx.setStorageSync('readLogs', logs);
+
+        var openAdLogs = wx.getStorageSync('openAdLogs') || [];
+        var openAded = res.data.excitationAd == '1' ? false : true;
+        if (openAdLogs.length > 19) {
+          openAded = true;
+        } else if (openAdLogs.length > 0 && res.data.excitationAd == '1') {
+          for (var i = 0; i < openAdLogs.length; i++) {
+            if (openAdLogs[i].id == res.data.id) {
+              openAded = true;
+              break;
+            }
+
+
+          }
+        }
+
+        if (res.data.excitationAd == '1') {
+          self.loadInterstitialAd(res.data.rewardedVideoAdId);
+        }
+
+        self.setData({
+          detail: response.data,
+          likeCount: _likeCount,
+          postID: id,
+          link: response.data.link,
+          detailDate: util.cutstr(response.data.date, 10, 1),
+          display: 'block',
+          displayLike: _displayLike,
+          total_comments: response.data.total_comments,
+          postImageUrl: response.data.postImageUrl,
+          detailSummaryHeight: openAded ? '' : '400rpx'
+
+        });
+
         return response.data
       })
       .then(response => {
@@ -1169,4 +1209,97 @@ Page({
 
     }
   },
+
+  loadInterstitialAd: function (excitationAdId) {
+    var self = this;
+    if (wx.createRewardedVideoAd) {
+      rewardedVideoAd = wx.createRewardedVideoAd({ adUnitId: excitationAdId })
+      rewardedVideoAd.onLoad(() => {
+        console.log('onLoad event emit')
+      })
+      rewardedVideoAd.onError((err) => {
+        console.log(err);
+        this.setData({
+          detailSummaryHeight: ''
+        })
+      })
+      rewardedVideoAd.onClose((res) => {
+
+        var id = self.data.detail.id;
+        if (res && res.isEnded) {
+
+          var nowDate = new Date();
+          nowDate = nowDate.getFullYear() + "-" + (nowDate.getMonth() + 1) + '-' + nowDate.getDate();
+
+          var openAdLogs = wx.getStorageSync('openAdLogs') || [];
+          // 过滤重复值
+          if (openAdLogs.length > 0) {
+            openAdLogs = openAdLogs.filter(function (log) {
+              return log["id"] !== id;
+            });
+          }
+          // 如果超过指定数量不再记录
+          if (openAdLogs.length < 21) {
+            var log = {
+              "id": id,
+              "date": nowDate
+            }
+            openAdLogs.unshift(log);
+            wx.setStorageSync('openAdLogs', openAdLogs);
+            console.log(openAdLogs);
+
+          }
+          this.setData({
+            detailSummaryHeight: ''
+          })
+        } else {
+
+          wx.showToast({
+            title: "你中途关闭了视频",
+            icon: "none",
+            duration: 3000
+          });
+
+          
+        }
+      })
+    }
+
+  },
+
+  // 阅读更多
+  readMore: function () {
+    var self = this;
+
+    var platform = self.data.platform
+    if (platform == 'devtools') {
+
+      wx.showToast({
+        title: "开发工具无法显示激励视频",
+        icon: "none",
+        duration: 2000
+      });
+
+      self.setData({
+        detailSummaryHeight: ''
+      })
+    }
+    else {
+
+      rewardedVideoAd.show()
+        .catch(() => {
+          rewardedVideoAd.load()
+            .then(() => rewardedVideoAd.show())
+            .catch(err => {
+              console.log('激励视频 广告显示失败');
+              self.setData({
+                detailSummaryHeight: ''
+              })
+            })
+        })
+
+    }
+
+  }
+
 })

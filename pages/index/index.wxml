@@ -10,6 +10,13 @@
 <import src="../../templates/common-list.wxml" />
 <import src="../../templates/copyright.wxml" />
 
+
+<!-- 首次进入引导添加到“我的小程序” -->
+<view class="addMyMiniapp"  wx:if="{{isFirst}}" catchtap="shutAddMyMiniapp">
+  <view>点击加入我的小程序 ↑</view>
+  <text>了解"{{webSiteName}}"最新文章</text>
+</view>
+
 <!-- 轮播图 -->
 <view style="display:{{displaySwiper}}">
   <swiper indicator-dots="true" interval="10000" autoplay="true" indicator-color="rgba(0, 0, 0, .1)" indicator-active-color="rgba(0, 0, 0, .6)">
@@ -101,7 +108,7 @@
     </view>
     <!-- 版权信息template模板 -->
     <view class="copyright" style="display:{{floatDisplay}}">
-      <template is="tempCopyright" />
+  <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
     </view>
   </view>
 </view>

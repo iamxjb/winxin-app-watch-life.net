@@ -12,6 +12,7 @@
  */-->
 <import src="../../wxParse/wxParse.wxml"/>
 <import src="../../templates/header.wxml"/>
+<import src="../../templates/copyright.wxml" />
 
 <view class="container">
   <template is="tempHeader" /> 
@@ -29,5 +30,9 @@
  <view style="text-align: center">
   <button class="cancel-button;margin-bottom: 40rpx" formType="submit" size="mini" bindtap="cancel">取消</button>
  </view>
+
+  <view class="ditail-copyright" style="display:{{display}}">
+     <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
+  </view>
 
 </view>
