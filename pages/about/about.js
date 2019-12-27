@@ -64,10 +64,11 @@ Page({
       var enterpriseMinapp = self.data.pageData.enterpriseMinapp;
       var system  =self.data.system;
       var praiseWord=self.data.pageData.praiseWord;
+      var postid=self.data.pageData.id;
       if (enterpriseMinapp == "1"  && system=='Android') {
           if (self.data.openid) {
               wx.navigateTo({
-                  url: '../pay/pay?flag=2&openid=' + self.data.openid + '&postid=' + config.getAboutId+'&praiseWord='+praiseWord
+                  url: '../pay/pay?flag=2&openid=' + self.data.openid + '&postid=' + postid +'&praiseWord='+praiseWord
               })
           }
           else {
