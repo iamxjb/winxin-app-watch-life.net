@@ -19,6 +19,10 @@
 
 
 <view>
+<!-- 小程序广告 -->
+      <view class="ad-box" wx:if="{{detail.detailAdId !='' && detail.detailAd=='1' && detailAdsuccess}}">
+        <ad unit-id="{{detail.detailAdId}}" ad-intervals="30" ad-type="video" binderror="adbinderror"></ad>
+      </view>
 
   <!-- 文章 -->
   <view class="detail-content" style="display:{{display}}">
@@ -104,10 +108,11 @@
       </view>
     </view>
 
-     <!-- 小程序广告 -->
-      <view class="ad-box-video" wx:if="{{detail.detailAdId !='' && detail.detailAd=='1' && detailAdsuccess}}">
-        <ad unit-id="{{detail.detailAdId}}" ad-intervals="30" ad-type="video" binderror="detailAdbinderror"></ad>
-      </view>
+    <!-- 小程序广告 -->
+    <view class="ad-box-video" wx:if="{{detail.videoAdId !='' && detail.detailAd=='1' && detailAdsuccess}}">
+      <ad unit-id="{{detail.videoAdId}}" ad-intervals="30" ad-type="video" binderror="adbinderror"></ad>
+    </view>
+     
 
     <!-- 猜你喜欢 -->
     <view wx:if="{{postList.length != 0}}" class="relatedPost" style="display:{{display}}">

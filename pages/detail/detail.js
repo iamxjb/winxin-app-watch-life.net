@@ -1204,7 +1204,7 @@ Page({
       }
     });
   },
-  detailAdbinderror: function (e) {
+  adbinderror: function (e) {
     var self = this;
     if (e.errCode) {
       self.setData({ detailAdsuccess: false })

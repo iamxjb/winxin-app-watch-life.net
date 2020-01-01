@@ -12,6 +12,7 @@
  */-->
 <import src="../../templates/common-list.wxml" />
 <import src="../../templates/copyright.wxml" />
+<import src="../../templates/loading.wxml" />
 
 <view class="topic-common-list" style="display:{{isCategoryPage}}">
   <view class="topic-list-item">
@@ -49,7 +50,10 @@
   </view>
 
   <view style="display:{{showallDisplay}}">
-    <template is="tempCommonList" data="{{postsList}}" />
+    <template is="tempCommonList" data="{{postsList,listAdsuccess}}" />
+    <view style='display:{{isLoading?"block":"none"}}'>
+        <template is="tempLoading" />
+      </view>
 
     <view class="loadingmore" style="display:{{floatDisplay}}">
       <view class="no-more" hidden="{{!isLastPage}}">- 无更多文章 -</view>

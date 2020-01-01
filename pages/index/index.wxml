@@ -9,6 +9,7 @@
 
 <import src="../../templates/common-list.wxml" />
 <import src="../../templates/copyright.wxml" />
+<import src="../../templates/loading.wxml" />
 
 
 <!-- 首次进入引导添加到“我的小程序” -->
@@ -58,7 +59,7 @@
       <!-- 栏目列表 -->
       <scroll-view scroll-x>
         <view class="selected-nav-list">
-          <block wx:for="{{topNav}}" wx:key="{{id}}">
+          <block  wx:key="id" wx:for="{{topNav}}">
             <view wx:if="{{ item.redirecttype == 'webpage' || item.redirecttype == 'apppage'}}">
               <view class="selected-nav-item" catchtap="onNavRedirect" id="{{item.id}}" data-redicttype="{{item.redirecttype}}" data-url="{{item.url}}" data-appid="{{item.appid}}" data-extraData="{{item.extraData}}">
                 <view>
@@ -102,8 +103,12 @@
   <view class="container">
     <!-- 列表template模板 -->
     <template is="tempCommonList" data="{{postsList:postsList,listAdsuccess:listAdsuccess}}" />
+    <view style='display:{{isLoading?"block":"none"}}'>
+        <template is="tempLoading" />
+      </view>
     <!-- 无更多文章提示 -->
     <view class="loadingmore" style="display:{{floatDisplay}}">
+    
       <view class="no-more" hidden="{{!isLastPage}}">- 无更多文章 -</view>
     </view>
     <!-- 版权信息template模板 -->

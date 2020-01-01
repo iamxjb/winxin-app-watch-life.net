@@ -19,8 +19,8 @@ import config from '../../utils/config.js'
 var pageCount = config.getPageCount;
 
 var webSiteName = config.getWebsiteName;
-var domain =config.getDomain
-
+var domain =config.getDomain;
+var topNav=config.getIndexNav;
 
 Page({
   data: {
@@ -38,13 +38,12 @@ Page({
     displaySwiper: "none",
     floatDisplay: "none",
     displayfirstSwiper: "none",
-    topNav: [],
+    topNav: topNav,
     listAdsuccess:true,
     webSiteName:webSiteName,
     domain:domain,
     isFirst: false, // 是否第一次打开,
-    
-
+    isLoading: false
 
   },
   formSubmit: function (e) {
@@ -116,11 +115,7 @@ Page({
   onLoad: function (options) {
     var self = this;
     self.fetchTopFivePosts();
-    self.fetchPostsData(self.data);
-    self.setData({
-      topNav: config.getIndexNav
-
-    });
+    self.fetchPostsData(self.data);  
 
     // 判断用户是不是第一次打开，弹出添加到我的小程序提示
     var isFirstStorage = wx.getStorageSync('isFirst');
@@ -199,11 +194,8 @@ Page({
       self.setData({
         postsList: []
       });
-    };
-    wx.showLoading({
-      title: '正在加载',
-      mask: true
-    });
+    };    
+    self.setData({ isLoading: true })
     var getCategoriesRequest = wxRequest.getRequest(Api.getCategoriesIds());
     getCategoriesRequest.then(res=>{
         if(!res.data.Ids=="")
@@ -222,11 +214,9 @@ Page({
                   self.setData({
                     isLastPage: true
                   });
-                }
-    
+                }    
                 self.setData({
-                  floatDisplay: "block",
-    
+                  floatDisplay: "block",    
                   postsList: self.data.postsList.concat(response.data.map(function (item) {
     
                     var strdate = item.date
@@ -245,9 +235,7 @@ Page({
                   })),
     
                 });
-                setTimeout(function () {
-                  wx.hideLoading();
-                }, 900);
+                
               } else {
                 if (response.data.code == "rest_post_invalid_page_number") {
                   self.setData({
@@ -289,6 +277,7 @@ Page({
           })
           .finally(function (response) {
             wx.hideLoading();
+            self.setData({ isLoading: false })
             wx.stopPullDownRefresh();
           });
 
@@ -405,13 +394,15 @@ Page({
       url: url
     });
   },
-  listAdbinderror:function(e)
+  adbinderror:function(e)
   {
     var self=this;
-    if(e.errCode)
-    {
-      self.setData({listAdsuccess:false})
-      
+    console.log(e.detail.errCode);
+    console.log(e.detail.errMsg);    
+    if (e.detail.errCode) {
+      self.setData({
+        listAdsuccess: false
+      })
     }
 
   },

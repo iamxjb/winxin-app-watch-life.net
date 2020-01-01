@@ -42,7 +42,9 @@ Page({
     floatDisplay: "none",
     searchKey:"",
     webSiteName:webSiteName,
-    domain:domain
+    domain:domain,
+    listAdsuccess:true,
+    isLoading: false
   },
   formSubmit: function (e) {
     var url = '../list/list'
@@ -54,10 +56,8 @@ Page({
     })
   },
   onShareAppMessage: function () {
-
     var title = "分享“"+webSiteName+"”";
     var path =""
-
     if (this.data.categories && this.data.categories != 0)
   {
       title += "的专题：" + this.data.categoriesList.name;
@@ -83,7 +83,6 @@ Page({
     }
   },
   onReachBottom: function () {
-
       var self = this;
       if (!self.data.isLastPage) {
           self.setData({
@@ -140,11 +139,12 @@ Page({
   },
   onLoad: function (options) {
     var self = this;
+    // 设置插屏广告
+    this.setInterstitialAd();
     if (options.categoryID && options.categoryID != 0) {
       self.setData({
         categories: options.categoryID,
-        isCategoryPage:"block"
-        
+        isCategoryPage:"block"        
        
       });
       self.fetchCategoriesData(options.categoryID);
@@ -160,6 +160,8 @@ Page({
       })
 
       this.fetchPostsData(self.data);
+       
+    
     }    
   },
   //获取文章列表数据
@@ -174,14 +176,8 @@ Page({
         postsList: []
       });
     };
-    
-    wx.showLoading({
-      title: '正在加载',
-      mask:true
-    });
-
+    self.setData({ isLoading: true })
     var getPostsRequest = wxRequest.getRequest(Api.getPosts(data));
-
     getPostsRequest.then(response =>{
 
         if (response.statusCode === 200) {
@@ -261,6 +257,7 @@ Page({
     })
         .finally(function () {
             wx.hideLoading();
+            self.setData({ isLoading: true })
 
         })  
   },  
@@ -311,6 +308,39 @@ Page({
 
         self.fetchPostsData(self.data); 
 
+    })
+  },
+  adbinderror:function(e)
+  {
+    var self=this;
+    console.log(e.detail.errCode);
+    console.log(e.detail.errMsg);    
+    if (e.detail.errCode) {
+      self.setData({
+        listAdsuccess: false
+      })
+    }
+
+  },
+  // 获取小程序插屏广告
+  setInterstitialAd: function () {
+    var getOptionsRequest = wxRequest.getRequest(Api.getOptions());
+    getOptionsRequest.then(res => {
+      // 获取广告id，创建插屏广告组件
+      if(res.interstitialAdId =="") return;
+      let interstitialAd = wx.createInterstitialAd({
+        adUnitId: res.data.interstitialAdId
+      })
+      // 监听插屏错误事件
+      interstitialAd.onError((err) => {
+        console.error(err)
+      })
+      // 显示广告
+      if (interstitialAd) {
+        interstitialAd.show().catch((err) => {
+          console.error(err)
+        })
+      }
     })
   },
 
