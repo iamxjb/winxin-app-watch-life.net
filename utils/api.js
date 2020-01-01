@@ -60,6 +60,15 @@ module.exports = {
       return url;
   },
 
+   //获取设置项
+   getOptions: function () {
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    url += 'options';
+    return url;
+},
+
+
+
   // 获取tag相关的文章列表
   getPostsByTags: function (id,tags) {
       var url = HOST_URI + 'posts?per_page=5&&page=1&exclude=' + id + "&tags=" + tags;

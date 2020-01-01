@@ -15,10 +15,12 @@ function wxPromisify(fn) {
             obj.success = function (res) {
                 //成功
                 resolve(res)
+                
             }
             obj.fail = function (res) {
                 //失败
                 reject(res)
+                console.log(res)
             }
             fn(obj)
         })
@@ -27,6 +29,7 @@ function wxPromisify(fn) {
 //无论promise对象最后状态如何都会执行
 Promise.prototype.finally = function (callback) {
     let P = this.constructor;
+    wx.hideNavigationBarLoading()
     return this.then(
         value => P.resolve(callback()).then(() => value),
         reason => P.resolve(callback()).then(() => { throw reason })
@@ -38,7 +41,8 @@ Promise.prototype.finally = function (callback) {
  * data 以对象的格式传入
  */
 function getRequest(url, data) {
-    var getRequest = wxPromisify(wx.request)
+    var getRequest = wxPromisify(wx.request);
+    wx.showNavigationBarLoading()
     return getRequest({
         url: url,
         method: 'GET',
@@ -56,6 +60,7 @@ function getRequest(url, data) {
  */
 function postRequest(url, data) {
     var postRequest = wxPromisify(wx.request)
+    wx.showNavigationBarLoading()
     return postRequest({
         url: url,
         method: 'POST',

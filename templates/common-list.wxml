@@ -1,9 +1,14 @@
 <template name="tempCommonList">
 
   <view class="post-list">
-    <block wx:key="id" wx:for="{{postsList}}">
+    <block wx:for="{{postsList}}" wx:key="id" >
     <view class="list-item-ad" index="{{index}}" wx:if="{{index%item.listAdEvery ==0  && index!=0 && item.listAd =='1' && item.listAdId !=''  && listAdsuccess}}">
-        <ad unit-id="{{item.listAdId}}" ad-intervals="30" binderror="listAdbinderror"></ad>
+        <block wx:if="{{(index/item.listAdEvery)%2==0}}">
+					<ad unit-id="{{item.videoAdId}}" ad-type="video" ad-theme="white" binderror="adbinderror"></ad>
+				</block>
+        <block wx:else>
+        <ad unit-id="{{item.listAdId}}" ad-intervals="30" binderror="adbinderror"></ad>
+        </block>
       </view>
       <view class="post-item" index="{{index}}" id="{{item.id}}" bindtap="redictDetail">
         <image src="{{item.post_medium_image}}" mode="aspectFill" class="post-img"></image>
