@@ -1208,7 +1208,9 @@ Page({
   },
   adbinderror: function (e) {
     var self = this;
-    if (e.errCode) {
+    console.log(e.detail.errCode);
+    console.log(e.detail.errMsg);
+    if (e.detail.errCode) {
       self.setData({ detailAdsuccess: false })
 
     }
@@ -1216,7 +1218,9 @@ Page({
 
   adTopbinderror: function (e) {
     var self = this;
-    if (e.errCode) {
+    console.log(e.detail.errCode);
+    console.log(e.detail.errMsg)
+    if (e.detail.errCode) {
       self.setData({ detailTopAdsuccess: false })
 
     }
