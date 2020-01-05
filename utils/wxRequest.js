@@ -14,12 +14,14 @@ function wxPromisify(fn) {
         return new Promise((resolve, reject) => {
             obj.success = function (res) {
                 //成功
+                wx.hideNavigationBarLoading()
                 resolve(res)
                 
             }
             obj.fail = function (res) {
                 //失败
                 reject(res)
+                wx.hideNavigationBarLoading()
                 console.log(res)
             }
             fn(obj)
