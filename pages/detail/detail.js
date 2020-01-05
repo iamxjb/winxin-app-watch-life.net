@@ -92,6 +92,7 @@ Page({
     shareImagePath: '',
     detailSummaryHeight: '',
     detailAdsuccess: true,
+    detailTopAdsuccess:true,
     fristOpen: false,
     domain:domain,
     detailSummaryHeight: '',
@@ -355,6 +356,7 @@ Page({
             showerror: 'block',
             display: 'none',
             detailAdsuccess:true,
+            detailTopAdsuccess:true,
             errMessage: response.data.message
           });
           return false;
@@ -1211,6 +1213,15 @@ Page({
 
     }
   },
+
+  adTopbinderror: function (e) {
+    var self = this;
+    if (e.errCode) {
+      self.setData({ detailTopAdsuccess: false })
+
+    }
+  },
+
 
   loadInterstitialAd: function (excitationAdId) {
     var self = this;
