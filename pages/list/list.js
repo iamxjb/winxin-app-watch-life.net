@@ -183,7 +183,8 @@ Page({
         if (response.statusCode === 200) {
             if (response.data.length < pageCount) {
                 self.setData({
-                    isLastPage: true
+                    isLastPage: true,
+                    isLoading: false
                 });
             };
             self.setData({
@@ -219,7 +220,8 @@ Page({
             if (response.data.code == "rest_post_invalid_page_number") {
 
                 self.setData({
-                    isLastPage: true
+                    isLastPage: true,
+                    isLoading: false
                 });
 
             }
@@ -257,7 +259,7 @@ Page({
     })
         .finally(function () {
             wx.hideLoading();
-            self.setData({ isLoading: true })
+            self.setData({ isLoading: false })
 
         })  
   },  

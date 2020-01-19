@@ -212,7 +212,8 @@ Page({
               if (response.data.length) {
                 if (response.data.length < pageCount) {
                   self.setData({
-                    isLastPage: true
+                    isLastPage: true,
+                    isLoading: false
                   });
                 }    
                 self.setData({
@@ -239,7 +240,8 @@ Page({
               } else {
                 if (response.data.code == "rest_post_invalid_page_number") {
                   self.setData({
-                    isLastPage: true
+                    isLastPage: true,
+                    isLoading: false
                   });
                   wx.showToast({
                     title: '没有更多内容',
