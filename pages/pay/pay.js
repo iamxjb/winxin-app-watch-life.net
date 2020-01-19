@@ -117,22 +117,22 @@ Page({
                                 flag: that.data.flag,
                                 fromUser: "None"
                             };
-                        url = Api.sendMessagesUrl();
-                        var sendMessageRequest = wxRequest.postRequest(url, data);
-                        sendMessageRequest.then(response => {
-                            if (response.data.status == '200') {
-                                console.log(response.data.message);
-                                wx.navigateBack({
-                                    delta: 1
-                                })
+                        // url = Api.sendMessagesUrl();
+                        // var sendMessageRequest = wxRequest.postRequest(url, data);
+                        // sendMessageRequest.then(response => {
+                        //     if (response.data.status == '200') {
+                        //         console.log(response.data.message);
+                        //         wx.navigateBack({
+                        //             delta: 1
+                        //         })
 
-                            }
-                            else {
-                                console.log(response.data.message);
+                        //     }
+                        //     else {
+                        //         console.log(response.data.message);
 
-                            }
+                        //     }
 
-                        });
+                        // });
 
                     }
                   });

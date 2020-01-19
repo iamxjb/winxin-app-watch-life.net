@@ -875,18 +875,18 @@ Page({
                     parent: parent
                   };
 
-                  url = Api.sendMessagesUrl();
-                  var sendMessageRequest = wxRequest.postRequest(url, data);
-                  sendMessageRequest.then(response => {
-                    if (response.data.status == '200') {
-                      //console.log(response.data.message);
-                    }
-                    else {
-                      console.log(response.data.message);
+                  // url = Api.sendMessagesUrl();
+                  // var sendMessageRequest = wxRequest.postRequest(url, data);
+                  // sendMessageRequest.then(response => {
+                  //   if (response.data.status == '200') {
+                  //     //console.log(response.data.message);
+                  //   }
+                  //   else {
+                  //     console.log(response.data.message);
 
-                    }
+                  //   }
 
-                  });
+                  // });
 
                 }
                 var commentCounts = parseInt(self.data.total_comments) + 1;
