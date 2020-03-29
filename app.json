@@ -17,10 +17,10 @@
         
     ],
     "window": {
-        "backgroundTextStyle": "dark",
-        "navigationBarBackgroundColor": "#118fff",
+        "backgroundTextStyle": "light",
+         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "守望轩",
-        "navigationBarTextStyle": "white",        
+        "navigationBarTextStyle": "black",
         "pageOrientation": "auto"
     },
     "tabBar": {
