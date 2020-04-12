@@ -49,7 +49,6 @@ var INDEXNAV = [
 export default {
   getDomain: DOMAIN,
   getWebsiteName: WEBSITENAME,  
-  getPayTemplateId: PAYTEMPPLATEID,
   getPageCount: PAGECOUNT,
   getIndexNav: INDEXNAV,
   getZanImageUrl: ZANIMAGEURL, 
