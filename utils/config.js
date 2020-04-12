@@ -16,8 +16,6 @@
 var DOMAIN = "www.watch-life.net";
 var WEBSITENAME="守望轩"; //网站名称
 var PAGECOUNT='10'; //每页文章数目
-var PAYTEMPPLATEID = 'hzKpxuPF2rw7O-qTElkeoE0lMwr0O4t9PJkLyt6v8rk';//鼓励消息模版id
-var REPLAYTEMPPLATEID = 'IiAVoBWP34u1uwt801rI_Crgen7Xl2lvAGP67ofJLo8';//回复评论消息模版id
 var ZANIMAGEURL = 'https://www.watch-life.net/images/2017/07/zsm400.jpg';//微信鼓励的图片链接，用于个人小程序的赞赏
 var LOGO = "../../images/logo-icon.png"; // 网站的logo图片
 //设置downloadFile合法域名,不带https ,在中括号([])里增加域名，格式：{id=**,domain:'www.**.com'}，用英文逗号分隔。
@@ -54,7 +52,6 @@ export default {
   getPayTemplateId: PAYTEMPPLATEID,
   getPageCount: PAGECOUNT,
   getIndexNav: INDEXNAV,
-  getReplayTemplateId: REPLAYTEMPPLATEID,  
   getZanImageUrl: ZANIMAGEURL, 
   getLogo: LOGO,
   getDownloadFileDomain: DOWNLOADFILEDOMAIN

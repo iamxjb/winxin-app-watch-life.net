@@ -30,8 +30,7 @@ Page({
     ],
     openid:'',
     postid:'',
-    total_fee:'',
-    template_id: config.getPayTemplateId,
+    total_fee:'',   
     flag:'1',
     webSiteName:webSiteName,
     domain:domain
