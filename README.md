@@ -60,7 +60,7 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 2.https://e.coding.net/xjb/winxin-app-watch-life.net.git
 
-3.https://gitlab.com/xiajianbo/winxin-app-watch-life.net.git
+3.https://gitlab.com/xiajianbo/winxin-app-watch-life.net
 
 
 # 小程序访问微信二维码：
