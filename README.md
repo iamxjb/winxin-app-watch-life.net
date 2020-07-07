@@ -58,11 +58,9 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 1.https://git.oschina.net/iamxjb/winxin-app-watch-life.net
 
-2.https://code.aliyun.com/iamxjb/winxin-app-watch-life.net
+2.https://e.coding.net/xjb/winxin-app-watch-life.net.git
 
-3.https://coding.net/u/xjb/p/winxin-app-watch-life.net
-
-4.https://gitlab.com/xiajianbo/winxin-app-watch-life.net
+3.https://gitlab.com/xiajianbo/winxin-app-watch-life.net.git
 
 
 # 小程序访问微信二维码：
