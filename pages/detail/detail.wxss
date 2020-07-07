@@ -20,12 +20,8 @@
 /* 文章正文样式 */
 
 .entry-summary {
-  /* font-size: 15px;
-  line-height: 2; */
-
   font-size: 32rpx;
   line-height: 64rpx;
-  letter-spacing: 1px;
   overflow: hidden;
   overflow-x: hidden;
   position: relative;
