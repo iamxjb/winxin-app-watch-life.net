@@ -139,6 +139,14 @@ Page({
   },
   onLoad: function (options) {
     var self = this;
+    wx.showShareMenu({
+            withShareTicket:true,
+            menus:['shareAppMessage','shareTimeline'],
+            success:function(e)
+            {
+              //console.log(e);
+            }
+      })
     // 设置插屏广告
     this.setInterstitialAd();
     if (options.categoryID && options.categoryID != 0) {

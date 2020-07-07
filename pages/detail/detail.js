@@ -100,6 +100,14 @@ Page({
   },
   onLoad: function (options) {
     var self = this;
+    wx.showShareMenu({
+              withShareTicket:true,
+              menus:['shareAppMessage','shareTimeline'],
+              success:function(e)
+              {
+                //console.log(e);
+              }
+        })
     self.getEnableComment();
     self.fetchDetailData(options.id);
     Auth.setUserInfoData(self);

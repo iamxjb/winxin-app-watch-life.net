@@ -35,6 +35,15 @@ Page({
         wx.setNavigationBarTitle({
             title: '专题'
         });
+
+        wx.showShareMenu({
+                  withShareTicket:true,
+                  menus:['shareAppMessage','shareTimeline'],
+                  success:function(e)
+                  {
+                    //console.log(e);
+                  }
+            })
         
         this.fetchCategoriesData();
         
