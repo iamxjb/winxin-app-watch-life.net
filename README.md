@@ -110,7 +110,7 @@ https://www.minapper.com
 ![微慕WordPress小程序专业标准版](https://www.watch-life.net/images/minapper.jpg)
 
 
-# 微慕WordPress小程序增强版版二维码
+# 微慕WordPress小程序增强版二维码
 
 
 1.微慕WordPress小程序增强版微信版
