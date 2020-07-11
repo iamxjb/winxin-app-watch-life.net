@@ -176,6 +176,7 @@ https://www.minapper.com
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-4.html">11.WordPress版微信小程序2.4版发布</a>
 
 <a href="https://www.watch-life.net/wordpress/weixin-app-install.html" target="_blank" rel="noopener noreferrer">12.WordPress版微信小程序安装使用说明</a>
+
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-2-6.html" target="_blank" rel="noopener noreferrer">13.WordPress版微信小程序2.6版发布</a>
 
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-3-0.html" target="_blank" rel="noopener noreferrer">14.WordPress版微信小程序3.0版发布</a>
@@ -218,13 +219,6 @@ https://www.minapper.com
 
 ![weixinpay](https://www.watch-life.net/images/2017/07/zsm400-github.jpg) 
 
-
-
-# 微慕小程序开源版知识星球(小密圈)
-
-考虑到微信群里交流过于庞杂和碎片化，无法提供更专业的技术服务和知识分享，很多好的知识不能很好沉淀和积累，无法提供更好的分享价值，同时我也有意和兴趣相投人一起，创建一个wordpress和微信小程序的知识社区。基于此，我在“知识星球”里创建了一个“微慕小程序开源版”的圈子，欢迎有兴趣的朋友和我一起创建一个有活力、创造力、有趣、有深度的知识社群。
-
-![zhishixingqiu](https://www.watch-life.net/images/2017/11/xiaomiquan300.jpg)
  
 
 
