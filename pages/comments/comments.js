@@ -41,6 +41,14 @@ Page({
             }
         }
     },
+    // 自定义分享朋友圈
+   onShareTimeline: function() {
+    return {
+      title: '“' + config.getWebsiteName +'”最新评论',
+      path: 'pages/comments/comments' ,
+      imageUrl:"../../images/comments.jpg"     
+    }
+  },
     reload: function (e) {
         var self = this;
         this.setData({

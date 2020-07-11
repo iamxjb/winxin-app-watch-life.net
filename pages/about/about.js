@@ -57,7 +57,13 @@ Page({
 
         }
       })
+    // 设置系统分享菜单
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
   },
+ 
   praise: function () {     
       
       var self = this;
@@ -101,7 +107,7 @@ Page({
   },  
   onShareAppMessage: function () {
     return {
-      title: '关于“' + config.getWebsiteName +'”官方小程序',
+      title: '关于“' + config.getWebsiteName +'”小程序',
       path: 'pages/about/about',
       success: function (res) {
         // 转发成功
@@ -111,6 +117,14 @@ Page({
       }
     }
   },
+   // 自定义分享朋友圈
+   onShareTimeline: function() {
+    return {
+      title: '关于“' + config.getWebsiteName +'”小程序',
+      path: 'pages/about/about'      
+    }
+  },
+
   gotowebpage:function()
   {
       var self=this;

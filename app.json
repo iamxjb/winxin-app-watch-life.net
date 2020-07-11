@@ -54,18 +54,7 @@
         "connectSocket": 10000,
         "uploadFile": 10000,
         "downloadFile": 10000
-    },
-    "navigateToMiniProgramAppIdList": [
-        "wxa43aaa8416cdbd61",
-        "wxe9440e3d24b04152",
-        "wx39075d0bde24f9f7",
-        "wxc1771b619b83316b",
-        "wx074a216a7aabc30c",
-        "wx55ea6098e41af5c4",
-        "wx46926513e9b706d3",
-        "wxf5e9b64958a243b6",
-        "wxfd6bb7114494fd82"
-    ],
+    },   
     "sitemapLocation": "sitemap.json",
     "resizable":false
 }

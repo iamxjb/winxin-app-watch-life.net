@@ -77,6 +77,14 @@ Page({
       }
     }
   },
+   // 自定义分享朋友圈
+   onShareTimeline: function() {   
+    return {
+      title:  "“"+ webSiteName +"”的文章排行",
+      path: 'pages/hot/hot' ,
+      
+    }
+  },
   reload:function(e)
   {
     var self = this;   

@@ -82,6 +82,31 @@ Page({
       }
     }
   },
+  onShareTimeline: function() {
+
+    var path =""
+    var query={};
+    var title="";
+    if (this.data.categories && this.data.categories != 0)
+      {
+          title += this.data.categoriesList.name+"-"+this.data.categoriesList.description;
+          query = {categoryID:this.data.categoriesList.id};
+
+      }
+      else
+      {
+          title += webSiteName +"的搜索内容：" + this.data.searchKey;          
+          query = {search:this.data.searchKey};
+      }
+    
+    return {
+      title: title,
+      path : 'pages/list/list',
+      query: query,
+      imageUrl:this.data.categoriesImage
+     
+    }
+  },
   onReachBottom: function () {
       var self = this;
       if (!self.data.isLastPage) {

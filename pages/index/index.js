@@ -81,6 +81,14 @@ Page({
       }
     }
   },
+   // 自定义分享朋友圈
+   onShareTimeline: function() {   
+    return {
+      title:   '“' + webSiteName + '”小程序,基于微慕WordPress版小程序构建',
+      path: 'pages/index/index',
+      
+    }
+  },
   onPullDownRefresh: function () {
     var self = this;
     self.setData({

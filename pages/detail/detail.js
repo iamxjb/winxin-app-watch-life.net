@@ -182,6 +182,17 @@ Page({
       }
     }
   },
+    // 自定义分享朋友圈
+  onShareTimeline: function() {
+    let imageUrl = this.data.detail.post_full_image
+    return {
+      title: this.data.detail.title.rendered,
+      query: {
+        id: this.data.detail.id
+      },
+      imageUrl
+    }
+  },
   gotowebpage: function () {
     var self = this;
     self.ShowHideMenu();
