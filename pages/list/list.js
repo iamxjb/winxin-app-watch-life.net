@@ -233,8 +233,8 @@ Page({
                         item.categoryImage = "";
                     }
 
-                    if (item.post_thumbnail_image == null || item.post_thumbnail_image == '') {
-                        item.post_thumbnail_image = '../../images/logo700.png';
+                    if (item.post_medium_image == null || item.post_medium_image == '') {
+                        item.post_medium_image = '../../images/logo700.png';
                     }
                     item.date = util.cutstr(strdate, 10, 1);
                     return item;
