@@ -13,7 +13,7 @@
 <template name="wxParseVideo">
   <!--增加video标签支持，并循环添加-->
   <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-    <video class="{{item.classStr}} wxParse-{{item.tag}}-video" src="{{item.attr.src}}"></video>
+    <video class="{{item.classStr}} wxParse-{{item.tag}}-video" src="{{item.attr.src}}" poster="{{item.attr.poster}}"></video>
   </view>
 </template>
 <template name="wxParseAudio">
@@ -104,7 +104,8 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}"  data-path="{{item.attr.path}}"  class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp' || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse1" data="{{item}}" />
         </block>
@@ -216,7 +217,8 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}"  data-path="{{item.attr.path}}"  class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+         <text wx:if="{{item.attr.redirectype === 'miniapp' || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse2" data="{{item}}" />
         </block>
@@ -303,7 +305,8 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}"  data-path="{{item.attr.path}}"  class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp' || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse3" data="{{item}}" />
         </block>
@@ -389,7 +392,8 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}"  data-path="{{item.attr.path}}"  class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp' || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse4" data="{{item}}" />
         </block>
@@ -475,7 +479,8 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}"  data-path="{{item.attr.path}}"  class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+         <text wx:if="{{item.attr.redirectype === 'miniapp' || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse5" data="{{item}}" />
         </block>
@@ -561,7 +566,8 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}"  data-path="{{item.attr.path}}"  class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp' || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse6" data="{{item}}" />
         </block>
@@ -647,7 +653,8 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}"  data-path="{{item.attr.path}}"  class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp' || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse7" data="{{item}}" />
         </block>
@@ -732,7 +739,8 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}"  data-path="{{item.attr.path}}"  class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp' || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse8" data="{{item}}" />
         </block>
@@ -818,7 +826,8 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}"  data-path="{{item.attr.path}}"  class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+       <text wx:if="{{item.attr.redirectype === 'miniapp' || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse9" data="{{item}}" />
         </block>
@@ -904,7 +913,8 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}"  data-path="{{item.attr.path}}"  class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp' || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse10" data="{{item}}" />
         </block>
@@ -990,7 +1000,8 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}"  data-path="{{item.attr.path}}"  class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+        <text wx:if="{{item.attr.redirectype === 'miniapp' || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse11" data="{{item}}" />
         </block>
@@ -1076,7 +1087,8 @@
 
     <!--a类型-->
     <block wx:elif="{{item.tag == 'a'}}">
-      <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+      <view bindtap="wxParseTagATap" data-appid="{{item.attr.appid}}" data-redirectype="{{item.attr.redirectype}}"  data-path="{{item.attr.path}}"  class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
+       <text wx:if="{{item.attr.redirectype === 'miniapp' || item.attr.redirectype === 'apppage'}}" class="iconfont icon-miniapp-logo" />
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="index">
           <template is="wxParse12" data="{{item}}" />
         </block>
