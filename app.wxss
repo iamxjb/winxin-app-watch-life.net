@@ -9,7 +9,7 @@
  * 
  */
 @import "vendor/ZanUI/index.wxss";
-
+@import "images/iconfont/iconfont.wxss";
 .container {
   padding: 0 24rpx;
   background-color: #fff;

@@ -24,6 +24,15 @@ var DOWNLOADFILEDOMAIN = [
     { id: 1, domain: 'www.watch-life.net'}
 
 ];
+//业务域名，只支持企业主体的小程序
+var BUSINESSDOMAIN = [
+  { id: 1, domain: 'www.watch-life.net'},
+  { id: 2, domain: 'blog.minapper.com'},
+  { id: 3, domain: 'plus.minapper.com'},
+  { id: 4, domain: 'www.minapper.com'},
+  { id: 5, domain: 'lite.minapper.com'}
+
+];
  //首页图标导航
  //参数说明：'name'为名称，'image'为图标路径，'url'为跳转的页面，'redirecttype'为跳转的类型，apppage为本小程序的页面，miniapp为其他微信小程序,webpage为web-view的页面
  //redirecttype 是 miniapp 就是跳转其他小程序  url 为其他小程序的页面
@@ -53,5 +62,6 @@ export default {
   getIndexNav: INDEXNAV,
   getZanImageUrl: ZANIMAGEURL, 
   getLogo: LOGO,
-  getDownloadFileDomain: DOWNLOADFILEDOMAIN
+  getDownloadFileDomain: DOWNLOADFILEDOMAIN,
+  getBusinessDomain: BUSINESSDOMAIN
 }
