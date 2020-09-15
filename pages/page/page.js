@@ -28,8 +28,8 @@ Page({
     domain:domain
   },
   onLoad: function (options) {
-    this.fetchData(options.id),
-      this.fetchPagesData()
+    this.fetchData(options.id);
+     
   },
   fetchData: function (id) {
     var self = this;

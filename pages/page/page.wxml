@@ -13,8 +13,6 @@
 <import src="../../wxParse/wxParse.wxml"/>
 <import src="../../templates/header.wxml"/> 
 <view class="container">
-  
-    <template is="tempHeader"/>
     <view class="content-article ">
                     <view class="entry-title">
                    {{pageData.title.rendered}}
@@ -25,6 +23,6 @@
                 </view>
 
             <view class="ditail-copyright" style="display:{{display}}">
-    <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
+ 
   </view>
 </view>

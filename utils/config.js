@@ -50,8 +50,8 @@ var INDEXNAV = [
   { id: '7', name: '小程序', image: '../../images/uploads/miniprogram.png', url: '../list/list?categoryID=1059', redirecttype: 'apppage', appid: '', extraData: '' },
   { id: '8', name: '官网', image: '../../images/uploads/watch-life.png', url: 'https://www.watch-life.net', redirecttype: 'webpage', appid: '', extraData: '' },
   { id: '9', name: '言论', image: '../../images/uploads/comment.png', url: '../comments/comments', redirecttype: 'apppage', appid: '', extraData: '' },
-  { id: '10', name: '关于', image: '../../images/uploads/about.jpg', url: '../about/about', redirecttype: 'apppage', appid: '', extraData: '' }
-  
+  { id: '10', name: '关于', image: '../../images/uploads/about.jpg', url: '../about/about', redirecttype: 'apppage', appid: '', extraData: '' },
+  { id: '11', name: '站长', image: '../../images/uploads/watch-life.png', url: '../page/page?id=2', redirecttype: 'apppage', appid: '', extraData: '' },
 ];
 
 

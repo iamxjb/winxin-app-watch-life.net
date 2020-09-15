@@ -166,6 +166,20 @@ Page({
     }
 
   },
+
+   // 首次加载评论
+   fristOpenComment() {    
+    this.setData({   
+      page :1,
+      commentsList: [],
+      isLastPage: false
+    })
+    this.fetchCommentData();
+    this.setData({
+      page: this.data.page + 1,
+    });
+  },
+
   onShareAppMessage: function (res) {
     this.ShowHideMenu();
     console.log(res);
@@ -493,6 +507,8 @@ Page({
         if (self.data.openid) {
           self.getIslike();
         }
+      }).then(res=>{
+          self.fristOpenComment();
       })
       .catch(function (error) {
         console.log('error: ' + error);
@@ -703,22 +719,6 @@ Page({
 
       }
 
-
-      // wx.setClipboardData({
-      //   data: href,
-      //   success: function (res) {
-      //     wx.getClipboardData({
-      //       success: function (res) {
-      //         wx.showToast({
-      //           title: '链接已复制',
-      //           //icon: 'success',
-      //           image: '../../images/link.png',
-      //           duration: 2000
-      //         })
-      //       }
-      //     })
-      //   }
-      // })
     }
     else {
       var slug = util.GetUrlFileName(href, domain);
@@ -909,17 +909,13 @@ Page({
     var id = e.target.dataset.id;
     var name = e.target.dataset.name;
     var userid = e.target.dataset.userid;
-    var toFromId = e.target.dataset.formid;
-    var commentdate = e.target.dataset.commentdate;
     isFocusing = true;
     if (self.data.enableComment == "1") {
       self.setData({
         parentID: id,
         placeholder: "回复" + name + ":",
         focus: true,
-        userid: userid,
-        toFromId: toFromId,
-        commentdate: commentdate
+        userid: userid    
       });
 
     }
@@ -936,9 +932,7 @@ Page({
           self.setData({
             parentID: "0",
             placeholder: "评论...",
-            userid: "",
-            toFromId: "",
-            commentdate: ""
+            userid: ""         
           });
         }
 
@@ -958,15 +952,8 @@ Page({
     var self = this;
     var comment = e.detail.value.inputComment;
     var parent = self.data.parentID;
-    var postID = e.detail.value.inputPostID;
-    var formId = e.detail.formId;
-    if (formId == "the formId is a mock one") {
-      formId = "";
-
-    }
+    var postID = e.detail.value.inputPostID;    
     var userid = self.data.userid;
-    var toFromId = self.data.toFromId;
-    var commentdate = self.data.commentdate;
     if (comment.length === 0) {
       self.setData({
         'dialog.hidden': false,
@@ -981,7 +968,7 @@ Page({
         var author_url = self.data.userInfo.avatarUrl;
         var email = self.data.openid + "@qq.com";
         var openid = self.data.openid;
-        var fromUser = self.data.userInfo.nickName;
+     
         var data = {
           post: postID,
           author_name: name,
@@ -990,8 +977,7 @@ Page({
           author_url: author_url,
           parent: parent,
           openid: openid,
-          userid: userid,
-          formId: formId
+          userid: userid
         };
         var url = Api.postWeixinComment();
         var postCommentRequest = wxRequest.postRequest(url, data);
@@ -999,8 +985,10 @@ Page({
         postCommentRequest
           .then(res => {
             console.log(res)
-            if (res.statusCode == 200) {
-              if (res.data.status == '200') {
+            var code =res.data.code;
+            if(res.data.code =='success')
+            {
+
                 self.setData({
                   content: '',
                   parentID: "0",
@@ -1010,108 +998,85 @@ Page({
                   commentsList: []
 
                 });
-                postCommentMessage = res.data.message;
-                if (parent != "0" && !util.getDateOut(commentdate) && toFromId != "") {
-                  var useropenid = res.data.useropenid;
-                  var data =
-                  {
-                    openid: useropenid,
-                    postid: postID,
-                    template_id: self.data.replayTemplateId,
-                    form_id: toFromId,
-                    total_fee: comment,
-                    fromUser: fromUser,
-                    flag: 3,
-                    parent: parent
-                  };
 
-                  // url = Api.sendMessagesUrl();
-                  // var sendMessageRequest = wxRequest.postRequest(url, data);
-                  // sendMessageRequest.then(response => {
-                  //   if (response.data.status == '200') {
-                  //     //console.log(response.data.message);
-                  //   }
-                  //   else {
-                  //     console.log(response.data.message);
-
-                  //   }
-
-                  // });
-
-                }
+                wx.showToast({
+                  title: res.data.message,
+                  mask: false,
+                  icon: "none",
+                  duration: 3000
+                });
+                postCommentMessage = res.data.message;                
                 var commentCounts = parseInt(self.data.total_comments) + 1;
                 self.setData({
                   total_comments: commentCounts,
                   commentCount: "有" + commentCounts + "条评论"
 
                 });
-              }
-              else if (res.data.status == '500') {
-                self.setData({
-                  'dialog.hidden': false,
-                  'dialog.title': '提示',
-                  'dialog.content': '评论失败，请稍后重试。'
-
-                });
-              }
-            }
+            
+            }            
             else {
 
               if (res.data.code == 'rest_comment_login_required') {
-                self.setData({
-                  'dialog.hidden': false,
-                  'dialog.title': '提示',
-                  'dialog.content': '需要开启在WordPress rest api 的匿名评论功能！'
-
-                });
-              }
-              else if (res.data.code == 'rest_invalid_param' && res.data.message.indexOf('author_email') > 0) {
-                self.setData({
-                  'dialog.hidden': false,
-                  'dialog.title': '提示',
-                  'dialog.content': 'email填写错误！'
-
-                });
-              }
-              else {
-                console.log(res)
-                self.setData({
-                  'dialog.hidden': false,
-                  'dialog.title': '提示',
-                  'dialog.content': '评论失败,' + res.data.message
-
-                });
-              }
-            }
-          }).then(response => {
-            //self.fetchCommentData(self.data); 
-            self.setData(
-              {
-                page: 1,
-                commentsList: [],
-                isLastPage: false
-
-              }
-            )
-            self.onReachBottom();
-            //self.fetchCommentData();
-            setTimeout(function () {
               wx.showToast({
-                title: postCommentMessage,
+                title: '需要开启在WordPress rest api 的匿名评论功能！',
                 icon: 'none',
-                duration: 900,
+                duration: 3000,
                 success: function () {
                 }
               })
-            }, 900);
+
+               
+              }
+              else if (res.data.code == 'rest_invalid_param' && res.data.message.indexOf('author_email') > 0) {
+                wx.showToast({
+                  title:  'email填写错误！',
+                  icon: 'none',
+                  duration: 3000,
+                  success: function () {
+                  }
+                })
+               
+              }
+              else if (res.data.code == '87014') {
+                wx.showToast({
+                  title:  '内容含有违法违规内容!',
+                  icon: 'none',
+                  duration: 3000,
+                  success: function () {
+                  }
+                })
+               
+              }
+              else {
+                console.log(res)
+                wx.showToast({
+                  title:  res.data.message,
+                  icon: 'none',
+                  duration: 3000,
+                  success: function () {
+                  }
+                })               
+              }
+            }
+
+            return res ;
+          }).then(res => {
+            
+            if(res.data.code=='success' && res.data.comment_approved=="1")
+            {
+              
+              self.fristOpenComment();  
+            }
+                     
           }).catch(response => {
             console.log(response)
-            self.setData({
-              'dialog.hidden': false,
-              'dialog.title': '提示',
-              'dialog.content': '评论失败,' + response
-
-            });
+            wx.showToast({
+              title:  '评论失败:'+response,
+              icon: 'none',
+              duration: 3000,
+              success: function () {
+              }
+            })  
           })
       }
       else {
