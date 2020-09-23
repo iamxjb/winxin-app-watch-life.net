@@ -715,6 +715,8 @@
   width: 100%;
   overflow: hidden;
   margin: 40rpx auto; 
+  position: relative;
+  z-index: 1;
 }
 ad {
 z-index: 1!important;
