@@ -19,7 +19,7 @@
     "window": {
         "backgroundTextStyle": "light",
          "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "守望轩",
+       
         "navigationBarTextStyle": "black",
         "pageOrientation": "auto"
     },

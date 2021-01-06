@@ -1,8 +1,8 @@
 /*
  * 
- * WordPres版微信小程序
+ * 微慕小程序开源版
  * author: jianbo
- * organization: 守望轩  www.watch-life.net
+ * organization: 微慕  www.minapper.com
  * github:    https://github.com/iamxjb/winxin-app-watch-life.net
  * 技术支持微信号：iamxjb
  * 开源协议：MIT
@@ -130,6 +130,10 @@ Page({
                 //console.log(e);
               }
         })
+  // 设置页面标题：文章分类
+  wx.setNavigationBarTitle({
+    title: webSiteName
+  });
     self.fetchTopFivePosts();
     self.fetchPostsData(self.data);  
 

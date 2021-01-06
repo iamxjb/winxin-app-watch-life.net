@@ -1,12 +1,12 @@
 /*
  * 
- * WordPres版微信小程序
+ * 微慕小程序开源版
  * author: jianbo
- * organization: 守望轩  www.watch-life.net
+ * organization: 微慕  www.minapper.com
  * github:    https://github.com/iamxjb/winxin-app-watch-life.net
  * 技术支持微信号：iamxjb
  * 开源协议：MIT
- * Copyright (c) 2017 https://www.watch-life.net All rights reserved.
+ * Copyright (c) 2017  微慕 https://www.minapper.com All rights reserved.
  */
 
 
@@ -21,7 +21,9 @@ var LOGO = "../../images/logo-icon.png"; // 网站的logo图片
 //设置downloadFile合法域名,不带https ,在中括号([])里增加域名，格式：{id=**,domain:'www.**.com'}，用英文逗号分隔。
 //此处设置的域名和小程序与小程序后台设置的downloadFile合法域名要一致。
 var DOWNLOADFILEDOMAIN = [
-    { id: 1, domain: 'www.watch-life.net'}
+    { id: 1, domain: 'www.watch-life.net'},
+    { id: 2, domain: 'thirdwx.qlogo.cn'},
+    { id: 3, domain: 'wx.qlogo.cn'}
 
 ];
 //业务域名，只支持企业主体的小程序
