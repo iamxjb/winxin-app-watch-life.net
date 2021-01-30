@@ -7,7 +7,7 @@
  * 技术支持微信号：iamxjb
  * 开源协议：MIT
  * 
- *  *Copyright (c) 2017 https://www.watch-life.net All rights reserved.
+ *  *Copyright (c) 2017 https://www.minapper.com All rights reserved.
  */
 import config from '../../utils/config.js'
 var Api = require('../../utils/api.js');
@@ -109,6 +109,25 @@ Page({
         
     }
            
+  },
+
+  refreshlive:function()
+  {
+
+    let openid= this.data.openid
+    var getliveinfo = wxRequest.getRequest(Api.refreshliveinfo(openid));
+    getliveinfo.then(res=>{
+
+        wx.showToast({
+            title: res.data.message,
+            mask: false,
+            icon: "none",
+            duration: 3000
+        }); 
+
+    })
+    
+
   },
 
   exit:function(e)

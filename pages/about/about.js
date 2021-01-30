@@ -43,7 +43,7 @@ Page({
     webSiteName:webSiteName,
     domain:domain,
     downloadFileDomain: config.getDownloadFileDomain,
-    businessDomain:config.getBusinessDomain,
+    businessDomain:wx.getStorageSync('businessDomain'),
    
     
   },
@@ -85,7 +85,7 @@ Page({
       }
       else if(enterpriseMinapp == "0" || system=='iOS') {
 
-          var src = config.getZanImageUrl;
+          var src = wx.getStorageSync('zanImageurl');
           wx.previewImage({
               urls: [src],
           });

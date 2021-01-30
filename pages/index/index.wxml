@@ -19,36 +19,24 @@
 </view>
 
 <!-- 轮播图 -->
-<view style="display:{{displaySwiper}}">
+<!-- <view style="display:{{displaySwiper}}"> -->
   <swiper indicator-dots="true" interval="10000" autoplay="true" indicator-color="rgba(0, 0, 0, .1)" indicator-active-color="rgba(0, 0, 0, .6)">
-    <block wx:key="id" wx:for="{{postsShowSwiperList}}">
-      <swiper-item id="{{item.id}}" index="{{index}}" data-redicttype="{{item.type}}" data-appid="{{item.appid}}" data-url="{{item.url}}" bindtap="redictAppDetail">
-        <image mode="aspectFill" src="{{item.post_full_image}}" />
+    <block wx:key="id" wx:for="{{swipe_nav}}">
+      <swiper-item id="{{item.id}}" index="{{index}}" data-type="{{item.type}}" data-appid="{{item.appid}}" data-path="{{item.path}}" data-url="{{item.url}}" bindtap="redictAppDetail">
+        <image mode="aspectFill" src="{{item.image}}" />
         <view class="swiper-mask"></view>
         <view class="swiper-desc">
-          <text>{{item.post_title}}</text>
+          <text>{{item.title}}</text>
         </view>
       </swiper-item>
     </block>
   </swiper>
-</view>
+<!-- </view> -->
 
 <view style="display:{{showallDisplay}}">
   <!-- 图标导航和搜索 -->
   <view style="display:{{floatDisplay}}">
-    <!-- 图标导航 -->
-    <!-- <view class="nav-box">
-      <block wx:for="{{topNav}}" wx:key="id">
-        <view class="nav-item" catchtap="onNavRedirect" id="{{item.id}}" data-redicttype="{{item.redirecttype}}" data-url="{{item.url}}" data-appid="{{item.appid}}" data-extraData="{{item.extraData}}">
-          <view>
-            <image src="{{item.image}}"></image>
-          </view>
-          <view>
-            <text>{{item.name}}</text>
-          </view>
-        </view>
-      </block>
-    </view> -->
+   
 
     <!-- 精选栏目 -->
     <view class="selected-nav" wx:if="{{topNav.length != 0}}">
@@ -59,16 +47,16 @@
       <!-- 栏目列表 -->
       <scroll-view scroll-x>
         <view class="selected-nav-list">
-          <block  wx:key="id" wx:for="{{topNav}}">
-            <view wx:if="{{ item.redirecttype == 'webpage' || item.redirecttype == 'apppage'}}">
-              <view class="selected-nav-item" catchtap="onNavRedirect" id="{{item.id}}" data-redicttype="{{item.redirecttype}}" data-url="{{item.url}}" data-appid="{{item.appid}}" data-extraData="{{item.extraData}}">
+          <block  wx:key="id" wx:for="{{selected_nav}}">
+          
+              <view class="selected-nav-item" catchtap="redictAppDetail" id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.url}}" data-appid="{{item.appid}}" data-path="{{item.path}}">
                 <view>
                   <image mode="aspectFill" src="{{item.image}}"></image>
                 </view>
                 <view>
-                  <text>{{item.name}}</text>
+                  <text>{{item.title}}</text>
                 </view>
-              </view>
+              
             </view>
 
             <view wx:if="{{ item.redirecttype == 'miniapp'}}">

@@ -328,5 +328,23 @@ module.exports = {
       url += "category/ids";
       return url;
 
+  },
+  getliveinfo(){
+    var url = HOST_URI_WATCH_LIFE_JSON;
+      url += "live/getliveinfo";
+      return url;
+
+  },
+  refreshliveinfo(openid){
+    var url = HOST_URI_WATCH_LIFE_JSON;
+      url += "live/refreshliveinfo?openid="+openid;
+      return url;
+
+  },
+  get_homeconfig()
+  {
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    url += "options/homeconfig";
+    return url;
   }
 };

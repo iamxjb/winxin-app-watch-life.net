@@ -7,7 +7,7 @@
  * 技术支持微信号：iamxjb
  * 开源协议：MIT
  * 
- *  *Copyright (c) 2017 https://www.watch-life.net All rights reserved.
+ *  *Copyright (c) 2017 https://www.minapper.com All rights reserved.
  */
 
 var Api = require('../../utils/api.js');
@@ -20,7 +20,7 @@ var pageCount = config.getPageCount;
 
 var webSiteName = config.getWebsiteName;
 var domain =config.getDomain;
-var topNav=config.getIndexNav;
+
 
 Page({
   data: {
@@ -38,12 +38,13 @@ Page({
     displaySwiper: "none",
     floatDisplay: "none",
     displayfirstSwiper: "none",
-    topNav: topNav,
     listAdsuccess:true,
     webSiteName:webSiteName,
     domain:domain,
     isFirst: false, // 是否第一次打开,
-    isLoading: false
+    isLoading: false,
+    swipe_nav:[],
+    selected_nav:[]
 
   },
   formSubmit: function (e) {
@@ -102,8 +103,9 @@ Page({
       listAdsuccess:true
 
     });
-    this.fetchTopFivePosts();
+    this.getHomeconfig();
     this.fetchPostsData(self.data);
+   
 
   },
   onReachBottom: function () {
@@ -134,7 +136,7 @@ Page({
   wx.setNavigationBarTitle({
     title: webSiteName
   });
-    self.fetchTopFivePosts();
+   // self.fetchTopFivePosts();
     self.fetchPostsData(self.data);  
 
     // 判断用户是不是第一次打开，弹出添加到我的小程序提示
@@ -152,6 +154,8 @@ Page({
         });
       }, 5000)
     }
+
+    this.getHomeconfig();
 
   },
   onShow: function (options) {
@@ -174,34 +178,33 @@ Page({
     console.log(wx.getStorageSync('openAdLogs'));
 
   },
-  fetchTopFivePosts: function () {
+  getHomeconfig()
+  {
+    //获取扩展设置
     var self = this;
-    //获取滑动图片的文章
-    var getPostsRequest = wxRequest.getRequest(Api.getSwiperPosts());
-    getPostsRequest.then(response => {
-      if (response.data.status == '200' && response.data.posts.length > 0) {
-        self.setData({
-          postsShowSwiperList: self.data.postsShowSwiperList.concat(response.data.posts.map(function (item) {
-            if (!item.post_large_image) {
-              item.post_large_image = "../../images/logo700.png";
-            }
-            return item;
-          })),
-          displaySwiper: "block"
-        });
-      } else {
-        self.setData({
-          displaySwiper: "none"
-        });
-      }
-    }).catch(function (response) {
-      console.log(response);
-      self.setData({
-        showerror: "block",
-        floatDisplay: "none"
-      });
-    }).finally(function () { });
-  },
+    
+    var getHomeconfig = wxRequest.getRequest(Api.get_homeconfig());
+    getHomeconfig.then(res=> {
+        // console.log(res.data);
+         let expand = res.data.expand;
+         let swipe_nav= expand.swipe_nav;
+         let selected_nav=expand.selected_nav;
+         let _d = res.data.downloadfileDomain
+         let _b = res.data.businessDomain
+
+         let zanImageurl = res.data.zanImageurl
+         let logoImageurl = res.data.logoImageurl
+
+         let downloadfileDomain = _d.length ? _d.split(',') : []
+        let businessDomain = _b.length ? _b.split(',') : []
+         self.setData({swipe_nav:swipe_nav,selected_nav,selected_nav});
+         wx.setStorageSync('downloadfileDomain',downloadfileDomain);
+         wx.setStorageSync('businessDomain',businessDomain);
+         wx.setStorageSync('zanImageurl',zanImageurl);
+         wx.setStorageSync('logoImageurl',logoImageurl);
+    }
+    );
+  },  
 
   //获取文章列表数据
   fetchPostsData: function (data) {
@@ -369,41 +372,23 @@ Page({
   },
   // 跳转至查看小程序列表页面或文章详情页
   redictAppDetail: function (e) {
-    // console.log('查看文章');
-    var id = e.currentTarget.id;
-    var redicttype = e.currentTarget.dataset.redicttype;
-    var url = e.currentTarget.dataset.url == null ? '' : e.currentTarget.dataset.url;
-    var appid = e.currentTarget.dataset.appid == null ? '' : e.currentTarget.dataset.appid;
+    let { type, appid, url, path } = e.currentTarget.dataset
 
-    if (redicttype == 'detailpage') //跳转到内容页
-    {
-      url = '../detail/detail?id=' + id;
+    if (type === 'apppage') { // 小程序页面         
       wx.navigateTo({
-        url: url
+        url: path
       })
     }
-    if (redicttype == 'apppage') { //跳转到小程序内部页面         
+    if (type === 'webpage') { // web-view页面
+      url = '../webpage/webpage?url=' + url
       wx.navigateTo({
-        url: url
+        url:url
       })
-    } else if (redicttype == 'webpage') //跳转到web-view内嵌的页面
-    {
-      url = '../webpage/webpage?url=' + url;
-      wx.navigateTo({
-        url: url
-      })
-    } else if (redicttype == 'miniapp') //跳转到其他app
-    {
+    }
+    if (type === 'miniapp') { // 其他小程序
       wx.navigateToMiniProgram({
         appId: appid,
-        envVersion: 'release',
-        path: url,
-        success(res) {
-          // 打开成功
-        },
-        fail: function (res) {
-          console.log(res);
-        }
+        path:path
       })
     }
   },

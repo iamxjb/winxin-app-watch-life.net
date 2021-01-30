@@ -30,6 +30,9 @@
       <view class="btn-update" wx:if="{{openid !=''}}">
         <button open-type="getUserInfo" bindgetuserinfo="refresh">更新信息</button>
       </view>
+       <view class="btn-update" wx:if="{{openid !='' && userLevel.level =='10'}}">
+        <button open-type="getUserInfo" bindgetuserinfo="refreshlive">更新直播</button>
+      </view>
       <!-- 退出登录按钮 -->
       <view class="btn-exit" catchtap="exit">{{openid !='' ? '退出登录' : '清除缓存'}}</view>
     </view>

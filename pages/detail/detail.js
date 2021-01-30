@@ -5,7 +5,7 @@
  * github:    https://github.com/iamxjb/winxin-app-watch-life.net
  * 技术支持微信号：iamxjb
  * 开源协议：MIT
- *  *Copyright (c) 2017 https://www.watch-life.net All rights reserved.
+ *  *Copyright (c) 2017 https://www.minapper.com All rights reserved.
  */
 
 
@@ -71,7 +71,7 @@ Page({
     toFromId: "",
     commentdate: "",
     flag: 1,
-    logo: config.getLogo,
+    logo: wx.getStorageSync('logoImageurl'),
     enableComment: true,
     isLoading: false,
     total_comments: 0,
@@ -79,8 +79,8 @@ Page({
     openid: "",
     userInfo: {},
     system: '',
-    downloadFileDomain: config.getDownloadFileDomain,
-    businessDomain:config.getBusinessDomain,
+    downloadFileDomain: wx.getStorageSync('downloadfileDomain'),
+    businessDomain:wx.getStorageSync('businessDomain'),
 
     isPlayAudio: false,
     audioSeek: 0,
@@ -345,7 +345,7 @@ Page({
     }
     else if(enterpriseMinapp == "0" || system=='iOS'){
 
-      var src = config.getZanImageUrl;
+      var src = wx.getStorageSync('zanImageurl');
       wx.previewImage({
         urls: [src],
       });

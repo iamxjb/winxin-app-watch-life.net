@@ -6,7 +6,7 @@
  * github:    https://github.com/iamxjb/winxin-app-watch-life.net
  * 技术支持微信号：iamxjb
  * 开源协议：MIT
- *  *Copyright (c) 2017 https://www.watch-life.net All rights reserved.
+ *  *Copyright (c) 2017 https://www.minapper.com All rights reserved.
  * 
  */
 function wxPromisify(fn) {
@@ -25,6 +25,7 @@ function wxPromisify(fn) {
   }
 }
 //无论promise对象最后状态如何都会执行
+if (!Promise.prototype.finally) {
 Promise.prototype.finally = function (callback) {
   let P = this.constructor;
   return this.then(
@@ -32,6 +33,7 @@ Promise.prototype.finally = function (callback) {
     reason => P.resolve(callback()).then(() => { throw reason })
   );
 };
+}
 /**
  * 微信用户登录,获取code
  */

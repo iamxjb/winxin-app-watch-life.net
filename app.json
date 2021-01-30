@@ -13,7 +13,8 @@
         "pages/webpage/webpage",
         "pages/comments/comments",
         "pages/poster/poster",
-        "pages/search/search"
+        "pages/search/search",
+        "pages/live/live"
         
     ],
     "window": {
@@ -54,7 +55,13 @@
         "connectSocket": 10000,
         "uploadFile": 10000,
         "downloadFile": 10000
-    },   
+    },  
+    "plugins": {        
+        "live-player-plugin": {
+          "version": "1.2.7",
+          "provider": "wx2b03c6e691cd7370"
+        }
+      }, 
     "sitemapLocation": "sitemap.json",
     "resizable":false
 }
