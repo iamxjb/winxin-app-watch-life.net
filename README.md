@@ -176,6 +176,8 @@ https://www.minapper.com
 
 <a href="https://www.watch-life.net/wordpress/minapper-free-3-6.html" rel="noopener noreferrer" target="_blank">18.微慕WordPress小程序开源版v3.6发布</a>
 
+<a href="https://www.watch-life.net/wechat/minapper-free-4-0-0.html" rel="noopener noreferrer" target="_blank">18.微慕WordPress小程序开源版v4.0发布</a>
+
 # 优秀微慕小程序推荐
 
 <a href="https://www.watch-life.net/wordpress/wordpress-weixin-app-for-you-1.html" target="_blank">优秀WordPress版微信小程序推荐(一)</a>

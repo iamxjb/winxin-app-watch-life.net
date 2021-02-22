@@ -1,104 +1,104 @@
 {
-    "description": "项目配置文件。",
-    "setting": {
-        "urlCheck": true,
-        "es6": true,
-        "enhance": true,
-        "postcss": true,
-        "preloadBackgroundData": false,
-        "minified": true,
-        "newFeature": true,
-        "coverView": true,
-        "nodeModules": true,
-        "autoAudits": false,
-        "showShadowRootInWxmlPanel": true,
-        "scopeDataCheck": false,
-        "uglifyFileName": true,
-        "checkInvalidKey": true,
-        "checkSiteMap": true,
-        "uploadWithSourceMap": true,
-        "compileHotReLoad": true,
-        "useMultiFrameRuntime": true,
-        "useApiHook": true,
-        "useApiHostProcess": false,
-        "babelSetting": {
-            "ignore": [],
-            "disablePlugins": [],
-            "outputPath": ""
-        },
-        "bundle": false,
-        "useIsolateContext": true,
-        "useCompilerModule": true,
-        "userConfirmedUseCompilerModuleSwitch": false,
-        "userConfirmedBundleSwitch": false,
-        "packNpmManually": false,
-        "packNpmRelationList": [],
-        "minifyWXSS": true
+  "description": "项目配置文件。",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": true,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": true,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
     },
-    "compileType": "miniprogram",
-    "libVersion": "2.15.0",
-    "appid": "wx39075d0bde24f9f7",
-    "projectname": "%22%E5%AE%88%E6%9C%9B%E8%BD%A9%22%E7%BD%91%E7%AB%99%E5%B0%8F%E7%A8%8B%E5%BA%8F",
-    "simulatorType": "wechat",
-    "simulatorPluginLibVersion": {},
-    "condition": {
-        "search": {
-            "list": [
-                {
-                    "name": "test",
-                    "pathName": "",
-                    "title": "",
-                    "cacheKey": ""
-                }
-            ]
-        },
-        "conversation": {
-            "list": [
-                {
-                    "name": "test",
-                    "query": "",
-                    "boxQI": "",
-                    "service": {}
-                }
-            ]
-        },
-        "plugin": {
-            "list": []
-        },
-        "game": {
-            "list": []
-        },
-        "miniprogram": {
-            "list": [
-                {
-                    "id": -1,
-                    "name": "评论",
-                    "pathName": "pages/comments/comments",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "专题页",
-                    "pathName": "pages/topic/topic",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "我的",
-                    "pathName": "pages/readlog/readlog",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "id": -1,
-                    "name": "文章详情",
-                    "pathName": "pages/detail/detail",
-                    "query": "id=1553",
-                    "scene": null
-                }
-            ]
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.15.0",
+  "appid": "wx39075d0bde24f9f7",
+  "projectname": "%22%E5%AE%88%E6%9C%9B%E8%BD%A9%22%E7%BD%91%E7%AB%99%E5%B0%8F%E7%A8%8B%E5%BA%8F",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": [
+        {
+          "name": "test",
+          "pathName": "",
+          "title": "",
+          "cacheKey": ""
         }
+      ]
+    },
+    "conversation": {
+      "list": [
+        {
+          "name": "test",
+          "query": "",
+          "boxQI": "",
+          "service": {}
+        }
+      ]
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "评论",
+          "pathName": "pages/comments/comments",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "专题页",
+          "pathName": "pages/topic/topic",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/readlog/readlog",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "文章详情",
+          "pathName": "pages/detail/detail",
+          "query": "id=1553",
+          "scene": null
+        }
+      ]
     }
+  }
 }
