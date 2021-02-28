@@ -16,6 +16,7 @@ var Auth = require('../../utils/auth.js');
 var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js');
+const Adapter = require('../../utils/adapter.js')
 var webSiteName= config.getWebsiteName;
 var domain =config.getDomain
 var app = getApp();
@@ -44,7 +45,7 @@ Page({
                     //console.log(e);
                   }
             })
-        
+        Adapter.setInterstitialAd("enable_topic_interstitial_ad");
         this.fetchCategoriesData();
         
     },

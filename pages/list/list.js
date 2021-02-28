@@ -14,6 +14,7 @@ var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
+const Adapter = require('../../utils/adapter.js')
 var wxRequest = require('../../utils/wxRequest.js')
 
 import config from '../../utils/config.js'
@@ -173,7 +174,7 @@ Page({
             }
       })
     // 设置插屏广告
-    this.setInterstitialAd();
+    Adapter.setInterstitialAd("enable_list_interstitial_ad");
     if (options.categoryID && options.categoryID != 0) {
       self.setData({
         categories: options.categoryID,
@@ -356,28 +357,8 @@ Page({
       })
     }
 
-  },
-  // 获取小程序插屏广告
-  setInterstitialAd: function () {
-    var getOptionsRequest = wxRequest.getRequest(Api.getOptions());
-    getOptionsRequest.then(res => {
-      // 获取广告id，创建插屏广告组件
-      if(res.interstitialAdId =="") return;
-      let interstitialAd = wx.createInterstitialAd({
-        adUnitId: res.data.interstitialAdId
-      })
-      // 监听插屏错误事件
-      interstitialAd.onError((err) => {
-        console.error(err)
-      })
-      // 显示广告
-      if (interstitialAd) {
-        interstitialAd.show().catch((err) => {
-          console.error(err)
-        })
-      }
-    })
-  },
+  }
+  
 
 })
 

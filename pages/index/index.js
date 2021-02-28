@@ -16,6 +16,7 @@ var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
 import config from '../../utils/config.js'
+const Adapter = require('../../utils/adapter.js')
 var pageCount = config.getPageCount;
 
 var webSiteName = config.getWebsiteName;
@@ -137,6 +138,7 @@ Page({
     title: webSiteName
   });
    // self.fetchTopFivePosts();
+   Adapter.setInterstitialAd("enable_index_interstitial_ad");
     self.fetchPostsData(self.data);  
 
     // 判断用户是不是第一次打开，弹出添加到我的小程序提示

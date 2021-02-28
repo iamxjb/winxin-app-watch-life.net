@@ -15,7 +15,7 @@ var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
-
+const Adapter = require('../../utils/adapter.js')
 import config from '../../utils/config.js'
 var pageCount = config.getPageCount;
 
@@ -71,6 +71,7 @@ Page({
                     //console.log(e);
                   }
             })
+        Adapter.setInterstitialAd("enable_comments_interstitial_ad");
         self.fetchCommentsData();
     },
     //获取文章列表数据

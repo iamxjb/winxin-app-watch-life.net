@@ -16,6 +16,7 @@ var Auth = require('../../utils/auth.js');
 var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
+const Adapter = require('../../utils/adapter.js')
 
 const innerAudioContext = wx.createInnerAudioContext();
 let ctx = wx.createCanvasContext('mycanvas');  
@@ -113,6 +114,7 @@ Page({
     self.fetchDetailData(options.id);
     Auth.setUserInfoData(self);
     Auth.checkLogin(self);
+    Adapter.setInterstitialAd("enable_detail_interstitial_ad");
     wx.getSystemInfo({
       success: function (t) {
         var system = t.system.indexOf('iOS') != -1 ? 'iOS' : 'Android';
@@ -800,7 +802,7 @@ Page({
     var n=0;
     for (var i = 0; i < self.data.downloadFileDomain.length; i++) {
 
-      if (src.indexOf(self.data.downloadFileDomain[i].domain) != -1) {
+      if (src.indexOf(self.data.downloadFileDomain[i]) != -1) {
         n++;
         break;
       }
@@ -1171,7 +1173,7 @@ Page({
       var n = 0;
       for (var i = 0; i < downloadFileDomain.length; i++) {
 
-        if (postImageUrl.indexOf(downloadFileDomain[i].domain) != -1) {
+        if (postImageUrl.indexOf(downloadFileDomain[i]) != -1) {
           n++;
           break;
         }

@@ -15,7 +15,7 @@ var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
-
+const Adapter = require('../../utils/adapter.js')
 var webSiteName= config.getWebsiteName;
 var domain =config.getDomain
 
@@ -126,6 +126,7 @@ Page({
             }
       })
     this.fetchPostsData("1");
+    Adapter.setInterstitialAd("enable_hot_interstitial_ad");
         
   },
   //获取文章列表数据

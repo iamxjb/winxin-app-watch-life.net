@@ -77,14 +77,14 @@
 
 
     <!-- 搜索 -->
-    <!-- <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
+    <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
       <view class="search-box">
         <input value="" id="search-input" name="input" confirm-type="search" class="search-input" placeholder="搜索你感兴趣的内容..." bindconfirm="formSubmit"></input>
         <button class="search-button" form-type="submit" size="mini" plain="true">
           <icon type="search" color="#959595" size="16" />
         </button>
       </view>
-    </form> -->
+    </form>
 
   </view>
   <!-- 文章列表 -->

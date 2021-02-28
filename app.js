@@ -9,7 +9,6 @@
  * 
  */
 
-
 App({
     
   onLaunch: function () {
@@ -19,6 +18,7 @@ App({
     wx.setStorageSync('logs', logs)
     // 小程序主动更新
     this.updateManager();
+   
 
     
   },
@@ -39,7 +39,9 @@ App({
         }
       })
     }
-  },/*小程序主动更新
+  },
+  
+  /*小程序主动更新
     */
   updateManager() {
     if (!wx.canIUse('getUpdateManager')) {

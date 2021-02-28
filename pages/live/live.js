@@ -10,6 +10,7 @@ var util = require('../../utils/util.js');
 var wxRequest = require('../../utils/wxRequest.js')
 import config from '../../utils/config.js'
 var webSiteName = config.getWebsiteName;
+const Adapter = require('../../utils/adapter.js')
 
 Page({
   data: {
@@ -24,6 +25,8 @@ Page({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"]
     })
+
+    Adapter.setInterstitialAd("enable_live_interstitial_ad");
   },
 
   // 自定义分享朋友圈
