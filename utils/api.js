@@ -214,7 +214,7 @@ module.exports = {
   //获取用户openid
   getOpenidUrl() {
     var url = HOST_URI_WATCH_LIFE_JSON;
-    url += "weixin/getopenid";
+    url += "weixin/userlogin";
     return url;
   },
 

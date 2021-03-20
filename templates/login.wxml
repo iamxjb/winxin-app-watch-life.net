@@ -10,7 +10,8 @@
 
     <view class="login-btn-box">
       <button class="login-btn" bindtap="closeLoginPopup">取消</button>
-      <button class="login-btn" open-type="getUserInfo" bindgetuserinfo="agreeGetUser">确定</button>
+      <!-- <button class="login-btn" open-type="getUserInfo" bindgetuserinfo="agreeGetUser">确定</button> -->
+        <button class="login-btn" bindtap="agreeGetUser">确定</button>
     </view>
 
   </block>
