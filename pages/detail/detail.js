@@ -1187,6 +1187,20 @@ Page({
     } else {
       postImageUrl = defaultPostImageUrl;
     }
+
+    if(!postImageUrl)
+    {
+      
+      wx.showToast({
+        title: '文章没有图片且插件未设置默认海报封面图',
+        icon: 'none',
+        duration: 3000,
+        success: function () {
+        }
+      })
+      return;
+
+    }
     var posterConfig = {
       width: 750,
       height: 1200,

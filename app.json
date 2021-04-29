@@ -56,10 +56,8 @@
         "uploadFile": 10000,
         "downloadFile": 10000
     },  
-    "plugins": {        
-       
-
-        
+    "plugins": {
+                
       }, 
     "sitemapLocation": "sitemap.json",
     "resizable":false

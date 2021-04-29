@@ -21,7 +21,7 @@ var HOST_URI_WATCH_LIFE_JSON = 'https://' + domain + '/wp-json/watch-life-net/v1
 module.exports = {  
   // 获取文章列表数据
   getPosts: function (obj) {
-      var url = HOST_URI + 'posts?per_page=' + pageCount+'&orderby=date&order=desc&page=' + obj.page;
+      var url = HOST_URI_WATCH_LIFE_JSON + 'posts?per_page=' + pageCount+'&orderby=date&order=desc&page=' + obj.page;
     
     if (obj.categories != 0) {
       url += '&categories=' + obj.categories;
@@ -35,12 +35,12 @@ module.exports = {
   },
   // 获取多个分类文章列表数据
   getPostsByCategories: function (categories) {
-      var url = HOST_URI + 'posts?per_page=20&orderby=date&order=desc&page=1&categories=' + categories;
+      var url = HOST_URI_WATCH_LIFE_JSON + 'posts?per_page=20&orderby=date&order=desc&page=1&categories=' + categories;
       return url;
   },
 // 获取置顶的文章
   getStickyPosts: function () {
-    var url = HOST_URI + 'posts?sticky=true&per_page=5&page=1';
+    var url = HOST_URI_WATCH_LIFE_JSON + 'posts?sticky=true&per_page=5&page=1';
     return url;
 
   },
@@ -71,7 +71,7 @@ module.exports = {
 
   // 获取tag相关的文章列表
   getPostsByTags: function (id,tags) {
-      var url = HOST_URI + 'posts?per_page=5&&page=1&exclude=' + id + "&tags=" + tags;
+      var url = HOST_URI_WATCH_LIFE_JSON + 'posts?per_page=5&&page=1&exclude=' + id + "&tags=" + tags;
 
       return url;
 
@@ -80,14 +80,14 @@ module.exports = {
 
   // 获取特定id的文章列表
   getPostsByIDs: function (obj) {
-    var url = HOST_URI + 'posts?include=' + obj;
+    var url = HOST_URI_WATCH_LIFE_JSON + 'posts?include=' + obj;
 
     return url;
 
   },
   // 获取特定slug的文章内容
   getPostBySlug: function (obj) {
-      var url = HOST_URI + 'posts?slug=' + obj;
+      var url = HOST_URI_WATCH_LIFE_JSON + 'posts?slug=' + obj;
 
       return url;
 
@@ -95,7 +95,7 @@ module.exports = {
   // 获取内容页数据
   getPostByID: function (id) {
     
-    return HOST_URI + 'posts/' + id;
+    return HOST_URI_WATCH_LIFE_JSON + 'posts/' + id;
   },
   // 获取页面列表数据
   getPages: function () {
