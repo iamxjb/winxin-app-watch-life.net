@@ -82,6 +82,11 @@ https://www.minapper.com
 
 ![iamxjb](https://www.watch-life.net/images/iamxjbweixin.jpg) 
 
+
+# 技术支持论坛
+
+https://forum.minapper.com/
+
 # 开源协议：MIT
 
 
@@ -178,16 +183,10 @@ https://www.minapper.com
 
 <a href="https://www.watch-life.net/wechat/minapper-free-4-0-0.html" rel="noopener noreferrer" target="_blank">18.微慕WordPress小程序开源版v4.0发布</a>
 
-# 优秀微慕小程序推荐
+<a href="https://www.watch-life.net/wordpress/minapper-wechat-search.html" target="_blank" rel="noopener noreferrer">20.微慕搜索助手插件：minapper-wechat-search</a>
 
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-app-for-you-1.html" target="_blank">优秀WordPress版微信小程序推荐(一)</a>
+<a href="https://www.watch-life.net/wordpress/minapper-rest-api-cache.html" target="_blank" rel="noopener noreferrer">21.微慕 rest api 缓存插件</a>
 
-<a href="https://www.watch-life.net/wordpress/wordpress-weixin-app-for-you-2.html" target="_blank">优秀WordPress版微信小程序推荐(二)</a>
-
-
-# 讨论微信群：
-
-由于微信群超过100人，无法再扫描二维码加入。如果你想加入，请先加我的微信：iamxjb ，我拉你入群。
 
 
 
