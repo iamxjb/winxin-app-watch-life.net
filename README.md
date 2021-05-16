@@ -66,6 +66,12 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 3.https://gitlab.com/xiajianbo/winxin-app-watch-life.net
 
+# 备用下载
+考虑到国内网络原因，可能无法下载小程序和插件，我们提供备用下载地址，下载方法：
+
+1. 关注公众号：微慕（minapper）
+2. 发送关键词消息：开源
+
 
 # 小程序访问微信二维码：
 
