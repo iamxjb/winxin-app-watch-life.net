@@ -54,6 +54,10 @@
 
 24.图片支持小程序懒加载和识别二维码
 
+25.小程序直播
+
+26.支持微信搜一搜页面接入和内容搜索
+
 # 开源地址
 
 https://github.com/iamxjb/winxin-app-watch-life.net
