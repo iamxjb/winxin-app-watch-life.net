@@ -19,7 +19,6 @@
 </view>
 
 <!-- 轮播图 -->
-<!-- <view style="display:{{displaySwiper}}"> -->
   <swiper indicator-dots="true" interval="10000" autoplay="true" indicator-color="rgba(0, 0, 0, .1)" indicator-active-color="rgba(0, 0, 0, .6)">
     <block wx:key="id" wx:for="{{swipe_nav}}">
       <swiper-item id="{{item.id}}" index="{{index}}" data-type="{{item.type}}" data-appid="{{item.appid}}" data-path="{{item.path}}" data-url="{{item.url}}" bindtap="redictAppDetail">
@@ -31,13 +30,11 @@
       </swiper-item>
     </block>
   </swiper>
-<!-- </view> -->
 
-<view style="display:{{showallDisplay}}">
+
+<view>
   <!-- 图标导航和搜索 -->
-  <view style="display:{{floatDisplay}}">
-   
-
+  <view>
     <!-- 精选栏目 -->
     <view class="selected-nav" wx:if="{{topNav.length != 0}}">
       <view class='common-subtitle'>
@@ -100,7 +97,7 @@
       <view class="no-more" hidden="{{!isLastPage}}">- 无更多文章 -</view>
     </view>
     <!-- 版权信息template模板 -->
-    <view class="copyright" style="display:{{floatDisplay}}">
+    <view class="copyright">
   <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
     </view>
   </view>

@@ -33,12 +33,8 @@ Page({
     categories: 0,
     showerror: "none",
     showCategoryName: "",
-    categoryName: "",
-    showallDisplay: "block",
-    displayHeader: "none",
-    displaySwiper: "none",
-    floatDisplay: "none",
-    displayfirstSwiper: "none",
+    categoryName: "", 
+    floatDisplay: "none",  
     listAdsuccess:true,
     webSiteName:webSiteName,
     domain:domain,
@@ -94,9 +90,7 @@ Page({
   onPullDownRefresh: function () {
     var self = this;
     self.setData({
-      showerror: "none",
-      showallDisplay: "block",
-      displaySwiper: "none",
+      showerror: "none",       
       floatDisplay: "none",
       isLastPage: false,
       page: 1,
