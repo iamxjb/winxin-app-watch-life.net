@@ -108,7 +108,7 @@ https://forum.minapper.com/
 
 # 安装使用说明文档
 
-<a href="https://www.watch-life.net/wordpress/weixin-app-install.html" target="_blank" rel="noopener">WordPress版微信小程序安装使用说明</a>
+<a href="https://docs.minapper.com/minfree" target="_blank" rel="noopener">微慕小程序开源版安装使用手册</a>
 
 # 微慕WordPress小程序增强版和专业版
 
