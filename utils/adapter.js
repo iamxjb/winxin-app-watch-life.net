@@ -17,7 +17,7 @@ function setInterstitialAd(pagetype) {
       var enable_hot_interstitial_ad=res.data.enable_hot_interstitial_ad;
       var enable_comments_interstitial_ad=res.data.enable_comments_interstitial_ad;
       var enable_live_interstitial_ad=res.data.enable_live_interstitial_ad;
-      if(!res.interstitialAdId) return;
+      if(!adUnitId) return;
       let interstitialAd = wx.createInterstitialAd({
         adUnitId: adUnitId
       })
