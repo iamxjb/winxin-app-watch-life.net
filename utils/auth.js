@@ -56,22 +56,35 @@ Auth.checkAgreeGetUser=function(e,app,appPage,authFlag)
         if(wxLoginInfo.js_code)
             {
                 Auth.agreeGetUser(e,wxLoginInfo,authFlag).then(res=>{
-                if (res.errcode==""){                    
-                    wx.setStorageSync('userInfo',res.userInfo);
-                    wx.setStorageSync('openid',res.openid);
-                    wx.setStorageSync('userLevel',res.userLevel);
-                    appPage.setData({openid:res.openid});
-                    appPage.setData({userInfo:res.userInfo});
-                    appPage.setData({userLevel:res.userLevel});                 
-                   
-                }
-                else
-                {
-                    var userInfo ={avatarUrl:"../../images/gravatar.png",nickName:"点击登录",isLogin:false}
-                    appPage.setData({userInfo:userInfo});
-                    console.log("用户拒绝了授权");
-                }
-                appPage.setData({ isLoginPopup: false });
+                    if (res.errcode ==""){                    
+                        wx.setStorageSync('userInfo',res.userInfo);
+                        wx.setStorageSync('openid',res.openid);
+                        wx.setStorageSync('userLevel',res.userLevel);
+                        appPage.setData({openid:res.openid});
+                        appPage.setData({userInfo:res.userInfo});
+                        appPage.setData({userLevel:res.userLevel});                 
+                    
+                    }
+                    else
+                    {
+                        var userInfo ={avatarUrl:"../../images/gravatar.png",nickName:"点击登录",isLogin:false}
+                        appPage.setData({userInfo:userInfo});
+                        wx.showModal({
+                            title: '提示',
+                            content: '登录失败,清除缓存重新登录?',
+                            success (res) {
+                              if (res.confirm) {
+                                Auth.logout(appPage);            
+                                Auth.checkLogin(appPage); 
+                              
+                              } else if (res.cancel) {
+                                
+                              }
+                            }
+                          })
+                    
+                    }
+                    appPage.setData({ isLoginPopup: false });
 
                 })
             }
@@ -183,9 +196,14 @@ Auth.agreeGetUser=function(e,wxLoginInfo,authFlag){
           args.avatarUrl=userInfo.avatarUrl;
           args.nickname=userInfo.nickName;
           data.userInfo =userInfo;
+          wx.showLoading({
+            title: "正在登录...",
+            mask: true
+          })
           var url = Api.getOpenidUrl();  
           var postOpenidRequest = wxRequest.postRequest(url, args);
             //获取openid
+            wx.hideLoading();  
                  postOpenidRequest.then(response => {
                 if (response.data.status == '200') {
                     //console.log(response.data.openid)
@@ -208,32 +226,25 @@ Auth.agreeGetUser=function(e,wxLoginInfo,authFlag){
 
                 }
                 else {
-                    console.log(response);
-                    reject(response);
+                    data.errcode = response.code;
+                    data.message=  response.message;
+                    resolve(args);
                 }
-            }).catch(function (error) {
-                console.log('error: ' + error);                        
-                reject(error);
             })
-         
-
-        //   Auth.userLogin(args, api).then(userSession => {
-        //     args.userSession = userSession;
-        //     args.errcode = "";
-        //     resolve(args);
-        //   })
-
-
         },
         fail: (err) => {
           if(authFlag=='0'  &&  err.errMsg=='getUserProfile:fail auth deny')
           {
-            args.errcode=e.detail.errMsg;
-            args.userInfo={isLogin:false}
-            args.userSession="";            
-            resolve(args);
-            return;
+             err.errMsg="用户拒绝了授权";
           }
+            args.errcode=err.errMsg;
+            args.userInfo={isLogin:false}
+            args.userSession="";   
+            wx.showToast({
+                icon: 'none',
+                title: err.errMsg || '登录错误，请稍后再试',
+              })
+            resolve(args);
           
         }
       });

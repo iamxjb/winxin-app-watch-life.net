@@ -22,7 +22,7 @@
 
   <view class='userinfo_right'>
     <!-- 昵称 -->
-    <text class="userinfo_nickname">{{openid !='' ? userInfo.nickName : '登录'}}</text>
+    <text class="userinfo_nickname" bindtap="{{openid !='' ? '' : 'openLoginPopup'}}">{{openid !='' ? userInfo.nickName : '登录'}}</text>
     <view class='userinfo_des_box'>
       <!-- 角色 -->
       <text class="userinfo_role" decode="{{true}}">{{openid !='' ? userLevel.levelName : '角色'}}</text>
