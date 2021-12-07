@@ -10,7 +10,6 @@
  * 
  */-->
 
-<import src="../../wxParse/wxParse.wxml" />
 <import src="../../templates/copyright.wxml" />
 <import src="../../templates/loading.wxml" />
 <import src="../../templates/modal-view/modal-view.wxml" />
@@ -40,50 +39,9 @@
       <text>{{likeCount}}</text>
     </view>
     <!-- 文章正文 -->
-    <view class="entry-summary" id="entry-summary" style="height:{{detailSummaryHeight}}">
+    <view class="entry-summary" id="entry-summary" style="height:{{detailSummaryHeight}}">       
 
-        <!-- 音频 -->
-        <view class='audioPlayer' style="display:{{displayAudio}}">
-          <view class='player'>
-            <view class='audioControls'>
-              <view class='flex'>
-                <view class='audio_left'>
-                  <image src='{{detail.post_medium_image}}' class='audio_img' mode="aspectFill"></image>
-                  <view class='audio_btn' catchtap='playAudio'>
-                    <!-- 按钮 -->
-                    <view wx:if="{{isPlayAudio}}">
-                      <image src='../../images/pause.png' class='audio_btn_icon' />
-                    </view>
-                    <view wx:else>
-                      <image src='../../images/play.png' class='audio_btn_icon' />
-                    </view>
-                  </view>
-                </view>
-
-                <view class='audio_right'>
-                  <view class='audio_title'>{{detail.audios[0].title}}</view>
-                  <view class='audio_singer'>{{detail.audios[0].singer}}</view>
-                  <view class='slider'>
-                    <slider bindchange='sliderChange' activeColor='red' block-size="12" value='{{audioTime}}' />
-                  </view>
-                  <view class='time_box'>
-                    <view class='time'>
-                      {{showTime1}}
-                    </view>
-                    <view class='time'>
-                      {{showTime2}}
-                    </view>
-                  </view>
-                </view>
-
-              </view>
-            </view>
-          </view>
-        </view>
-
-
-      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-
+     <mp-html content="{{ detail.content.rendered }}" bindlinktap="wxParseTagATap" copy-link="{{false}}" selectable="{{true}}" lazy-load="{{true}}" markdown="{{true}}" />
       <!-- 阅读更多 -->
         <view class="detail-read-more" wx:if="{{detailSummaryHeight != ''}}">
           <view class="detail-readmore-mask">
@@ -257,7 +215,7 @@
                 <button class="comment-button touch-active" formType="submit">发送</button>
               </view>
               <!-- 更多按钮 -->
-              <image src="../../images/entry-more.png" class="comment_icon_more" catchtap="ShowHideMenu" mode=""></image>
+              <!-- <image src="../../images/entry-more.png" class="comment_icon_more" catchtap="ShowHideMenu" mode=""></image> -->
 
             </view>
 

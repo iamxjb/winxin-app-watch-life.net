@@ -184,7 +184,10 @@ Auth.agreeGetUser=function(e,wxLoginInfo,authFlag){
        let args={};
        let data={};        
        args.js_code =wxLoginInfo.js_code;
-
+       wx.showLoading({
+        title: "正在登录...",
+        mask: true
+       })
        wx.getUserProfile({
         lang: 'zh_CN',
         desc: '登录后信息展示',
@@ -195,11 +198,7 @@ Auth.agreeGetUser=function(e,wxLoginInfo,authFlag){
           userInfo.isLogin =true;
           args.avatarUrl=userInfo.avatarUrl;
           args.nickname=userInfo.nickName;
-          data.userInfo =userInfo;
-          wx.showLoading({
-            title: "正在登录...",
-            mask: true
-          })
+          data.userInfo =userInfo;         
           var url = Api.getOpenidUrl();  
           var postOpenidRequest = wxRequest.postRequest(url, args);
             //获取openid
@@ -233,6 +232,7 @@ Auth.agreeGetUser=function(e,wxLoginInfo,authFlag){
             })
         },
         fail: (err) => {
+            wx.hideLoading(); 
           if(authFlag=='0'  &&  err.errMsg=='getUserProfile:fail auth deny')
           {
              err.errMsg="用户拒绝了授权";

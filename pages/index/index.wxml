@@ -46,7 +46,7 @@
         <view class="selected-nav-list">
           <block  wx:key="id" wx:for="{{selected_nav}}">
           
-              <view class="selected-nav-item" catchtap="redictAppDetail" id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.url}}" data-appid="{{item.appid}}" data-path="{{item.path}}">
+            <view wx:if="{{item.enable=='yes'}}" class="selected-nav-item" catchtap="redictAppDetail" id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.url}}" data-appid="{{item.appid}}" data-path="{{item.path}}">
                 <view>
                   <image mode="aspectFill" src="{{item.image}}"></image>
                 </view>

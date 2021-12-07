@@ -346,5 +346,12 @@ module.exports = {
     var url = HOST_URI_WATCH_LIFE_JSON;
     url += "options/homeconfig";
     return url;
+  },
+  scanQrcode()
+  {
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    url += "users/scanqrcode";
+    return url;
+
   }
 };

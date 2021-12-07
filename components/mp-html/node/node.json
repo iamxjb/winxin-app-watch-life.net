@@ -1,0 +1,1 @@
+{"component":true,"usingComponents":{"my-audio":"../audio/audio","txv-video":"plugin://tencentvideo/video","node":"./node"}}

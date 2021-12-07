@@ -13,7 +13,6 @@
 import config from '../../utils/config.js'
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
-var WxParse = require('../../wxParse/wxParse.js');
 var webSiteName= config.getWebsiteName;
 var domain =config.getDomain
 
@@ -23,7 +22,7 @@ Page({
     pageData: {},
     pagesList: {},
     hidden: false,
-    wxParseData: [],
+  
     webSiteName:webSiteName,
     domain:domain
   },
@@ -41,9 +40,7 @@ Page({
       success: function (response) {
         console.log(response);
         self.setData({
-          pageData: response.data,
-          // wxParseData: WxParse('md',response.data.content.rendered)
-          wxParseData: WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5)
+          pageData: response.data,         
         });
         setTimeout(function () {
           self.setData({

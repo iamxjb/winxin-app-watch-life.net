@@ -10,7 +10,7 @@
  * Copyright (c) 2017  微慕 https://www.minapper.com All rights reserved.
  *
  */-->
-<import src="../../wxParse/wxParse.wxml"/>
+
 <import src="../../templates/header.wxml"/> 
 <view class="container">
     <view class="content-article ">
@@ -18,7 +18,7 @@
                    {{pageData.title.rendered}}
                     </view>
                     <view class="entry-summary">
-                    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+                   <mp-html content="{{ detail.content.rendered }}" bindlinktap="wxParseTagATap" copy-link="{{false}}" selectable="{{true}}" lazy-load="{{true}}" markdown="{{true}}" />
                     </view>
                 </view>
 

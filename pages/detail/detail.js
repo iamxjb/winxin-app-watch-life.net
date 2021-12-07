@@ -13,7 +13,6 @@ import config from '../../utils/config.js'
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
 var Auth = require('../../utils/auth.js');
-var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
 const Adapter = require('../../utils/adapter.js')
@@ -42,8 +41,7 @@ Page({
     ChildrenCommentsList: [],
     commentCount: '',
     detailDate: '',
-    commentValue: '',
-    wxParseData: {},
+    commentValue: '',  
     display: 'none',
     showerror: 'none',
     page: 1,
@@ -61,7 +59,7 @@ Page({
       hidden: true
     },
     content: '',
-    isShow: false,//控制menubox是否显示
+    isShow: true,//控制menubox是否显示
     isLoad: true,//解决menubox执行一次  
     menuBackgroup: false,
     likeImag: "like.png",
@@ -401,7 +399,7 @@ Page({
           // title: res.data.title.rendered
           title: res.data.category_name
         });
-        WxParse.wxParse('article', 'html', response.data.content.rendered, self, 5);
+       
         if (response.data.total_comments != null && response.data.total_comments != '') {
           self.setData({
             commentCount: "有" + response.data.total_comments + "条评论"
@@ -650,11 +648,12 @@ Page({
 },
   //给a标签添加跳转和复制链接事件
   wxParseTagATap: function (e) {
-    var self = this;
-    var href = e.currentTarget.dataset.src;
-    let appid = e.currentTarget.dataset.appid;
-    let redirectype = e.currentTarget.dataset.redirectype;
-    let path = e.currentTarget.dataset.path;
+    let self = this
+    let href = e.detail.src || e.detail.href
+    let domain = config.getDomain
+    let appid = e.detail.appid
+    let redirectype = e.detail.redirectype
+    let path = e.detail.path
 
 
     // 判断a标签src里是不是插入的文档链接
@@ -689,7 +688,7 @@ Page({
 
 
     var enterpriseMinapp = self.data.detail.enterpriseMinapp;
-    var domain = config.getDomain;
+    
     //可以在这里进行一些路由处理
     if (href.indexOf(domain) == -1) {
 
@@ -876,7 +875,7 @@ Page({
   //显示或隐藏功能菜单
   ShowHideMenu: function () {
     this.setData({
-      isShow: !this.data.isShow,
+      //isShow: !this.data.isShow,
       isLoad: false,
       menuBackgroup: !this.data.false
     })
@@ -884,7 +883,7 @@ Page({
   //点击非评论区隐藏功能菜单
   hiddenMenubox: function () {
     this.setData({
-      isShow: false,
+      //isShow: false,
       menuBackgroup: false
     })
   },

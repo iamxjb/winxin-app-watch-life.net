@@ -8,7 +8,7 @@
  * 开源协议：MIT
  * 
  */
-@import "../../wxParse/wxParse.wxss";
+
 @import "../../templates/modal-view/modal-view.wxss";
 
 
@@ -312,7 +312,7 @@
 }
 
 .comment_input_box {
-  width: 500rpx;
+  width: 600rpx;
   display: flex;
   align-items: center;
 }
@@ -530,6 +530,7 @@
 .emoji-move-out {
   -webkit-animation: emoji-move-out 0.3s forwards;
   animation: emoji-move-out 0.3s forwards;
+  display: none;
 }
 
 .no-emoji-move {

@@ -10,7 +10,7 @@
  * 
  */
 
-@import "../../wxParse/wxParse.wxss";
+
  .wrapper{
   padding: 5rpx;
 }

@@ -12,7 +12,6 @@
 
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
-var WxParse = require('../../wxParse/wxParse.js');
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
 var Auth = require('../../utils/auth.js');
@@ -29,7 +28,7 @@ Page({
     pageData: {},
     pagesList: {},
     display: 'none',
-    wxParseData: [],
+   
     praiseList:[],
     dialog: {
         title: '',
@@ -97,8 +96,7 @@ Page({
       var self = this;
       self.setData({
           display:'none' ,
-          pageData:{},
-          wxParseData:{},
+          pageData:{},        
 
       });
 
@@ -405,9 +403,7 @@ Page({
             success: function (res) {
               // success
             }
-          });
-        WxParse.wxParse('article', 'html', response.data.post_content, self, 5);
-
+          }); 
         self.setData({
             pageData: response.data,
               });

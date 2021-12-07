@@ -1,0 +1,37 @@
+<view wx:if="{{isShow}}">
+  <!-- 专业版 -->
+  <van-col span="6" wx:if="{{source === 'pro'}}">
+    <view
+      class='scan'
+      bindtap="scanQRCodeLogin"
+    >
+      <text class="iconfont icon-scan" />
+      <view class="label">{{ text }}</view>
+    </view>
+  </van-col>
+
+  <!-- 增强版 -->
+  <view
+    class="scan-plus"
+    wx:if="{{source === 'plus'}}"
+    bindtap="scanQRCodeLogin"
+  >
+    <view>{{ text }}</view>
+  </view>
+
+  <!-- 开源版 -->
+  <!-- <view
+    wx:if="{{source === 'free'}}"
+    class='scan-open-source'
+    bindtap="scanQRCodeLogin"
+  >
+    <text class="iconfont icon-scan" />
+  </view> -->
+  <view
+    wx:if="{{source === 'free'}}"
+    class='scan-free'
+    bindtap="scanQRCodeLogin"
+  >
+    <view>{{ text }}</view>
+  </view>
+</view>

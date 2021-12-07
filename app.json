@@ -13,8 +13,7 @@
         "pages/webpage/webpage",
         "pages/comments/comments",
         "pages/poster/poster",
-        "pages/search/search",
-        "pages/live/live"
+        "pages/search/search"        
         
     ],
     "window": {
@@ -57,7 +56,10 @@
         "downloadFile": 10000
     },  
     "plugins": {
-                
+        "tencentvideo": {
+            "version": "1.4.9",
+            "provider": "wxa75efa648b60994b"
+          }      
       }, 
     "sitemapLocation": "sitemap.json",
     "resizable":false

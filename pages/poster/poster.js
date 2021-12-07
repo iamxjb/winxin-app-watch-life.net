@@ -12,7 +12,7 @@
 
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
-var WxParse = require('../../wxParse/wxParse.js');
+
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
 var auth = require('../../utils/auth.js');

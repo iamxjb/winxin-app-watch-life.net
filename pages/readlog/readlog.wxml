@@ -1,5 +1,4 @@
-<!--
-/*
+<!-- /*
  * 
  * 微慕小程序开源版
  * author: jianbo
@@ -9,39 +8,43 @@
  * 开源协议：MIT
  * Copyright (c) 2017  微慕 https://www.minapper.com All rights reserved.
  *
- */-->
+ */ -->
 <import src="../../templates/common-list.wxml" />
 <import src="../../templates/copyright.wxml" />
 <import src="../../templates/login-popup.wxml" />
-
 <!-- 用户信息 -->
 <view class="userinfo">
-
   <!-- 头像 -->
   <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-
   <view class='userinfo_right'>
     <!-- 昵称 -->
-    <text class="userinfo_nickname" bindtap="{{openid !='' ? '' : 'openLoginPopup'}}">{{openid !='' ? userInfo.nickName : '登录'}}</text>
+    <view class="userinfo_nickname" bindtap="{{openid !='' ? '' : 'openLoginPopup'}}">
+      {{openid !='' ? userInfo.nickName : '登录'}}
+    </view>
     <view class='userinfo_des_box'>
       <!-- 角色 -->
-      <text class="userinfo_role" decode="{{true}}">{{openid !='' ? userLevel.levelName : '角色'}}</text>
+      <view class="userinfo_role" decode="{{true}}">
+        {{openid !='' ? userLevel.levelName : '角色'}}
+      </view>
       <!-- 更新信息按钮 -->
       <!-- <view class="btn-exit"  catchtap="refresh" wx:if="{{openid !=''}}">
       更新信息
         
       </view> -->
-       <view class="btn-exit"  catchtap="refreshlive"  wx:if="{{openid !='' && userLevel.level =='10'}}">
+      <view class="btn-exit" catchtap="refreshlive" wx:if="{{openid !='' && userLevel.level =='10'}}">
         更新直播
-        
       </view>
       <!-- 退出登录按钮 -->
       <view class="btn-exit" catchtap="exit">{{openid !='' ? '退出登录' : '清除缓存'}}</view>
     </view>
+
+    <block wx:if="{{openid !=''}}">
+      <scan-login />
+    </block>
+    
   </view>
-
+    
 </view>
-
 <!-- tab选项卡 -->
 <view class="tab-bar">
   <block wx:for="{{topBarItems}}" wx:key="id">
@@ -50,31 +53,24 @@
     </view>
   </block>
 </view>
-
 <!-- 文章列表 -->
 <view class="list_container">
-
   <block wx:key="id" wx:for="{{readLogs}}">
     <view class="list-item" index="{{index}}" id="{{item[0]}}" data-itemtype="{{item[2]}}" catchtap="redictDetail">
       <text>{{index + 1}}. {{item[1]}}</text>
     </view>
   </block>
-
   <!-- 没有文章时的提示信息 -->
   <view class="tips" style="display:{{shownodata}}">你还没有相关文章哟~</view>
-
   <!-- 登录框 -->
   <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
-
   <!-- 无法访问网络 -->
   <view class="showerror" style="display:{{showerror}}">
     <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
     <view class="errortext">暂时无法访问网络，请下拉刷新...</view>
   </view>
-
   <!-- 版权信息 -->
   <view class="copyright" style="display:{{(shownodata === 'none') ? 'block' : 'none'}}">
-     <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
+    <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}" />
   </view>
-
 </view>
