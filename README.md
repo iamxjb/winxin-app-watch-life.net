@@ -231,6 +231,59 @@ https://forum.minapper.com/
 
 2.支持小程序扫描登录WordPress (需安装微慕扫码登录插件：https://www.watch-life.net/wordpress/minapper-webchat-scanlogin.html)
 
+## 2021年4月30日（版本4.0.6）
+1、优化小程序登录
+2、修复无法获取直播列表的bug
+3、修复小程序端海报生成的bug
+4、 适配微慕rest api 缓存插件
+
+有关微慕rest api 缓存插件的介绍见：https://www.watch-life.net/wordpress/minapper-rest-api-cache.html
+
+微慕rest api 缓存插件 下载:https://shops.minapper.com/2036.html
+
+## 2021年3月20日（版本4.0.5）
+
+1、依据小程序登录、用户信息相关接口调整（https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801?token=772949249&lang=zh_CN），完善小程序登录
+2、直播插件默认不加入小程序端
+
+## 2021年2月28日（版本4.0.4）
+
+1、部分页面新增插屏广告。
+
+2、修复海报生成没有使用特色图片的问题。
+3、首页重新启用搜索
+4、修复无法兼容古腾堡编辑器的问题。
+
+## 2021年2月23日
+
+“微慕搜索助手” 插件（minapper-wechat-search）发布,并已提交到wordpress官方插件库。
+
+wordpress官方下载地址：https://wordpress.org/plugins/minapper-wechat-search/
+
+插件详细介绍：
+
+https://www.watch-life.net/wordpress/minapper-wechat-search.html
+
+## 2021年2月4日4.0版发布
+
+1、增加直播功能
+2、增加扩展设置功能
+3、增加提交微信搜一搜功能
+4、优化详情页评论显示：显示详情后显示第一页评论
+5、优化评论提交后的提示
+6、修复评论框遮挡视频广告的问题
+7、bug修复
+
+## 2020年9月16日
+
+1.优化A标签支持跳转三种方式的跳转：其他小程序，本小程序，业务域名的网页(详见链接：https://www.watch-life.net/wechat/about-minapper-free-a-tag.html）
+
+2.修复分类页和搜索页，文章无图片不显示默认封面的问题
+
+3.给视频组件加封面
+
+4. 优化详情页评论显示：详情加载后自动显示第一页评论；优化评论提交后的提示
+
 ## 2020年07月11日
 
 1.优化A标签支持跳转三种方式的跳转：其他小程序，本小程序，业务域名的网页(详见链接：https://www.watch-life.net/wechat/about-minapper-free-a-tag.html）
