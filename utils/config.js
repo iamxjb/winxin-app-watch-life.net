@@ -18,7 +18,8 @@ var WEBSITENAME="守望轩"; //网站名称
 var PAGECOUNT='10'; //每页文章数目
 
 //是否启用小程序扫描二维码登录网站  true 启用  false  不启用
-const enableScanLogin =true 
+//未安装微慕登录插件不要启用
+const enableScanLogin =false 
 //////////////////////////////////////////////////////
 
 
