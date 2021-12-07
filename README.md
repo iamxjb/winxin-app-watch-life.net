@@ -105,10 +105,9 @@ https://forum.minapper.com/
 本小程序完整使用需要配合我编写的wordpress插件REST API TO MiniProgram，才能完整使用，插件下载地址： https://github.com/iamxjb/rest-api-to-miniprogram
 
 
-
 # 安装使用说明文档
 
-<a href="https://www.watch-life.net/wordpress/weixin-app-install.html" target="_blank" rel="noopener">WordPress版微信小程序安装使用说明</a>
+<a href="http://docs.minapper.com/minfree" target="_blank" rel="noopener">WordPress版微信小程序安装使用说明</a>
 
 # 微慕WordPress小程序增强版和专业版
 
