@@ -197,12 +197,16 @@ https://forum.minapper.com/
 
 <a href="https://www.watch-life.net/wordpress/minapper-rest-api-cache.html" target="_blank" rel="noopener noreferrer">21.微慕 rest api 缓存插件</a>
 
+<a href="https://www.watch-life.net/wordpress/minapper-webchat-scanlogin.html" target="_blank" rel="noopener noreferrer">22.微慕扫码登录插件</a>
+
+<a href="https://www.watch-life.net/wechat/mp-html.html" target="_blank" rel="noopener noreferrer">23.小程序富文本解析利器mp-html</a>
+
 
 
 
 # 开源声明：
 
-1、本程序html转wxml的解析采用的是https://github.com/icindy/wxParse
+1、本程序富文本解析在2021年12月7日更新前采用的是wxParse:https://github.com/icindy/wxParse,  2021年12月7日更新后采用的是mp-html组件：https://jin-yufeng.gitee.io/mp-html
 
 2.本程序有关es6-promise 部分代码参考 开源程序：https://github.com/cinoliu/-es6-promise
 
@@ -221,6 +225,12 @@ https://forum.minapper.com/
 
 
 # 更新历史：
+
+## 2021年12月7日
+
+1.更换富文本解析组件，采用mp-html组件。有关mp-html组件的介绍见：https://www.watch-life.net/wechat/mp-html.html
+
+2.支持小程序扫描登录WordPress (需安装微慕扫码登录插件：https://www.watch-life.net/wordpress/minapper-webchat-scanlogin.html)
 
 ## 2020年07月11日
 
