@@ -395,10 +395,14 @@ Page({
           return false;
         }
         // 设置页面标题：文章分类
-        wx.setNavigationBarTitle({
-          // title: res.data.title.rendered
-          title: res.data.category_name
-        });
+        if(res.data.category_name)
+        {
+          wx.setNavigationBarTitle({
+            // title: res.data.title.rendered
+            title: res.data.category_name
+          });
+        }
+        
        
         if (response.data.total_comments != null && response.data.total_comments != '') {
           self.setData({
