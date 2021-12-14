@@ -78,11 +78,15 @@ Page({
     onShareAppMessage: function (options) {
         var self = this;
         var url = options.webViewUrl;
+        if(url.indexOf("mp.weixin.qq.com") !=-1)
+        {
+            url=self.data.url;
+        }
         if (url.indexOf("?") != -1) {
             url = url.replace("?", "*");
         }
         url = 'pages/webpage/webpage?url=' + url;
-        console.log(options.webViewUrl);
+        console.log(url);
         return {
             title: '分享"' + config.getWebsiteName + '"的文章' + self.data.title,
             path: url,
