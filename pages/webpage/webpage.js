@@ -46,27 +46,7 @@ Page({
             self.setData({
                 url: url
             });
-            //   var slug = util.GetUrlFileName(options.url, domain);
-            //   var domain = config.getDomain;
-            //   var title = "";
-            //   if (slug != 'index') {
-            //       var getPostSlugRequest = wxRequest.getRequest(Api.getPostBySlug(slug));
-            //       getPostSlugRequest
-            //           .then(res => {
-            //               if (res.statusCode == 200) {
-            //                   if (res.data.length != 0) {
-            //                       if (res.data[0].title.rendered) {
-            //                           title = ':' + res.data[0].title.rendered;
-            //                           self.setData({
-            //                               title: title
-            //                           });
-            //                           console.log(title);
-            //                       }
-            //                   }
-            //               }
-
-            //           }) 
-            //   }
+           
         }
         else {
             self.setData({

@@ -20,7 +20,7 @@
     <view class="wrapper">
         <view class="excerpt">
             <!--  <rich-text nodes="{{pageData.content.rendered}}"></rich-text> -->
-           <mp-html content="{{ detail.content.rendered }}" bindlinktap="wxParseTagATap" copy-link="{{false}}" selectable="{{true}}" lazy-load="{{true}}" markdown="{{true}}" />
+           <mp-html content="{{ pageData.post_content }}" bindlinktap="wxParseTagATap" copy-link="{{false}}" selectable="{{true}}" lazy-load="{{true}}" markdown="{{true}}" />
 
         </view>
  <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>

@@ -18,7 +18,7 @@
                    {{pageData.title.rendered}}
                     </view>
                     <view class="entry-summary">
-                   <mp-html content="{{ detail.content.rendered }}" bindlinktap="wxParseTagATap" copy-link="{{false}}" selectable="{{true}}" lazy-load="{{true}}" markdown="{{true}}" />
+                   <mp-html content="{{ pageData.content.rendered }}" bindlinktap="wxParseTagATap" copy-link="{{false}}" selectable="{{true}}" lazy-load="{{true}}" markdown="{{true}}" />
                     </view>
                 </view>
 

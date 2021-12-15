@@ -28,8 +28,31 @@ Page({
   },
   onLoad: function (options) {
     this.fetchData(options.id);
+    wx.showShareMenu({
+      withShareTicket:true,
+      menus:['shareAppMessage','shareTimeline'],
+      success:function(e)
+      {
+        //console.log(e);
+      }
+    })
      
   },
+  onShareTimeline: function() {
+    let imageUrl = this.data.pageData.post_full_image
+    if(imageUrl=='')
+    {
+      imageUrl=this.data.pageData.postImageUrl
+    }
+    return {
+      title: this.data.pageData.title.rendered,
+      query: {
+        id: this.data.pageData.id
+      },
+      imageUrl
+    }
+  },
+  
   fetchData: function (id) {
     var self = this;
     self.setData({
