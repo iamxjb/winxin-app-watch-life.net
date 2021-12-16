@@ -19,12 +19,12 @@ var PAGECOUNT='10'; //每页文章数目
 
 //是否启用小程序扫描二维码登录网站  true 启用  false  不启用
 //未安装微慕登录插件不要启用
-const enableScanLogin =true
+const enableScanLogin =false
 //////////////////////////////////////////////////////
 
 
 //微慕小程序端版本,请勿修改
-const minapperVersion=4.08
+const minapperVersion=4.12
 const minapperSource="free"
 //////////////////////////////////////////////////////
 
