@@ -56,10 +56,7 @@
         "downloadFile": 10000
     },  
     "plugins": {
-        "tencentvideo": {
-            "version": "2.0.2",
-            "provider": "wxa75efa648b60994b"
-          }      
+              
       }, 
     "sitemapLocation": "sitemap.json",
     "resizable":false
