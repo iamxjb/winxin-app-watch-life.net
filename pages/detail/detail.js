@@ -911,9 +911,9 @@ Page({
   },
   replay: function (e) {
     var self = this;
-    var id = e.target.dataset.id;
-    var name = e.target.dataset.name;
-    var userid = e.target.dataset.userid;
+    var id = e.currentTarget.dataset.id;
+    var name = e.currentTarget.dataset.name;
+    var userid = e.currentTarget.dataset.userid;
     isFocusing = true;
     if (self.data.enableComment == "1") {
       self.setData({
