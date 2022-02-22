@@ -1,0 +1,10 @@
+<view class="ui-steps {{arrow?'steps-arrow':''}} {{number?'steps-number':''}} {{column?'steps-column':''}} {{ui}}">
+    <view class="ui-step {{index > cur?'':curStyle}}" wx:for="{{info}}" wx:key="index">
+        <view class="ui-steps-num {{(index + 1) == err?'ui-steps-err':''}}" data-index="{{index + 1}}" wx:if="{{number}}"/>
+        <view class="ui-steps-icon {{index > cur?'_icon-title':item.icon}}" wx:else/>
+        <view class="ui-steps-text">
+            <view class="ui-steps-title">{{ item.title }}</view>
+            <view class="ui-steps-desc" wx:if="{{item.desc && column}}">{{ item.desc }}</view>
+        </view>
+    </view>
+</view>

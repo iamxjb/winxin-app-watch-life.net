@@ -12,10 +12,7 @@
 @import "../../templates/modal-view/modal-view.wxss";
 
 
-.detail-content {
-  padding: 0 40rpx;
-  margin: 40rpx 0;
-}
+ 
 
 /* 文章正文样式 */
 
@@ -28,17 +25,17 @@
 }
 
 .entry-summary image {
-  width: 100% 
+  width: 100%
 }
 
 /* 标题 */
 
 .entry-title {
-  font-size: 48rpx;
-  line-height: 1.6;
+
+
   font-weight: 600;
   outline: none;
-  color: #333;
+
   margin-bottom: 24rpx;
 }
 
@@ -47,13 +44,12 @@
 .entry-data {
   display: flex;
   align-items: center;
-  font-size: 12px;
-  color: #959595;
+
   margin-bottom: 30rpx;
 }
 
 .entry-data text {
-  margin-left: 10rpx;
+  margin-right: 32rpx;
 }
 
 .entry-data>image {
@@ -67,35 +63,28 @@
 
 /* 上下文 */
 
-.up-down-post {
-  padding: 40rpx 16rpx;
-  margin-top: 40rpx;
-  font-size: 14px;
-  line-height: 1.4;
-  color: #333;
-  border: 1px solid #eee;
-  border-radius: 8rpx;
-}
-
+ 
 .up-post {
-  float: left;
+  text-align: left;
   width: 90%;
-  margin-bottom: 16rpx;
+  
 }
 
 .down-post {
-  float: right;
   text-align: right;
-  width: 90%;
+  margin-top: 16rpx;
+  width: 100%;
 }
 
 /* 猜你喜欢、评论标题下的横线 */
+navigator {
+  display: block;
+}
 .subTitle {
-  margin: 40rpx 0 20rpx;
-  font-size: 30rpx;
-  line-height: 1.4;
+  margin: 0 0 20rpx;
+
   font-weight: 500;
-  color: #4c4c4c;
+
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -113,7 +102,7 @@
 .subTitle_line::before {
   content: "";
   display: block;
-  width: 54rpx;
+  width: 100rpx;
   height: 4rpx;
   background: #959595;
   position: absolute;
@@ -126,14 +115,15 @@
 }
 
 /* 猜你喜欢 */
-.relatedPost {
-  margin: 20rpx 0;
-}
+
 
 .relatedText {
-  font-size: 14px;
-  line-height: 2;
-  color: #333;
+
+  overflow: hidden;
+  display: block;
+  height: 52rpx !important;
+  line-height: 52rpx;
+  padding: 4rpx 0;
 }
 
 /* 点赞 */
@@ -142,53 +132,83 @@
   position: relative;
   text-align: left;
   margin-top: 30rpx;
-  margin-bottom: 60rpx;
 }
 
-.likeTitle {
-  text-align: left;
-  font-weight: normal;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
-  font-size: 28rpx;
-  color: #959595;
-  vertical-align: middle;
-  position: absolute;
-  top: 120rpx;
-  left: 0;
+.likePost_title {
+
+  padding: 12px 0 6px;
+  font-size: 14px;
+  overflow: hidden;
+  justify-content: center;
+  font-weight: 300;
 }
 
-.like-btn-icon {
-  position: absolute;
-  top: 120rpx;
-  left: 160rpx;
+.likePost_title .left {
+  float: left;
+  height: 30px;
+  padding: 0 8px;
+
+  border-radius: var(--radius);
 }
 
-.likeText {
-  margin: 140rpx 0 20rpx;
+.likePost_title .left text {
+
+  line-height: 30px;
+
 }
 
-.img-like {
-  width: 50rpx;
-  height: 50rpx;
-  display: inline-block;
+.likePost_title .right {
+  float: right;
+  line-height: 30px;
+  font-size: 12px;
+  color: #bbbbbb !important;
+}
+
+.likePost_img {
+  
+  margin-top: 5px;
+  margin-bottom: 5px;
+  overflow: hidden;
+
+}
+
+.likePost_img .right {
+  float: right;
+  margin-right: 0;
+ 
+  overflow: hidden;
+  display: block;
   text-align: center;
-  margin-right: 20rpx;
-  margin-top: 8rpx;
+  font-size: 12px;
+  padding: 0 10rpx;
+  min-width: 80rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 6rpx;
+  border-radius: var(--radius);
+  color: #f7f7f7 !important;
+font-weight: 300;
 }
-
+ 
+.bottomlink2 {
+  margin-top: 48rpx;
+  width: 100%;
+   padding: 12px;
+border-radius: var(--radius);
+  box-shadow: rgba(12, 12, 12, 0.03) 0px 2px 15px -5px;
+}
 .like-gravatar {
   margin-top: 4px;
-  height: 60rpx;
-  width: 60rpx;
-  margin-right: 20rpx;
-  border-radius: 6rpx;
+  height: 50rpx;
+  width: 50rpx;
+  margin-right: -10rpx;
+  border-radius: 50px;
 }
 
 /* 评论 */
 
 .comment-container {
-  margin: 0 40rpx;
+
   overflow: visible;
 }
 
@@ -199,36 +219,35 @@
 }
 
 .comment {
-  padding: 0 24rpx 24rpx 0;
-  border-radius: 8px;
-  margin: 16rpx 0 32rpx;
-  box-shadow: 2px 2px 10px #eee;
+  margin: 24rpx 0;
+  padding: 24rpx 0;
 }
 
 .comment-children {
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--ui-Border);
   margin-left: 40rpx;
 }
 
 .comment-user {
   display: flex;
   align-items: center;
-  font-size: 14px;
-  color: #333;
+
+
   font-weight: 500;
   margin-bottom: 10rpx;
 }
 
 .comment-username {
-  color: #333;
+
   font-weight: 500;
 }
- 
+
 .comment-gravatar {
-  width: 70rpx;
-  height: 70rpx;
-  border-radius: 6rpx;
+  width: 50rpx;
+  height: 50rpx;
   display: block;
+  border-radius: 50px;
+  background-color: #ccc;
 }
 
 .comment-user-right {
@@ -237,14 +256,9 @@
   justify-content: space-between;
 }
 
-.comment-user-right .time {
-  font-size: 12px;
-  color: #959595;
-}
-
+ 
 .replay-user {
-  font-size: 14px;
-  color: #333;
+
   margin: 10rpx 0;
   margin-left: 86rpx;
 }
@@ -254,10 +268,7 @@
 }
 
 .comment-summary {
-  color: #333;
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 10rpx;
+
   margin-left: 86rpx;
 }
 
@@ -284,104 +295,137 @@
   color: #21759b;
 }
 
-.comment-fixed {
+.foot {
   position: fixed;
-  bottom: 0;
+  display: block;
+  z-index: 90;
   left: 0;
   right: 0;
-  background-color: #fff;
-  box-shadow: 0 0 6px rgba(30, 20, 20, 0.1);
-  z-index: 100;
+  bottom: 0;
+  padding: 0 24rpx;
+  overflow: hidden;
 }
-.comment-box {
-  padding: 16rpx 0;
+
+.foot_memu {
+ 
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-.comment-area {
-  border: 1px solid #ccc;
-  margin-top: 20rpx;
-  max-width: 800rpx;
+ 
+
+.foot_memu  .icon {
+  display: block;
+ 
+  height: 64rpx;
+  line-height: 64rpx;
+  
+  padding: 0 0 0 24rpx;
+  margin: 18rpx 0 0 22rpx;
+   
+  overflow: hidden;
+  position: relative;
 }
 
-.comment-respond {
-  padding: 0 40rpx;
-  overflow-y: hidden;
+.foot_memu  .icon text {
+ 
+  font-size: 28px;
+}
+
+.foot_memu .comment {
+  display: block;
+  width: 340rpx;
+  height:64rpx;
+  line-height: 64rpx;
+  font-size: 14px;
+  padding: 0 24rpx;
+  margin: 18rpx 33rpx 0 10rpx;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+
+
+
+
+
+
+.ui-modal-btn {
+ 
+  padding: 24rpx 48rpx!important;
+  text-align: right!important;
+}
+
+.comment-box{
+  width: 750rpx;
+  min-height: 100rpx;
 }
 
 .comment_input_box {
-  width: 600rpx;
+ 
   display: flex;
   align-items: center;
 }
-
+.comment_btn{
+ 
+ padding: 12rpx 24rpx;
+ border-radius: 50px;
+ float: right;
+ margin:0 24rpx 24rpx 0;
+}
+.comment_btn_button{
+  position: absolute;
+  bottom: 24rpx!important;
+  right: 24rpx!important;
+  width: 64rpx;
+  height: 64rpx;
+  opacity: 0;
+ }
 .comment-input {
-  background-color: #f5f7f7;
-  padding: 0 24rpx 0 32rpx;
-  font-size: 14px;
-  height: 80rpx;
-  flex: 1;
-  border-radius: 40rpx;
+  margin:24rpx ;
+  width: 702rpx;
+  min-height: 60rpx;
+ 
+ padding: 24rpx; 
 }
 
-.comment-button {
-  width: 120rpx;
-  height: 80rpx;
-  line-height: 80rpx;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 40rpx;
-  border-bottom-right-radius: 40rpx;
-  text-align: center;
-  font-size: 15px;
-  background-color: #fff;
-  color: #959595;
-  padding: 0;
-}
+ 
+.ui-btn{
 
-.comment-button::after {
-  border: none;
+ position: absolute;
+ bottom: 0;
+ right: 0;
+  width: 64rpx;
+  height: 64rpx;
+  opacity: 0;
 }
-
-.comment_icon_home {
-  width: 36rpx;
-  height: 36rpx;
+ 
+.bottomlink{
+  margin-top: 48rpx;
+  width: 100%;
+  color: #8c8c8c;
+ 
+  height: 30rpx;
 }
-
+ 
+.bottomlink .left{
+ 
+  float: left;
+ 
+}
+.bottomlink .right{
+ 
+  float: right;
+ 
+}
 /* tab栏更多图标 */
 
-.comment_icon_more {
-  width: 36rpx;
-  height: 36rpx;
-}
-
-.replay-button {
-  width: 160rpx;
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  margin-right: 0rpx;
-  text-align: center;
-  padding: 0px !important;
-  font-size: 12px;
-  color: #959595;
-  background-color: #eee;
-  border-radius: 40rpx;
-}
-
-.replay-button::after {
-  border: none;
-}
-
-.textNoEmpty {
-  color: red;
-}
+ 
 
 .gravatarImg {
-  height: 48rpx;
-  width: 48rpx;
+  height: 50rpx;
+  width: 50rpx;
 }
 
 .more-comment {
@@ -449,7 +493,7 @@
   text-align: center;
   color: #999;
   margin-top: 20rpx;
-  margin-bottom: 120rpx;
+  margin-bottom: 180rpx;
 }
 
 .wxParse-a {
@@ -706,25 +750,29 @@
 
 /* 小程序广告 */
 .ad-box {
-  width: 100%;
+  margin: 24rpx;
+
   overflow: hidden;
+  border-radius: 12rpx;
 }
 
 .ad-box-video {
-  /* padding: 40rpx 40rpx 0;
-  margin: 0 auto; */
-  width: 100%;
+  /* padding: 40rpx 40rpx 0;*/
+  margin: 24rpx;
+
   overflow: hidden;
-  margin: 40rpx auto; 
   position: relative;
   z-index: 1;
+  border-radius: 12rpx;
 }
+
 ad {
-z-index: 1!important;
+  z-index: 1 !important;
 
 }
+
 video {
-z-index: 1!important;
+  z-index: 1 !important;
 
 }
 
@@ -740,6 +788,7 @@ z-index: 1!important;
 .detail-readmore-mask {
   height: 200rpx;
   width: 100%;
+  border-radius: var(--radius);
   box-sizing: border-box;
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 80%);
 }
@@ -751,7 +800,7 @@ z-index: 1!important;
   font-weight: 500;
   line-height: 1;
   text-align: center;
-  color: #2f80ed;
+  color: var(--ui-BG-Main) !important;
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -761,7 +810,7 @@ z-index: 1!important;
 .detail-readmore-btn::after {
   content: "";
   display: inline-block;
-  border: solid #2f80ed;
+  border: solid rgb(75, 75, 75);
   border-width: 0 0 2px 2px;
   padding: 3px;
   position: absolute;

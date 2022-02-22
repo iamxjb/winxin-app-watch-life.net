@@ -1,0 +1,39 @@
+.ui-page {
+    position: relative;
+    color: var(--ui-TC);
+    background-color: var(--ui-BG-1) !important;
+    z-index: 2;
+    display: flex;
+    .page-body {
+        flex: 1;
+        min-height: 100vh;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        .page-body-main {
+            position: relative;
+            z-index: 1;
+        }
+        .page-img {
+            height: 177vw;
+            width: 100vw;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+    }
+}
+.loading-body {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 98;
+    // opacity: .98;
+}

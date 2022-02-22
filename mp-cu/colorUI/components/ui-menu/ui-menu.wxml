@@ -1,0 +1,3 @@
+<view class="ui-menu {{ui}} {{bg}}">
+    <slot></slot>
+</view>

@@ -1,0 +1,140 @@
+/* pages/my/my.wxss */
+/* 用户信息 */
+
+.userinfo {
+  height: 200rpx;
+  position: relative;
+z-index: -1;
+}
+
+.scan-free {
+  color: var(--ui-TC) !important;
+}
+
+.scan-free::after {
+  border: solid var(--ui-TC) !important;
+}
+
+.kefubtn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 4em;
+  width: 100%;
+  opacity: 0;
+}
+
+/* 用户 */
+.info_box {
+  margin-top: -120rpx;
+}
+
+.info_scan{
+  float: right;
+}
+
+.info_right   {
+  float: right;
+  min-width: 80rpx;
+  text-align: center;
+  display: block;
+ 
+}
+.info_right  .exit {
+ margin-left: 10rpx;
+ 
+}
+.info_avatar {
+  margin-top: -80rpx;
+  height: 100rpx;
+  width: 100rpx;
+  overflow: hidden;
+  position: relative;
+  border-radius: 50%;
+
+}
+
+.info_avatar image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #f7f7f7;
+}
+
+ 
+.info_user {
+  display: block;
+  margin: 24rpx 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+ 
+}
+
+.info_name {
+ 
+  display: inline-block;
+  height: 45rpx;
+  line-height: 45rpx;
+  margin-right: 20rpx;
+  color: #333333;
+  font-size: 18px;
+}
+
+.info_lv {
+  
+  margin-top: 8rpx;
+ 
+  font-size: 12px;
+  height: 12px;
+  line-height: 12px;
+  padding: 5rpx 8rpx;
+  overflow: hidden; 
+}
+
+.info_uid {
+  display: block;
+  height: 22px;
+  line-height: 22px;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: #999999 !important;
+ 
+   
+  font-weight: 300;
+}
+
+.ui-item {
+  display: block;
+  padding: 24rpx 0 20rpx;
+  text-align: center;
+}
+.ui-menu-item {
+ 
+  padding: 0;
+}.ui-title {
+ 
+  padding-left: 10rpx;
+}
+
+.cicon-service-fill{
+  color: #F37D7D;
+}
+.cicon-weixin{
+font-size: 15px;
+  color:#FFB300;
+}
+.cicon-service{
+  color:#9DCA08;
+}
+
+.cicon-creative{
+  color:#91B9EB;
+}
+.cicon-clothes{
+  font-size: 13px;
+  color:#FFB300;
+}

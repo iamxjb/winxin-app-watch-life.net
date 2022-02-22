@@ -1,0 +1,19 @@
+<view class="ui-menu-item {{arrow?'arrow':''}} {{ui}}">
+    <view class="ui-menu-item-icon" wx:if="{{isIcon||icon}}">
+        <block wx:if="{{isIcon}}">
+            <slot name="icon"></slot>
+        </block>
+        <block wx:else>
+            <view class="{{icon}}"/>
+        </block>
+    </view>
+    <view class="ui-menu-item-content">
+        <view class="ui-menu-item-title">{{title}}</view>
+        <view class="ui-menu-item-action" wx:if="{{isAction}}">
+            <slot name="action"/>
+        </view>
+    </view>
+    <view class="ui-menu-item-arrow" wx:if="{{arrow}}">
+        <view class="_icon-forward"/>
+    </view>
+</view>

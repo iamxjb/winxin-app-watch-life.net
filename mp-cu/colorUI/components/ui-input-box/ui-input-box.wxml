@@ -1,0 +1,14 @@
+<view class="ui-form-input {{isDisabled?'disabled':''}} {{ui}}">
+    <block wx:if="{{isType === 'textarea'}}">
+        <slot></slot>
+        <view class="ui-tag ui-textarea-tag" wx:if="{{showTag}}">{{value.length}} / {{maxlength}}</view>
+    </block>
+    <block wx:else>
+        <slot></slot>
+        <text class="ui-input-icon _icon-round-close" wx:if="{{clear && value}}" bindtap="_clear"/>
+            <view class="ui-input-icon ui-input-visible" wx:if="{{isType === 'password'}}" bindtap="_toggleVisible">
+            <text class="cicon-eye" wx:if="{{isVisible}}"/>
+            <text class="cicon-eye-off" wx:else/>
+        </view>
+    </block>
+</view>

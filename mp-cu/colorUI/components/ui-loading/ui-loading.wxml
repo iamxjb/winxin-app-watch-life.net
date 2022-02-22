@@ -1,0 +1,13 @@
+<view class="ui-loading-box {{size?'text-'+size:''}} {{isSlot||img?'loop':''}} {{ui}}">
+    <view class="ui-loading">
+        <view class="ui-loading-cut">
+            <view class="ui-loading-loop {{color===true?'color':'default '+color}} "/>
+        </view>
+    </view>
+    <view class="ui-loading-content">
+        <image src="{{img}}" mode="aspectFill" class="ui-loading-image" wx:if="{{img}}"/>
+        <view class="ui-loading-icon">
+            <slot></slot>
+        </view>
+    </view>
+</view>

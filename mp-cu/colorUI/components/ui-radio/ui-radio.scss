@@ -1,0 +1,169 @@
+@import '../../scss/var';
+
+.ui-radio {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 1em 0 0.14286em;
+
+    .ui-radio-input {
+        margin: 0 0.5em 0 0.14286em;
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
+        &::before {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 0%;
+            background-color: currentColor;
+            border-radius: 50%;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+    }
+
+    .ui-radio-input.cur {
+        position: relative;
+        &::before {
+            width: 10px;
+            height: 10px;
+            transition: $transition-base;
+        }
+    }
+    &.check {
+        .ui-radio-input {
+            &::before {
+                font-family: 'colorui';
+                content: '\e69f';
+                width: 18px;
+                height: 18px;
+                font-size: 0%;
+                background-color: transparent;
+            }
+        }
+        .ui-radio-input.cur {
+            &::before {
+                width: 18px;
+                height: 18px;
+                font-size: 1em;
+                transform: scale(0.8);
+                text-align: center;
+                line-height: 18px;
+            }
+        }
+    }
+    &.line {
+        .ui-radio-input.cur {
+            &::before {
+                width: calc(100% - 2px);
+                height: calc(100% - 2px);
+                background-color: var(--ui-BG);
+            }
+            &::after {
+                content: '';
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background-color: inherit;
+                border-radius: 50%;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+            }
+        }
+    }
+    &.lg {
+        .ui-radio-input {
+            font-size: 18px;
+        }
+    }
+    &.img {
+        position: relative;
+        margin: 0 0.28572em 0 0.28572em;
+        .ui-radio-input {
+            width: 42px;
+            height: 42px;
+            border-radius: 0px;
+            position: absolute;
+            margin: 0;
+            left: -1px;
+            top: -1px;
+            // opacity: 0;
+            &::before {
+                width: 40px;
+                height: 40px;
+                border-radius: $radius;
+            }
+            &.cur {
+                width: 44px;
+                height: 44px;
+                top: -2px;
+                left: -2px;
+                border-radius: 7px !important;
+                opacity: 0.8;
+            }
+        }
+        .ui-radio-img {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            display: block;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+    }
+    &.card {
+        display: flex;
+        margin: 30rpx;
+        padding: 30rpx;
+        position: relative;
+        border-radius: $radius !important;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        .ui-radio-bg {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            transform: scale(0.5);
+            border-radius: #{$radius * 2} !important;
+            z-index: 0;
+            left: 0;
+            top: 0;
+            transform-origin: 0 0;
+            background-color: var(--ui-BG);
+        }
+        .ui-radio-input {
+            position: relative;
+            z-index: 1;
+            margin-right: 0;
+        }
+        .ui-radio-bg::after {
+            content: '';
+            position: absolute;
+            width: calc(200% - 16px);
+            height: calc(200% - 16px);
+            transform: scale(0.5);
+            transform-origin: 0 0;
+            // border: 1px solid inherit;
+            background-color: var(--ui-BG) !important;
+            left: 4px;
+            top: 4px;
+            border-radius: #{$radius * 2 + 8} !important;
+            z-index: 0;
+        }
+        .ui-radio-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+    }
+}

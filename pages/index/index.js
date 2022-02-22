@@ -20,12 +20,13 @@ const Adapter = require('../../utils/adapter.js')
 var pageCount = config.getPageCount;
 
 var webSiteName = config.getWebsiteName;
-var domain =config.getDomain;
+var domain = config.getDomain;
 
 
 Page({
   data: {
     postsList: [],
+    postsstickyList: [],
     postsShowSwiperList: [],
     isLastPage: false,
     page: 1,
@@ -33,15 +34,15 @@ Page({
     categories: 0,
     showerror: "none",
     showCategoryName: "",
-    categoryName: "", 
-    floatDisplay: "none",  
-    listAdsuccess:true,
-    webSiteName:webSiteName,
-    domain:domain,
+    categoryName: "",
+    floatDisplay: "none",
+    listAdsuccess: true,
+    webSiteName: webSiteName,
+    domain: domain,
     isFirst: false, // 是否第一次打开,
     isLoading: false,
-    swipe_nav:[],
-    selected_nav:[]
+    swipe_nav: [],
+    selected_nav: []
 
   },
   formSubmit: function (e) {
@@ -79,28 +80,28 @@ Page({
       }
     }
   },
-   // 自定义分享朋友圈
-   onShareTimeline: function() {   
+  // 自定义分享朋友圈
+  onShareTimeline: function () {
     return {
-      title:   '“' + webSiteName + '”小程序,基于微慕WordPress版小程序构建',
+      title: '“' + webSiteName + '”小程序,基于微慕WordPress版小程序构建',
       path: 'pages/index/index',
-      
+
     }
   },
   onPullDownRefresh: function () {
     var self = this;
     self.setData({
-      showerror: "none",       
+      showerror: "none",
       floatDisplay: "none",
       isLastPage: false,
       page: 1,
       postsShowSwiperList: [],
-      listAdsuccess:true
+      listAdsuccess: true
 
     });
     this.getHomeconfig();
     this.fetchPostsData(self.data);
-   
+
 
   },
   onReachBottom: function () {
@@ -120,20 +121,19 @@ Page({
   onLoad: function (options) {
     var self = this;
     wx.showShareMenu({
-              withShareTicket:true,
-              menus:['shareAppMessage','shareTimeline'],
-              success:function(e)
-              {
-                //console.log(e);
-              }
-        })
-  // 设置页面标题：文章分类
-  wx.setNavigationBarTitle({
-    title: webSiteName
-  });
-   // self.fetchTopFivePosts();
-   Adapter.setInterstitialAd("enable_index_interstitial_ad");
-    self.fetchPostsData(self.data);  
+      withShareTicket: true,
+      menus: ['shareAppMessage', 'shareTimeline'],
+      success: function (e) {
+        //console.log(e);
+      }
+    })
+    // 设置页面标题：文章分类
+    wx.setNavigationBarTitle({
+      title: webSiteName
+    });
+    self.fetchTopFivePosts();
+    Adapter.setInterstitialAd("enable_index_interstitial_ad");
+    self.fetchPostsData(self.data);
 
     // 判断用户是不是第一次打开，弹出添加到我的小程序提示
     var isFirstStorage = wx.getStorageSync('isFirst');
@@ -155,52 +155,59 @@ Page({
 
   },
   onShow: function (options) {
+    if (typeof this.getTabBar === 'function' &&
+    this.getTabBar()) {
+    this.getTabBar().setData({
+      selected: 0
+    })
+  }
     wx.setStorageSync('openLinkCount', 0);
 
     var nowDate = new Date();
-    nowDate = nowDate.getFullYear()+"-"+(nowDate.getMonth() + 1)+'-'+nowDate.getDate();
-    nowDate= new Date(nowDate).getTime();   
-    var _openAdLogs =wx.getStorageSync('openAdLogs')|| [];
-    var openAdLogs=[];
-    _openAdLogs.map(function (log) {   
-      if(new Date(log["date"]).getTime() >= nowDate)
-      {
+    nowDate = nowDate.getFullYear() + "-" + (nowDate.getMonth() + 1) + '-' + nowDate.getDate();
+    nowDate = new Date(nowDate).getTime();
+    var _openAdLogs = wx.getStorageSync('openAdLogs') || [];
+    var openAdLogs = [];
+    _openAdLogs.map(function (log) {
+      if (new Date(log["date"]).getTime() >= nowDate) {
         openAdLogs.unshift(log);
       }
-    
+
     })
-    
-    wx.setStorageSync('openAdLogs',openAdLogs);
+
+    wx.setStorageSync('openAdLogs', openAdLogs);
     console.log(wx.getStorageSync('openAdLogs'));
 
   },
-  getHomeconfig()
-  {
+  getHomeconfig() {
     //获取扩展设置
     var self = this;
-    
+
     var getHomeconfig = wxRequest.getRequest(Api.get_homeconfig());
-    getHomeconfig.then(res=> {
-        // console.log(res.data);
-         let expand = res.data.expand;
-         let swipe_nav= expand.swipe_nav;
-         let selected_nav=expand.selected_nav;
-         let _d = res.data.downloadfileDomain
-         let _b = res.data.businessDomain
+    getHomeconfig.then(res => {
+      // console.log(res.data);
+      let expand = res.data.expand;
+      let swipe_nav = expand.swipe_nav;
+      let selected_nav = expand.selected_nav;
+      let _d = res.data.downloadfileDomain
+      let _b = res.data.businessDomain
 
-         let zanImageurl = res.data.zanImageurl
-         let logoImageurl = res.data.logoImageurl
+      let zanImageurl = res.data.zanImageurl
+      let logoImageurl = res.data.logoImageurl
 
-         let downloadfileDomain = _d.length ? _d.split(',') : []
-        let businessDomain = _b.length ? _b.split(',') : []
-         self.setData({swipe_nav:swipe_nav,selected_nav,selected_nav});
-         wx.setStorageSync('downloadfileDomain',downloadfileDomain);
-         wx.setStorageSync('businessDomain',businessDomain);
-         wx.setStorageSync('zanImageurl',zanImageurl);
-         wx.setStorageSync('logoImageurl',logoImageurl);
-    }
-    );
-  },  
+      let downloadfileDomain = _d.length ? _d.split(',') : []
+      let businessDomain = _b.length ? _b.split(',') : []
+      self.setData({
+        swipe_nav: swipe_nav,
+        selected_nav,
+        selected_nav
+      });
+      wx.setStorageSync('downloadfileDomain', downloadfileDomain);
+      wx.setStorageSync('businessDomain', businessDomain);
+      wx.setStorageSync('zanImageurl', zanImageurl);
+      wx.setStorageSync('logoImageurl', logoImageurl);
+    });
+  },
 
   //获取文章列表数据
   fetchPostsData: function (data) {
@@ -213,98 +220,158 @@ Page({
       self.setData({
         postsList: []
       });
-    };    
-    self.setData({ isLoading: true })
+    };
+    self.setData({
+      isLoading: true
+    })
     var getCategoriesRequest = wxRequest.getRequest(Api.getCategoriesIds());
-    getCategoriesRequest.then(res=>{
-        if(!res.data.Ids=="")
-        {
-          data.categories=res.data.Ids;
-          self.setData({categories:res.data.Ids})
+    getCategoriesRequest.then(res => {
+      if (!res.data.Ids == "") {
+        data.categories = res.data.Ids;
+        self.setData({
+          categories: res.data.Ids
+        })
 
-        }
+      }
 
-        var getPostsRequest = wxRequest.getRequest(Api.getPosts(data));
-        getPostsRequest
-          .then(response => {
-            if (response.statusCode === 200) {
-              if (response.data.length) {
-                if (response.data.length < pageCount) {
-                  self.setData({
-                    isLastPage: true,
-                    isLoading: false
-                  });
-                }    
+      var getPostsRequest = wxRequest.getRequest(Api.getPosts(data));
+      getPostsRequest
+        .then(response => {
+          if (response.statusCode === 200) {
+            if (response.data.length) {
+              if (response.data.length < pageCount) {
                 self.setData({
-                  floatDisplay: "block",    
-                  postsList: self.data.postsList.concat(response.data.map(function (item) {
-    
-                    var strdate = item.date
-                    if (item.category_name != null) {
-    
-                      item.categoryImage = "../../images/category.png";
-                    } else {
-                      item.categoryImage = "";
-                    }
-    
-                    if (item.post_medium_image == null || item.post_medium_image == '') {
-                      item.post_medium_image = "../../images/logo700.png";
-                    }
-                    item.date = util.cutstr(strdate, 10, 1);
-                    return item;
-                  })),
-    
+                  isLastPage: true,
+                  isLoading: false
                 });
+              }
+              self.setData({
+                floatDisplay: "block",
+                postsList: self.data.postsList.concat(response.data.map(function (item) {
+
+                  var strdate = item.date
+                 
+                    item.categoryImage = "";
                 
+
+                  if (item.post_medium_image == null || item.post_medium_image == '') {
+                    item.post_medium_image = "../../images/logo700.png";
+                  }
+                  item.date = util.cutstr(strdate, 10, 1);
+                  return item;
+                })),
+
+              });
+
+            } else {
+              if (response.data.code == "rest_post_invalid_page_number") {
+                self.setData({
+                  isLastPage: true,
+                  isLoading: false
+                });
+                wx.showToast({
+                  title: '没有更多内容',
+                  mask: false,
+                  duration: 1500
+                });
               } else {
-                if (response.data.code == "rest_post_invalid_page_number") {
-                  self.setData({
-                    isLastPage: true,
-                    isLoading: false
-                  });
-                  wx.showToast({
-                    title: '没有更多内容',
-                    mask: false,
-                    duration: 1500
-                  });
-                } else {
-                  wx.showToast({
-                    title: response.data.message,
-                    duration: 1500
-                  })
-                }
+                wx.showToast({
+                  title: response.data.message,
+                  duration: 1500
+                })
               }
             }
+          }
+        })
+        .catch(function (response) {
+          if (data.page == 1) {
+
+            self.setData({
+              showerror: "block",
+              floatDisplay: "none"
+            });
+
+          } else {
+            wx.showModal({
+              title: '加载失败',
+              content: '加载数据失败,请重试.',
+              showCancel: false,
+            });
+            self.setData({
+              page: data.page - 1
+            });
+          }
+
+        })
+        .finally(function (response) {
+          wx.hideLoading();
+          self.setData({
+            isLoading: false
           })
-          .catch(function (response) {
-            if (data.page == 1) {
-    
-              self.setData({
-                showerror: "block",
-                floatDisplay: "none"
-              });
-    
-            } else {
-              wx.showModal({
-                title: '加载失败',
-                content: '加载数据失败,请重试.',
-                showCancel: false,
-              });
-              self.setData({
-                page: data.page - 1
-              });
-            }
-    
-          })
-          .finally(function (response) {
-            wx.hideLoading();
-            self.setData({ isLoading: false })
-            wx.stopPullDownRefresh();
-          });
+          wx.stopPullDownRefresh();
+        });
 
     })
 
+
+  },
+
+  fetchTopFivePosts: function (data) {
+    var self = this;
+    var getCategoriesRequest = wxRequest.getRequest(Api.getCategoriesIds());
+    getCategoriesRequest.then(res => {
+     
+
+      var getPostsRequest = wxRequest.getRequest(Api.getStickyPosts(data));
+      getPostsRequest
+        .then(response => {
+          if (response.statusCode === 200) {
+            if (response.data.length) {
+             
+              self.setData({
+                floatDisplay: "block",
+                postsstickyList: self.data.postsstickyList.concat(response.data.map(function (item) {
+
+                  var strdate = item.date
+                 
+                    item.categoryImage = "";
+                 
+
+                  if (item.post_medium_image == null || item.post_medium_image == '') {
+                    item.post_medium_image = "../../images/logo700.png";
+                  }
+                  item.date = util.cutstr(strdate, 10, 1);
+                  return item;
+                })),
+
+              });
+
+            } else {
+              if (response.data.code == "rest_post_invalid_page_number") {
+                self.setData({
+                  isLastPage: true,
+                  isLoading: false
+                });
+                wx.showToast({
+                  title: '没有更多内容',
+                  mask: false,
+                  duration: 1500
+                });
+              } else {
+                wx.showToast({
+                  title: response.data.message,
+                  duration: 1500
+                })
+              }
+            }
+          }
+        })
+      
    
+
+    })
+
+
   },
   //加载分页
   loadMore: function (e) {
@@ -345,7 +412,7 @@ Page({
       })
     } else if (redicttype == 'webpage') //跳转到web-view内嵌的页面
     {
-      url = '../webpage/webpage?url=' + url;
+      url = '../webpage/webpage?url=' + encodeURIComponent(url);
       wx.navigateTo({
         url: url
       })
@@ -368,7 +435,12 @@ Page({
   },
   // 跳转至查看小程序列表页面或文章详情页
   redictAppDetail: function (e) {
-    let { type, appid, url, path } = e.currentTarget.dataset
+    let {
+      type,
+      appid,
+      url,
+      path
+    } = e.currentTarget.dataset
 
     if (type === 'apppage') { // 小程序页面         
       wx.navigateTo({
@@ -376,15 +448,15 @@ Page({
       })
     }
     if (type === 'webpage') { // web-view页面
-      url = '../webpage/webpage?url=' + url
+      url = '../webpage/webpage?url=' + encodeURIComponent(url)
       wx.navigateTo({
-        url:url
+        url: url
       })
     }
     if (type === 'miniapp') { // 其他小程序
       wx.navigateToMiniProgram({
         appId: appid,
-        path:path
+        path: path
       })
     }
   },
@@ -397,11 +469,10 @@ Page({
       url: url
     });
   },
-  adbinderror:function(e)
-  {
-    var self=this;
+  adbinderror: function (e) {
+    var self = this;
     console.log(e.detail.errCode);
-    console.log(e.detail.errMsg);    
+    console.log(e.detail.errMsg);
     if (e.detail.errCode) {
       self.setData({
         listAdsuccess: false

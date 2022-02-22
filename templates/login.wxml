@@ -1,17 +1,17 @@
 <template name="login">
   <block wx:if="{{!userInfo.isLogin}}">
 
-    <view class="login-inner">
+    <view class="login-inner ">
       <image class="avatar" src="../../images/gravatar.png"></image>
-      <view class="username">
+      <view class="username ui-TC-Main">
         <text>立即登录，体验更多功能</text>
       </view>
     </view>
 
     <view class="login-btn-box">
-      <button class="login-btn" bindtap="closeLoginPopup">取消</button>
+      <button class="login-btn ui-BG" bindtap="closeLoginPopup">取消</button>
       <!-- <button class="login-btn" open-type="getUserInfo" bindgetuserinfo="agreeGetUser">确定</button> -->
-        <button class="login-btn" bindtap="agreeGetUser">确定</button>
+        <button class="login-btn ui-BG" bindtap="agreeGetUser">确定</button>
     </view>
 
   </block>

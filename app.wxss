@@ -8,21 +8,55 @@
  * Copyright (c) 2017  微慕 https://www.minapper.com All rights reserved.
  * 
  */
-@import "vendor/ZanUI/index.wxss";
-@import "images/iconfont/iconfont.wxss";
-.container {
-  padding: 0 24rpx;
-  background-color: #fff;
-  font-family: Microsoft YaHei, Helvetica, Arial, sans-serif;
+
+@import 'mp-cu/colorUI/scss/ui';
+page {
+  --radius:12rpx;
 }
 
+
+ad {
+  border-radius: var(--radius);
+}
+
+image {
+  border-radius: var(--radius);
+}
+
+.sticky-list-item {
+  overflow: hidden;
+  display: block;
+  height: 60rpx!important;
+ line-height: 60rpx ;
+ max-height:60rpx ;
+  padding: 4rpx 0; 
+}
+.dot {
+  float: left;
+  width: 8rpx;
+  height: 8rpx;
+  font-size: 0;
+  margin: 22rpx 12rpx 10rpx 16rpx;
+}
+.ui-BG-card{
+  margin: 24rpx;
+  padding: 24rpx;
+  border-radius: var(--radius);
+  box-shadow:rgba(12, 12, 12, 0.03) 0px 2px 15px -5px;
+ 
+}
+.heading-3 {
+  padding-top: 10rpx!important;
+  margin: 0 0 10rpx!important; 
+ 
+}
 .header {
   padding: 50rpx 0;
   text-align: center;
   font-weight: normal;
   font-size: 30rpx;
   line-height: 40rpx;
-  color: #757575;
+ 
   border-bottom: 2rpx solid #ededed;
   margin-bottom: 8rpx;
 }
@@ -63,26 +97,23 @@
 
 /* 文章列表样式 */
 
-.post-list {
-  margin-bottom: 24rpx;
-}
+ 
 
 .post-item {
-  display: flex;
-  border-bottom: 1px solid #eee;
-  padding: 24rpx 0;
+  display: flex; 
+
   overflow: hidden;
 }
 
 .post-img {
-  width: 200rpx;
-  height: 160rpx;
-  border-radius: 6rpx;
+  width: 202.5rpx;
+  height: 135rpx;
+  border-radius: 12rpx;
 }
 
 .post-desc {
   flex: 1;
-  margin-left: 24rpx;
+  margin-right: 24rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -94,10 +125,7 @@
 }
 
 .post-title>text {
-  font-size: 30rpx;
-  line-height: 1.6;
-  font-weight: 500;
-  color: #333;
+ 
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -118,9 +146,9 @@
 }
 
 .post-data>text {
-  color: #c4c4c4;
+ 
   margin-right: 32rpx;
-  font-size: 20rpx;
+ 
 }
 
 /*common list end */
@@ -166,7 +194,7 @@
 .sk-three-bounce .sk-child {
   width: 30rpx;
   height: 30rpx;
-  background-color: #118fff;
+ 
   border-radius: 100%;
   display: inline-block;
   -webkit-animation: sk-three-bounce 1.4s ease-in-out 0s infinite both;
@@ -215,9 +243,9 @@
 
 .login-popup-wrapper {
   margin: 0 60rpx;
-  background-color: #fff;
-  border-radius: 12rpx;
+ 
   overflow: hidden;
+  border-radius: var(--radius);
 }
 
 .logintips {
@@ -232,7 +260,7 @@
 }
 
 .login-popup .login-inner {
-  background-color: #fff;
+ 
   padding: 48rpx;
 }
 
@@ -245,7 +273,7 @@
   height: 50px;
   margin-right: 10px;
   flex-shrink: 0;
-  background: #f5f7f7;
+border-radius: 500px;
 }
 
 .login-inner .close-btn {
@@ -254,7 +282,7 @@
 }
 
 .login-inner .username {
-  color: #118fff;
+ 
   font-size: 32rpx;
   font-weight: 500;
   display: flex;
@@ -270,7 +298,7 @@
 
 .login-btn-box {
   display: flex;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--ui-TC-3);
 }
 
 .login-btn-box button {
@@ -278,11 +306,11 @@
   border-radius: 0;
   font-size: 15px;
   line-height: 3;
-  color: #333;
+ 
 }
 
 .login-btn-box button:first-child {
-  border-right: 1px solid #eee;
+  border-right: 1px solid   var(--ui-TC-3);
 }
 
 .login-btn-box button::after {
@@ -360,35 +388,55 @@
 /* 弹窗 */
 
 .login-popup .zan-popup__mask {
-  z-index: 11;
+  z-index: 998;
 }
 
 .login-popup .zan-popup__container {
-  z-index: 12;
+  z-index: 999;
 }
 
-.zan-popup .zan-popup__container {
-  width: 100%;
-  overflow: visible;
+.zan-popup {
+  visibility: hidden
 }
 
-.zan-popup .popup-wrapper {
-  width: 100%;
-  padding: 0 15px;
-  padding-bottom: 10px;
-  overflow: visible;
+.zan-popup--show {
+  visibility: visible
 }
 
-.zan-popup .popup-wrapper .popup-title {
-  font-size: 16px;
-  padding: 15px 0;
+.zan-popup__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, .7);
+  display: none
 }
 
-.zan-popup .btn-primary.confirm {
-  height: 50px;
-  line-height: 50px;
-  border-radius: 0;
+.zan-popup__container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  background: #fff;
+  transform: translate3d(-50%, -50%, 0);
+  transform-origin: center;
+  transition: all .4s ease;
+  z-index: 11;
+  opacity: 0
 }
+
+.zan-popup--show .zan-popup__container {
+  opacity: 1
+}
+
+.zan-popup--show .zan-popup__mask {
+  display: block
+}
+
+
+
+
 
 /* 清除浮动通用代码 */
 

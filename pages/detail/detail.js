@@ -26,7 +26,7 @@ const pageCount = config.getPageCount;
 
 var webSiteName= config.getWebsiteName;
 var domain =config.getDomain
-
+var wechat = config.getWecat
 import { ModalView } from '../../templates/modal-view/modal-view.js'
 import Poster from '../../templates/components/wxa-plugin-canvas-poster/poster/poster';
 let rewardedVideoAd = null
@@ -34,6 +34,8 @@ let rewardedVideoAd = null
 
 Page({
   data: {
+    target :'',
+    wechat:wechat, 
     title: '文章内容',
     webSiteName:webSiteName,
     detail: {},
@@ -48,7 +50,7 @@ Page({
     isLastPage: false,
     parentID: "0",
     focus: false,
-    placeholder: "评论...",
+    placeholder: "请写下您想说的话...",
     postID: null,
     scrollHeight: 0,
     postList: [],
@@ -232,7 +234,6 @@ Page({
           success: function (res) {
             wx.showToast({
               title: '链接已复制',
-              image: '../../images/link.png',
               duration: 2000
             })
           }
@@ -675,7 +676,7 @@ Page({
         })
       } else if (redirectype == 'webpage') //跳转到web-view内嵌的页面
       {
-        href = '../webpage/webpage?url=' + href;
+        href = '../webpage/webpage?url=' + encodeURIComponent(href);
         wx.navigateTo({
           url: href
         })
@@ -842,7 +843,15 @@ Page({
       }
     })
   },
-
+  success(res){
+    const { detail} = res
+    console.log(detail);
+},
+  showCustomizeModal(e){
+    this.setData({
+        target : e.currentTarget.dataset.key
+    })
+},
   //获取评论
   fetchCommentData: function () {
     var self = this;
@@ -914,15 +923,17 @@ Page({
     var id = e.currentTarget.dataset.id;
     var name = e.currentTarget.dataset.name;
     var userid = e.currentTarget.dataset.userid;
+    var target = e.currentTarget.dataset.key;
     isFocusing = true;
     if (self.data.enableComment == "1") {
       self.setData({
         parentID: id,
         placeholder: "回复" + name + ":",
         focus: true,
-        userid: userid    
+        userid: userid  ,
+        target : target
       });
-
+    
     }
     // console.log('toFromId', toFromId);
     // console.log('replay', isFocusing);
@@ -936,7 +947,7 @@ Page({
         if (text === '') {
           self.setData({
             parentID: "0",
-            placeholder: "评论...",
+            placeholder: "请写下您想说的话...",
             userid: ""         
           });
         }
@@ -998,7 +1009,7 @@ Page({
                   content: '',
                   parentID: "0",
                   userid: 0,
-                  placeholder: "评论...",
+                  placeholder: "请写下您想说的话...",
                   focus: false,
                   commentsList: []
 
@@ -1067,7 +1078,8 @@ Page({
             return res ;
           }).then(res => {
             
-            if(res.data.code=='success' && res.data.comment_approved=="1")
+            // if(res.data.code=='success' && res.data.comment_approved=="1")
+            if(res.data.code=='success')
             {
               
               self.fristOpenComment();  

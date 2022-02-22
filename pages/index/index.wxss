@@ -7,109 +7,140 @@
  * 开源协议：MIT
  * Copyright (c) 2017  微慕 https://www.minapper.com All rights reserved.
  */
+.index-top {
+  position: relative;
+}
 
+.indexbg {
+  position: absolute;
+  top: -30rpx;
+  width: 750rpx;
+  height: 500rpx;
+  z-index: -1;
+ 
+}
 
 /* 轮播图 */
-swiper {
-  position: relative;
-  height: 460rpx;
-  background: #fff;
-  box-shadow: 0px 22px 50px -24px rgba(0, 0, 0, 0.1);
-}
 
-swiper image {
-  display: block;
-  width: 100%;
-  height: 300rpx;
-}
 
-.swiper-desc {
-  height: 160rpx;
-  padding: 0 40rpx;
-  font-size: 30rpx;
-  font-weight: 500;
-  color: #333;
-  line-height: 130rpx;
+/* 置顶文章 */
+
+
+.sticky-list {
+  height: 130rpx;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
 }
 
+ 
+
+
+
+
+
+
+.sticky-list-item-title {
+  display: block;
+ 
+  overflow: hidden;
+}
+
+ 
 /* 图标导航 */
-.nav-box{
-display: flex;
-padding: 24rpx 0;
-background: #fff;
-justify-content:space-around;
+
+
+.ui-item {
+  display: block;
+  padding: 24rpx 0 20rpx;
+  text-align: center;
 }
 
-.nav-item{
-text-align: center;
+.ui-item image {
+  width: 80rpx;
+  height: 80rpx;
+  margin: auto;
+  margin-bottom: 20rpx;
+  display: block;
 }
 
-.nav-item image{
-width: 88rpx;
-height: 88rpx;
-}
+.ui-item text {
 
-.nav-item text{
-line-height: 20rpx;
-font-size: 28rpx;
-color: #4c4c4c;
-font-weight: 500;
+  color: #333;
+  font-weight: 300;
 }
 
 /* 搜索 */
-.search-box {
+.ui-search-bar {
+  position: relative;
   display: flex;
-  flex-direction: row;
-  background-color: #f5f7f7;
-  padding: 24rpx;
-  overflow: hidden;
+  align-items: center;
+  height: 100rpx;
+  margin-bottom: 15rpx;
 }
 
-.search-box image {
-  width: 50rpx;
-  height: 50rpx;
+.ui-search-bar .ui-search-action+.ui-search-form {
   margin-left: 20rpx;
-  vertical-align: middle;
 }
 
-.search-button {
-  width: 20%;
-  border-left: 0 !important;
-  border-top: 1px solid #fff !important;
-  border-right: 1px solid #fff !important;
-  border-bottom: 1px solid #fff !important;
-  background-color: #fff !important;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  margin: 0;
+.ui-search-bar .ui-search-form {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  color: #333;
+  height: 68rpx;
+  font-size: 24rpx;
+
+
 }
 
-.search-button icon {
-  margin-top: 40rpx;
-  margin-left: 40rpx;
+.ui-search-icon,
+.ui-search-close {
+  height: 68rpx;
+  line-height: 68rpx;
 }
 
-.search-input {
-  width: 80%;
-  background-color: #fff;
-  padding: 32rpx 0 32rpx 32rpx;
-  min-height: 1rem;
-  font-size: 30rpx;
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-right: 0;
+.ui-search-icon {
+  margin-left: 25rpx;
+  margin-right: 20rpx;
 }
+
+.ui-search-input {
+  position: relative;
+  flex: 1;
+  height: 68rpx;
+
+
+}
+
+.ui-search-text-left {
+  text-align: left;
+}
+
+.ui-search-text-center {
+  text-align: center;
+}
+
+.ui-search-text-right {
+  text-align: right;
+}
+
+.input-placeholder {
+  color: inherit;
+  opacity: 0.5;
+}
+
+.ui-search-close {
+  margin-left: 20rpx;
+  margin-right: 25rpx;
+}
+
+.ui-search-bar .ui-search-form+.ui-search-action {
+  margin-left: 20rpx;
+}
+
+
+
 
 /*模块标题样式 */
 .common-subtitle {
@@ -136,14 +167,12 @@ font-weight: 500;
 }
 
 /* 精选栏目菜单导航 */
-.selected-nav {
-  border-bottom: 16rpx solid #f5f7f7;
-}
+
 
 .selected-nav-list {
   display: flex;
   padding: 0 24rpx 40rpx;
-  background: #fff;
+
   justify-content: space-between;
 }
 
@@ -155,7 +184,6 @@ font-weight: 500;
 .selected-nav-item image {
   width: 156rpx;
   height: 156rpx;
-  border-radius: 6rpx;
   background: #f5f7f7;
 }
 
@@ -166,7 +194,10 @@ font-weight: 500;
 }
 
 .list-item-ad {
-  margin-bottom: 16rpx;
+  margin: 24rpx; 
+ 
+  overflow: hidden;
+  border-radius: var(--radius);
 }
 
 /* 引导添加到我的小程序 */
@@ -175,7 +206,6 @@ font-weight: 500;
   line-height: 1.2;
   background: #fff;
   padding: 24rpx 24rpx;
-  border-radius: 12rpx;
   position: fixed;
   top: 20rpx;
   right: 24rpx;

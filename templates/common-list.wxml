@@ -1,32 +1,30 @@
 <template name="tempCommonList">
 
   <view class="post-list">
-    <block wx:for="{{postsList}}" wx:key="id" >
-    <view class="list-item-ad" index="{{index}}" wx:if="{{index%item.listAdEvery ==0  && index!=0 && item.listAd =='1' && item.listAdId !=''  && listAdsuccess}}">
+    <block wx:for="{{postsList}}" wx:key="index">
+      <view class="list-item-ad  " index="{{index}}" wx:if="{{index%item.listAdEvery ==0  && index!=0 && item.listAd =='1' && item.listAdId !=''  && listAdsuccess}}">
         <block wx:if="{{(index/item.listAdEvery)%2==0}}">
-					<ad unit-id="{{item.videoAdId}}" ad-type="video" ad-theme="white" binderror="adbinderror"></ad>
-				</block>
+          <ad unit-id="{{item.videoAdId}}" ad-type="video" ad-theme="white" binderror="adbinderror"></ad>
+        </block>
         <block wx:else>
-        <ad unit-id="{{item.listAdId}}" ad-intervals="30" binderror="adbinderror"></ad>
+          <ad unit-id="{{item.listAdId}}" ad-intervals="30" binderror="adbinderror"></ad>
         </block>
       </view>
-      <view class="post-item" index="{{index}}" id="{{item.id}}" bindtap="redictDetail">
-        <image src="{{item.post_medium_image}}" mode="aspectFill" class="post-img"></image>
+      <view class="post-item ui-BG ui-BG-card" index="{{index}}" id="{{item.id}}" bindtap="redictDetail">
+
         <view class="post-desc">
-          <view class="post-title">
-            <text>{{item.title.rendered}}</text>
+          <view class="post-title text-lg ui-TC">
+             <text  >{{item.title.rendered}}</text>    
           </view>
-          <view class="post-data">
-            <image src="../../images/calendar.png"></image>
-            <text>{{item.date}}</text>
-            <image src="../../images/comments.png"></image>
-            <text class="">{{item.total_comments}}</text>
-            <image src="../../images/home-like.png"></image>
-            <text class="">{{item.like_count}}</text>
-            <image src="../../images/pageviews.png"></image>
-            <text class="">{{item.pageviews}}</text>
+          <view class="post-data ui-TC-3 text-xs">
+
+            <text  >{{item.date}}</text>
+            <text class="cicon-popover-o  "> {{item.total_comments}}</text>
+            <text class="cicon-favorite-o "> {{item.like_count}}</text>
+            <text class="cicon-eye-o "> {{item.pageviews}}</text>
           </view>
         </view>
+        <image src="{{item.post_medium_image}}" mode="aspectFill" class="post-img"></image>
       </view>
     </block>
   </view>

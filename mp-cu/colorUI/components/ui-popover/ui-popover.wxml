@@ -1,0 +1,19 @@
+<view class="ui-popover {{popover ? 'show' : 'hide'}} ">
+    <view class="ui-popover-button {{ui}}" id="popover-button-{{_uid}}" style="{{zIndex?'z-index:' + zIndex  + ';':''}}"
+          bindtap="popoverClick">
+        <slot></slot>
+    </view>
+    <view class="ui-popover-box" style="{{BoxStyle}}">
+        <view class="ui-popover-content-box" id="popover-content-{{_uid}}" style="{{contentStyle}}">
+            <view class="ui-popover-content radius text-a {{bg}}" style="{{'z-index:' + (zIndex  + 2) }}">
+                <view class="p-3 text-sm" wx:if="{{tips}}">{{ tips }}</view>
+                <block wx:else>
+                    <slot name="content"/>
+                </block>
+            </view>
+            <view class="ui-popover-arrow {{bg}}" style="{{arrowStyle}}"/>
+        </view>
+    </view>
+    <view class="ui-popover-mask {{mask?'bg-mask-50':''}}" style="{{'z-index:' +  (zIndex  - 1) + ';'}}"
+          wx:if="{{(popover && tips == '' && time == 0) || mask}}" bindtap="closePopover"/>
+</view>

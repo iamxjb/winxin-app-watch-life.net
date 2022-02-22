@@ -1,4 +1,4 @@
-<view wx:if="{{isShow}}">
+<block wx:if="{{isShow}}">
   <!-- 专业版 -->
   <van-col span="6" wx:if="{{source === 'pro'}}">
     <view
@@ -27,11 +27,9 @@
   >
     <text class="iconfont icon-scan" />
   </view> -->
-  <view
+  <text
     wx:if="{{source === 'free'}}"
-    class='scan-free'
+    class='cicon-scan'
     bindtap="scanQRCodeLogin"
-  >
-    <view>{{ text }}</view>
-  </view>
-</view>
+  > 扫码登录 </text>
+</block>

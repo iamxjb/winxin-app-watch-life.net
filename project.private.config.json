@@ -1,0 +1,73 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "评论",
+          "pathName": "pages/comments/comments",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "专题页",
+          "pathName": "pages/topic/topic",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "我的",
+          "pathName": "pages/readlog/readlog",
+          "query": "key=2",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "文章详情",
+          "pathName": "pages/detail/detail",
+          "query": "id=1553",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/theme/theme",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/pages/pages",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/detail/detail",
+          "query": "id=1909",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/my/my",
+          "query": "",
+          "scene": null,
+          "partialCompile": {
+            "enabled": true,
+            "pages": []
+          }
+        }
+      ]
+    }
+  }
+}

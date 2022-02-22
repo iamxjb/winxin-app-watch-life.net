@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "subscribe": "plugin-private://wx2b03c6e691cd7370/components/subscribe/subscribe"
+  } 
+}

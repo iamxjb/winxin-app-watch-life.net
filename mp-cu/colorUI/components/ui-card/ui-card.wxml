@@ -1,0 +1,25 @@
+<view class="ui-card {{ui}}">
+    <view class="ui-card-main {{imgUi}}" style="{{imgHeight?'height:'+imgHeight+';':''}} paddingTop:{{imgHeight?0:'50%'}}" wx:if="{{img}}">
+        <image class="ui-card-image" style="position:{{imgHeight==='auto'?'relative':'absolute'}}"
+               src="{{img}}" mode="{{imgHeight==='auto'?'widthFix':'aspectFill'}}" />
+        <view class="text-cut text-lg text-bold ui-card-fixedTitle bg-mask-bottom" wx:if="{{title && fixedTitle}}">
+            <view class="title">
+                <text wx:if="{{isTitle}}">{{ title }}</text>
+                <slot name="title" wx:else></slot>
+            </view>
+        </view>
+        <view class="ui-card-tag" wx:if="{{isTag}}">
+            <slot name="tag"></slot>
+        </view>
+    </view>
+    <view class="ui-card-content">
+        <view class="text-cut text-lg text-bold ui-card-title" wx:if="{{title && !fixedTitle}}">
+            <text wx:if="{{isTitle}}">{{ title }}</text>
+            <slot name="title" wx:else></slot>
+        </view>
+        <view class="ui-TC-3 mt-2 text-linecut-2 ui-card-desc" wx:if="{{desc}}">{{ desc }}</view>
+        <view class="ui-card-other">
+            <slot></slot>
+        </view>
+    </view>
+</view>

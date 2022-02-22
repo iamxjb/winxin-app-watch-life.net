@@ -13,13 +13,15 @@
   height: 240rpx;
   overflow: hidden;
   position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
+ 
 }
 
 .cover {
   width: 100%;
-  height: 240rpx;
-  filter: brightness(80%);
+  height: 240rpx; 
   position: absolute;
+  filter: saturate(180%) blur(35px); 
 }
 
 .topic-content-brief {

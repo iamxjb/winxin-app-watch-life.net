@@ -1,67 +1,102 @@
 {
-    "pages": [
-        "pages/index/index",
-        "pages/detail/detail",
-        "pages/logs/logs",
-        "pages/page/page",
-        "pages/about/about",
-        "pages/list/list",
-        "pages/topic/topic",
-        "pages/readlog/readlog",
-        "pages/hot/hot",
-        "pages/pay/pay",
-        "pages/webpage/webpage",
-        "pages/comments/comments",
-        "pages/poster/poster",
-        "pages/search/search"        
-        
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-         "navigationBarBackgroundColor": "#fff",
+  "pages": [
+    "pages/index/index",
+    "pages/about/about",
+    "pages/comments/comments",
+    "pages/detail/detail",
+    "pages/hot/hot",
+    "pages/logs/logs",
+    "pages/list/list",
+    "pages/page/page",
+    "pages/pay/pay",
+    "pages/poster/poster",
+    "pages/readlog/readlog",
+    "pages/search/search",
+    "pages/topic/topic",
+    "pages/theme/theme",
+    "pages/webpage/webpage",   
+    "pages/tags/tags",
+    "pages/my/my"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black",
+    "pageOrientation": "portrait",
+"navigationStyle": "custom"
+  },
+  "tabBar": {
+ 
+    "color": "#959595",
+    "selectedColor": "#118fff",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+    
+        "text": " "
+      },
+      {
+        "pagePath": "pages/topic/topic",
+  
+        "text": " "
+      },
+      {
+        "pagePath": "pages/hot/hot",
        
-        "navigationBarTextStyle": "black",
-        "pageOrientation": "portrait"
-    },
-    "tabBar": {
-        "color": "#959595",
-        "selectedColor": "#118fff",
-        "borderStyle": "white",
-        "backgroundColor": "#ffffff",
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "iconPath": "images/tab-home.png",
-                "selectedIconPath": "images/tab-home-on.png",
-                "text": "首页"
-            },
-            {
-                "pagePath": "pages/topic/topic",
-                "iconPath": "images/tab-topic.png",
-                "selectedIconPath": "images/tab-topic-on.png",
-                "text": "专题"
-            },
-            {
-                "pagePath": "pages/readlog/readlog",
-                "iconPath": "images/tab-my.png",
-                "selectedIconPath": "images/tab-my-on.png",
-                "text": "我的"
-            }
-        ]
-    },
-    "requiredBackgroundModes": [
-        "audio",
-        "location"
-    ],
-    "networkTimeout": {
-        "request": 10000,
-        "connectSocket": 10000,
-        "uploadFile": 10000,
-        "downloadFile": 10000
-    },  
-    "plugins": {
-              
-      }, 
-    "sitemapLocation": "sitemap.json",
-    "resizable":false
+        "text": " "
+      },
+      {
+        "pagePath": "pages/my/my",
+ 
+        "text": " "
+      }
+    ]
+  },
+  "usingComponents": {
+    "ui-sys": "mp-cu/colorUI/components/ui-sys/ui-sys",
+    "ui-title": "mp-cu/colorUI/components/ui-title/ui-title",
+    "ui-avatar": "mp-cu/colorUI/components/ui-avatar/ui-avatar",
+    "ui-search-bar": "/mp-cu/colorUI/components/ui-search-bar/ui-search-bar",
+    "ui-swiper": "/mp-cu/colorUI/components/ui-swiper/ui-swiper",
+    "ui-loading": "mp-cu/colorUI/components/ui-loading/ui-loading",
+    "ui-menu": "mp-cu/colorUI/components/ui-menu/ui-menu",
+    "ui-menu-item": "mp-cu/colorUI/components/ui-menu-item/ui-menu-item",
+    "ui-avatar-stack": "mp-cu/colorUI/components/ui-avatar-stack/ui-avatar-stack",
+    "ui-modal": "mp-cu/colorUI/components/ui-modal/ui-modal",
+    "ui-toast": "mp-cu/colorUI/components/ui-toast/ui-toast",
+    "ui-switch": "mp-cu/colorUI/components/ui-switch/ui-switch",
+    "ui-radio-group": "mp-cu/colorUI/components/ui-radio-group/ui-radio-group",
+    "ui-radio": "mp-cu/colorUI/components/ui-radio/ui-radio",
+    "ui-card": "mp-cu/colorUI/components/ui-card/ui-card",
+    "ui-fixed": "mp-cu/colorUI/components/ui-fixed/ui-fixed",
+    "ui-img": "mp-cu/colorUI/components/ui-img/ui-img",
+    "ui-navbar": "/mp-cu/colorUI/components/ui-navbar/ui-navbar",
+    "ui-text-size": "/mp-cu/colorUI/components/ui-text-size/ui-text-size",
+    "ui-tag": "/mp-cu/colorUI/components/ui-tag/ui-tag",
+    "ui-progress": "/mp-cu/colorUI/components/ui-progress/ui-progress",
+    "ui-tab": "/mp-cu/colorUI/components/ui-tab/ui-tab",
+    "ui-popover": "/mp-cu/colorUI/components/ui-popover/ui-popover",
+    "ui-steps": "/mp-cu/colorUI/components/ui-steps/ui-steps",
+    "ui-form": "/mp-cu/colorUI/components/ui-form/ui-form",
+    "ui-form-group": "/mp-cu/colorUI/components/ui-form-group/ui-form-group",
+    "ui-input-box": "/mp-cu/colorUI/components/ui-input-box/ui-input-box",
+    "ui-checkbox": "/mp-cu/colorUI/components/ui-checkbox/ui-checkbox",
+    "ui-checkbox-group": "/mp-cu/colorUI/components/ui-checkbox-group/ui-checkbox-group",
+    "ui-change-theme": "/mp-cu/colorUI/components/ui-change-theme/ui-change-theme"
+  },
+  "requiredBackgroundModes": [
+    "audio",
+    "location"
+  ],
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "sitemapLocation": "sitemap.json",
+  "resizable": false,
+  "darkmode": true
 }

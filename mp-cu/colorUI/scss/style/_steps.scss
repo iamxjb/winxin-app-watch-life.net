@@ -1,0 +1,166 @@
+.ui-steps {
+    display: flex;
+    width: 100%;
+    .ui-step {
+        flex: 1;
+        text-align: center;
+        position: relative;
+        min-width: 100rpx;
+        .ui-steps-icon,
+        .ui-steps-num {
+            display: block;
+            font-size: 40rpx;
+            line-height: 80rpx;
+        }
+        &:not([class*='text-']) {
+            color: #8799a3;
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 0;
+            width: calc(100% - 80rpx);
+            border-bottom: 1px solid #ccc;
+            left: calc(0px - (100% - 80rpx) / 2);
+            top: 40rpx;
+            z-index: 0;
+        }
+        &::after {
+            border-bottom: 1px solid currentColor;
+            width: 0;
+            transition: all 0.3s ease-in-out 0s;
+        }
+        &[class*='text-']::after {
+            width: calc(100% - 80rpx);
+            color: currentColor  !important;
+        }
+
+        &:first-child::before,
+        &:first-child::after {
+            display: none;
+        }
+    }
+    &.steps-scroll {
+        display: block;
+        white-space: nowrap;
+        .ui-step {
+            display: inline-block;
+        }
+    }
+
+    &.steps-number {
+        .ui-step {
+            .ui-steps-num {
+                width: 40rpx;
+                height: 40rpx;
+                border-radius: 50%;
+                line-height: 40rpx;
+                margin: 20rpx auto;
+                font-size: 24rpx;
+                border: 1px solid currentColor;
+                position: relative;
+                overflow: hidden;
+
+                &::before,
+                &::after {
+                    content: attr(data-index);
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    transition: all 0.3s ease-in-out 0s;
+                    transform: translateY(0);
+                }
+
+                &::after {
+                    transform: translateY(40rpx);
+                    color: #ffffff;
+                    transition: all 0.3s ease-in-out 0s;
+                }
+            }
+
+            &[class*='ui-TC-'] .ui-steps-num {
+                background-color: currentColor;
+                &::before {
+                    transform: translateY(-40rpx);
+                    color: #ffffff;
+                }
+                &::after {
+                    content: "\e69f";
+                    font-family: 'colorui';
+                    color: #ffffff;
+                    transform: translateY(0);
+                }
+                &.ui-steps-err::after {
+                    content: "\e6ed";
+                }
+            }
+        }
+    }
+
+    &.steps-column {
+        flex-direction: column;
+        .ui-step {
+            display: flex;
+            flex: initial;
+            height: 60px;
+            .ui-steps-text{
+                padding-top: 10px;
+                text-align: left;
+                padding-left: 10px;
+                .ui-steps-title{
+                    font-size: 16px;
+                }
+                .ui-steps-desc{
+                    font-size: 12px;
+                    opacity: .7;
+                }
+            }
+            .ui-steps-num{
+                margin: 20rpx 0;
+            }
+            &::before,
+            &::after {
+                width: 0;
+                height: 30px;
+                border-left: 1px solid #ccc;
+                top: -25px;
+                left: 10px;
+                z-index: 0;
+            }
+            &::after {
+                border-left: 1px solid currentColor;
+                height: 0;
+                transition: all 0.3s ease-in-out 0s;
+            }
+            &[class*='text-']::after {
+                height: 30px;
+                color: currentColor  !important;
+            }
+        }
+    }
+
+    &.steps-arrow {
+        .ui-step {
+            &::before,
+            &::after {
+                width: calc(100% - 80rpx);
+                content: "\e601";
+                font-family: 'colorui';
+                height: 30rpx;
+                border-bottom-width: 0;
+                line-height: 30rpx;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                color: #ccc;
+                font-size: 40rpx;
+            }
+        }
+    }
+}

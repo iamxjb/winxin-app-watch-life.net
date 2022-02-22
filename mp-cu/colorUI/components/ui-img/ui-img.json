@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ui-loading": "../ui-loading/ui-loading"
+  }
+}

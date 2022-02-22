@@ -1,0 +1,35 @@
+.mp-ui-img-box {
+    position: relative;
+    .ui-img-box {
+        position: relative;
+        width: 100%;
+        height: 280rpx;
+        max-width: 100%;
+        .ui-img-load {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            z-index: 1;
+            background-color: var(--ui-BG-4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .ui-img {
+            border-radius: inherit;
+            display: none;
+        }
+        &.cover {
+            background-size: cover;
+        }
+    }
+    .ui-img-box.mp-img-local {
+        position: relative;
+        .ui-img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

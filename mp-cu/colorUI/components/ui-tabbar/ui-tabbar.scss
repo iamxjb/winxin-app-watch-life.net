@@ -1,0 +1,60 @@
+.ui-tabbar-box {
+    .ui-tabbar {
+        padding: 10rpx;
+        display: flex;
+
+        .ui-tabbar-item {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            z-index: 10001;
+
+            .ui-tabbar-icon {
+                height: 60rpx;
+                width: 60rpx;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 45rpx;
+
+                // background-color: #f1f1f1;
+                .ui-tabbar-image {
+                    width: 50rpx;
+                    height: 50rpx;
+                }
+
+                &.center {
+                    background-color: var(--ui-BG-Main);
+                    border-radius: 50%;
+                    color: #ffffff;
+                    font-size: 32rpx;
+                    transform: scale(1.3) translateY(-6px);
+                }
+
+                .badge {
+                    top: 0;
+                }
+            }
+
+            .ui-btn {
+                margin-top: -10px;
+                margin-bottom: 5px;
+                position: relative;
+            }
+
+            .ui-tabbar-text {
+                font-size: 24rpx;
+                color: var(--ui-TC-2);
+            }
+
+            &.cur .ui-tabbar-text {
+                color: var(--ui-TC-Main);
+            }
+        }
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ui-sys": "/mp-cu/colorUI/components/ui-sys/ui-sys"
+
+   
+  }
+}

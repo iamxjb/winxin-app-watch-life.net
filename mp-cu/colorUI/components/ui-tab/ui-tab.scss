@@ -1,0 +1,203 @@
+@import '../../scss/var';
+
+.ui-tab {
+    position: relative;
+    display: flex;
+    height: 4em;
+    align-items: center;
+    .ui-tab-item {
+        display: inline-flex;
+        align-items: center;
+        padding: 0 1em;
+        min-height: 1.5em;
+        line-height: 1.5em;
+        position: relative;
+        z-index: 1;
+        opacity: .6;
+        transition: opacity 0.3s;
+        .ui-tab-icon{
+            margin: 0 .25em;
+            font-size: 120%;
+        }
+        &.cur {
+            opacity: 1;
+        }
+        &.btn{
+            .ui-tab-text{
+                transform: scale(.9);
+                transition: color 0.3s;
+            }
+        }
+    }
+    &.ui-tab-scrolls {
+        width: 100%;
+        .ui-tab-scroll-warp {
+            overflow: hidden;
+            height: inherit;
+            width: 100%;
+            .ui-tab-scroll {
+                position: relative;
+                display: block;
+                white-space: nowrap;
+                overflow: auto;
+                height: calc(4em + 17px);
+                padding-bottom: 17px;
+                line-height: 4em;
+                width: 100% !important;
+                .ui-tab-mark-warp {
+                    height: 4em;
+                }
+            }
+        }
+    }
+    .ui-tab-mark-warp {
+        color: inherit;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        z-index: 0;
+        &.over {
+            transition: 0.3s;
+        }
+        .ui-tab-mark {
+            color: var(--ui-BG-Main);
+            height: 100%;
+            &.ui-btn {
+                .text {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+    &.line {
+        .ui-tab-mark {
+            border-bottom: 2px solid currentColor;
+        }
+    }
+    &.topline {
+        .ui-tab-mark {
+            border-top: 2px solid currentColor;
+        }
+    }
+    &.dot {
+        .ui-tab-mark::after {
+            content: '';
+            width: 0.5em;
+            height: 0.5em;
+            background-color: currentColor;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            bottom: 0.3em;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
+    &.dot {
+        .ui-tab-mark::after {
+            content: '';
+            width: 0.5em;
+            height: 0.5em;
+            background-color: currentColor;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+            bottom: 0.5em;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
+    &.long {
+        .ui-tab-mark::after {
+            content: '';
+            width: 2em;
+            height: 0.35em;
+            background-color: currentColor;
+            border-radius: 5em;
+            display: block;
+            position: absolute;
+            bottom: 0.5em;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
+    &.trapezoid {
+        .ui-tab-mark::after {
+            content: '';
+            width: calc(100% - 2em);
+            height: 0.35em;
+            background-color: currentColor;
+            border-radius: 5em 5em 0 0;
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
+    &.btn {
+        .ui-tab-mark-warp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .ui-tab-mark.ui-btn {
+                height: calc(100% - 1.6em);
+                width: calc(100% - 0.6em);
+            }
+        }
+        &.sm .ui-tab-mark.ui-btn {
+            height: calc(100% - 2px);
+            width: calc(100% - 2px);
+            border-radius: #{$radius - 2};
+        }
+    }
+    &.ui-tab-inline {
+        display: inline-flex;
+        height: 3.5em;
+        &.ui-tab-scrolls {
+            .ui-tab-scroll {
+                height: calc(3.5em + 17px);
+                line-height: 3.5em;
+                .ui-tab-mark-warp {
+                    height: 3.5em;
+                }
+            }
+        }
+        &.btn {
+            .ui-tab-mark-warp {
+                .ui-tab-mark.ui-btn {
+                    height: calc(100% - 10px);
+                    width: calc(100% - 10px);
+                }
+            }
+
+        }
+    }
+
+    &.sm {
+        height: 70rpx !important;
+
+        &.ui-tab-inline{
+            height: 70rpx;
+            &.ui-tab-scrolls {
+                .ui-tab-scroll {
+                    height: calc(70rpx + 17px);
+                    line-height: 70rpx;
+                    .ui-tab-mark-warp {
+                        height: 70rpx;
+                    }
+                }
+            }
+            &.btn .ui-tab-mark.ui-btn {
+                height: calc(100% - 2px);
+                width: calc(100% - 2px);
+                border-radius: #{$radius - 2};
+            }
+        }
+    }
+}
+

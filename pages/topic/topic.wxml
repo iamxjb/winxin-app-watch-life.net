@@ -1,31 +1,38 @@
 <import src="../../templates/copyright.wxml" />
 <import src="../../templates/login-popup.wxml" />
+<ui-sys tabbar>
+  <ui-navbar back="{{false}}" isSlot>
+    <view class="flex-center flex-sub">分类</view>
+  </ui-navbar>
+  <view class="ui-grid ui-cols-2">
+    <view class="ui-item " wx:key="id" wx:for="{{categoriesList}}">
+      <view class="ui-BG ui-BG-card">
+        <view class="ui-card-sub radius" data-subflag="{{item.subflag}}" data-id="{{item.id}}" catchtap="postsub">
+          <block wx:if="{{item.subflag==0}}">
+            <text class="cicon-toggle-o text-xs  "> 订阅</text>
+          </block>
+          <block wx:if="{{item.subflag==1}}">
+            <text class="cicon-toggle text-xs "> 已订阅</text>
+          </block>
+        </view>
+        <view class="ui-card-bg " data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex" style="background-image:url({{item.category_thumbnail_image}}) ;">
 
-<view class="topic-list clearfix">
-  <block wx:key="id" wx:for="{{categoriesList}}">
-    <view class="list-item">
-      <view>
-        <image src="{{item.category_thumbnail_image}}" class="topic-img" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex" mode="aspectFill"></image>
-      </view>
-      <view class="topic-name-box" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
-        <view class="topic-name">
-          <text>{{item.name}}</text>
         </view>
-        <view class="btn-box">
-          <image src="../../images/{{item.subimg}}" data-subflag="{{item.subflag}}" data-id="{{item.id}}" catchtap="postsub"></image>
+        <image mode="aspectFill" class="ui-card-image" src="{{item.category_thumbnail_image}}" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex"></image>
+        <view class="ui-card-content ui-BG radius" data-item="{{item.name}}" data-id="{{item.id}}" bindtap="redictIndex">
+          <view> <text class="text-lg ui-TC">{{item.name}} </text>
+          </view>
+          <text class="ui-TC-3 text-xs ">{{item.count}}篇文章 </text>
+          <text class="ui-TC-3 text-sm text-linecut-2 dec">{{item.description}} </text>
         </view>
-      </view>
-      <view class="topic-brief" data-item="{{item.name}}" data-id="{{item.id}}">
-        <text>{{item.description}}</text>
       </view>
     </view>
-  </block>
-</view>
+  </view>
+  <!-- 未登录时弹出的登录框 -->
+  <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
 
-<!-- 未登录时弹出的登录框 -->
-<template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
-
-<!-- 版权信息 -->
-<view class="copyright" style="display:{{floatDisplay}}">
-   <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
-</view>
+  <!-- 版权信息 -->
+  <view class="copyright" style="display:{{floatDisplay}}">
+    <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}" />
+  </view>
+</ui-sys>

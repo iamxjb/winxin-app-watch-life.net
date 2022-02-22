@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ui-modal": "../ui-modal/ui-modal",
+    "ui-menu": "../ui-menu/ui-menu",
+    "ui-menu-item": "../ui-menu-item/ui-menu-item"
+  }
+}

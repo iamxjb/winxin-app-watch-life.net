@@ -14,8 +14,7 @@
  .wrapper{
   padding: 5rpx;
   border: 2rpx solid #eee;
-  margin-top: 10rpx;
-  border-radius:5px;
+  margin-top: 10rpx; 
  -webkit-box-shadow: 3px 3px 3px;  
   -moz-box-shadow: 3px 3px 3px;  
   box-shadow: 3px 3px 3px #eee;  

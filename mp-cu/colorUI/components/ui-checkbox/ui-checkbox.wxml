@@ -1,0 +1,7 @@
+<view class="ui-checkbox {{isDisabled?'disabled':''}} {{ui}}" bindtap="_onCheckboxClick">
+    <view class="ui-checkbox-input radius {{isChecked?'cur '+bg:unbg}} {{isIndeterminate?'indeterminate '+bg:unbg}}"/>
+    <view class="ui-checkbox-content">
+        <slot></slot>
+    </view>
+    <view class="ui-checkbox-bg radius {{isChecked?'cur '+bg:''}} {{isIndeterminate?'indeterminate '+bg:''}}" wx:if="{{hasUiCard}}"/>
+</view>

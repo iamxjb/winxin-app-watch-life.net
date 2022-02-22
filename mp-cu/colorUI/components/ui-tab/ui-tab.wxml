@@ -1,0 +1,36 @@
+<view class="ui-tab {{ui}} {{tpl}} {{bg}} {{align}} {{inline?'ui-tab-inline':''}} {{scroll?'ui-tab-scrolls':''}}" id="{{'ui-tab-'+_uid}}">
+    <view class="ui-tab-scroll-warp" wx:if="{{scroll}}">
+        <scroll-view scroll-x="{{true}}" class="ui-tab-scroll" scroll-left="{{curValue > 1 ? tabNodeList[curValue - 1].left : 0}}"
+                     scroll-with-animation style="width:{{content.width}}px;">
+            <block wx:for="{{tab}}" wx:key="index">
+                <view id="ui-tab-item-{{_uid}}-{{index}}" class="ui-tab-item {{curValue===index?'cur':''}} {{tpl}}"
+                      data-index="{{index}}" data-item="{{item}}" bindtap="_click">
+                    <view class="ui-tab-icon {{item.icon}}" wx:if="{{item.icon}}"/>
+                    <view class="ui-tab-text {{curValue===index?curColor:''}}">{{ item.name?item.name:item }}</view>
+                    <view class="ui-tag badge ml-2" wx:if="{{item.tag != null}}">{{ item.tag }}</view>
+                </view>
+            </block>
+
+            <view class="ui-tab-mark-warp {{over?'over':''}}" style="left:{{markLeft}}px; width:{{markWidth}}px;">
+                <view class="ui-tab-mark {{mark}} {{tpl==='btn'?'ui-btn':''}}">
+                    <text class="text" wx:if="{{tpl==='btn'}}">{{ tab[curValue].name ? tab[curValue].name : tab[curValue] }}</text>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+    <block wx:else>
+        <block wx:for="{{tab}}" wx:key="index">
+            <view id="ui-tab-item-{{_uid}}-{{index}}" class="ui-tab-item {{curValue===index?'cur':''}} {{tpl}}"
+                  data-index="{{index}}" data-item="{{item}}" bindtap="_click">
+                <view class="ui-tab-icon {{item.icon}}" wx:if="{{item.icon}}"/>
+                <view class="ui-tab-text {{curValue===index?curColor:''}}">{{ item.name?item.name:item }}</view>
+                <view class="ui-tag badge ml-2" wx:if="{{item.tag != null}}">{{ item.tag }}</view>
+            </view>
+        </block>
+        <view class="ui-tab-mark-warp {{over?'over':''}}" style="left:{{markLeft}}px; width:{{markWidth}}px;">
+            <view class="ui-tab-mark {{mark}} {{tpl==='btn'?'ui-btn':''}}">
+                <text class="text" wx:if="{{tpl==='btn'}}">{{ tab[curValue].name ? tab[curValue].name : tab[curValue] }}</text>
+            </view>
+        </view>
+    </block>
+</view>

@@ -1,0 +1,13 @@
+<view class="mp-ui-img-box">
+    <view class="ui-img-box {{ui}} {{mode}}" id="{{'image-'+_uid}}" bindtap="_preview" wx:if="{{!local}}"
+          style="{{src?'background-image:'+'url(' + src +');':''}} {{imgW?'width:'+imgW+';':''}} {{imgH?'height:'+imgH+';':''}}">
+        <image class="ui-img {{mode}}" id="{{'img-'+_uid}}" src="{{src}}" mode="aspectFill" bindload="_load" binderror="_error"/>
+        <view class="ui-img-load" wx:if="{{isLoad}}">
+            <ui-loading color size="xl"/>
+        </view>
+    </view>
+    <view class="ui-img-box mp-img-local {{ui}} {{mode}}" id="{{'image-'+_uid}}" bindtap="_preview" wx:if="{{local}}"
+          style="{{imgW?'width:'+imgW+';':''}} {{imgH?'height:'+imgH+';':''}}">
+        <image class="ui-img {{mode}}" id="{{'img-'+_uid}}" src="{{src}}" mode="aspectFill" bindload="_load" binderror="_error"/>
+    </view>
+</view>

@@ -1,0 +1,10 @@
+<view class="ui-progress {{active?'active':''}} {{striped?'striped':''}} {{lg?'lg':''}} {{sm?'sm':''}} {{ui}}">
+    <block wx:if="{{progressArray.length > 0}}">
+        <view class="view ui-progress-bar {{bgArray[index]}}" wx:for="{{progressArray}}" wx:key="index" style="{{'width:' + item + '%;'}}">
+            <text wx:if="{{item > 5 && !sm}}">{{ item }}%</text>
+        </view>
+    </block>
+    <view class="view ui-progress-bar {{bg}}" style="{{'width:' + progress + '%;'}}" wx:else>
+        <text wx:if="{{progress > 5 && !sm}}">{{ progress }}%</text>
+    </view>
+</view>

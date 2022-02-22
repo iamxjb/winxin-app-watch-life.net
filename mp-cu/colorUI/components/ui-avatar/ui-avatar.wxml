@@ -1,0 +1,10 @@
+<view class="ui-avatar {{ui}} {{bg}} {{stack?'stack':''}} {{reverse?'reverse':''}} {{first?'isFirstChild':''}}">
+    <view class="view ui-avatar-icon">
+        <text class="text {{icon}}"/>
+    </view>
+    <image class="ui-avatar-image" src="{{src}}" mode="aspectFill"/>
+    <slot></slot>
+    <view class="view ui-avatar-group {{'nth-' + srcs.length}}" wx:if="{{srcs.length > 0}}">
+        <image class="ui-avatar-image" wx:for="{{srcs}}" wx:key="index" src="{{item}}" mode="aspectFill"/>
+    </view>
+</view>

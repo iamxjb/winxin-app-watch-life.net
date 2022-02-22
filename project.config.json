@@ -1,7 +1,7 @@
 {
   "description": "项目配置文件。",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": true,
     "postcss": true,
@@ -17,7 +17,8 @@
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
-    "compileHotReLoad": true,
+    "compileHotReLoad": false,
+    "lazyloadPlaceholderEnable": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
     "useApiHostProcess": true,
@@ -32,11 +33,15 @@
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true,
+    "disableUseStrict": false,
+    "minifyWXML": true,
     "showES6CompileOption": false,
-    "minifyWXML": true
+    "useCompilerPlugins": [
+      "sass"
+    ]
   },
   "compileType": "miniprogram",
-  "libVersion": "2.19.0",
+  "libVersion": "2.21.3",
   "appid": "wx39075d0bde24f9f7",
   "projectname": "www.watch-life.net",
   "simulatorType": "wechat",

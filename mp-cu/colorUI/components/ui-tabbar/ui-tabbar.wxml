@@ -1,0 +1,25 @@
+<wxs module="itemOf">
+    var indexOf = function (item) {
+        return item.indexOf('/') !== -1
+    }
+    module.exports = {
+        indexOf: indexOf
+    }
+</wxs>
+<ui-fixed bottom placeholder bg="{{bg}}" ui="{{ui}}" noFixed="{{noFixed}}" zIndex='99'>
+    <view class="ui-tabbar-box">
+        <view class="ui-tabbar">
+            <block wx:for="{{datas}}" wx:key="index">
+                <view class="ui-tabbar-item {{index===cur?curText:text}} {{index===cur?'cur':''}}" data-item="{{item}}" bindtap="clickItem">
+                    <view class="ui-tabbar-icon {{item.center?'center border shadow-' + main:''}}">
+                        <image src="{{index===cur?item.curIcon:item.icon}}" mode="aspectFill" class="ui-tabbar-image"
+                               wx:if="{{itemOf.indexOf(item.icon)}}"/>
+                        <text class="{{index === cur?item.curIcon: item.icon}}" wx:else/>
+                    </view>
+                    <view class="ui-tabbar-text">{{ item.title }}</view>
+                </view>
+            </block>
+            <slot/>
+        </view>
+    </view>
+</ui-fixed>

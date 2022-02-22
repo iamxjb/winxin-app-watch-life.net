@@ -1,0 +1,57 @@
+.ui-form-input {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+    border-radius: inherit;
+    align-items: center;
+    .ui-input-wrapper,.ui-textarea-wrapper {
+        border-radius: inherit;
+        color: var(--ui-TC-1);
+        padding: 0.8em 0;
+        font-size: 28rpx;
+        width: 100%;
+        /* #ifdef H5 */
+        background-color: transparent;
+        border: none;
+        /* #endif */
+        &:focus-visible {
+            outline: none;
+        }
+    }
+    .ui-input-wrapper {
+        display: flex;
+        align-items: center;
+    }
+    .ui-textarea-wrapper {
+        min-height: 3.2em;
+        line-height: 1.4em;
+    }
+    .ui-textarea-wrapper.show-tag {
+        min-height: 5.6em;
+        padding-bottom: 2.4em;
+    }
+    .ui-textarea-tag{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+    .ui-input-visible {
+        font-size: 16px;
+        text-align: center;
+    }
+    .ui-input-icon {
+        width: 2em;
+        height: 2.6em;
+        line-height: 2.6em;
+        font-size: 28rpx;
+        text-align: center;
+        right: 0;
+        top: 0;
+        z-index: 3;
+        padding-left: .6em;
+    }
+    .tips-text {
+        height: 1em;
+        margin-top: 0.3em;
+    }
+}

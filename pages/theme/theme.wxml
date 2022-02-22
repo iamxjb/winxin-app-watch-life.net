@@ -1,0 +1,10 @@
+<ui-sys title="主题">
+    <view class="ui-container">
+
+        <ui-title title="主题" depth="2" isIcon/>
+        <ui-change-theme ui="radius border"/>
+ 
+        <ui-title title="字号" depth="2" isIcon/>
+        <ui-text-size ui="radius border"/>
+    </view>
+</ui-sys>

@@ -1,0 +1,5 @@
+<view class="ui-switch {{disabled?'disabled':''}} {{ui}}">
+    <view class="ui-switch-wrapper" bindtap="clickSwitch">
+        <view class="ui-switch-input {{tempChecked?'ui-switch-input-checked':''}} {{tempChecked?bg:''}} {{text}} {{size}}"/>
+    </view>
+</view>

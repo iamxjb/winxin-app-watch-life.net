@@ -22,6 +22,7 @@ var domain =config.getDomain
 var app = getApp();
 Page({
     data: {
+
         text: "Page topic",
         categoriesList: {},
         floatDisplay: "none",
@@ -50,7 +51,12 @@ Page({
         
     },
     onShow:function(){            
-
+        if (typeof this.getTabBar === 'function' &&
+        this.getTabBar()) {
+        this.getTabBar().setData({
+          selected: 1
+        })
+      }
     },
     //获取分类列表
     fetchCategoriesData: function () {

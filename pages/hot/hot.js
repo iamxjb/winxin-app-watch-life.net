@@ -25,27 +25,18 @@ import config from '../../utils/config.js'
 Page({
   data: {
     title: '文章列表',
-    postsList: {},
-    pagesList: {},
-    categoriesList: {},
-    postsShowSwiperList: {},
-    isLastPage: false,
+    postsList: {},  
     page: 1,
-    search: '',
-    categories: 0,
-    categoriesName:'',
-    categoriesImage:"",
-    showerror:"none",
-    isCategoryPage:"none",
-    isSearchPage:"none",
+    search: '', 
+    showerror:"none", 
     showallDisplay: "block",
     displaySwiper: "block",
-    floatDisplay: "none",
-    searchKey:"",
+    floatDisplay: "none", 
     topBarItems: [
         // id name selected 选中状态
-        { id: '1', name: '评论数', selected: true },
-        { id: '2', name: '浏览数', selected: false },        
+      
+        { id: '2', name: '浏览数', selected: true }, 
+        { id: '1', name: '评论数', selected: false },       
         { id: '3', name: '点赞数', selected: false },
         // { id: '4', name: '鼓励数', selected: false }
     ],
@@ -63,6 +54,7 @@ Page({
       url: url
     })
   },
+ 
   onShareAppMessage: function () {
     var title = "分享“"+ webSiteName +"”的文章排行。";
     var path ="pages/hot/hot";
@@ -111,7 +103,7 @@ Page({
     if (tab !== 0) {
       this.fetchPostsData(tab);
     } else {
-      this.fetchPostsData("1");
+      this.fetchPostsData("2");
     }
   },
   
@@ -125,7 +117,7 @@ Page({
               //console.log(e);
             }
       })
-    this.fetchPostsData("1");
+    this.fetchPostsData("2");
     Adapter.setInterstitialAd("enable_hot_interstitial_ad");
         
   },
@@ -136,10 +128,7 @@ Page({
         postsList: []
     });
     
-    wx.showLoading({
-      title: '正在加载',
-      mask:true
-    });
+  
     var getTopHotPostsRequest = wxRequest.getRequest(Api.getTopHotPosts(tab));
     getTopHotPostsRequest.then(response =>{
         if (response.statusCode === 200) {

@@ -1,0 +1,9 @@
+<view class="ui-toast-box {{title!=''?'show':'hide'}} {{mask||mask=='80'?'bg-mask-80':''}} {{mask||mask=='20'?'bg-mask-20':''}} {{mask||mask=='40'?'bg-mask-40':''}}" style="{{sys_navBar?'top:' + sys_navBar + 'px':''}}">
+    <view class="ui-toast bg-mask-80 {{icon!=''?'hasIcon':''}}">
+        <view class="ui-toast-icon" wx:if="{{icon!=''}}">
+            <text class="{{icon}} {{isLoading?'icon-spin':''}}"/>
+        </view>
+        <!--title.substring(0, 255) -->
+        <text>{{ title.length > 255 ? title + '...' : title }}</text>
+    </view>
+</view>

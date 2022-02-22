@@ -46,14 +46,33 @@
 }
 
 .log-items {
-  margin-top: 15rpx;
+  padding: 24rpx 24rpx 24rpx 100rpx;
+  position: relative;
 }
-
-.log-text {
-  margin: 32rpx 0;
-  font-size: 28rpx;
-  color: #757575;
-  text-align: left;
-  word-wrap:break-word;
- word-break:break-all; 
+.log-items_tx {
+  position: absolute;
+  top: 24rpx;
+  left: 24rpx;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  background: #f8f8f8 !important;
+}
+.log-items_tx image{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+ .log-items_top{
+  height: 50rpx;
+  line-height: 50rpx;
+  overflow: hidden;
+}
+ 
+.flr{
+  float: right;
+}
+.log-items_nr{
+  margin: 8rpx 0;
+ 
 }

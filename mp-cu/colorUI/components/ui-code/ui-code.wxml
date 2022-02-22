@@ -1,0 +1,16 @@
+<view class="ui-code border radius {{tag}} {{'language-'+lang}} {{bg}} {{title?'hasTitle':''}} {{ui}}">
+    <block wx:if="{{rich}}">
+        <scroll-view scroll-y="{{scroll}}" scroll-x class="ui-scroll-view {{scroll?'ui-scroll':''}}">
+            <rich-text nodes="{{nodes}}" class="ui-rich-text"></rich-text>
+            <slot/>
+        </scroll-view>
+    </block>
+    <view class="ui-rich-text {{text}}" wx:else>
+        <text decode="true">{{ nodes }}</text>
+        <slot/>
+    </view>
+    <view class="ui-copy-btn sm" wx:if="{{tag !== 'code'}}" bindtap="copyCode">
+        <text class="_icon-copy icon-xl text-c"/>
+    </view>
+    <view class="ui-code-title ui-TC-2" wx:if="{{title}}">{{title==true?'示例代码:':title}}</view>
+</view>

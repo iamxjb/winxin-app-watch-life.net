@@ -13,7 +13,7 @@
 <import src="../../templates/common-list.wxml" />
 <import src="../../templates/copyright.wxml" />
 <import src="../../templates/loading.wxml" />
-
+<ui-sys title="{{categoriesName||searchKey}} "> 
 <view class="topic-common-list" style="display:{{isCategoryPage}}">
   <view class="topic-list-item">
     <image src="{{categoriesImage}}" class="cover" mode="aspectFill">
@@ -40,7 +40,7 @@
 
 <view class="container">
   <view class="showerror" style="display:{{showerror}}">
-    <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
+  <text class="cicon-wifi-off text-xsl"></text> 
     <view class="errortext">
       暂时无法访问网络
       <view class="">
@@ -64,4 +64,4 @@
   <view class="copyright" style="display:{{floatDisplay}}">
    <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
   </view>
-</view>
+</view></ui-sys>

@@ -11,8 +11,8 @@
  */-->
 <template name="tempLoading">
 <view class="sk-three-bounce">
-    <view class="sk-child sk-bounce1"></view>
-    <view class="sk-child sk-bounce2"></view>
-    <view class="sk-child sk-bounce3"></view>
+    <view class="sk-child sk-bounce1 ui-BG-Main-2"></view>
+    <view class="sk-child sk-bounce2 ui-BG-Main-2"></view>
+    <view class="sk-child sk-bounce3 ui-BG-Main-2"></view>
 </view>
 </template>

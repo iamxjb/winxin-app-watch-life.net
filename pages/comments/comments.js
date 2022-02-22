@@ -17,17 +17,20 @@ var wxRequest = require('../../utils/wxRequest.js')
 const Adapter = require('../../utils/adapter.js')
 import config from '../../utils/config.js'
 var pageCount = config.getPageCount;
-
+var webSiteName= config.getWebsiteName;
+var domain =config.getDomain
 Page({
     data: {
         title: '最新评论列表',
         showerror: "none",
         showallDisplay: "block",
-        readLogs: []
+        readLogs: [],
+        webSiteName:webSiteName,
+        domain:domain 
 
     },
     onShareAppMessage: function () {
-        var title = "分享"+config.getWebsiteName+"的最新评论";
+        var title = "分享" + config.getWebsiteName + "的最新评论";
         var path = "pages/comments/comments";
         return {
             title: title,
@@ -41,19 +44,18 @@ Page({
         }
     },
     // 自定义分享朋友圈
-   onShareTimeline: function() {
-    return {
-      title: '“' + config.getWebsiteName +'”最新评论',
-      path: 'pages/comments/comments' ,
-      imageUrl:"../../images/comments.jpg"     
-    }
-  },
+    onShareTimeline: function () {
+        return {
+            title: '“' + config.getWebsiteName + '”最新评论',
+            path: 'pages/comments/comments' 
+        }
+    },
     reload: function (e) {
         var self = this;
         this.setData({
             readLogs: []
         });
-        self.setData({            
+        self.setData({
             showallDisplay: "none",
             showerror: "none",
 
@@ -63,13 +65,12 @@ Page({
     onLoad: function (options) {
         var self = this;
         wx.showShareMenu({
-                  withShareTicket:true,
-                  menus:['shareAppMessage','shareTimeline'],
-                  success:function(e)
-                  {
-                    //console.log(e);
-                  }
-            })
+            withShareTicket: true,
+            menus: ['shareAppMessage', 'shareTimeline'],
+            success: function (e) {
+                //console.log(e);
+            }
+        })
         Adapter.setInterstitialAd("enable_comments_interstitial_ad");
         self.fetchCommentsData();
     },
@@ -82,28 +83,29 @@ Page({
         });
         var getNewComments = wxRequest.getRequest(Api.getNewComments());
         getNewComments.then(response => {
-            if (response.statusCode == 200) {
-                this.setData({
-                    readLogs: self.data.readLogs.concat(response.data.map(function (item) {
-                        item[0] = item.post;
-                        item[1] = util.removeHTML(item.content.rendered + '(' + item.author_name + ')');
-                        item[2] = "0";
-                        return item;
-                    }))
-                });
-                self.setData({
-                    showallDisplay: "block"
-                });
-                
-            }
-            else {
-                console.log(response);
-                this.setData({
-                    showerror: 'block'
-                });
+                if (response.statusCode == 200) {
+                    this.setData({
+                        readLogs: self.data.readLogs.concat(response.data.map(function (item) {
+                            item[0] = item.post;
+                            //  item[1] = util.removeHTML(item.content.rendered + '(' + item.author_name + ')');
+                            item[1] = util.removeHTML(item.content.rendered);
+                            item[2] = util.cutstr(item.date, 10, 1);
+                            return item;
+                        }))
+                    });
+                    self.setData({
 
-            }
-        }).catch(function () {
+                        showallDisplay: "block"
+                    });
+
+                } else {
+                    console.log(response);
+                    this.setData({
+                        showerror: 'block'
+                    });
+
+                }
+            }).catch(function () {
                 self.setData({
                     showerror: "block",
                     floatDisplay: "none"
@@ -139,6 +141,3 @@ Page({
 
     }
 })
-
-
-

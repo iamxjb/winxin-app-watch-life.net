@@ -1,0 +1,8 @@
+<view class="ui-radio {{isDisabled?'disabled':''}} {{src?'img':''}} {{ui}}" bindtap="_onRadioClick">
+    <view class="ui-radio-input {{isChecked?'cur '+bg:unbg}} {{src?'radius':'round'}}" wx:if="{{!none}}"/>
+    <image class="ui-radio-img radius" src="{{src}}" mode="aspectFill" wx:if="{{src}}"/>
+    <view class="ui-radio-content" wx:else>
+        <slot></slot>
+    </view>
+    <view class="ui-radio-bg round {{isChecked?'cur '+bg:''}}" wx:if="{{hasUiCard}}"/>
+</view>

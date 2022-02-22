@@ -1,0 +1,60 @@
+@import '../../scss/var';
+
+.ui-checkbox {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 1em 0 0.14286em;
+    cursor: pointer;
+    .ui-checkbox-input {
+        margin: 0 0.5em 0 0.14286em;
+        display: inline-block;
+        width: 1.2em;
+        height: 1.2em;
+        vertical-align: middle;
+        position: relative;
+        &::before {
+            font-family: 'colorui';
+            content: '\e69f';
+            width: 1em;
+            height: 1em;
+            font-size: 0%;
+            background-color: transparent;
+            position: absolute !important;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+        }
+        &.indeterminate::before {
+            content: '\e768';
+            width: 1em;
+            height: 1em;
+            font-size: 80%;
+        }
+    }
+
+    &.round {
+        .ui-checkbox-input,
+        .ui-checkbox-input::after {
+            border-radius: $round-pill !important;
+        }
+    }
+    .ui-checkbox-input.cur {
+        &::before {
+            content: '\e69f';
+            width: 1em;
+            height: 1em;
+            font-size: 80%;
+        }
+    }
+
+    &:last-child {
+        margin: 0 0.14286em;
+    }
+    &.lg {
+        .ui-checkbox-input {
+            font-size: 18px;
+        }
+    }
+}

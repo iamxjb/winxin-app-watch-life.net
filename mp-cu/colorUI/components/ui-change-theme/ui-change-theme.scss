@@ -1,0 +1,38 @@
+.mobile-phone {
+    width: 170rpx;
+    height: 305rpx;
+    border-radius: 10px;
+    padding: 10rpx 15rpx;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+
+    &:after {
+        display: none;
+    }
+
+    &.cur:after {
+        display: block;
+        border: 10rpx solid var(--ui-BG-Main) !important;
+        border-radius: 20px;
+    }
+
+    .ui-BG-Main {
+        height: 100rpx;
+        margin-top: 10px;
+        background-color: rgba(122, 122, 122, 0.5) !important;
+    }
+
+    &.cur .ui-BG-Main {
+        background-color: var(--ui-BG-Main) !important;
+    }
+
+    .bg-gray,
+    .bg-dark-4 {
+        height: 40rpx;
+        margin-top: 10rpx;
+    }
+
+    &.dark {
+        background-color: #232323;
+    }
+}

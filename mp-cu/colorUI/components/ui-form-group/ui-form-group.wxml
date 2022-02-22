@@ -1,0 +1,13 @@
+<view class="ui-form-group {{disabled?'disabled':''}} {{ui}}">
+    <view class="ui-form-title {{titleTop?'self-start':''}}">
+        <text class="ui-form-icon {{icon}} {{title.length === 0?'pl-2':''}}" wx:if="{{icon}}"/>
+        {{ title }}
+        <text class="ui-form-required" wx:if="{{required}}">*</text>
+    </view>
+    <view class="ui-form-content {{contentui}}">
+        <slot></slot>
+    </view>
+    <view class="ui-form-action" wx:if="{{isAction}}">
+        <slot name="action"/>
+    </view>
+</view>

@@ -1,132 +1,205 @@
-/* 用户信息 */
+/**app.wxss**/
+
+.readlog-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/*波浪*/
+ 
+.ren_mtie_xx {
+  width: 100%;
+  display: block;
+ 
+  padding: 10rpx 0;
+  /*border-bottom: 1px solid #f0f0f0;*/
+  overflow: hidden;
+}
+
+.ren_mtie_xx text {
+  float: left;
+  margin-right: 7px;
+ width: 20px;
+  height: 20px;
+  line-height: 20px;
+  background: #ccc;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  border-radius: var(--radius);
+}
+
+.ren_mtie_xx .ren_mtie1 {
+  background: #fa6567;
+}
+
+.ren_mtie_xx .ren_mtie2 {
+  background: #ffa800;
+}
+
+.ren_mtie_xx .ren_mtie3 {
+  background: #7bbf1e;
+}
 
 .userinfo {
+  position: relative;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  background-color: #118fff;
-  height: 360rpx;
+  
+  height: 348rpx;
+  width: 100%;
 }
 
-/* 头像 */
-
-.userinfo-avatar {
-  width: 160rpx;
-  height: 160rpx;
-  margin-left: 48rpx;
-  border-radius: 20rpx;
-  background: #f5f7f7;
-}
-
-.userinfo_right {
+.userinfo_text_box {
   margin-left: 40rpx;
   color: #fff;
 }
 
 .userinfo_nickname {
-  font-size: 40rpx;
-  font-weight: 600;
+  font-size: 48rpx;
+  font-weight: 800;
   line-height: 1;
   display: block;
 }
-
-/* 用户角色 */
 
 .userinfo_des_box {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 16rpx;
+  margin-top: 10rpx;
 }
 
-.userinfo_role {
+.userinfo_des {
   display: block;
-  font-size: 13px;
+  font-size: 28rpx;
+  font-weight: 300;
+  line-height: 1;
 }
 
-/* 更新信息按钮 */
+.update_btn_box {
+  margin-left: 20rpx;
+}
 
-.btn-update {
+.usertool {
+  background-color: #0081ff;
+  height: 60rpx;
+  text-align: right;
+  position: absolute;
+  top: 30rpx;
+  right: 0;
+}
+
+.usertool-img {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 32rpx;
+  opacity: 0.6;
+}
+
+.userinfo-avatar {
+  width: 148rpx;
+  height: 148rpx;
+  margin-left: 48rpx;
+  /* border-radius: 50%; */
+}
+
+.userinfo-img {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.update_btn_box {
   font-size: 20rpx;
   color: #fff;
 }
 
-.btn-update>button, .btn-exit {
-  height: 40rpx;
+.update-button {
+  border-radius: 24rpx;
+  line-height: 42rpx;
+  background-color: rgba(0, 0, 0, 0.2);
+
   padding: 0 16rpx;
-  margin-left: 24rpx;
-  border: 4rpx solid rgba(255, 255, 255, .2);
-  border-radius: 20rpx;
-  background-color: transparent;
-  box-sizing: border-box;
-  opacity: 0.6;
-  font-size: 10px;
+ 
+  font-size: 24rpx;
+  font-weight: 500;
   color: #fff;
-  line-height: 32rpx;
 }
 
-.btn-update>button::after {
+.update-button::after {
   border: none;
 }
 
-/* tab选项卡 */
-
-.tab-bar {
+.top-bar {
   height: 100rpx;
+  background: #fff;
+  width: 100%;
+  z-index: 1;
   box-shadow: 0px 4px 8px #f7f7f7;
   display: flex;
 }
 
-.tab-item {
+.top-bar-item {
   flex: 1;
   display: inline-block;
   background: #fff;
-  color: #959595;
+  color: #777;
   text-align: center;
   line-height: 100rpx;
   font-size: 30rpx;
 }
 
-/* 选中样式 */
-
-.tab-Selected {
-  position: relative;
-  color: #118fff;
-  font-weight: 500;
-}
-
-.tab-Selected::after {
-  content: '';
-  height: 4rpx;
-  width: 40rpx;
-  background: #118fff;
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  margin-left: -20rpx;
+.top-bar-item-Selected {
+  border-bottom: 1px solid #0081ff;
+  font-weight: bold;
+  color: #0081ff;
 }
 
 /* 文章列表样式 */
 
 .list_container {
-  margin: 48rpx;
+  margin: 10rpx;
+  padding: 20rpx;
+  
 }
 
-.list-item {
+.dec {
+  margin-top: 50rpx;
+}
+
+.dec-text {
+  font-size: 25rpx;
+  color: #757575;
+}
+
+.log-list {
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 5rpx; */
+}
+
+/*.log-items {
   margin-top: 20rpx;
 }
-
-.list-item>text {
+*/
+.log-text {
   font-size: 30rpx;
   font-weight: 500;
-  color: #4c4c4c;
+  color: #777;
+  text-align: left;
   word-wrap: break-word;
   word-break: break-all;
 }
 
-.tips {
+.log_tips {
   text-align: center;
-  color: #959595;
-  font-size: 15px;
-  line-height: 400rpx;
+  color: #c4c4c4;
+  font-size: 30rpx;
+  display: block;
+  margin: 0 auto;
 }

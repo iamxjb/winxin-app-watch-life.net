@@ -13,17 +13,12 @@
 <import src="../../templates/common-list.wxml" />
 <import src="../../templates/copyright.wxml" />
 
-  
+<ui-sys title="最新评论">
 
-    <view class="topic-common-list">
-      <view class="topic-list-item">
-        <image src="../../images/comments.jpg" class="cover"></image> 
-        
-      </view>
-    </view>
-<view class="container">
+ 
+  <view class="">
     <view class="showerror" style="display:{{showerror}}">
-      <image src="../../images/cry80.png" style="height:100rpx;width:100rpx"></image>
+        <text class="cicon-wifi-off text-xsl"></text> 
       <view class="errortext">
         暂时无法访问网络
         <view class="">
@@ -32,18 +27,28 @@
       </view>
     </view>
 
-    <view style="display:{{showallDisplay}}">      
-        <view class="log-list">
-      <block wx:key="id" wx:for="{{readLogs}}">
-        <view class="log-items" index="{{index}}" id="{{item[0]}}" data-itemtype="{{item[2]}}" catchtap="redictDetail">
-          <text class="log-text">{{index + 1}}. {{item[1]}}</text>
-        </view>
-      </block>     
-    </view>
+    <view style="display:{{showallDisplay}}">
+      <view class="log-list">
+        <block wx:key="id" wx:for="{{readLogs}}">
+          <view class="log-items ui-BG-card ui-BG" index="{{index}}" id="{{item[0]}}" data-itemtype="{{item[2]}}" catchtap="redictDetail">
+            <view class="log-items_tx"><image src="{{item.author_url}}"/></view>
+            <view class="log-items_top">
+              <text class="flr ui-TC-3 text-sm ">{{item[2]}}</text>
+              <text class="name ui-TC text-df">{{item.author_name}}</text>
+            </view>
+            <view class="log-items_nr ui-TC text-df">{{item[1]}}
+            <text class="ui-TC-Main-2 text-sm flr"> 查看原文</text>
+            </view>
+
+          </view>
+
+        </block>
+      </view>
     </view>
 
-    <view class="copyright" style="display:{{floatDisplay}}">
-       <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
+
+    <view class="copyright" >
+        <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}" />
     </view>
-</view>
- 
+  </view>
+</ui-sys>

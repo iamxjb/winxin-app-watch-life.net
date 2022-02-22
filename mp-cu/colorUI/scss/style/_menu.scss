@@ -1,0 +1,62 @@
+@import '../var';
+
+.ui-menu {
+    background-color: var(--ui-BG);
+}
+
+.ui-menu-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4em;
+    padding: 0 24rpx;
+    .ui-menu-item-icon {
+        width: 1.7em;
+        margin-right: 0.3em;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: scale(1.3);
+    }
+    .ui-menu-item-icon .ui-menu-item-image {
+        width: 1.2em;
+        height: 1.2em;
+        display: inline-block;
+    }
+    .ui-menu-item-content {
+        flex: 1;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .ui-menu-item-arrow {
+        width: 1.6em;
+        text-align: center;
+        color: var(--ui-TC-3);
+    }
+    &:after {
+        content: ' ';
+        width: calc(200% - 120rpx);
+        left: 30rpx;
+        position: absolute;
+        top: 0;
+        box-sizing: border-box;
+        height: 200%; 
+        border-radius: inherit;
+        transform: scale(0.5);
+        transform-origin: 0 0;
+        pointer-events: none;
+    }
+    &.first-item:after {
+        display: none;
+    }
+   
+}
+
+ui-menu ui-menu-item:first-child .ui-menu-item:after {
+    display: none;
+    //border-top: 0;
+}

@@ -10,7 +10,7 @@
  */-->
 <import src="../../templates/copyright.wxml" />
 
-
+<ui-sys> 
 <view style="display:{{isArticlesList?'block':'none'}}">
  <form catchsubmit="formSubmit" catchreset="formReset" id="search-form">
       <view class="search-box">
@@ -30,4 +30,4 @@
        <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
     </view>
   </view>
-</view>
+</view></ui-sys>

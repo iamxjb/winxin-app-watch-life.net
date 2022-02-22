@@ -1,0 +1,19 @@
+<view class="ui-page {{'theme-' + $cuStore.sys_theme}} {{'main-' + $cuStore.sys_main}} {{'font-' + $cuStore.sys_text}}">
+    <view class="page-body {{bg}} {{ui}}" style="{{styles}}">
+        <view class="page-body-main">
+            <app-navbar navBg="{{navBg}}" title="{{title}}" wx:if="{{title}}" />
+            <slot></slot>
+            <app-footer wx:if="{{isFooter}}" />
+            <ui-tabbar ui="shadow border-top" datas="{{$cuConfig.tabBar}}" cur="{{tabBarIndex}}" wx:if="{{tabbar}}" />
+            <view class="loading-body bg-blur" wx:if="{{isLoading}}">
+                <view class="{{loadingIcon}} icon-spin text-sl mb-3"/>
+                <view>加载中</view>
+            </view>
+        </view>
+        <ui-modal name="sys_dialog" show="{{$cuStore.$Modal.show}}" title="{{$cuStore.$dialog.title}}" content="{{$cuStore.$dialog.content}}"
+            showCancel="{{$cuStore.$dialog.showCancel}}" cancelText="{{$cuStore.$dialog.cancelText}}" confirmText="{{$cuStore.$dialog.confirmText}}"/>
+        <ui-toast name="sys_dialog" title="{{$cuStore.$toast.title}}" duration="{{$cuStore.$toast.duration}}" mask="{{$cuStore.$toast.mask}}"
+                  isLoading="{{$cuStore.$toast.isLoading}}" image="{{$cuStore.$toast.image}}" icon="{{$cuStore.$toast.icon}}"/>
+        <image src="{{img}}" mode="aspectFill" class="page-img" wx:if="{{img}}" />
+    </view>
+</view>

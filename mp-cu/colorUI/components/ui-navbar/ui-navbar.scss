@@ -1,0 +1,144 @@
+.ui-navbar-box {
+    background-color: transparent;
+    width: 100%;
+    .ui-bar {
+        position: relative;
+        z-index: 2;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .left {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex: 1;
+            .back {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .back-icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 56rpx;
+                    height: 56rpx;
+                    margin: 0 10rpx;
+                    &.opacityIcon {
+                        position: relative;
+                        border-radius: 50%;
+                        background-color: rgba(127, 127, 127, 0.5);
+                        &::after {
+                            content: '';
+                            display: block;
+                            position: absolute;
+                            height: 200%;
+                            width: 200%;
+                            left: 0;
+                            top: 0;
+                            border-radius: inherit;
+                            transform: scale(0.5);
+                            transform-origin: 0 0;
+                            opacity: 0.1;
+                            border: 1px solid currentColor;
+                            pointer-events: none;
+                        }
+                        &::before {
+                            transform: scale(0.9);
+                        }
+                    }
+                }
+            }
+            .capsule {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-radius: 100px;
+                &.dark {
+                    background-color: rgba(255, 255, 255, 0.5);
+                }
+                &.light {
+                    background-color: rgba(0, 0, 0, 0.15);
+                }
+                &::after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    height: 60%;
+                    width: 1px;
+                    left: 50%;
+                    top: 20%;
+                    background-color: currentColor;
+                    opacity: 0.1;
+                    pointer-events: none;
+                }
+                &::before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    height: 200%;
+                    width: 200%;
+                    left: 0;
+                    top: 0;
+                    border-radius: inherit;
+                    transform: scale(0.5);
+                    transform-origin: 0 0;
+                    opacity: 0.1;
+                    border: 1px solid currentColor;
+                    pointer-events: none;
+                }
+                .capsule-back,
+                .capsule-home {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex: 1;
+                }
+                &.isFirstPage {
+                    .capsule-back,
+                    &::after {
+                        display: none;
+                    }
+                }
+            }
+        }
+        .right {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex: 1;
+            .right-content {
+                position: relative;
+                display: flex;
+                align-items: center;
+                flex-direction: row-reverse;
+                flex: 1;
+            }
+        }
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-overflow: ellipsis;
+            text-align: center;
+            flex: 2;
+            .image {
+                display: block;
+                height: 36px;
+                max-width: calc(100vw - 200px);
+            }
+        }
+    }
+    .ui-bar-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+}

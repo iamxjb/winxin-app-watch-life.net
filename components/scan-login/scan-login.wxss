@@ -65,22 +65,14 @@
 }
 
 .scan-free {
-  width: 280rpx;
+  
   font-size: 13px;
-  color: #FFF;
+  color: #999999 !important;
   position: relative;
   margin-top: 10rpx;
+  padding-right: 20rpx;
 }
 
-.scan-free::after {
-  content: "";
-  display: inline-block;
-  border: solid #FFF;
-  border-width: 0 2px 2px 0;
-  padding: 2px;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%) rotate(-45deg);
-  -webkit-transform: translateY(-50%) rotate(-45deg);
-}
+
+.cicon-scan:before {content: "\e703";}
+ 

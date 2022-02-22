@@ -1,0 +1,34 @@
+<ui-sys title="{{title}}" bg="{{bg}}" img="{{bgImg}}" navBg="{{navBg}}" loading="{{loading}}" tabbar="{{tabbar}}" footer="{{footer}}">
+    <view class="ui-container {{title?'':'navbar'}}">
+
+        <ui-title title="简介" depth="2" isIcon/>
+        <view class="paragraph">
+            <text>ColorUI提供</text>
+            <ui-code content="{{code}}"/>
+            <text>组件来控制页面的表现，内嵌ColorUI的交互反馈(模态框，轻提示等)，主题样式，页面加载等，是每个页面必须有的组件。</text>
+        </view>
+
+        <ui-title title="操作" depth="2" isIcon/>
+        <ui-menu ui="border radius">
+            <ui-menu-item title="背景图" isAction>
+                <ui-switch slot="action" checked="{{isBg}}" bind:change="isBgChange"/>
+            </ui-menu-item>
+            <ui-menu-item title="标题栏背景" isAction>
+                <ui-switch slot="action" checked="{{isNavBg}}" bind:change="isNavBgChange"/>
+            </ui-menu-item>
+            <ui-menu-item title="底部tabbar" isAction>
+                <ui-switch slot="action" checked="{{tabbar}}" bind:change="isTabBarChange"/>
+            </ui-menu-item>
+            <ui-menu-item title="底部版权" isAction>
+                <ui-switch slot="action" checked="{{footer}}" bind:change="isFooterChange"/>
+            </ui-menu-item>
+            <ui-menu-item title="页面加载" isAction>
+                <button class="ui-btn border sm" slot="action" bindtap="isLoader">
+                    <text class="_icon-loader icon-spin"/>
+                    <text>加载</text>
+                </button>
+            </ui-menu-item>
+        </ui-menu>
+
+    </view>
+</ui-sys>

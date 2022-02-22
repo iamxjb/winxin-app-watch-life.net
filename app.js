@@ -8,9 +8,10 @@
  * Copyright (c) 2017  微慕 https://www.minapper.com All rights reserved.
  * 
  */
-
+import { colorUI } from './utils/uiconfig'
 App({
     
+  colorUI, 
   onLaunch: function () {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
@@ -18,7 +19,6 @@ App({
     wx.setStorageSync('logs', logs)
     // 小程序主动更新
     this.updateManager();
-   
 
     
   },
@@ -75,6 +75,5 @@ App({
     openid: '',
     isGetUserInfo: false,
     isGetOpenid: false
-
   }
 })

@@ -1,0 +1,158 @@
+//颜色
+$yellow:   	#fbbd08;
+$orange:   	#f37b1d;
+$red:   	#e54d42;
+$pink:   	#e03997;
+$mauve:   	#b745cb;
+$purple:   	#8044de;
+$blue:   	#0081ff;
+$cyan:   	#37c0fe;
+$green:   	#3eb93b;
+$olive:   	#8dc63f;
+$grey:   	#8799a3;
+$brown:   	#a5673f;
+
+$colors: ();
+$colors: map-merge(
+    (
+        'yellow':  	$yellow,
+        'orange':  	$orange,
+        'red':  	$red,
+        'pink':  	$pink,
+        'mauve':  	$mauve,
+        'purple':  	$purple,
+        'violet':  	$purple,
+        'blue':  	$blue,
+        'cyan':  	$cyan,
+        'green':  	$green,
+        'olive':  	$olive,
+        'grey':  	$grey,
+        'brown':  	$brown,
+    ),
+    $colors
+);
+
+//灰度
+$white:   	#ffffff;
+$gray-f: 	#f8f9fa;
+$gray-e:    #eeeeee;
+$gray-d:    #dddddd;
+$gray-c:    #cccccc;
+$gray-b:    #bbbbbb;
+$gray-a:	#aaaaaa;
+$dark-9:    #999999;
+$dark-8:    #888888;
+$dark-7:    #777777;
+$dark-6:    #666666;
+$dark-5:    #555555;
+$dark-4:    #444444;
+$dark-3:    #333333;
+$dark-2:    #222222;
+$dark-1:    #111111;
+$black:    	#000000;
+
+$grays: ();
+$grays: map-merge(
+    (
+        'white':  	$white,
+        'gray-f':  	$gray-f,
+        'gray-e':  	$gray-e,
+        'gray-d':  	$gray-d,
+        'gray-c':  	$gray-c,
+        'gray-b':  	$gray-b,
+        'gray-a':  	$gray-a,
+        'gray':  	$gray-a,
+    ),
+    $grays
+);
+
+$darks: ();
+$darks: map-merge(
+    (
+        'dark-9':  	$dark-9,
+        'dark-8':  	$dark-8,
+        'dark-7':  	$dark-7,
+        'dark-6':  	$dark-6,
+        'dark-5':  	$dark-5,
+        'dark-4':  	$dark-4,
+        'dark-3':  	$dark-3,
+        'dark-2':  	$dark-2,
+        'dark-1':  	$dark-1,
+        'black':  	$black,
+    ),
+    $darks
+);
+
+
+// 边框
+$border-width:          1rpx !default;                      // 边框大小
+
+// 圆角
+$radius:                10rpx !default;                     // 默认圆角大小
+$radius-lg:             40rpx !default;                     // 大圆角
+$radius-sm:             6rpx !default;                      // 小圆角
+$round-pill:            1000rpx !default;                   // 半圆
+
+// 动画过渡
+$transition-base:       all .2s ease-in-out !default;       // 默认过渡
+$transition-base-out:   all .04s ease-in-out !default;      // 进场过渡
+$transition-fade:       opacity .15s linear !default;       // 透明过渡
+$transition-collapse:   height .35s ease !default;          // 收缩过渡
+
+// 间距
+$spacer: 20rpx !default;
+$spacers: () !default;
+$spacers: map-merge(
+    (
+        0: 0,
+        1: $spacer * 0.25,
+        2: $spacer * .5,
+        3: $spacer,
+        4: $spacer * 1.5,
+        5: $spacer * 3,
+        6: $spacer * 5,
+    ),
+    $spacers
+);
+
+// 字形
+$font-weight-lighter:         lighter !default;
+$font-weight-light:           300 !default;
+$font-weight-normal:          400 !default;
+$font-weight-bold:            700 !default;
+$font-weight-bolder:          900 !default;
+$fontsize: () !default;
+$fontsize: map-merge(
+    (
+        xs: 20,
+        sm: 24,
+        df: 28,
+        lg: 32,
+        xl: 36,
+        xxl: 44,
+        sl: 80,
+        xsl: 120
+    ),
+    $fontsize
+);
+
+// 段落
+$line-height-base:            1.5 !default;
+$line-height-lg:              2 !default;
+$line-height-sm:              1.25 !default;
+
+// 图标
+$iconsize: () !default;
+$iconsize: map-merge(
+    (
+        xs: 0.5,
+        sm: 0.75,
+        df: 1,
+        lg: 1.25,
+        xl: 1.5,
+        xxl: 2,
+        sl: 6,
+        xsl: 10
+    ),
+    $iconsize
+);

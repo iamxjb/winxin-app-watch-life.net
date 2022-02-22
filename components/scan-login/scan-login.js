@@ -11,7 +11,7 @@ Component({
   properties: {
     text: {
       type: String,
-      value: '扫码登录WordPress'
+      value: '扫码登录'
     },
     source: {
       type: String,

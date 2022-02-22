@@ -1,0 +1,38 @@
+<ui-fixed bg="{{bg}}" ui="{{ui}}" noNav placeholder="{{placeholder}}" noFixed="{{noFixed}}" zIndex="10001" opacity="{{opacity}}" opacityVal="{{opacityVal}}">
+    <view class="ui-navbar-box "
+          style="{{'padding-top:'+sys_statusBar + 'px;'}} {{'height: ' + sys_navBar + 'px'}}">
+        <view class="ui-bar {{status === ''?'text-a':status === 'light'?'text-white':'text-black'}}"
+              style="{{'height:' + (sys_navBar - sys_statusBar) + 'px'}}">
+            <block wx:if="{{isSlot}}">
+                <slot></slot>
+            </block>
+            <block wx:else>
+                <view class="left">
+                    <view class="back" wx:if="{{back && !capsule}}" bindtap="_navBack">
+                        <view class="back-icon icon-fw text-xl {{isFirstPage?'cicon-home-sm-o':'_icon-back'}} {{statusCur}} {{opacityBg?'opacityIcon':''}}"/>
+                        <view>{{ backtext }}</view>
+                    </view>
+                    <view class="capsule {{isFirstPage?'isFirstPage':''}} {{statusCur}}" style="" wx:if="{{capsule}}">
+                        <view class="capsule-back" bindtap="_navBack">
+                            <text class="icon-fw text-xl _icon-back"/>
+                        </view>
+                        <view class="capsule-home" bindtap="_navHome">
+                            <text class="icon-fw text-xl {{isFirstPage?'_icon-home':'cicon-home-sm-o'}}"/>
+                        </view>
+                    </view>
+                    <slot name="left"></slot>
+                </view>
+                <view class="center" wx:if="{{isCenter}}">
+                    <slot name="center"/>
+                </view>
+                <view class="right" wx:if="{{isCenter && !isRight}}"/>
+                <view class="right" wx:if="{{isRight}}">
+                    <view class="right-content">
+                        <slot name="right"></slot>
+                    </view>
+                    <view style="{{capsuleStyle}}"/>
+                </view>
+            </block>
+        </view>
+    </view>
+</ui-fixed>

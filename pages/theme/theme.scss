@@ -1,0 +1,11 @@
+.change-theme {
+    .item {
+        padding: 10rpx;
+        .ui-BG {
+            border-radius: 10rpx;
+            display: flex;
+            padding: 20rpx;
+            flex-direction: column;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<view class="ui-tag {{ui}} {{bg}} {{src?'img':''}} {{!isSlot && !info?'empty':''}} {{icon?'icon':''}} {{badge?'badge badge-'+badge:''}}">
+    <image class="tag-img" src="{{src}}" mode="aspectFill" wx:if="{{src}}"/>
+    <view>
+        <block wx:if="{{isSlot}}">
+            <slot/>
+        </block>
+        <block wx:else>{{info}}</block>
+    </view>
+</view>

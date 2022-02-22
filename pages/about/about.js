@@ -149,7 +149,7 @@ Page({
                     success: function (res) {
                         wx.showToast({
                             title: '链接已复制',
-                            image: '../../images/link.png',
+                            
                             duration: 2000
                         })
                     }
@@ -159,60 +159,83 @@ Page({
     },
  //给a标签添加跳转和复制链接事件
  wxParseTagATap: function (e) {
-    var self = this;
-    var href = e.currentTarget.dataset.src;
-    let appid = e.currentTarget.dataset.appid;
-    let redirectype = e.currentTarget.dataset.redirectype;
-    let path = e.currentTarget.dataset.path;
+  let self = this
+  let href = e.detail.src || e.detail.href
+  let domain = config.getDomain
+  let appid = e.detail.appid
+  let redirectype = e.detail.redirectype
+  let path = e.detail.path
 
 
-    // 判断a标签src里是不是插入的文档链接
-    let isDoc = /\.(doc|docx|xls|xlsx|ppt|pptx|pdf)$/.test(href)
+  // 判断a标签src里是不是插入的文档链接
+  let isDoc = /\.(doc|docx|xls|xlsx|ppt|pptx|pdf)$/.test(href)
 
-    if (isDoc) {
-      this.openLinkDoc(e)
-      return
+  if (isDoc) {
+    this.openLinkDoc(e)
+    return
+  }
+
+  if(redirectype) {
+    if (redirectype == 'apppage') { //跳转到小程序内部页面         
+      wx.navigateTo({
+        url: path
+      })
+    } else if (redirectype == 'webpage') //跳转到web-view内嵌的页面
+    {
+      href = '../webpage/webpage?url=' + encodeURIComponent(href);
+      wx.navigateTo({
+        url: href
+      })
     }
-
-    if(redirectype) {
-      if (redirectype == 'apppage') { //跳转到小程序内部页面         
-        wx.navigateTo({
-          url: path
-        })
-      } else if (redirectype == 'webpage') //跳转到web-view内嵌的页面
-      {
-        href = '../webpage/webpage?url=' + href;
-        wx.navigateTo({
-          url: href
-        })
-      }
-      else if (redirectype == 'miniapp') //跳转其他小程序
-       {
-        wx.navigateToMiniProgram({
-          appId: appid,
-          path: path
-        })
-      }
-      return;
+    else if (redirectype == 'miniapp') //跳转其他小程序
+     {
+      wx.navigateToMiniProgram({
+        appId: appid,
+        path: path
+      })
     }
+    return;
+  }
 
 
-    var enterpriseMinapp = self.data.pageData.enterpriseMinapp;
-    var domain = config.getDomain;
-    //可以在这里进行一些路由处理
-    if (href.indexOf(domain) == -1) {
-
-      var n=0;
-      for (var i = 0; i < self.data.businessDomain.length; i++) {
+  var enterpriseMinapp = self.data.pageData.enterpriseMinapp;
   
-        if (href.indexOf(self.data.businessDomain[i].domain) != -1) {
-          n++;
-          break;
-        }
-      }
+  //可以在这里进行一些路由处理
+  if (href.indexOf(domain) == -1) {
 
-      if(n>0)
-      {
+    var n=0;
+    for (var i = 0; i < self.data.businessDomain.length; i++) {
+
+      if (href.indexOf(self.data.businessDomain[i].domain) != -1) {
+        n++;
+        break;
+      }
+    }
+
+    if(n>0)
+    {
+      var url = '../webpage/webpage'
+      if (enterpriseMinapp == "1") {
+        url = '../webpage/webpage';
+        wx.navigateTo({
+          url: url + '?url=' + href
+        })
+      }
+      else {
+        self.copyLink(href);
+      }
+    }
+    else
+    {
+      self.copyLink(href);
+
+    }
+
+  }
+  else {
+    var slug = util.GetUrlFileName(href, domain);
+    if(slug=="")
+    {
         var url = '../webpage/webpage'
         if (enterpriseMinapp == "1") {
           url = '../webpage/webpage';
@@ -223,98 +246,61 @@ Page({
         else {
           self.copyLink(href);
         }
-      }
-      else
-      {
-        self.copyLink(href);
+      return;
 
-      }
-
-
-      // wx.setClipboardData({
-      //   data: href,
-      //   success: function (res) {
-      //     wx.getClipboardData({
-      //       success: function (res) {
-      //         wx.showToast({
-      //           title: '链接已复制',
-      //           //icon: 'success',
-      //           image: '../../images/link.png',
-      //           duration: 2000
-      //         })
-      //       }
-      //     })
-      //   }
-      // })
+    }
+    if (slug == 'index') {
+      wx.switchTab({
+        url: '../index/index'
+      })
     }
     else {
-      var slug = util.GetUrlFileName(href, domain);
-      if(slug=="")
-      {
-          var url = '../webpage/webpage'
-          if (enterpriseMinapp == "1") {
-            url = '../webpage/webpage';
-            wx.navigateTo({
-              url: url + '?url=' + href
-            })
-          }
-          else {
-            self.copyLink(href);
-          }
-        return;
-
-      }
-      if (slug == 'index') {
-        wx.switchTab({
-          url: '../index/index'
-        })
-      }
-      else {
-        var getPostSlugRequest = wxRequest.getRequest(Api.getPostBySlug(slug));
-        getPostSlugRequest
-          .then(res => {
-            if (res.statusCode == 200) {
-              if (res.data.length != 0) {
-                var postID = res.data[0].id;
-                var openLinkCount = wx.getStorageSync('openLinkCount') || 0;
-                if (openLinkCount > 4) {
-                  wx.redirectTo({
-                    url: '../detail/detail?id=' + postID
-                  })
-                }
-                else {
-                  wx.navigateTo({
-                    url: '../detail/detail?id=' + postID
-                  })
-                  openLinkCount++;
-                  wx.setStorageSync('openLinkCount', openLinkCount);
-                }
+      var getPostSlugRequest = wxRequest.getRequest(Api.getPostBySlug(slug));
+      getPostSlugRequest
+        .then(res => {
+          if (res.statusCode == 200) {
+            if (res.data.length != 0) {
+              var postID = res.data[0].id;
+              var openLinkCount = wx.getStorageSync('openLinkCount') || 0;
+              if (openLinkCount > 4) {
+                wx.redirectTo({
+                  url: '../detail/detail?id=' + postID
+                })
               }
               else {
-                
-                var url = '../webpage/webpage'
-                if (enterpriseMinapp == "1") {
-                  url = '../webpage/webpage';
-                  wx.navigateTo({
-                    url: url + '?url=' + href
-                  })
-                }
-                else {
-                  self.copyLink(href);
-                }
-
-
+                wx.navigateTo({
+                  url: '../detail/detail?id=' + postID
+                })
+                openLinkCount++;
+                wx.setStorageSync('openLinkCount', openLinkCount);
               }
+            }
+            else {
+              
+              var url = '../webpage/webpage'
+              if (enterpriseMinapp == "1") {
+                url = '../webpage/webpage';
+                wx.navigateTo({
+                  url: url + '?url=' + href
+                })
+              }
+              else {
+                self.copyLink(href);
+              }
+
 
             }
 
-          }).catch(res => {
-            console.log(response.data.message);
-          })
-      }
-    }
+          }
 
-  },
+        }).catch(res => {
+          console.log(response.data.message);
+        })
+    }
+  }
+
+},
+
 
    // 打开文档
    openLinkDoc(e) {
@@ -372,7 +358,6 @@ Page({
           success: function (res) {
             wx.showToast({
               title: '链接已复制',
-              image: '../../images/link.png',
               duration: 2000
             })
           }

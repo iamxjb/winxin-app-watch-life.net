@@ -1,0 +1,50 @@
+<view>
+    <view class="ui-menu sm-border {{ui}}">
+        <view class="ui-menu-item" data-value="{{$cuStore.sys_theme}}" bindtap="tapAutoThemeChange">
+            <view class="ui-menu-item-content">跟随系统</view>
+            <view class="action">
+                <ui-switch checked="{{$cuStore.sys_theme === 'auto'}}"/>
+            </view>
+        </view>
+        <!-- x -->
+        <view class="ui-menu-item" wx:if="{{$cuStore.sys_theme !== 'auto'}}">
+            <view class="flex flex-center py-5 text-center flex-sub">
+                <view class="pr-5">
+                    <view class="mobile-phone border {{$cuStore.sys_theme === 'light'?'cur':''}}" data-value="light" bindtap="tapThemeChange">
+                        <view class="ui-BG-Main radius"/>
+                        <view class="bg-gray radius"/>
+                        <view class="bg-gray radius"/>
+                        <view class="borders border-top mt-5 mx-4 border-dark-6"/>
+                    </view>
+                    <view>浅色</view>
+                </view>
+                <view class="pl-5">
+                    <view class="mobile-phone border dark {{$cuStore.sys_theme === 'dark'?'cur':''}}" data-value="dark" bindtap="tapThemeChange">
+                        <view class="ui-BG-Main radius"/>
+                        <view class="bg-dark-4 radius"/>
+                        <view class="bg-dark-4 radius"/>
+                        <view class="borders border-top mt-5 mx-4 border-white"/>
+                    </view>
+                    <view>深色</view>
+                </view>
+            </view>
+        </view>
+        <view class="ui-menu-item">
+            <view class="ui-menu-item-content">强调色</view>
+            <view class="action" bindtap="tapColorPicker">
+                <ui-radio bg="{{'bg-' + $cuStore.sys_main}} {{'shadow-' + $cuStore.sys_main}} shadow-sm" value="1" label="1"/>
+            </view>
+        </view>
+    </view>
+
+    <ui-modal name="ColorPicker" show="{{target === 'colorPicker'}}">
+        <view class="ui-grid ui-cols-6 p-3">
+            <view class="text-center ui-item py-2 my-2" wx:for="{{color}}" wx:key="index" data-value="{{item}}" bindtap="tapChooseColor">
+                <text class="bg-{{item}} shadow-{{item}} shadow-sm"/>
+                <ui-radio value="{{$cuStore.sys_main}}" label="{{item}}" bg="{{'bg-'+item}} {{'shadow-'+item}} shadow-sm"
+                          unbg="{{'bg-'+item}} {{'shadow-'+item}} shadow-sm"/>
+            </view>
+        </view>
+    </ui-modal>
+
+</view>

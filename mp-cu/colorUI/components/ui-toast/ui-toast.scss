@@ -1,0 +1,57 @@
+@import '../../scss/var';
+.ui-toast-box {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 880;
+    opacity: 0;
+    outline: 0;
+    text-align: center;
+    transform: scale(1);
+    backface-visibility: hidden;
+    perspective: 2000rpx;
+    pointer-events: none;
+    .ui-toast {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: var(--ui-BG);
+        //border-radius: 10rpx;
+        overflow: hidden;
+        text-align: left;
+        color: var(--ui-TC);
+        padding: 0.5em 1em;
+        border-radius: $radius;
+        max-width: 90vw;
+        &.hasIcon {
+            text-align: center;
+            padding: 0.5em 1em 1em;
+            .ui-toast-icon {
+                width: 170rpx;
+                height: 150rpx;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 80rpx;
+            }
+        }
+    }
+    &::before {
+        content: '\200B';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+    &.show {
+        opacity: 1;
+        transform: scale(1);
+        transition: 0.3s;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}

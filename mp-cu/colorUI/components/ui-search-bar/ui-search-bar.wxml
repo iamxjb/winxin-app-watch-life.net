@@ -1,0 +1,21 @@
+<view class="ui-search-bar {{barBg}} {{barUi}}">
+    <view class="ui-search-action" wx:if="{{isLeft && isRight}}">
+        <slot name="left"></slot>
+    </view>
+    <view class="ui-search-action" wx:if="{{isLeft && !isRight}}">
+        <slot></slot>
+    </view>
+    <view class="ui-search-form {{bg}} {{ui}}" bindtap="onTapSearch">
+        <text class="ui-search-icon {{icon}}" wx:if="{{icon}}"/>
+        <input class="ui-search-input ui-search-text-{{align}}" type="{{type}}" value="{{searchVal}}" placeholder="{{placeholder}}"
+               placeholder-class="input-placeholder" disabled="{{disabled}}"
+               confirm-type="search" bindinput="bindInput" bindfocus="bindFocus" bindblur="bindBlur" bindconfirm="bindConfirm"/>
+        <text class="ui-search-close {{emptyIcon}}" wx:if="{{searchVal && isEmpty}}" catchtap="onTapEmpty"/>
+    </view>
+    <view class="ui-search-action" wx:if="{{isLeft && isRight}}">
+        <slot name="right"></slot>
+    </view>
+    <view class="ui-search-action" wx:if="{{!isLeft && isRight}}">
+        <slot></slot>
+    </view>
+</view>

@@ -16,6 +16,7 @@
 }
 .modal-dialog {
   width: 600rpx;
+  border-radius: var(--radius);
   /*height: 90%;*/
   overflow: hidden;
   position: fixed;
@@ -23,8 +24,6 @@
   left: 75rpx;
   z-index: 9999;
   background: #f9f9f9;
-  /* margin: -200rpx 75rpx; */
-  /* border-radius: 20rpx; */
 }
 .modal-title {
   padding-top: 50rpx;
@@ -32,20 +31,14 @@
   color: #030303;
   text-align: center;
 }
-.modal-content {
-  /* padding: 60rpx 32rpx 40rpx 32rpx;
-  border-radius: 20rpx; */
-}
+
 .modal-input,.modal-input_solo,.modal-input_hd,.modal-input_bd,.modal-input_ft {
   display: flex;
   background: #fff;
   font-size: 28rpx;
 }
 .modal-input_solo {
-  /* margin: 0 auto; 
-  border: 2rpx solid #ddd; */
   width: 600rpx;
-  /* border-radius: 20rpx; */
 }
 
 .modal-input_solo image {

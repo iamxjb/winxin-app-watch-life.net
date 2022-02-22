@@ -1,0 +1,3 @@
+<view class="ui-avatar-stack {{ui}} {{reverse?'reverse':''}}">
+    <slot></slot>
+</view>

@@ -226,13 +226,9 @@ Page({
                 showallDisplay: "block",
                 postsList: self.data.postsList.concat(response.data.map(function (item) {
                     var strdate = item.date
-                    if (item.category_name != null) {
-
-                        item.categoryImage = "../../images/topic.png";
-                    }
-                    else {
+                  
                         item.categoryImage = "";
-                    }
+                 
 
                     if (item.post_medium_image == null || item.post_medium_image == '') {
                         item.post_medium_image = '../../images/logo700.png';
