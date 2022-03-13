@@ -183,7 +183,7 @@ Page({
   },
 
   onShareAppMessage: function (res) {
-    this.ShowHideMenu();
+    //this.ShowHideMenu();
     console.log(res);
     return {
       title: '分享"' + webSiteName + '"的文章：' + this.data.detail.title.rendered,
@@ -329,7 +329,7 @@ Page({
     })
   },
   praise: function () {
-    this.ShowHideMenu();
+    //this.ShowHideMenu();
     var self = this;
     var enterpriseMinapp = self.data.detail.enterpriseMinapp;
     var system = self.data.system;
@@ -848,10 +848,24 @@ Page({
     console.log(detail);
 },
   showCustomizeModal(e){
+    let key = e.currentTarget.dataset.key
+    let focus = key === 'drawer'
     this.setData({
-        target : e.currentTarget.dataset.key
+        target : key,
+        focus,
+        menuBackgroup: !!key
     })
 },
+
+//点击非评论区隐藏弹出栏
+hiddenBar() {
+  this.setData({
+    target: '',
+    focus: false,
+    menuBackgroup: false
+  })
+},
+
   //获取评论
   fetchCommentData: function () {
     var self = this;
@@ -931,12 +945,10 @@ Page({
         placeholder: "回复" + name + ":",
         focus: true,
         userid: userid  ,
-        target : target
+        target : target,
+        menuBackgroup: true,
       });
-    
     }
-    // console.log('toFromId', toFromId);
-    // console.log('replay', isFocusing);
   },
   onReplyBlur: function (e) {
     var self = this;
@@ -1011,7 +1023,10 @@ Page({
                   userid: 0,
                   placeholder: "请写下您想说的话...",
                   focus: false,
-                  commentsList: []
+                  commentsList: [],
+                  target :'',
+                  focus:false,
+                  menuBackgroup: false
 
                 });
 
@@ -1136,7 +1151,7 @@ Page({
 
   onCreatePoster: function () {
     var self = this;
-    this.ShowHideMenu();
+    //this.ShowHideMenu();
     if (self.data.openid) {
       self.creatArticlePoster(self, Api, util, self.modalView, Poster);
     }

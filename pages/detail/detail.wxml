@@ -74,7 +74,10 @@
       </view>
    <!-- 版权声明 -->
    <view class="bottomlink2 text-sm   bg-grey-thin" style="{{('display:'+display)}}">
-      <text>声明：</text>{{'本站所有内容来自网友投稿发布。如若本站内容侵犯了原著者的合法权益，可联系'+wechat+'进行处理。'}}
+      <!-- 版权声明 -->
+    <view style="padding: 0 40rpx">
+       <mp-html content="{{ detail.copyright_state }}" bindlinktap="tagATap" copy-link="{{false}}" selectable="{{true}}" lazy-load="{{true}}" markdown="{{true}}" use-anchor="{{true}}" />
+    </view>
       </view>
       <view class="bottomlink text-sm">
         <text class="left">文章ID：{{postID}} </text>
@@ -193,6 +196,7 @@
       </view>
       <modal title="{{dialog.title}}" hidden="{{dialog.hidden}}" no-cancel bindconfirm="confirm">{{dialog.content}}</modal>
     </view>
+
     <template is="modalView" data="{{...__modalView__}}" />
 
     <poster id="poster" hide-loading="{{false}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
@@ -206,19 +210,19 @@
     <!--评论区-->
     <view style="display:{{enableComment?'block':'none'}}">
       <view class="foot ui-BG" style="display:{{display}}">
-        <view class="foot_memu" style="margin-bottom: {{sys_info.safeArea.top}}rpx;">
+        <view class="foot_memu">
           <view class=" comment ui-BG-2 ui-TC-2" bindtap="showCustomizeModal" data-key='drawer'>
             <text class="cicon-popover-o "> 说点什么吧...</text>
           </view>
 
           <view class="icon" catchtap="praise">
-            <text class="cicon-sponsor ui-TC-2"> </text>
+            <text class="iconfont icon-money" style="font-size: 19px;"> </text>
           </view>
           <view class="icon" catchtap="onCreatePoster">
-            <text class="cicon-camera-lens ui-TC-2"> </text>
+            <text class="iconfont icon-share-poster" style="font-size: 16px;"> </text>
           </view>
           <view class="icon">
-            <text class="cicon-weixin ui-TC-2" style=" font-size: 32px;"> </text>
+            <text class="iconfont icon-share-friend" style=" font-size: 15px;"> </text>
             <button class="ui-btn" open-type="share"></button>
           </view>
 
@@ -230,32 +234,24 @@
 
     <!-- 无法访问网络时 -->
     <view class="showerror" style="display:{{showerror}}">
-        <text class="cicon-wifi-off text-xsl"></text> 
+      <text class="cicon-wifi-off text-xsl"></text> 
       <view class="errortext">{{errMessage}}</view>
     </view>
-
   </view>
-  <form catchsubmit="formSubmit" report-submit="true">
-    <ui-modal show="{{target === 'drawer'}}" mask="40" align="bottom" showCancel="{{false}}">
 
-      <view class="comment-respond radius">
-        <input class="comment-input radius" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
+  <view class="menuBackground" catchtap="hiddenBar" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
 
-        <view class="comment-box">
-
-
-          <!-- 评论输入框和发送按钮 -->
-          <view class="comment_input_box">
-            <textarea class="comment-input radius ui-BG-2 ui-TC-2" type='text' confirm-type="send" cursor-spacing="10" maxlength="100" name="inputComment" value="{{content}}" placeholder="{{placeholder}}" bindblur="onReplyBlur" bindfocus="onRepleyFocus" auto-height />
-
-          </view>
-          <view class="comment_btn ui-BG-Main text-sm"> 发送 </view>
-          <button class=" comment_btn_button  ui-btn " formType="submit"> </button>
-
-        </view>
-
+  <!-- 评论内容输入框 -->
+  <view class="comment-textarea-box {{target === 'drawer' ? '' : 'commentinputdialog-box-hidden'}}">
+    <form catchsubmit="formSubmit" report-submit="true">
+      <view>
+        <text class="comment-button touch-active" bindtap="showCustomizeModal" data-key=''>取消</text>
+        <button class="comment-button touch-active" formType="submit">发送</button>
       </view>
+      <textarea maxlength="100" name="inputComment" cursor-spacing="80" value="{{content}}" placeholder="{{placeholder}}" bindblur="onReplyBlur" bindfocus="onRepleyFocus" focus="{{focus}}" auto-height="{{false}}" fixed="{{true}}"
+        show-confirm-bar="{{false}}" />
 
-    </ui-modal>
-  </form>
+      <input class="comment-input radius" cursor-spacing="140" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
+    </form>
+  </view>
 </ui-sys>

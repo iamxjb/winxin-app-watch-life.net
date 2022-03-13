@@ -302,27 +302,26 @@ border-radius: var(--radius);
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 0 24rpx;
+  /* padding: 0 24rpx; */
+  padding-bottom: env(safe-area-inset-bottom);
   overflow: hidden;
 }
 
 .foot_memu {
- 
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  padding: 24rpx;
 }
 
  
 
 .foot_memu  .icon {
   display: block;
- 
   height: 64rpx;
   line-height: 64rpx;
-  
-  padding: 0 0 0 24rpx;
-  margin: 18rpx 0 0 22rpx;
-   
+  padding: 0 30rpx;
+  /* margin: 18rpx 0 0 0; */
   overflow: hidden;
   position: relative;
 }
@@ -334,15 +333,27 @@ border-radius: var(--radius);
 
 .foot_memu .comment {
   display: block;
-  width: 340rpx;
+  /* width: 340rpx; */
+  flex: 1;
   height:64rpx;
   line-height: 64rpx;
   font-size: 14px;
   padding: 0 24rpx;
-  margin: 18rpx 33rpx 0 10rpx;
+  margin: 0 30rpx 0 0;
   border-radius: 30px;
   overflow: hidden;
   position: relative;
+}
+
+.menuBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /* background-color: transparent; */
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 80;
 }
 
 
@@ -519,7 +530,7 @@ border-radius: var(--radius);
   margin-bottom: -80px;
 }
 
-.menuBackground {
+/* .menuBackground {
   position: fixed;
   top: 0;
   left: 0;
@@ -527,7 +538,7 @@ border-radius: var(--radius);
   right: 0;
   background-color: transparent;
   z-index: 99;
-}
+} */
 
 .iconList {
   text-align: center;
@@ -818,4 +829,56 @@ video {
   bottom: 6rpx;
   transform: translateX(4px) rotate(-45deg);
   opacity: 0.6;
+}
+
+.comment-textarea-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-top-left-radius: 40rpx;
+  border-top-right-radius: 40rpx;
+  box-shadow: 0 0 20px rgba(30, 20, 20, 0.2);
+  z-index: 100;
+}
+
+.comment-textarea-box view {
+  padding: 0 40rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+}
+
+.comment-textarea-box textarea {
+  padding: 20rpx 40rpx;
+  width: 670rpx;
+}
+
+.comment-button {
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 15px;
+  color: #4c4c4c;
+  background: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.comment-button::after {
+  border: none;
+}
+
+.comment-box-hidden {
+  display: none !important;
+}
+
+.comment-box-flex {
+  justify-content: space-around;
+}
+
+.commentinputdialog-box-hidden {
+  display: none !important;
 }
