@@ -2,7 +2,9 @@
 
 ![微慕wordpress微信小程序](https://www.watch-life.net/images/minapper-weixin-wp-700.jpg)
 
-![微慕wordpress微信小程序](https://www.watch-life.net/images/wordpresswinxinapp700.png) 
+
+![微慕wordpress微信小程序开源版](https://user-images.githubusercontent.com/1930574/160738635-d1bc3d21-c45d-458a-9e74-b73d7f6ff8b4.jpg)
+
 
 # 功能清单：
 
