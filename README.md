@@ -84,6 +84,9 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 ![wordpress版微信小程序](https://www.watch-life.net/images/wordpressweixinapp430.jpg) 
 
 
+#关于多端版本
+我的合作伙伴在开源版的基础上，使用unionapp开发了一个多端的版本，有兴趣的朋友可以去了解下：https://ext.dcloud.net.cn/plugin?id=2214
+
 # 技术支持网站：
 
 https://www.watch-life.net
