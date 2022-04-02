@@ -79,7 +79,7 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 2. 发送关键词消息：开源
 
 # 关于多端版本
-我的合作伙伴在开源版的基础上，使用unionapp开发了一个多端的版本，有兴趣的朋友可以去了解下：https://ext.dcloud.net.cn/plugin?id=2214
+我的合作伙伴在开源版的基础上，使用uni-app开发了一个多端的版本，有兴趣的朋友可以去了解下：https://ext.dcloud.net.cn/plugin?id=2214
 
 
 # 小程序访问微信二维码：
