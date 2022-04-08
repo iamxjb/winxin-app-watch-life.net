@@ -68,7 +68,7 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 1.https://git.oschina.net/iamxjb/winxin-app-watch-life.net
 
-2.https://xjb.coding.net/p/winxin-app-watch-life.net
+2.https://gitcode.net/xjbx/winxin-app-watch-life.net.git
 
 3.https://gitlab.com/xiajianbo/winxin-app-watch-life.net
 
