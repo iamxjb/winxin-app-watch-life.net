@@ -97,10 +97,18 @@ Page({
     fristOpen: false,
     domain:domain,
     detailSummaryHeight: '',
-    platform: ''
+    platform: '',
+    isShareTimeline: false,
 
   },
   onLoad: function (options) {
+    let LaunchOptions = wx.getLaunchOptionsSync()
+    let scene = LaunchOptions['scene']
+    let isShareTimeline = scene === 1154
+    this.setData({
+      isShareTimeline
+    })
+
     var self = this;
     wx.showShareMenu({
       withShareTicket:true,
@@ -242,6 +250,10 @@ Page({
     })
   },
   clickLike: function (e) {
+    if (this.data.isShareTimeline) {
+      Adapter.toast("请前往小程序使用完整服务", 3000)
+      return
+    }
     var id = e.target.id;
     var self = this;
     if (id == 'likebottom') {
@@ -329,6 +341,10 @@ Page({
     })
   },
   praise: function () {
+    if (this.data.isShareTimeline) {
+      Adapter.toast("请前往小程序使用完整服务", 3000)
+      return
+    }
     //this.ShowHideMenu();
     var self = this;
     var enterpriseMinapp = self.data.detail.enterpriseMinapp;
@@ -445,7 +461,7 @@ Page({
           }
         }
 
-        if (res.data.excitationAd == '1') {
+        if (res.data.excitationAd == '1' && !self.data.isShareTimeline) {
           self.loadInterstitialAd(res.data.rewardedVideoAdId);
         }
 
@@ -659,6 +675,7 @@ Page({
     let appid = e.detail.appid
     let redirectype = e.detail.redirectype
     let path = e.detail.path
+    let jumptype=e.detail.jumptype
 
 
     // 判断a标签src里是不是插入的文档链接
@@ -683,10 +700,21 @@ Page({
       }
       else if (redirectype == 'miniapp') //跳转其他小程序
        {
-        wx.navigateToMiniProgram({
-          appId: appid,
-          path: path
-        })
+        if(jumptype=='redirect')
+        {
+          wx.navigateToMiniProgram({
+            appId: appid,
+            path: path
+          })
+        }
+        else if(jumptype=='embedded')
+        {
+          wx.openEmbeddedMiniProgram({
+            appId: appid,
+            path: path
+          })
+
+        }
       }
       return;
     }
@@ -848,6 +876,11 @@ Page({
     console.log(detail);
 },
   showCustomizeModal(e){
+    if (this.data.isShareTimeline) {
+      Adapter.toast("请前往小程序使用完整服务", 3000)
+      return
+    }
+
     let key = e.currentTarget.dataset.key
     let focus = key === 'drawer'
     this.setData({
@@ -1150,6 +1183,10 @@ hiddenBar() {
   },
 
   onCreatePoster: function () {
+    if (this.data.isShareTimeline) {
+      Adapter.toast("请前往小程序使用完整服务", 3000)
+      return
+    }
     var self = this;
     //this.ShowHideMenu();
     if (self.data.openid) {
