@@ -72,6 +72,8 @@ https://github.com/iamxjb/winxin-app-watch-life.net
 
 3.https://gitlab.com/xiajianbo/winxin-app-watch-life.net
 
+4.https://xjb.coding.net/public/winxin-app-watch-life.net/winxin-app-watch-life.net/git/files
+
 # 备用下载
 考虑到国内网络原因，可能无法下载小程序和插件，我们提供备用下载地址，下载方法：
 
