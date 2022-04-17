@@ -1,26 +1,17 @@
 {
-  "setting": {},
+  "setting": {
+    "compileHotReLoad": true
+  },
   "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
     "miniprogram": {
       "list": [
         {
-          "id": -1,
           "name": "评论",
           "pathName": "pages/comments/comments",
           "query": "",
           "scene": null
         },
         {
-          "id": -1,
           "name": "专题页",
           "pathName": "pages/topic/topic",
           "query": "",
@@ -33,7 +24,6 @@
           "scene": null
         },
         {
-          "id": -1,
           "name": "文章详情",
           "pathName": "pages/detail/detail",
           "query": "id=1553",
@@ -69,5 +59,8 @@
         }
       ]
     }
-  }
+  },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "libVersion": "2.23.4",
+  "projectname": "winxin-app-watch-life.net"
 }

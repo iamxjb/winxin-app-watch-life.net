@@ -17,7 +17,7 @@ var categoriesID = config.getCategoriesID;
 
 var HOST_URI = 'https://' + domain+'/wp-json/wp/v2/';
 var HOST_URI_WATCH_LIFE_JSON = 'https://' + domain + '/wp-json/watch-life-net/v1/';
-   
+var HOST_URI_MINAPPER = 'https://' + domain + '/wp-json/minapper/v1/';
 module.exports = {  
   // 获取文章列表数据
   getPosts: function (obj) {
@@ -359,5 +359,22 @@ module.exports = {
     url += "users/scanqrcode";
     return url;
 
+  },
+  getChannelsInfo()
+  {
+    let url =  HOST_URI_MINAPPER + "channels";
+    return url;
+  },
+
+  getChannelsActivity(args)
+  {
+    let url =  HOST_URI_MINAPPER + "channels/activity";
+    return url;
+  },
+
+  getChannelsEvent(args)
+  {
+    let url =  HOST_URI_MINAPPER + "channels/event";
+    return url;
   }
 };

@@ -1,0 +1,12 @@
+<view wx:if="{{isShow}}"
+  class="{{type === '1' ? 'video-channels' : (type === '2' ? 'video-channels video-channels-plus' : (type === '3' ? 'video-channels video-channels-free' : 'video-channels'))}}"
+>
+  <view class="img">
+    <text class="iconfont icon-channels" />
+  </view>
+  <view class="info">
+    <view class="tittle">视频号</view>
+    <view class="des">关注我的视频和直播</view>
+  </view>
+  <view class="btn" bindtap="goto">进入</view>
+</view>

@@ -1,0 +1,89 @@
+<ui-sys title="视频号">
+<view class="channels-page">
+    <view class="channels-header">
+        <view class="channels-user" data-channelsid="{{info.channelsId}}" bindtap="openUserProfile">
+            <image class="channels-logo" src="{{ info.channelsCover }}" mode="aspectFill" />
+            <view>
+                <view class="channels-name">{{ info.channelsName }}</view>
+                <view class="channels-des">{{ info.channelsDesc }}</view>
+            </view>
+        </view>
+
+        <view class="channels-card-wrap">
+            <view wx:if="{{info.enableLive==='1' && channelsLiveInfo !=''}}" class="channels-card"  data-channelsid="{{info.channelsId}}" bindtap="redictChannelsLive">
+                <view class="channels-left">
+                    <text class="iconfont icon-live" />
+                </view>
+                <view class="channels-right">
+                    <view class="channels-title">{{ channelsLiveInfo.description }}</view>                
+                    <view wx:if="{{channelsLiveInfo.status===2}}" class="channels-des">正在直播中...</view>
+                    <view wx:elif="{{channelsLiveInfo.status===3}}" class="channels-des">直播已结束</view>
+                </view>
+            </view>
+            <view class="channels-card" data-noticeid="{{channelsLiveNoticeInfo.noticeId}}" wx:if="{{channelsLiveNoticeInfo !='' && channelsLiveNoticeInfo.status===0 && channelsLiveNoticeInfo.reservable==true}}" bindtap="reserveChannelsLive">
+                <view class="channels-left icon">
+                    <text class="iconfont icon-clock" />
+                </view>
+                <view class="channels-right">
+                    <view class="channels-title"  class="btn">直播预约</view>
+                    <view class="channels-date">{{ channelsLiveNoticeInfo.startTime }}</view>
+                   
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="channels-content">
+        <view class="channels-navbar">
+            <view
+                class="{{ activeTab === 0 ? 'channels-navbar-item channels-navbar-item-on' : 'channels-navbar-item' }}"
+                data-idx="{{ 0 }}"
+                bindtap="switchTab"
+            >
+                <text class="channels-navbar-title">视频</text>
+            </view>
+            <view
+                class="{{ activeTab === 1 ? 'channels-navbar-item channels-navbar-item-on' : 'channels-navbar-item' }}"
+                data-idx="{{ 1 }}"
+                bindtap="switchTab"
+            >
+                <text class="channels-navbar-title">活动</text>
+            </view>
+
+            <view class="{{ 'channels-navbar-slider channels-navbar-slider-' + activeTab }}" />
+        </view>
+
+        <!-- 列表 -->
+        <view class="channels-list">
+            <view
+                wx:for="{{ list }}" 
+                wx:key="index"     
+                class="channels-list-item"   
+                data-channelsid="{{item.channelsId}}" data-feedid="{{item.feedId}}"  data-eventid="{{item.eventId}}"  bindtap="goto"             
+            >
+                <view class="channels-list-content" >
+                    <view class="channels-list-title">
+                        <text class="txt">{{ item.title }}</text>
+                    </view>
+
+                    <block wx:if="{{activeTab === 0}}">
+                        <view class='channels-list-des'>{{ item.creatdateName }}</view>
+                        <view class='channels-list-des'>
+                            <text class="txt">浏览 {{ item.pageview }}</text>
+                            <text class="txt">喜欢 {{ item.like }}</text>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <view class='channels-list-des'>{{ item.enddateName }}</view>
+                        <view class='channels-list-des'>
+                            <text class="txt">参与{{ item.jionincount }} 次</text>
+                        </view>
+                    </block>
+                </view>
+
+                <image src="{{ item.cover }}" mode="aspectFill" class="img-cover-video channels-list-cover"  data-channelsid="{{item.channelsId}}" data-feedid="{{item.feedId}}"  data-eventid="{{item.eventId}}"  bindtap="goto"/>
+            </view>
+        </view>
+    </view>
+</view>
+</ui-sys>

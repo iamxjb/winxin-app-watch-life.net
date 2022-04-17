@@ -67,7 +67,8 @@ Component({
               type,
               appid,
               url,
-              path
+              path,
+              jumptype
             } = e.currentTarget.dataset
         
             if (type === 'apppage') { // 小程序页面         
@@ -82,11 +83,23 @@ Component({
               })
             }
             if (type === 'miniapp') { // 其他小程序
-              wx.navigateToMiniProgram({
-                appId: appid,
-                path: path
-              })
-            }
+                if(jumptype=='embedded')
+                {
+                  wx.openEmbeddedMiniProgram({
+                    appId: appid,
+                    path: path
+                  })
+        
+                }
+                else
+                {
+                  wx.navigateToMiniProgram({
+                    appId: appid,
+                    path: path
+                  })
+                }
+                
+              }
           },
         toTap(e) {
             let item = e.currentTarget.dataset.item;

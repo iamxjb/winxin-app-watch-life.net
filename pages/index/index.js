@@ -439,7 +439,8 @@ Page({
       type,
       appid,
       url,
-      path
+      path,
+      jumptype
     } = e.currentTarget.dataset
 
     if (type === 'apppage') { // 小程序页面         
@@ -454,10 +455,22 @@ Page({
       })
     }
     if (type === 'miniapp') { // 其他小程序
-      wx.navigateToMiniProgram({
-        appId: appid,
-        path: path
-      })
+      if(jumptype=='embedded')
+      {
+        wx.openEmbeddedMiniProgram({
+          appId: appid,
+          path: path
+        })
+
+      }
+      else
+      {
+        wx.navigateToMiniProgram({
+          appId: appid,
+          path: path
+        })
+      }
+      
     }
   },
   //返回首页

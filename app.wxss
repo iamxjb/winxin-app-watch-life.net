@@ -8,37 +8,10 @@
  * Copyright (c) 2017  微慕 https://www.minapper.com All rights reserved.
  * 
  */
-
+@import 'images/iconfont/iconfont.wxss';
 @import 'mp-cu/colorUI/scss/ui';
 page {
   --radius:12rpx;
-}
-
-@font-face {
-  font-family: "iconfont"; /* Project id 2687084 */
-  src: url('//at.alicdn.com/t/font_2687084_pucuci1hvt.woff2?t=1646543012942') format('woff2'),
-       url('//at.alicdn.com/t/font_2687084_pucuci1hvt.woff?t=1646543012942') format('woff'),
-       url('//at.alicdn.com/t/font_2687084_pucuci1hvt.ttf?t=1646543012942') format('truetype');
-}
-
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-money:before {
-  content: "\e630";
-}
-
-.icon-share-poster:before {
-  content: "\e629";
-}
-
-.icon-share-friend:before {
-  content: "\e62a";
 }
 
 ad {

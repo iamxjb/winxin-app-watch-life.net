@@ -68,7 +68,7 @@
     <view class='ui-grid {{selected_nav.length<5?"ui-cols-4":"ui-cols-5"}}'>
 
       <block wx:key="id" wx:for="{{selected_nav}}">
-        <view class="ui-item  " wx:if="{{item.enable=='yes'}}" catchtap="redictAppDetail" id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.url}}" data-appid="{{item.appid}}" data-path="{{item.path}}">
+        <view class="ui-item  " wx:if="{{item.enable=='yes'}}" catchtap="redictAppDetail" id="{{item.id}}" data-type="{{item.type}}" data-url="{{item.url}}" data-appid="{{item.appid}}" data-path="{{item.path}}" data-jumptype="{{item.jumptype}}">
           <image class="round" mode="aspectFill" src="{{item.image}}"></image>
           <text class="ui-TC text-df">{{item.title}}</text>
         </view>
@@ -94,6 +94,7 @@
 
   </view>
 
+ <video-channels type="3"/>  
 
   <!-- 文章列表 -->
   <view class="container ">

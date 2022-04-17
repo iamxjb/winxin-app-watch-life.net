@@ -16,7 +16,8 @@
     "pages/theme/theme",
     "pages/webpage/webpage",   
     "pages/tags/tags",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/channels/channels"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -84,7 +85,8 @@
     "ui-input-box": "/mp-cu/colorUI/components/ui-input-box/ui-input-box",
     "ui-checkbox": "/mp-cu/colorUI/components/ui-checkbox/ui-checkbox",
     "ui-checkbox-group": "/mp-cu/colorUI/components/ui-checkbox-group/ui-checkbox-group",
-    "ui-change-theme": "/mp-cu/colorUI/components/ui-change-theme/ui-change-theme"
+    "ui-change-theme": "/mp-cu/colorUI/components/ui-change-theme/ui-change-theme",
+    "video-channels": "./components/video-channels/video-channels"
   },
   "requiredBackgroundModes": [
     "audio",
@@ -96,6 +98,9 @@
     "uploadFile": 10000,
     "downloadFile": 10000
   },
+  "plugins": {
+      
+  }, 
   "sitemapLocation": "sitemap.json",
   "resizable": false,
   "darkmode": true

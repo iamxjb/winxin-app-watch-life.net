@@ -1,7 +1,7 @@
 <view class="ui-swiper {{mode}} {{swiperCss}}">
     <swiper circular="{{circular}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="swiper"
             style="{{height?'height: ' + height:''}}" bindchange="swiperChange">
-        <swiper-item wx:for="{{info}}" wx:key="index" class="swiper-item {{cur === index?'cur':''}}" data-item="{{item}}" wx:if="{{item.enable=='yes'}}" id="{{item.id}}" index="{{index}}" data-type="{{item.type}}" data-appid="{{item.appid}}" data-path="{{item.path}}" data-url="{{item.url}}" bindtap="redictAppDetail">
+        <swiper-item wx:for="{{info}}" wx:key="index" class="swiper-item {{cur === index?'cur':''}}" data-item="{{item}}" wx:if="{{item.enable=='yes'}}" id="{{item.id}}" index="{{index}}" data-type="{{item.type}}" data-appid="{{item.appid}}" data-path="{{item.path}}" data-url="{{item.url}}" data-jumptype="{{item.jumptype}}" bindtap="redictAppDetail">
             <view class="ui-swiper-main radius">
                 <image src="{{item[imgName]}}" style="{{imgHeight?'height: '+imgHeight:''}}" class="image" mode="aspectFill"/>
             </view>

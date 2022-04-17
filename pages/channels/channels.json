@@ -1,0 +1,7 @@
+{ 
+  "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": true,
+    "navigationBarBackgroundColor": "#f2f4f5",
+    "navigationBarTitleText": "视频号",
+    "usingComponents": {}
+}
