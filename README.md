@@ -209,6 +209,10 @@ https://forum.minapper.com/
 
 <a href="https://www.watch-life.net/wechat/mp-html.html" target="_blank" rel="noopener noreferrer">23.小程序富文本解析利器mp-html</a>
 
+<a href="https://blog.minapper.com/minapper/zai-zhuan-ye-ban-li-ban-ping-da-kai-xiao-cheng-xu.html" target="_blank" rel="noopener noreferrer">24.微慕小程序支持半屏打开小程序</a>
+
+<a href="https://blog.minapper.com/minapper/wei-mu-zhuan-ye-ban-da-tong-shi-pin-hao.html" target="_blank" rel="noopener noreferrer">25.微慕小程序打通视频号</a>
+
 
 
 
@@ -234,7 +238,17 @@ https://forum.minapper.com/
 
 # 更新历史：
 
-## 2022年2月22日
+## 2022年4月17日（版本4.5.1）
+
+1.修复视频组件设置width为100%时显示不正常的问题
+
+2.修复安卓朋友圈打开文章详情开启了激励视频显示空白bug
+
+3.加入视频号支持
+
+4。支持半屏打开小程序
+
+## 2022年2月22日（版本4.5）
 
 1.对接color实现了主题切换、深色模式适配、字体大小调整、一键更换配色等功能
 
