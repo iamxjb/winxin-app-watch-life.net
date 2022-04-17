@@ -60,6 +60,10 @@
 
 26.支持微信搜一搜页面接入和内容搜索
 
+27.支持视频号
+
+28.支持半屏打开小程序
+
 # 开源地址
 
 https://github.com/iamxjb/winxin-app-watch-life.net
