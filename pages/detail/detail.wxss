@@ -24,9 +24,9 @@
   position: relative;
 }
 
-.entry-summary image {
+/* .entry-summary image {
   width: 100%
-}
+} */
 
 /* 标题 */
 
