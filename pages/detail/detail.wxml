@@ -242,13 +242,13 @@
   <view class="menuBackground" catchtap="hiddenBar" style="display:{{menuBackgroup ? 'block' : 'none'}}"></view>
 
   <!-- 评论内容输入框 -->
-  <view class="comment-textarea-box {{target === 'drawer' ? '' : 'commentinputdialog-box-hidden'}}">
+  <view class="ui-BG comment-textarea-box {{target === 'drawer' ? '' : 'commentinputdialog-box-hidden'}}">
     <form catchsubmit="formSubmit" report-submit="true">
       <view>
-        <text class="comment-button touch-active" bindtap="showCustomizeModal" data-key=''>取消</text>
-        <button class="comment-button touch-active" formType="submit">发送</button>
+        <text class="comment-button ui-TC touch-active" bindtap="showCustomizeModal" data-key=''>取消</text>
+        <button class="comment-button ui-TC touch-active" formType="submit">发送</button>
       </view>
-      <textarea maxlength="100" name="inputComment" cursor-spacing="80" value="{{content}}" placeholder="{{placeholder}}" bindblur="onReplyBlur" bindfocus="onRepleyFocus" focus="{{focus}}" auto-height="{{false}}" fixed="{{true}}"
+      <textarea maxlength="100" name="inputComment" cursor-spacing="80" value="{{content}}" placeholder="{{placeholder}}" bindblur="onReplyBlur" bindfocus="onRepleyFocus" focus="{{focus}}" auto-height="{{false}}" fixed="{{true}}" class="ui-TC"
         show-confirm-bar="{{false}}" />
 
       <input class="comment-input radius" cursor-spacing="140" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
