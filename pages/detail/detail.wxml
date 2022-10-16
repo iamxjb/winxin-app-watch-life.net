@@ -83,7 +83,7 @@
         <text class="left">文章ID：{{postID}} </text>
 
 
-        <text class="right ui-TC-Main-2" catchtap="gotowebpage">阅读原文 </text>
+        <!-- <text class="right ui-TC-Main-2" catchtap="gotowebpage">阅读原文 </text> -->
       </view>
 
     </view>

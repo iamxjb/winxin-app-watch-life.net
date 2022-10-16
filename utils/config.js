@@ -30,7 +30,7 @@ const enableChannels =false
 
 
 //微慕小程序端版本,请勿修改
-const minapperVersion=4.5
+const minapperVersion=4.53
 const minapperSource="free"
 //////////////////////////////////////////////////////
 

@@ -345,29 +345,13 @@ Page({
       Adapter.toast("请前往小程序使用完整服务", 3000)
       return
     }
-    //this.ShowHideMenu();
-    var self = this;
-    var enterpriseMinapp = self.data.detail.enterpriseMinapp;
-    var system = self.data.system;
-    var praiseWord=self.data.detail.praiseWord;
-    if (enterpriseMinapp == "1" && system == 'Android') {
-      if (self.data.openid) {
-        wx.navigateTo({
-          url: '../pay/pay?flag=1&openid=' + self.data.openid + '&postid=' + self.data.postID+'&praiseWord='+praiseWord
-        })
-      }
-      else {
-        Auth.checkSession(self, 'isLoginNow');
-      }
-    }
-    else if(enterpriseMinapp == "0" || system=='iOS'){
-
+    //this.ShowHideMenu(); 
       var src = wx.getStorageSync('zanImageurl');
       wx.previewImage({
         urls: [src],
       });
 
-    }
+   
   },
 
   //获取是否开启评论设置

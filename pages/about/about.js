@@ -48,16 +48,9 @@ Page({
   },
   onLoad: function (options) {
     var self = this;    
-    Auth.setUserInfoData(self); 
-    Auth.checkLogin(self);
+   
     this.fetchData();
-    wx.getSystemInfo({
-          success: function (t) {
-          var system = t.system.indexOf('iOS') != -1 ? 'iOS' : 'Android';
-          self.setData({ system: system });
-
-        }
-      })
+    
     // 设置系统分享菜单
     wx.showShareMenu({
     withShareTicket: true,
@@ -65,31 +58,13 @@ Page({
     })
   },
  
-  praise: function () {     
-      
-      var self = this;
-      var enterpriseMinapp = self.data.pageData.enterpriseMinapp;
-      var system  =self.data.system;
-      var praiseWord=self.data.pageData.praiseWord;
-      var postid=self.data.pageData.id;
-      if (enterpriseMinapp == "1"  && system=='Android') {
-          if (self.data.openid) {
-              wx.navigateTo({
-                  url: '../pay/pay?flag=2&openid=' + self.data.openid + '&postid=' + postid +'&praiseWord='+praiseWord
-              })
-          }
-          else {
-                Auth.checkSession(self,'isLoginNow');
-            }
-      }
-      else if(enterpriseMinapp == "0" || system=='iOS') {
-
+  praise: function () {    
           var src = wx.getStorageSync('zanImageurl');
           wx.previewImage({
               urls: [src],
           });
 
-      } 
+      
       
   },
   onPullDownRefresh: function () {
