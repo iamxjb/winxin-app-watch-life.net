@@ -75,7 +75,23 @@ function postRequest(url, data) {
     })
 }
 
+/**
+ * 微信请求post方法封装
+ * url
+ * data 以对象的格式传入
+ */
+ function uploadFile(url, data) {
+    var uploadFile = wxPromisify(wx.uploadFile)
+    return uploadFile({
+        url: url,
+        filePath: data.imgfile,
+        name: 'file',
+        formData:data.formData
+    })
+}
+
 module.exports = {
     postRequest: postRequest,
-    getRequest: getRequest
+    getRequest: getRequest,
+    uploadFile:uploadFile
 }

@@ -100,85 +100,7 @@ Auth.checkAgreeGetUser=function(e,app,appPage,authFlag)
             }
     }
 
-// Auth.agreeGetUser=function(e,wxLoginInfo,authFlag){
-//         return new Promise(function(resolve, reject) {
-//            let args={};
-//            let data={};        
-//            args.js_code =wxLoginInfo.js_code;
-//            if(authFlag=='0'  && e.detail.errMsg=='getUserInfo:fail auth deny'){
-//                 args.errcode=e.detail.errMsg;
-//                 args.userInfo={isLogin:false}
-//                 args.userSession="";            
-//                 resolve(args);
-//                 return;
-//            } 
-//             var userInfoDetail = {};
-//             if(authFlag=='0')//未授权过,通过按钮授权
-//              {
-//                 userInfoDetail = e.detail;
-//              }
-//             else if(authFlag=='1')//已经授权过，直接通过wx.getUserInfo获取
-//             {
-//               userInfoDetail = e;
-//             }
-//             if (userInfoDetail && userInfoDetail.userInfo){
-//                 args.iv = userInfoDetail.iv;
-//                 args.encryptedData = userInfoDetail.encryptedData;
-//                 let userInfo =  userInfoDetail.userInfo;
-//                 userInfo.isLogin =true;
-//                 args.avatarUrl=userInfo.avatarUrl;
-//                 args.nickname=userInfo.nickName;
-//                 data.userInfo =userInfo;
-//                 var url = Api.getOpenidUrl();        
-//                 var postOpenidRequest = wxRequest.postRequest(url, args);
-//                 //获取openid
-//                 postOpenidRequest.then(response => {
-//                     if (response.data.status == '200') {
-//                         //console.log(response.data.openid)
-//                         console.log("授权登录获取成功");
-//                         data.openid= response.data.openid;
-//                         var userLevel={};
-//                         if(response.data.userLevel)
-//                         {
-//                             userLevel=response.data.userLevel;
-//                         }
-//                         else 
-//                         {
-//                             userLevel.level="0";
-//                             userLevel.levelName="订阅者";
-//                         }
-//                         data.userLevel=userLevel;
-//                         data.errcode="";                        
-//                         resolve(data);
 
-//                     }
-//                     else {
-//                         console.log(response);
-//                         reject(response);
-//                     }
-//                 }).catch(function (error) {
-//                     console.log('error: ' + error);                        
-//                     reject(error);
-//                 })
-
-//                 // Auth.userLogin(args,api).then(userSession=>{
-//                 //     args.userSession=userSession;
-//                 //     args.errcode ="";
-//                 //     resolve(args);
-//                 // }).catch(function (error) {
-//                 //     console.log('error: ' + error);                        
-//                 //     reject(error);
-//                 // })
-//             }
-//             else
-//             {
-//                args.errcode="error";
-//                args.userInfo={isLogin:false};
-//                args.userSession="";            
-//                resolve(args);
-//             }
-//         }) 
-// }
 Auth.agreeGetUser=function(e,wxLoginInfo,authFlag){
     return new Promise(function(resolve, reject) {
        let args={};
@@ -192,14 +114,14 @@ Auth.agreeGetUser=function(e,wxLoginInfo,authFlag){
         lang: 'zh_CN',
         desc: '登录后信息展示',
         success: (res) => {
-          let userInfo = res.userInfo || {}
-          wx.setStorageSync('userInfo', userInfo)
+          let _userInfo = res.userInfo || {}
+          //wx.setStorageSync('userInfo', userInfo)
   
-          userInfo.isLogin =true;
-          args.avatarUrl=userInfo.avatarUrl;
-          args.nickname=userInfo.nickName;
-          data.userInfo =userInfo;         
-          var url = Api.getOpenidUrl();  
+          //userInfo.isLogin =true;
+          args.avatarUrl=_userInfo.avatarUrl;
+          args.nickname=_userInfo.nickName;
+          //args.userInfo =userInfo;         
+          var url = Api.webchatuserlogin();  
           var postOpenidRequest = wxRequest.postRequest(url, args);
             //获取openid
             wx.hideLoading();  
@@ -207,7 +129,7 @@ Auth.agreeGetUser=function(e,wxLoginInfo,authFlag){
                 if (response.data.status == '200') {
                     //console.log(response.data.openid)
                     console.log("授权登录获取成功");
-                    data.openid= response.data.openid;
+                    data.openid= response.data.openid;                 
                     var userLevel={};
                     if(response.data.userLevel)
                     {
@@ -218,6 +140,12 @@ Auth.agreeGetUser=function(e,wxLoginInfo,authFlag){
                         userLevel.level="0";
                         userLevel.levelName="订阅者";
                     }
+                    var userInfo={};
+                    userInfo.isLogin =true;
+                    userInfo.nickName=response.data.nickname
+                    userInfo.avatarUrl=response.data.avatarurl
+                    userInfo.enableUpdateAvatarCount=response.data.enableUpdateAvatarCount;
+                    data.userInfo=userInfo;
                     data.userLevel=userLevel;
                     data.errcode="";
                     data.userId=  response.data.userId;                      
@@ -247,74 +175,7 @@ Auth.agreeGetUser=function(e,wxLoginInfo,authFlag){
             resolve(args);
           
         }
-      });
-
-    //    if(authFlag=='0'  && e.detail.errMsg=='getUserInfo:fail auth deny'){
-    //         args.errcode=e.detail.errMsg;
-    //         args.userInfo={isLogin:false}
-    //         args.userSession="";            
-    //         resolve(args);
-    //         return;
-    //    } 
-    //     var userInfoDetail = {};
-    //     if(authFlag=='0')//未授权过,通过按钮授权
-    //      {
-    //         userInfoDetail = e.detail;
-    //      }
-    //     else if(authFlag=='1')//已经授权过，直接通过wx.getUserInfo获取
-    //     {
-    //       userInfoDetail = e;
-    //     }
-    //     if (userInfoDetail && userInfoDetail.userInfo){
-    //         args.iv = userInfoDetail.iv;
-    //         args.encryptedData = userInfoDetail.encryptedData;
-    //         let userInfo =  userInfoDetail.userInfo;
-    //         userInfo.isLogin =true;
-    //         args.avatarUrl=userInfo.avatarUrl;
-    //         args.nickname=userInfo.nickName;
-    //         data.userInfo =userInfo;
-    //         var url = Api.getOpenidUrl();        
-    //         var postOpenidRequest = wxRequest.postRequest(url, args);
-    //         //获取openid
-    //         postOpenidRequest.then(response => {
-    //             if (response.data.status == '200') {
-    //                 //console.log(response.data.openid)
-    //                 console.log("授权登录获取成功");
-    //                 data.openid= response.data.openid;
-    //                 var userLevel={};
-    //                 if(response.data.userLevel)
-    //                 {
-    //                     userLevel=response.data.userLevel;
-    //                 }
-    //                 else 
-    //                 {
-    //                     userLevel.level="0";
-    //                     userLevel.levelName="订阅者";
-    //                 }
-    //                 data.userLevel=userLevel;
-    //                 data.errcode="";
-    //                 data.userId=  response.data.userId;                      
-    //                 resolve(data);
-
-    //             }
-    //             else {
-    //                 console.log(response);
-    //                 reject(response);
-    //             }
-    //         }).catch(function (error) {
-    //             console.log('error: ' + error);                        
-    //             reject(error);
-    //         })
-
-        
-    //     }
-    //     else
-    //     {
-    //        args.errcode="error";
-    //        args.userInfo={isLogin:false};
-    //        args.userSession="";            
-    //        resolve(args);
-    //     }
+      });   
     }) 
 }
 Auth.setUserInfoData = function(appPage)

@@ -28,9 +28,12 @@ const enableScanLogin =false
 const enableChannels =false 
 //////////////////////////////////////////////////////
 
+// 上传图片的最大文件大小,单位是m,必须填整数,
+// 同时必须修改php.ini文件 post_max_size 和 upload_max_filesize 具体修改请自行搜索
+const uploadImageSize=1
 
 //微慕小程序端版本,请勿修改
-const minapperVersion=4.53
+const minapperVersion=4.60
 const minapperSource="free"
 //////////////////////////////////////////////////////
 

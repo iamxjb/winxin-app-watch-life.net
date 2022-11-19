@@ -224,6 +224,14 @@ module.exports = {
     return url;
   },
 
+  //获取用户openid
+  webchatuserlogin() {
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    url += "weixin/webchatuserlogin";
+    return url;
+  },
+  //
+
    //获取用户信息
    getUpdateUserInfo() {
     var url = HOST_URI_WATCH_LIFE_JSON;
@@ -376,5 +384,19 @@ module.exports = {
   {
     let url =  HOST_URI_MINAPPER + "channels/event";
     return url;
+  },
+  //上传文件
+  uploadFile: function (args) {
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    url += "attachments";
+    return url;
+
+  },
+  updateNickname:function(args)
+  {
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    url += "weixin/updatenickname";
+    return url;
+
   }
 };
