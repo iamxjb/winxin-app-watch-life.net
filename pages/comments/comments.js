@@ -35,6 +35,9 @@ Page({
         return {
             title: title,
             path: path,
+            appInfo:{
+                'appId':config.appghId
+              },
             success: function (res) {
                 // 转发成功
             },

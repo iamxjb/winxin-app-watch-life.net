@@ -28,23 +28,32 @@ Page({
         openid:"",
         userInfo:{},
         webSiteName:webSiteName,
-    domain:domain        
+    domain:domain ,
+    inFinChat:false,        
     },
     onLoad: function (options) {
-        Auth.setUserInfoData(this); 
-        Auth.checkLogin(this);
+                  
+        var self = this; 
+        wx.getSystemInfo({
+            success (res) {
+                if(res.inFinChat)
+                {          
+                    self.setData({inFinChat:res.inFinChat})          
+                }
+                else{          
+                    Auth.checkLogin(self)
+                }
+            }
+        })  
         wx.setNavigationBarTitle({
             title: '专题'
         });
-
+        Auth.setUserInfoData(this); 
         wx.showShareMenu({
-                  withShareTicket:true,
-                  menus:['shareAppMessage','shareTimeline'],
-                  success:function(e)
-                  {
-                    //console.log(e);
-                  }
-            })
+            withShareTicket:true,
+            menus:['shareAppMessage','shareTimeline'],
+              
+        })
         Adapter.setInterstitialAd("enable_topic_interstitial_ad");
         this.fetchCategoriesData();
         
@@ -110,6 +119,9 @@ Page({
         return {
             title: '分享“' + config.getWebsiteName + '”的专题栏目.',
             path: 'pages/topic/topic',
+            appInfo:{
+                'appId':config.appghId
+              },
             success: function (res) {
                 // 转发成功
             },
@@ -129,7 +141,7 @@ Page({
     postsub: function (e) {
         var self = this;
         if (!self.data.openid) {
-            Auth.checkSession(self,'isLoginNow');
+            Auth.loginType(this)
         }
         else {
             var categoryid = e.currentTarget.dataset.id;

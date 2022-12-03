@@ -23,8 +23,7 @@
         //border-radius: 10rpx;
         overflow: hidden;
         text-align: left;
-        color: var(--ui-TC);
-        padding: 0.5em 1em;
+        color: var(--ui-TC); 
         border-radius: $radius;
         max-width: 90vw;
         &.hasIcon {

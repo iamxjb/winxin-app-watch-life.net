@@ -72,6 +72,9 @@ Page({
     return {
       title: '“' + webSiteName + '”小程序,基于微慕WordPress版小程序构建',
       path: 'pages/index/index',
+      appInfo:{
+        'appId':config.appghId
+      },
       success: function (res) {
         // 转发成功
       },

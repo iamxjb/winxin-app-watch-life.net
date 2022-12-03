@@ -99,6 +99,7 @@ Page({
     detailSummaryHeight: '',
     platform: '',
     isShareTimeline: false,
+    inFinChat:false,
 
   },
   onLoad: function (options) {
@@ -110,25 +111,27 @@ Page({
     })
 
     var self = this;
+    wx.getSystemInfo({
+      success (res) {
+        var system = res.system.indexOf('iOS') != -1 ? 'iOS' : 'Android';
+        self.setData({ system: system ,platform: res.platform});
+        if(res.inFinChat)
+        {          
+          self.setData({inFinChat:res.inFinChat})          
+        }
+        else{
+          Auth.checkLogin(self)         
+        }
+      }
+    })   
     wx.showShareMenu({
       withShareTicket:true,
-      menus:['shareAppMessage','shareTimeline'],
-      success:function(e)
-      {
-        //console.log(e);
-      }
+      menus:['shareAppMessage','shareTimeline'],     
     })
     self.getEnableComment();
     self.fetchDetailData(options.id);
-    Auth.setUserInfoData(self);
-    Auth.checkLogin(self);
-    Adapter.setInterstitialAd("enable_detail_interstitial_ad");
-    wx.getSystemInfo({
-      success: function (t) {
-        var system = t.system.indexOf('iOS') != -1 ? 'iOS' : 'Android';
-        self.setData({ system: system ,platform: t.platform});
-      }
-    })
+    Auth.setUserInfoData(self);    
+    Adapter.setInterstitialAd("enable_detail_interstitial_ad");    
     new ModalView;
   },
   onUnload: function () {
@@ -151,10 +154,7 @@ Page({
     }
     var likes = [];
     for (var i = 0; i < _likes.length; i++) {
-      var avatarurl = "../../images/gravatar.png";
-      if (_likes[i].avatarurl.indexOf('wx.qlogo.cn') != -1) {
-        avatarurl = _likes[i].avatarurl;
-      }
+      var avatarurl = _likes[i].avatarurl;
       likes[i] = avatarurl;
     }
     var temp = likes;
@@ -174,7 +174,6 @@ Page({
     else {
       console.log('评论已经是最后一页了');
     }
-
   },
 
    // 首次加载评论
@@ -197,6 +196,9 @@ Page({
       title: '分享"' + webSiteName + '"的文章：' + this.data.detail.title.rendered,
       path: 'pages/detail/detail?id=' + this.data.detail.id,
       imageUrl: this.data.detail.post_full_image,
+      appInfo:{
+        'appId':config.appghId
+      },
       success: function (res) {
         // 转发成功
         console.log(res);
@@ -308,7 +310,7 @@ Page({
         })
     }
     else {
-      Auth.checkSession(self, 'isLoginNow');
+      Auth.loginType(this)
 
     }
   },
@@ -1129,7 +1131,7 @@ hiddenBar() {
           })
       }
       else {
-        Auth.checkSession(self, 'isLoginNow');
+        Auth.loginType(this)
 
       }
 
@@ -1177,7 +1179,7 @@ hiddenBar() {
       self.creatArticlePoster(self, Api, util, self.modalView, Poster);
     }
     else {
-      Auth.checkSession(self, 'isLoginNow');
+      Auth.loginType(this)
 
     }
 

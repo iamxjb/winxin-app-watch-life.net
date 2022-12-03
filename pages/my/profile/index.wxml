@@ -1,0 +1,17 @@
+
+<ui-sys title="授权登录">
+<view class="ui-BG-card ui-BG">
+    <view class="container"> 
+  <text class="tip">此功能需获取微信用户授权，请点击下方按钮授权。</text>
+  <button class="btn" bindtap="getUserProfile">确认授权</button>
+  <view class="shade" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="container">
+    <view class="modal" wx:if="{{ showModal }}">
+      <view class="title">{{ modalTitle }}</view>
+      <view class="content">{{ modalContent }}</view>
+      <button open-type="launchApp" app-parameter="{{ext}}" binderror="launchAppError" class="btn" plain="true" bindtap="clickBtn">返回{{minapperName}}App</button>
+    </view>
+  </view>
+</view>
+
+</view></ui-sys>

@@ -70,6 +70,9 @@ Page({
         return {
             title: '分享"' + config.getWebsiteName + '"的文章' + self.data.title,
             path: url,
+            appInfo:{
+                'appId':config.appghId
+              },
             success: function (res) {
                 // 转发成功
                 console.log(url);

@@ -16,6 +16,9 @@
     "pages/webpage/webpage",   
     "pages/tags/tags",
     "pages/my/my",
+    "pages/my/payment/index",
+    "pages/my/phone/index",
+    "pages/my/profile/index",
     "pages/channels/channels"
   ],
   "window": {
@@ -23,7 +26,9 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black",
     "pageOrientation": "portrait",
-"navigationStyle": "custom"
+    "navigationStyle": "custom",
+    "navigationBarHideCloseButton": true,
+    "navigationBarHideMoreButton": true
   },
   "tabBar": {
  
@@ -97,9 +102,6 @@
     "uploadFile": 10000,
     "downloadFile": 10000
   },
-  "plugins": {
-      
-  }, 
   "sitemapLocation": "sitemap.json",
   "resizable": false,
   "darkmode": true

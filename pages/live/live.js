@@ -40,7 +40,10 @@ Page({
   onShareAppMessage: function() {
     return {
       title: this.data.shareTitle,
-      path: '/pages/live/live'
+      path: '/pages/live/live',
+      appInfo:{
+        'appId':config.appghId
+      }
     }
   },
 

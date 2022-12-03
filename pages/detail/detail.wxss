@@ -858,8 +858,8 @@ ad {
 }
 
 .comment-button {
-  height: 70rpx;
-  line-height: 70rpx;
+  /* height: 70rpx;
+  line-height: 70rpx; */
   font-size: 15px;
   color: #4c4c4c;
   background: transparent;

@@ -1,48 +1,44 @@
 <import src="../../templates/copyright.wxml" />
 <import src="../../templates/login-popup.wxml" />
-
 <ui-sys tabbar>
-  <ui-navbar back="{{false}}" bg="ui-BG-Main">
-  </ui-navbar>
+  <ui-navbar back="{{false}}" bg="ui-BG-Main"></ui-navbar>
   <!-- 用户信息 -->
-  <view class="userinfo ui-BG-Main">
-  </view>
-
+  <view class="userinfo ui-BG-Main"></view>
   <view class="info_box ui-BG-card ui-BG">
-
     <view class="info_avatar">
       <image mode="aspectFill" src="{{userInfo.avatarUrl}}" />
     </view>
     <view class="info_data">
       <view class="info_user">
-        <view class="info_name ui-TC" bindtap="{{openid !='' ? '' : 'openLoginPopup'}}"> {{openid !='' ? userInfo.nickName : '点此登录'}}</view>
-        <text class="info_lv ui-BG-Main radius">Lv{{openid !='' ? userLevel.level : ''}}</text>
-        <view class="info_scan">
-
+        <view class="info_name ui-TC" bindtap="bindgetuserinfo">
+          {{openid !='' ? userInfo.nickName : '点此登录'}}
         </view>
-
+        <text class="info_lv ui-BG-Main radius">Lv{{openid !='' ? userLevel.level : ''}}</text>
+        <view class="info_scan"></view>
       </view>
-      <view class="info_uid">{{openid !='' ? userLevel.levelName : '登录后查看角色'}}
+      <view class="info_uid">
+        {{openid !='' ? userLevel.levelName : '登录后查看角色'}}
         <view class="info_right">
           <block wx:if="{{openid !=''}}">
             <scan-login />
           </block>
-          <text class="exit cicon-close-round-o" catchtap="exit"> {{openid !='' ? '退出登录' : '清除缓存'}} </text>
+          <text class="exit cicon-close-round-o" catchtap="exit" wx:if="{{openid !=''}}"> 退出登录 </text>
+        <text class="exit cicon-close-round-o" catchtap="exit" wx:else>   清除缓存 </text>
         </view>
       </view>
-
     </view>
   </view>
   <!-- 浏览记录 -->
-  <view class="  ui-BG-card ui-BG">
+  <view class="  ui-BG-card ui-BG" wx:if="{{openid !=''}}">
     <ui-title title="我的记录" depth="3">
       <text slot="icon" class="ui-TC-Main cicon-slack-square" />
     </ui-title>
-
     <view class="ui-grid ui-cols-4  ">
       <block wx:key="id" wx:for="{{list}}">
         <navigator class="ui-item " url="{{item.path}}">
-          <view><text class="{{item.icon}} text-xxl m-2" style="color:{{item.color}}"></text></view>
+          <view>
+            <text class="{{item.icon}} text-xxl m-2" style="color:{{item.color}}"></text>
+          </view>
           <text class="ui-TC text-df">{{item.name}}</text>
         </navigator>
       </block>
@@ -50,49 +46,45 @@
   </view>
   <!-- 服务列表 -->
   <view class="ui-BG-card ui-BG">
-
     <ui-menu ui=" radius">
-
-      <ui-menu-item arrow title="关于我们" icon="cicon-service-fill" isAction data-url="/pages/about/about" bindtap="tapToUrl">
-      </ui-menu-item>
+      <ui-menu-item arrow title="关于我们" icon="cicon-service-fill" isAction data-url="/pages/about/about" bindtap="tapToUrl"></ui-menu-item>
       <block wx:if="{{openid !=''}}">
-        <ui-menu-item arrow title="修改昵称" icon="cicon-settings" isAction data-url="/pages/about/about" bindtap="showModal" data-key='drawer'>
-        </ui-menu-item>
+        <ui-menu-item arrow title="修改昵称" icon="cicon-settings" isAction data-url="/pages/about/about" bindtap="showModal" data-key='drawer'></ui-menu-item>
       </block>
-      
-      <view style="position: relative;" wx:if="{{openid !='' && userInfo.enableUpdateAvatarCount !=0}}" >
-        <ui-menu-item arrow title="修改头像(本年可修改次数为{{userInfo.enableUpdateAvatarCount || 0 }}次)" icon="cicon-avatar" /><button class="ui-btn kefubtn" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar"></button>
-      </view>
+      <block wx:if="{{!inFinChat}}">
+        <view style="position: relative;" wx:if="{{openid !='' && userInfo.enableUpdateAvatarCount !=0}}">
+          <ui-menu-item arrow title="修改头像(本年可修改次数为{{userInfo.enableUpdateAvatarCount || 0 }}次)" icon="cicon-avatar" />
+          <button class="ui-btn kefubtn" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar"></button>
+        </view>
+      </block>
       <ui-menu-item arrow title="联系我们" icon="cicon-weixin" isAction data-value="{{wechat}}" bindtap="tapCopy">
-
         <text slot="action" class="text-sm ui-TC-3 m-1">{{wechat}}</text>
       </ui-menu-item>
-
       <view style="position: relative;">
-        <ui-menu-item arrow title="在线客服" icon="cicon-service" data-url="/pages/about/about" bindtap="tapToUrl" /> <button class="ui-btn kefubtn  " open-type="contact"></button>
+        <ui-menu-item arrow title="在线客服" icon="cicon-service" data-url="/pages/about/about" bindtap="tapToUrl" />
+        <button class="ui-btn kefubtn  " open-type="contact"></button>
       </view>
       <view style="position: relative;">
-        <ui-menu-item arrow title="意见反馈" icon="cicon-creative" data-url="/pages/about/about" bindtap="tapToUrl" /> <button class="ui-btn kefubtn  " open-type="feedback"></button>
+        <ui-menu-item arrow title="意见反馈" icon="cicon-creative" data-url="/pages/about/about" bindtap="tapToUrl" />
+        <button class="ui-btn kefubtn  " open-type="feedback"></button>
       </view>
-
       <ui-menu-item arrow title="定制主题" icon="cicon-clothes" data-url="/pages/theme/theme" bindtap="tapToUrl" />
+      <!-- <block wx:if="{{userLevel.level=='10'}}">
+        <ui-menu-item arrow title="登录授权" icon="cicon-clothes" data-url="/pages/my/profile/index" bindtap="tapToUrl" />
+        </block> -->
     </ui-menu>
   </view>
-
   <!-- 登录框 -->
   <template is="login-popup" data="{{show: isLoginPopup, userInfo: userInfo}}"></template>
   <!-- 版权信息 -->
   <view class="copyright">
     <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}" />
   </view>
-
   <ui-modal show="{{target === 'drawer'}}" mask="40" align="bottom">
     <view class="pop-edit">
       <view class="pop-header">
-        <view class="title">修改昵称</view> 
+        <view class="title">修改昵称</view>
       </view>
-
-
       <input class="pop-input" model:value="{{nickName}}" type="nickname" placeholder="请输入昵称" />
       <view class="pop-footer">
         <view class="btn-cancel" bindtap="onClose">取消</view>

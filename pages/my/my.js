@@ -39,6 +39,7 @@ Page({
     domain: domain,
     wechat: wechat,
     nickName: '',
+    inFinChat:false,
     uploadImageSize: config.uploadImageSize,
     list: [{
       name: "浏览",
@@ -72,14 +73,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    var self = this;
-    Auth.setUserInfoData(self);
-    Auth.checkLogin(self);
-    Auth.checkSession(self, 'isLoginNow');
-  },
-  onReady: function() {
-    var self = this;
-    Auth.checkSession(self, 'isLoginNow');
+    var self = this; 
+    wx.getSystemInfo({
+      success (res) {
+        if(res.inFinChat)
+        {          
+          self.setData({inFinChat:res.inFinChat})          
+        }
+        else{          
+          Auth.setUserInfoData(self);
+          Auth.checkLogin(self);
+          self.setData({copyright: getApp().globalData.copyright})
+          Auth.checkSession(self, 'isLoginNow');
+        }
+      }
+    })
+    
+  },  
+  bindgetuserinfo()
+  {
+    Auth.loginType(this)
+    
   },
   agreeGetUser: function(e) {
     let self = this;
@@ -124,7 +138,7 @@ Page({
         }
       });
     } else {
-      Auth.checkSession(self, 'isLoginNow');
+      Auth.loginType(this)
 
     }
 

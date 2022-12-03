@@ -1,0 +1,11 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {},
+  "compileType": "miniprogram",
+  "projectname": "守望轩",
+  "isGameTourist": false,
+  "isFulljs": false
+}

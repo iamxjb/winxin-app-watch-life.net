@@ -84,6 +84,9 @@ Page({
     return {
       title: '关于“' + config.getWebsiteName +'”小程序',
       path: 'pages/about/about',
+      appInfo:{
+        'appId':config.appghId
+      },
       success: function (res) {
         // 转发成功
       },

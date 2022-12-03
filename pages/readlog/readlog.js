@@ -63,24 +63,34 @@ Page({
         openid: '',
         isLoginPopup: false,
         webSiteName: webSiteName,
-        domain: domain
+        domain: domain,
+        inFinChat:false
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var self = this;
-        //self.fetchPostsData('1');
-        Auth.setUserInfoData(self);
-        Auth.checkLogin(self);
+        var self = this; 
+        wx.getSystemInfo({
+            success (res) {
+                if(res.inFinChat)
+                {          
+                    self.setData({inFinChat:res.inFinChat})          
+                }
+                else{          
+                    Auth.checkLogin(self)
+                }
+            }
+        })        
+        Auth.setUserInfoData(self);       
         var id = options.key
         this.onLoadTag(id);
     },
 
     onReady: function () {
-        var self = this;
-        Auth.checkSession(self, 'isLoginNow');
+       // var self = this;
+        //Auth.checkSession(self, 'isLoginNow');
     },
     agreeGetUser: function (e) {
         let self = this;
@@ -125,7 +135,7 @@ Page({
                 }
             });
         } else {
-            Auth.checkSession(self, 'isLoginNow');
+            Auth.loginType(this)
 
         }
 
@@ -229,6 +239,9 @@ Page({
         return {
             title: title,
             path: path,
+            appInfo:{
+                'appId':config.appghId
+              },
             success: function (res) {
                 // 转发成功
             },

@@ -32,8 +32,12 @@ const enableChannels =false
 // 同时必须修改php.ini文件 post_max_size 和 upload_max_filesize 具体修改请自行搜索
 const uploadImageSize=1
 
+//小程序原始id
+const appghId ='gh_e49213784fae'
+//////////////////////////////////////////////////////
+
 //微慕小程序端版本,请勿修改
-const minapperVersion=4.60
+const minapperVersion=4.61
 const minapperSource="free"
 //////////////////////////////////////////////////////
 
@@ -45,5 +49,6 @@ export default {
   enableScanLogin,
   minapperVersion,
   minapperSource,
-  enableChannels
+  enableChannels,
+  appghId
 }
