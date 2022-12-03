@@ -78,7 +78,7 @@
 开源版安装文档：https://docs.minapper.com/minfree
 
 ### 三、下载源码
--   **最新稳定版本下载** ：[点击下载](https://gitee.com/iamxjb/rest-api-to-miniprogram)
+-   **最新稳定版本下载** ：[点击下载](https://gitee.com/iamxjb/winxin-app-watch-life.net/releases)
 
 
 -   **WordPress插件市场** 下载：[点击下载](https://wordpress.org/plugins/rest-api-to-miniprogram)
