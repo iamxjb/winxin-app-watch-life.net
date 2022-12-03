@@ -66,17 +66,14 @@
 
 # 开源地址
 
-https://github.com/iamxjb/winxin-app-watch-life.net
+https://gitee.com/iamxjb/winxin-app-watch-life.net
 
-如果因为某些原因github无法访问，可以选择以下镜像地址：
-
-1.https://git.oschina.net/iamxjb/winxin-app-watch-life.net
-
-2.https://gitcode.net/xjbx/winxin-app-watch-life.net.git
-
+镜像地址：
+1.https://github.com/iamxjb/winxin-app-watch-life.net
+2.https://xjb.coding.net/p/winxin-app-watch-life.net
 3.https://gitlab.com/xiajianbo/winxin-app-watch-life.net
-
-4.https://xjb.coding.net/public/winxin-app-watch-life.net/winxin-app-watch-life.net/git/files
+4.https://codechina.csdn.net/xjbx/winxin-app-watch-life.net
+5.https://xjb.coding.net/public/winxin-app-watch-life.net/winxin-app-watch-life.net/git/files
 
 # 备用下载
 考虑到国内网络原因，可能无法下载小程序和插件，我们提供备用下载地址，下载方法：
