@@ -13,7 +13,7 @@
 
 -  **多端版本** ：https://ext.dcloud.net.cn/plugin?id=2214 （合作伙伴开发）
 
--  **配套前端** ：https://gitee.com/iamxjb/rest-api-to-miniprogram
+-  **配套后端** ：https://gitee.com/iamxjb/rest-api-to-miniprogram
 
 
 ### 一、功能清单：
