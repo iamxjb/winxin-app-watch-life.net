@@ -66,7 +66,7 @@
 
 # 开源地址
 
-https://gitee.com/iamxjb/winxin-app-watch-life.net
+# https://gitee.com/iamxjb/winxin-app-watch-life.net
 
 镜像地址：
 1.https://github.com/iamxjb/winxin-app-watch-life.net
