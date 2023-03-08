@@ -103,7 +103,8 @@
 我们在开源版基础上开发了更多功能的商业版本，了解详情请访问：https://www.minapper.com
 | 专业版 | 增强版微信 | 增强版百度 | 增强版字节 | 增强版QQ | 增强版支付宝 |  增强版快手版 |增强版H5 | 增强版APP |
 |-----|-------|-------|-------|-------|--------|-------|--------|--------|
-|   ![专业版](https://www.watch-life.net/images/minapper.jpg)  |    ![微信](https://www.watch-life.net/images/minapper-plus-wx.jpg)    |    ![百度](https://www.watch-life.net/images/minapper-plus-baidu.jpg)    |  ![字节](https://www.watch-life.net/images/minapper-plus-toutiao.jpg)       |  ![QQ](https://www.watch-life.net/images/minapper-plus-qq.jpg)     |   ![支付宝](https://www.watch-life.net/images/minapper-plus-alipay.jpg)     | ![快手](https://www.watch-life.net/images/minapper-plus-kuaishou.jpg)     |  https://plus.minapper.com/h5/index.html   |   正在开发中...         |
+|   ![专业版](https://www.watch-life.net/images/minapper.jpg)  |    ![微信](https://www.watch-life.net/images/minapper-plus-wx.jpg)    |    ![百度](https://www.watch-life.net/images/minapper-plus-baidu.jpg)    |  ![字节](https://www.watch-life.net/images/minapper-plus-toutiao.jpg)       |  ![QQ](https://www.watch-life.net/images/minapper-plus-qq.jpg)     |   ![支付宝](https://www.watch-life.net/images/minapper-plus-alipay.jpg)     | ![快手](https://www.watch-life.net/images/minapper-plus-kuaishou.jpg)     |  https://plus.minapper.com/h5/index.html   |   网盘下载(密码:h7of):https://wwpm.lanzouf.com/i3EVs0io7g1c
+    |
 
 
 ### 七、增值服务
