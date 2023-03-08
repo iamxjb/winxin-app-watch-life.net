@@ -59,10 +59,10 @@
                 wx:for="{{ list }}" 
                 wx:key="index"     
                 class="channels-list-item"   
-                data-channelsid="{{item.channelsId}}" data-feedid="{{item.feedId}}"  data-eventid="{{item.eventId}}"  bindtap="goto"             
+                data-channelsid="{{item.channelsId}}" data-feedid="{{item.feedId}}"  data-eventid="{{item.eventId}}"           
             >
                 <view class="channels-list-content" >
-                    <view class="channels-list-title">
+                    <view class="channels-list-title" data-channelsid="{{item.channelsId}}" data-feedid="{{item.feedId}}"  data-eventid="{{item.eventId}}"  bindtap="goto">
                         <text class="txt">{{ item.title }}</text>
                     </view>
 
@@ -81,7 +81,26 @@
                     </block>
                 </view>
 
-                <image src="{{ item.cover }}" mode="aspectFill" class="img-cover-video channels-list-cover"  data-channelsid="{{item.channelsId}}" data-feedid="{{item.feedId}}"  data-eventid="{{item.eventId}}"  bindtap="goto"/>
+                 <!-- 视频号视频 -->
+                <view
+                    class="channels-list-cover"
+                    wx:if="{{item.feedId && activeTab === 0}}"
+                >
+                    <block wx:if="{{item.samesubject === '1'}}">
+                        <channel-video
+                            wx:if="{{item.feedId && item.channelsId}}"
+                            feed-id="{{item.feedId}}"
+                            finder-user-name="{{item.channelsId}}"
+                            muted="{{false}}"
+                            autoplay="{{false}}"
+                            object-fit="cover"
+                        />
+                    </block>
+                    <image wx:if="{{item.samesubject === '0' && item.cover}}" src="{{ item.cover }}" mode="aspectFill" class="img"  data-channelsid="{{item.channelsId}}" data-feedid="{{item.feedId}}" bindtap="goto"/>
+                </view>
+                <view wx:if="{{item.eventId && activeTab === 1}}" class="channels-list-cover">
+                  <image src="{{ item.cover }}" mode="aspectFill" class="img"  data-channelsid="{{item.channelsId}}" data-feedid="{{item.feedId}}"  data-eventid="{{item.eventId}}"  bindtap="goto"/>
+                </view>
             </view>
         </view>
     </view>

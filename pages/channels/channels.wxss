@@ -195,7 +195,18 @@
   background: #f5f7f7;
 }
 
-.img-cover-video:after {
+.channels-list-cover channel-video {
+  width: 240rpx;
+  height: 180rpx;
+}
+
+.img {
+  width: 240rpx;
+  height: 180rpx;
+  position: relative;
+}
+
+/* .img:after {
   content: '\e666';
   position: absolute;
   top: 50%;
@@ -205,6 +216,36 @@
   font-weight: normal;
   font-size: 64rpx;
   color: #FFF;
+} */
+
+.img:after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  border: 1px solid #FFF;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.img::before {
+  content: '';
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%);
+  margin-left: -14rpx;
+  width: 0;
+  height: 0;
+  border-top: 26rpx solid transparent;
+  border-right: 40rpx solid transparent;
+  border-bottom: 26rpx solid transparent;
+  border-left: 40rpx solid #FFF;
 }
 
 .channels-list-content {

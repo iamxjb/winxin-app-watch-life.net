@@ -27,8 +27,8 @@
     "navigationBarTextStyle": "black",
     "pageOrientation": "portrait",
     "navigationStyle": "custom",
-    "navigationBarHideCloseButton": true,
-    "navigationBarHideMoreButton": true
+    "navigationBarHideCloseButton": false,
+    "navigationBarHideMoreButton": false
   },
   "tabBar": {
  
