@@ -149,7 +149,7 @@ Page({
   let isDoc = /\.(doc|docx|xls|xlsx|ppt|pptx|pdf)$/.test(href)
 
   if (isDoc) {
-    this.openLinkDoc(e)
+    this.openLinkDoc(e.detail)
     return
   }
 
@@ -287,7 +287,7 @@ Page({
     let fileType
     
     // 如果是a标签href中插入的文档
-    let src = e.currentTarget.dataset.src
+    let src = e.src || e.href
     var n=0;
     for (var i = 0; i < self.data.downloadFileDomain.length; i++) {
 
@@ -310,8 +310,8 @@ Page({
       url = src
       fileType = /doc|docx|xls|xlsx|ppt|pptx|pdf$/.exec(src)[0]
     } else {
-      url = e.currentTarget.dataset.filelink
-      fileType = e.currentTarget.dataset.filetype
+      url = e.filelink || e.href      
+      fileType = e.filetype
     }
 
     wx.downloadFile({
