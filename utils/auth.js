@@ -86,22 +86,21 @@ Auth.checkAgreeGetUser = function(e, app, appPage, authFlag) {
 Auth.agreeGetUser = function(e, wxLoginInfo, authFlag) {
     return new Promise(function(resolve, reject) {
         var js_code = wxLoginInfo.js_code;
-        wx.showLoading({
-            title: "正在登录...",
-            mask: true
-        })
         wx.getUserProfile({
             lang: 'zh_CN',
             desc: '登录后信息展示',
             success: (res) => {
                 let wxUserInfo = res.userInfo || {}
+                wx.showLoading({
+                    title: "正在登录...",
+                    mask: true
+                })
                 Auth.getUserInfo(wxUserInfo, js_code).then(resdata => {
                     resolve(resdata);
-                    return;
+                    wx.hideLoading();
                 });
             },
             fail: (err) => {
-                wx.hideLoading();
                 if (authFlag == '0' && err.errMsg == 'getUserProfile:fail auth deny') {
                     args.errcode = e.detail.errMsg;
                     args.userInfo = { isLogin: false }

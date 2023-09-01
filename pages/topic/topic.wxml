@@ -35,4 +35,7 @@
   <view class="copyright" style="display:{{floatDisplay}}">
     <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}" />
   </view>
+
+  <!-- 隐私授权弹窗 -->
+  <privacy />
 </ui-sys>

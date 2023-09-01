@@ -92,4 +92,7 @@
       </view>
     </view>
   </ui-modal>
+
+  <!-- 隐私授权弹窗 -->
+  <privacy />
 </ui-sys>

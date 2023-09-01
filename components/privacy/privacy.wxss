@@ -1,0 +1,72 @@
+.privacy-mask {
+  position: fixed;
+  z-index: 5000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.privacy-dialog-wrap {
+  position: fixed;
+  z-index: 5000;
+  top: 16px;
+  bottom: 16px;
+  left: 80rpx;
+  right: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.privacy-dialog {
+  background-color: #fff;
+  border-radius: 32rpx;
+}
+
+.privacy-dialog-header {
+  padding: 60rpx 40rpx 30rpx;
+  font-weight: 700;
+  font-size: 36rpx;
+  text-align: center;
+}
+
+.privacy-dialog-content {
+  font-size: 30rpx;
+  color: #555;
+  line-height: 2;
+  padding: 0 40rpx;
+}
+
+.privacy-dialog-content .privacy-link {
+  color: #2f80ed;
+}
+
+.privacy-dialog-footer {
+  display: flex;
+  padding: 20rpx 40rpx 60rpx;
+}
+
+.privacy-dialog-footer .btn {
+  color: #FFF;
+  font-size: 30rpx;
+  font-weight: 500;
+  line-height: 100rpx;
+  height: 100rpx;
+  border-radius: 20rpx;
+  border: none;
+  background: #07c160;
+  flex: 1;
+  margin-left: 30rpx;
+}
+
+.privacy-dialog-footer .btn::after {
+  border: none;
+}
+
+.privacy-dialog-footer .btn-disagree {
+  color: #07c160;
+  background: #f2f2f2;
+  margin-left: 0;
+}

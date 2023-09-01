@@ -228,4 +228,7 @@
       <input class="comment-input radius" cursor-spacing="140" maxlength="200" name="inputPostID" value="{{detail.id}}" style="display:none" />
     </form>
   </view>
+
+  <!-- 隐私授权弹窗 -->
+  <privacy />
 </ui-sys>

@@ -35,4 +35,9 @@
          <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}"/>
     </view>
 
-</view></ui-sys>
+</view>
+
+<!-- 隐私授权弹窗 -->
+<privacy />
+
+</ui-sys>

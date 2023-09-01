@@ -123,5 +123,6 @@
     </view>
   </view>
 
-  
+  <!-- 隐私授权弹窗 -->
+  <privacy />
 </ui-sys>

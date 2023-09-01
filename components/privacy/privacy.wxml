@@ -1,0 +1,26 @@
+<view wx:if="{{innerShow}}" class="privacy">
+  <view class="privacy-mask"  />
+  <view class="privacy-dialog-wrap">
+    <view class="privacy-dialog">
+      <view class="privacy-dialog-header">用户隐私保护提示</view>
+
+      <view class="privacy-dialog-content">感谢您使用本小程序，在使用前您应当阅读井同意<text class="privacy-link" bindtap="openPrivacyContract">《用户隐私保护指引》</text>，当点击同意并继续时，即表示您已理解并同意该条款内容，该条款将对您产生法律约束力；如您不同意，将无法继续使用小程序相关功能。</view>
+
+      <view class="privacy-dialog-footer">
+        <button
+          id="btn-disagree"
+          type="default"
+          class="btn btn-disagree"
+          bindtap="handleDisagree"
+        >不同意</button>
+        <button
+          id="agree-btn"
+          type="default"
+          open-type="agreePrivacyAuthorization"
+          class="btn btn-agree"
+          bindagreeprivacyauthorization="handleAgree"
+        >同意并继续</button>
+      </view>
+    </view>
+  </view>
+  </view>
