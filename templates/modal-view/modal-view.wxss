@@ -20,7 +20,7 @@
   /*height: 90%;*/
   overflow: hidden;
   position: fixed;
-  top: 2%;
+  top: 10%;
   left: 75rpx;
   z-index: 9999;
   background: #f9f9f9;

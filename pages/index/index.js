@@ -462,7 +462,8 @@ Page({
       {
         wx.openEmbeddedMiniProgram({
           appId: appid,
-          path: path
+          path: path,
+          allowFullScreen:true
         })
 
       }
