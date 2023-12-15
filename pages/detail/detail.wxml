@@ -17,7 +17,7 @@
   <view>
     <!-- 小程序广告 -->
     <view class="ad-box" wx:if="{{detail.detailAdId !='' && detail.detailAd=='1' && detailTopAdsuccess}}">
-      <ad unit-id="{{detail.detailAdId}}" ad-intervals="30" ad-type="video" binderror="adTopbinderror"></ad>
+      <ad unit-id="{{detail.detailAdId}}" ad-intervals="30"  binderror="adTopbinderror"></ad>
     </view>
     <!-- 文章 -->
     <view class="detail-content ui-BG-card ui-BG" style="display:{{display}}">
