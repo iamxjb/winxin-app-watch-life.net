@@ -36,8 +36,8 @@
     </view>
 
     <view style="display:{{showallDisplay}}">
-
-      <view class="post-list">
+      <article list="{{postsList}}" type="{{articleStyle}}" />
+      <!-- <view class="post-list">
         <block wx:key="id" wx:for="{{postsList}}">
           <view class="post-item ui-BG ui-BG-card" index="{{index}}" id="{{item.post_id}}" bindtap="redictDetail">
 
@@ -57,7 +57,7 @@
             <image src="{{item.post_thumbnail_image}}" mode="aspectFill" class="post-img"></image>
           </view>
         </block>
-      </view>
+      </view> -->
 
     </view>
 

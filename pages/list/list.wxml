@@ -50,7 +50,8 @@
   </view>
 
   <view style="display:{{showallDisplay}}">
-    <template is="tempCommonList" data="{{postsList,listAdsuccess}}" />
+    <article list="{{postsList}}" />
+    <!-- <template is="tempCommonList" data="{{postsList,listAdsuccess}}" /> -->
     <view style='display:{{isLoading?"block":"none"}}'>
         <template is="tempLoading" />
       </view>

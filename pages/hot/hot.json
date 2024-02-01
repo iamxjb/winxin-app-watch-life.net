@@ -1,3 +1,6 @@
 {
-    "navigationBarTitleText": "文章排行"    
+    "navigationBarTitleText": "文章排行",
+    "usingComponents": {
+      "article": "/components/article/article"
+    } 
 }

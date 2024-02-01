@@ -1,0 +1,502 @@
+/* 左图模式 */
+.left-img {
+  /* background: #f5f7f7; */
+}
+
+.left-img-ad {
+  margin: 24rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.left-img-item {
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+  margin: 24rpx;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  box-shadow: rgba(12, 12, 12, 0.03) 0px 2px 15px -5px;
+}
+
+.left-img-cover {
+  position: absolute;
+  left: 24rpx;
+  top: 24rpx;
+  width: 240rpx;
+  height: 180rpx;
+  background: #f5f7f7;
+  border-radius: 4px;
+}
+
+.img-cover-video:after {
+  content: '\e666';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "iconfont" !important;
+  font-weight: normal;
+  font-size: 64rpx;
+  color: #FFF;
+}
+
+.img-cover-gallery:after {
+  content: '\e60b';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "iconfont" !important;
+  font-weight: normal;
+  font-size: 64rpx;
+  color: #FFF;
+}
+
+.left-img-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180rpx;
+  margin-left: 260rpx;
+}
+
+.left-img-title {
+  margin-bottom: 20rpx;
+}
+
+.left-img-title .txt {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 30rpx;
+  line-height: 1.4;
+ 
+  color: #333;
+}
+
+.left-img-des {
+  margin-right: 24rpx;
+  color: #959595;
+  font-size: 24rpx;
+}
+
+.left-img-des .txt:not(:last-child) {
+  margin-right: 32rpx;
+}
+
+
+/* 右图列表 */
+.right-img {
+  margin-bottom: 24rpx;
+  background: #f5f7f7;
+}
+
+.right-img-ad {
+  margin: 24rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.right-img-item {
+  position: relative;
+  min-height: 180rpx;
+  overflow: hidden;
+  background-color: #fff;
+  margin: 24rpx;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  box-shadow: rgba(12, 12, 12, 0.03) 0px 2px 15px -5px;
+}
+
+.right-img-cover {
+  position: absolute;
+  right: 24rpx;
+  top: 24rpx;
+  width: 240rpx;
+  height: 180rpx;
+  border-radius: 4px;
+}
+
+.right-img-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180rpx;
+}
+
+.right-img-title {
+  margin-bottom: 20rpx;
+  width: 60%;
+}
+
+.right-img-title .txt {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 30rpx;
+  line-height: 1.4;
+ 
+  color: #333;
+}
+
+.right-img-des {
+  width: 60%;
+}
+
+.right-img-des .txt {
+  color: #959595;
+  font-size: 24rpx;
+}
+
+.right-img-des .txt:not(:last-child) {
+  margin-right: 32rpx;
+}
+
+
+/* 大图列表 */
+.big-img {
+  /* background: #f5f7f7; */
+}
+
+.big-img-ad {
+  margin: 24rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.big-img-item {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  margin: 24rpx;
+  /* padding: 24rpx; */
+  border-radius: 12rpx;
+  box-shadow: rgba(12, 12, 12, 0.03) 0px 2px 15px -5px;
+}
+
+.big-img-cover {
+  display: block;
+  width: 100%;
+  height: 360rpx;
+  background: #f5f7f7;
+  position: relative;  border-radius:  4px 4px 0 0;
+}
+
+.big-img-cover:after {
+  font-size: 88rpx;
+}
+
+.big-img-title {
+  font-size: 32rpx;
+  line-height: 1.6;
+  padding:0 24rpx;
+  color: #333;
+  word-wrap: break-word;
+  word-break: normal;
+  margin-top: 16rpx;
+}
+
+.big-img-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #959595;
+  margin: 12rpx 0;
+  padding:0 24rpx;
+}
+
+.big-img-des .txt:not(:last-child) {
+  margin-right: 32rpx;
+}
+
+
+/* 多图模式 */
+.multi {
+  background: #f5f7f7;
+}
+
+.multi-ad {
+  margin: 24rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+/* 一张大图 */
+.multi-bigone {
+  background: #FFF;
+  /* padding: 24rpx;
+  margin-bottom: 24rpx;
+  border-radius: 4px; */
+  margin: 24rpx;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  box-shadow: rgba(12, 12, 12, 0.03) 0px 2px 15px -5px;
+}
+
+.multi-bigone-cover {
+  width: 100%;
+  height: 360rpx;
+  display: block;
+  margin: 16rpx 0;
+  background: #f5f7f7;
+  position: relative;    border-radius: 4px;
+}
+
+.multi-bigone-cover:after {
+  font-size: 88rpx;
+}
+
+.multi-bigone-title .txt {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 32rpx;
+  line-height: 1.5;
+ 
+  color: #333;
+}
+
+.multi-bigone-des {
+  display: flex;
+  justify-content: space-between;
+  color: #959595;
+  font-size: 24rpx;
+}
+
+.multi-bigone-des .txt {
+  margin-right: 32rpx;
+}
+/* 三张图 */
+.multi-three {
+  background: #FFF;
+  overflow: hidden;
+  margin: 24rpx;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  box-shadow: rgba(12, 12, 12, 0.03) 0px 2px 15px -5px;
+}
+
+.multi-three-title {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 32rpx;
+  line-height: 1.5; 
+  color: #333;
+}
+
+.multi-three-imgbox {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 8rpx;
+  height: 180rpx;
+  margin: 16rpx 0;
+}
+
+.multi-three-imgbox .img {
+  width: 100%;
+  height: 160rpx;
+  border-radius: 4px;
+}
+
+.multi-three-des {
+  display: flex;
+  justify-content: space-between;
+  color: #959595;
+  font-size: 24rpx;
+}
+
+.multi-three-des .txt {
+  margin-right: 32rpx;
+}
+/* 一张小图 */
+.multi-one {
+  display: flex;
+  background: #FFF;
+  margin: 24rpx;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  box-shadow: rgba(12, 12, 12, 0.03) 0px 2px 15px -5px;
+}
+
+.multi-one-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 32rpx;
+}
+
+.multi-one-title .txt {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 32rpx;
+  line-height: 1.5;
+ 
+  color: #333;
+}
+
+.multi-one-des {
+  color: #959595;
+  font-size: 24rpx;
+}
+
+.multi-one-des .txt {
+  margin-right: 32rpx;
+}
+
+.multi-one-cover {
+  flex-shrink: 0;
+  width: 212rpx;
+  height: 160rpx;
+  background: #f5f7f7;
+  position: relative;
+  border-radius: 4px;
+}
+
+
+/* 瀑布流 */
+.water {
+  display: flex;
+  margin-top: 24rpx;
+  padding: 0 24rpx 0;
+}
+
+.water-left,
+.water-right {
+  flex: 1;
+}
+
+.water-left {
+  margin-right: 12rpx;
+}
+
+.water-right {
+  margin-left: 12rpx;
+}
+
+.water-item {
+  margin: 0 0 24rpx;
+  border-radius: 8rpx;
+  background: #FFF;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.water-cover {
+  width: 100%;
+  height: 400rpx;
+  display: block;
+  position: relative;
+  border-radius: 4px 4px 0 0;
+}
+
+.water-cover:after {
+  font-size: 80rpx;
+}
+
+.water-content {
+  padding: 20rpx 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.water-title {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #333;
+  text-align: justify;
+}
+
+.water-des {
+  font-size: 14px;
+  color: #959595;
+  margin-top: 6rpx;
+}
+
+
+/* 无图列表 */
+.noimg {
+  background: #f5f7f7;
+}
+
+.noimg-ad {
+  margin: 24rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+.noimg-item {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  margin: 24rpx;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  box-shadow: rgba(12, 12, 12, 0.03) 0px 2px 15px -5px;
+}
+
+.noimg-cover {
+  display: block;
+  width: 100%;
+  height: 360rpx;
+  background: #f5f7f7;
+  border-radius: 4px;
+}
+
+.noimg-title {
+  font-size: 32rpx;
+  line-height: 1.6;
+ 
+  color: #333;
+  word-wrap: break-word;
+  word-break: normal;
+}
+
+.noimg-excerpt {
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #999;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-align: justify;
+  padding-top: 10rpx;
+}
+
+.noimg-des {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 20rpx;
+}
+
+.noimg-des .txt {
+  margin-right: 32rpx;
+}
+
+.btn-box {
+  padding-top: 20rpx;
+  margin-top: 20rpx;
+  border-top: 1px solid #eee;
+}
+
+.btn-box .btn {
+  margin-right: 10rpx;
+}
+

@@ -32,6 +32,10 @@ const enableChannels =false
 // 同时必须修改php.ini文件 post_max_size 和 upload_max_filesize 具体修改请自行搜索
 const uploadImageSize=1
 
+// 默认文章列表样式：1 左图 2 右图 3 大图 4 多图 5 瀑布流 6 无图
+const articleStyle = 3
+//////////////////////////////////////////////////////
+
 //小程序原始id
 const appghId ='gh_e49213784fae'
 //////////////////////////////////////////////////////
@@ -50,5 +54,6 @@ export default {
   minapperVersion,
   minapperSource,
   enableChannels,
-  appghId
+  appghId,
+  articleStyle
 }

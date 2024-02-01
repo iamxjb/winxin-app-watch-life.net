@@ -1,4 +1,7 @@
 {
   "enablePullDownRefresh": true,
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "article": "/components/article/article"
+  }
 }

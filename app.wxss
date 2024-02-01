@@ -297,7 +297,7 @@ border-radius: 500px;
 
 .login-btn-box {
   display: flex;
-  border-top: 1px solid var(--ui-TC-3);
+  border-top: 1px solid #EEE;
 }
 
 .login-btn-box button {
@@ -309,7 +309,7 @@ border-radius: 500px;
 }
 
 .login-btn-box button:first-child {
-  border-right: 1px solid   var(--ui-TC-3);
+  border-right: 1px solid #EEE;
 }
 
 .login-btn-box button::after {

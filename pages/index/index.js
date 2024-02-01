@@ -42,8 +42,14 @@ Page({
     isFirst: false, // 是否第一次打开,
     isLoading: false,
     swipe_nav: [],
-    selected_nav: []
-
+    selected_nav: [],
+    articleStyle: config.articleStyle || 1
+  },
+  getArticleStyle() {
+    const articleStyle = wx.getStorageSync('articleStyle') || config.articleStyle || 1
+    this.setData({
+      articleStyle: +articleStyle,
+    })
   },
   formSubmit: function (e) {
     var url = '../list/list'
@@ -158,12 +164,12 @@ Page({
 
   },
   onShow: function (options) {
-    if (typeof this.getTabBar === 'function' &&
-    this.getTabBar()) {
-    this.getTabBar().setData({
-      selected: 0
-    })
-  }
+    this.getArticleStyle()
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+    }
     wx.setStorageSync('openLinkCount', 0);
 
     var nowDate = new Date();

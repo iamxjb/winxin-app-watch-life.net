@@ -1,10 +1,19 @@
 <ui-sys title="主题">
     <view class="ui-container">
-
         <ui-title title="主题" depth="2" isIcon/>
         <ui-change-theme ui="radius border"/>
- 
         <ui-title title="字号" depth="2" isIcon/>
         <ui-text-size ui="radius border"/>
+        <ui-title title="首页列表" depth="2" isIcon/>
+        <view class="radio">
+          <ui-radio-group value="{{articleStyle}}" bind:change="changeArticleStyle">
+              <ui-radio label="{{1}}">左图右文</ui-radio>
+              <ui-radio label="{{2}}">右图左文</ui-radio>
+              <ui-radio label="{{3}}">大图列表</ui-radio>
+              <ui-radio label="{{4}}">多图列表</ui-radio>
+              <ui-radio label="{{5}}">瀑布流</ui-radio>
+              <ui-radio label="{{6}}">无图列表</ui-radio>
+          </ui-radio-group>
+        </view>
     </view>
 </ui-sys>

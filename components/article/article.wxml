@@ -1,0 +1,483 @@
+	
+<!-- 左图列表 -->
+<view class="left-img" wx:if="{{ type ? type === 1 : articleStyle === 1 }}">
+  <block wx:key="id" wx:for="{{ list }}">
+    <!-- 系统广告 -->
+    <view class="left-img-ad" index="{{index}}" wx:if="{{index%item.listAdEvery ==0  && index!=0 && item.listAd =='1' && item.listAdId !='' && showAd}}">
+      <block wx:if="{{(index/item.listAdEvery)%2==0}}">
+        <ad unit-id="{{item.videoAdId}}" ad-type="video" ad-theme="white" binderror="onError"></ad>
+      </block>
+      <block wx:else>
+        <ad unit-id="{{item.listAdId}}" ad-intervals="30" binderror="onError"></ad>
+      </block>
+    </view>
+
+    <!-- 文章列表 -->
+    <view
+      class="left-img-item"
+      index="{{index}}"
+      data-posttype="{{item.postType}}"
+      data-format="{{item.format}}"
+      data-channelsfeedid="{{item.channelsFeedId}}"
+      data-channelsid="{{item.channelsId}}"
+      data-mppostlink="{{item.mpPostLink}}"
+      id="{{item.id}}"
+      data-weixinmptype="{{item.raw_weixinmp_type}}"
+      data-weixinmpurl="{{item.raw_weixinmp_url}}"
+      bindtap="goto"
+    >
+      <image 
+      show-menu-by-longpress="true" 
+      lazy-load="{{true}}" 
+      src="{{item.postcover ? item.postcover : item.post_medium_image}}" 
+      mode="aspectFill" 
+      class="{{ item.format === 'video' ? 'img-cover-video left-img-cover' :((item.format === 'postformatgallery' || item.format === 'gallery')?'img-cover-gallery left-img-cover': 'left-img-cover')}}"
+      />
+
+      <view class="left-img-content">
+        <view class="left-img-title">
+          <text class="txt">{{item.title.rendered || item.post_title }}</text>
+        </view>
+
+        <view class='left-img-des'>
+          <block wx:if="{{item.integralForCount || item.payForCount}}">
+            <text class="txt">积分阅读 {{item.integralForCount}}</text>
+            <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
+          </block>
+          <block wx:else>
+            <text class="txt">浏览 {{item.pageviews}}</text>
+            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text class="txt">点赞 {{item.like_count}}</text>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+
+<!-- 右图列表 -->
+<view class="right-img" wx:elif="{{ type ? type === 2 : articleStyle === 2 }}">
+  <block wx:key="id" wx:for="{{ list }}">
+    <!-- 广告 -->
+    <view
+      class="right-img-ad"
+      index="{{index}}"
+      wx:if="{{index%item.listAdEvery ==0 && index!=0  && item.listAd =='1'  && showAd}}"
+    >
+      <block wx:if="{{(index/item.listAdEvery)%2==0}}">
+        <ad unit-id="{{item.videoAdId}}" ad-type="video" ad-theme="white" binderror="onError"></ad>
+      </block>
+      <block wx:else>
+        <ad unit-id="{{item.listAdId}}" ad-intervals="30" binderror="onError"></ad>
+      </block>
+    </view>
+
+    <!-- 文章 -->
+    <view
+      class="right-img-item"
+      index="{{index}}"
+      data-posttype="{{item.postType}}"
+      data-format="{{item.format}}"
+      data-channelsfeedid="{{item.channelsFeedId}}"
+      data-channelsid="{{item.channelsId}}"
+      data-mppostlink="{{item.mpPostLink}}"
+      id="{{item.id}}"
+      data-weixinmptype="{{item.raw_weixinmp_type}}"
+      data-weixinmpurl="{{item.raw_weixinmp_url}}"
+      bindtap="goto"
+    >
+      <view class="right-img-content">
+        <view class="right-img-title">
+          <text class="txt">{{item.title.rendered || item.post_title}}</text>
+        </view>
+
+        <view class="right-img-des">
+          <block wx:if="{{item.integralForCount || item.payForCount}}">
+            <text class="txt">积分阅读 {{item.integralForCount}}</text>
+            <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
+          </block>
+          <block wx:else>
+            <text class="txt">浏览 {{item.pageviews}}</text>
+            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text class="txt">点赞 {{item.like_count}}</text>
+          </block>
+        </view>
+      </view>
+      <image 
+      show-menu-by-longpress="true" 
+      lazy-load="{{true}}" 
+      src="{{item.postcover ? item.postcover : item.post_medium_image}}" 
+      mode="aspectFill" 
+      class="{{ item.format === 'video' ? 'img-cover-video right-img-cover' : ((item.format === 'postformatgallery' || item.format === 'gallery')?'img-cover-gallery right-img-cover': 'right-img-cover')}}" 
+      />
+    </view>
+  </block>
+</view>
+
+
+<!-- 大图列表 -->
+<view class="big-img" wx:elif="{{ type ? type === 3 : articleStyle === 3 }}">
+  <block wx:key="id" wx:for="{{ list }}">
+    <view
+      class="big-img-ad"
+      index="{{index}}"
+      wx:if="{{index%item.listAdEvery ==0  && index!=0  && item.listAd =='1'  && showAd}}"
+    >
+      <block wx:if="{{(index/item.listAdEvery)%2==0}}">
+        <ad unit-id="{{item.videoAdId}}" ad-type="video" ad-theme="white" binderror="onError"></ad>
+      </block>
+      <block wx:else>
+        <ad unit-id="{{item.listAdId}}" ad-intervals="30" binderror="onError"></ad>
+      </block>
+    </view>
+
+    <view
+      class="big-img-item"
+      index="{{index}}"
+      id="{{item.id}}"
+      data-posttype="{{item.postType}}"
+      data-format="{{item.format}}"
+      data-channelsfeedid="{{item.channelsFeedId}}"
+      data-channelsid="{{item.channelsId}}"
+      data-mppostlink="{{item.mpPostLink}}"
+      data-weixinmptype="{{item.raw_weixinmp_type}}"
+      data-weixinmpurl="{{item.raw_weixinmp_url}}"
+      bindtap="goto"
+    >
+      <image 
+      show-menu-by-longpress="true" 
+      lazy-load="{{true}}" 
+      src="{{item.postcover ? item.postcover : item.post_large_image}}" 
+      mode="aspectFill" 
+      class="{{ item.format === 'video' ? 'img-cover-video big-img-cover' : ((item.format === 'postformatgallery' || item.format === 'gallery')?'img-cover-gallery big-img-cover': 'big-img-cover')}}" 
+      />
+      <view class="big-img-title">
+        <text class="txt">{{item.title.rendered || item.post_title}}</text>
+      </view>
+
+      <view class="big-img-info">
+        <view class="big-img-des">
+          <block wx:if="{{item.integralForCount || item.payForCount}}">
+            <text class="txt">积分阅读 {{item.integralForCount}}</text>
+            <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
+          </block>
+          <block wx:else>
+            <text class="txt">浏览 {{item.pageviews}}</text>
+            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text class="txt">点赞 {{item.like_count}}</text>
+          </block>
+        </view>
+        <text>{{item.post_date}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+
+
+<!-- 多图列表 -->
+<view class="multi" wx:elif="{{ type ? type === 4 : articleStyle === 4 }}">
+  <block wx:key="id" wx:for="{{ list }}">
+    <!-- 广告 -->
+    <view
+      class="multi-ad"
+      index="{{index}}"
+      wx:if="{{index%item.listAdEvery == 0  && index!=0 && item.listAd =='1' && showAd}}"
+    >
+      <block wx:if="{{(index/item.listAdEvery)%2==0}}">
+        <ad unit-id="{{item.videoAdId}}" ad-type="video" ad-theme="white" binderror="onError"></ad>
+      </block>
+      <block wx:else>
+        <ad unit-id="{{item.listAdId}}" ad-intervals="30" binderror="onError"></ad>
+      </block>
+    </view>
+
+    <!-- 一张大图列表（序号index是5的倍数时为大图模式）-->
+    <view
+      wx:if="{{ index % 10 == 5 }}"
+      class="multi-bigone"
+      index="{{index}}"
+      id="{{item.id}}"
+      data-posttype="{{item.postType}}"
+      data-format="{{item.format}}"
+      data-channelsfeedid="{{item.channelsFeedId}}"
+      data-channelsid="{{item.channelsId}}"
+      data-mppostlink="{{item.mpPostLink}}"
+      data-weixinmptype="{{item.raw_weixinmp_type}}"
+      data-weixinmpurl="{{item.raw_weixinmp_url}}"
+      bindtap="goto"
+    >
+      <view class="multi-bigone-title">
+        <text class="txt">{{item.title.rendered || item.post_title}}</text>
+      </view>
+      <image
+        src="{{item.postcover ? item.postcover : item.post_medium_image}}"
+        mode="aspectFill"
+        show-menu-by-longpress="true"
+        lazy-load="{{true}}"
+        class="{{ item.format === 'video' ? 'img-cover-video multi-bigone-cover' : ((item.format === 'postformatgallery' || item.format === 'gallery')?'img-cover-gallery multi-bigone-cover': 'multi-bigone-cover')}}" 
+      />
+      <view class='multi-bigone-des'>
+        <view>
+          <block wx:if="{{item.integralForCount || item.payForCount}}">
+            <text class="txt">积分阅读 {{item.integralForCount}}</text>
+            <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
+          </block>
+          <block wx:else>
+            <text class="txt">浏览 {{item.pageviews}}</text>
+            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text class="txt">点赞 {{item.like_count}}</text>
+          </block>
+        </view>
+        <text>{{item.post_date}}</text>
+      </view>
+    </view>
+
+    <!-- 三张图片列表 -->
+    <view
+      wx:elif="{{ item.post_all_images.length > 2 && item.format !== 'video' }}"
+      class="multi-three"
+      index="{{index}}"
+      id="{{item.id}}"
+      data-posttype="{{item.postType}}"
+      data-format="{{item.format}}"
+      data-channelsfeedid="{{item.channelsFeedId}}"
+      data-channelsid="{{item.channelsId}}"
+      data-mppostlink="{{item.mpPostLink}}"
+      data-weixinmptype="{{item.raw_weixinmp_type}}"
+      data-weixinmpurl="{{item.raw_weixinmp_url}}"
+      bindtap="goto"
+    >
+      <view class="multi-three-title">
+        <text>{{item.title.rendered || item.post_title}}</text>
+      </view>
+      <view class="multi-three-imgbox">
+        <image show-menu-by-longpress="true" lazy-load="{{true}}"  class="img" src="{{ item.post_all_images[0].imagesurl }}" mode="aspectFill" />
+        <image show-menu-by-longpress="true" lazy-load="{{true}}" class="img" src="{{ item.post_all_images[1].imagesurl }}" mode="aspectFill" />
+        <image show-menu-by-longpress="true" lazy-load="{{true}}"  class="img" src="{{ item.post_all_images[2].imagesurl }}" mode="aspectFill" />
+      </view>
+      <view class='multi-three-des'>
+        <view>
+          <block wx:if="{{item.integralForCount || item.payForCount}}">
+            <text class="txt">积分阅读 {{item.integralForCount}}</text>
+            <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
+          </block>
+          <block wx:else>
+            <text class="txt">浏览 {{item.pageviews}}</text>
+            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text class="txt">点赞 {{item.like_count}}</text>
+          </block>
+        </view>
+        <text>{{item.post_date}}</text>
+      </view>
+    </view>
+
+    <!-- 单张图片列表 -->
+    <view
+      wx:else
+      class='multi-one'
+      index="{{index}}"
+      id="{{item.id}}"
+      data-posttype="{{item.postType}}"
+      data-format="{{item.format}}"
+      data-channelsfeedid="{{item.channelsFeedId}}"
+      data-channelsid="{{item.channelsId}}"
+      data-mppostlink="{{item.mpPostLink}}"
+      data-weixinmptype="{{item.raw_weixinmp_type}}"
+      data-weixinmpurl="{{item.raw_weixinmp_url}}"
+      bindtap="goto"
+    >
+      <view class="multi-one-content">
+        <view class="multi-one-title">
+          <text class="txt">{{item.title.rendered || item.post_title}}</text>
+        </view>
+        <view class="multi-one-des">
+          <block wx:if="{{item.integralForCount || item.payForCount}}">
+            <text class="txt">积分阅读 {{item.integralForCount}}</text>
+            <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
+          </block>
+          <block wx:else>
+            <text class="txt">浏览 {{item.pageviews}}</text>
+            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text class="txt">点赞 {{item.like_count}}</text>
+          </block>
+        </view>
+      </view>
+      <image 
+      show-menu-by-longpress="true" 
+      lazy-load="{{true}}" 
+      src="{{item.post_medium_image}}" 
+      mode="aspectFill" 
+      class="{{ item.format === 'video' ? 'img-cover-video multi-one-cover' : ((item.format === 'postformatgallery' || item.format === 'gallery')?'img-cover-gallery multi-one-cover': 'multi-one-cover')}}" 
+      />
+    </view>
+  </block>
+</view>
+
+
+<!-- 瀑布流 -->
+<view class="water" wx:elif="{{ type ? type === 5 : articleStyle === 5 }}">
+  <view class="water-left">
+    <block wx:key="id" wx:for="{{ list }}">
+      <view
+        wx:if="{{ index % 2 === 0 }}"
+        class="water-item"
+        index="{{index}}"
+        id="{{item.id}}"
+        data-posttype="{{item.postType}}"
+        data-format="{{item.format}}"
+        data-channelsfeedid="{{item.channelsFeedId}}"
+        data-channelsid="{{item.channelsId}}"
+        data-mppostlink="{{item.mpPostLink}}"
+        data-weixinmptype="{{item.raw_weixinmp_type}}"
+        data-weixinmpurl="{{item.raw_weixinmp_url}}"
+        bindtap="goto"
+      >
+        <image 
+        show-menu-by-longpress="true" 
+        lazy-load="{{true}}" 
+        src="{{item.postcover ? item.postcover : item.post_medium_image}}" 
+        class="water-cover" mode="aspectFill" 
+        class="{{ item.format === 'video' ? 'img-cover-video water-cover' : ((item.format === 'postformatgallery' || item.format === 'gallery')?'img-cover-gallery water-cover': 'water-cover')}}" 
+        />
+        <view class="water-content">
+          <view class="water-title">
+            <text>{{item.title.rendered || item.post_title}}</text>
+          </view>
+          <view class='water-des'>{{item.category_name}} · {{item.post_date}}
+          </view>
+        </view>
+      </view>
+    </block>  
+  </view>
+
+  <view class="water-right">
+    <block wx:key="id" wx:for="{{ list }}">
+      <view
+        wx:if="{{ index % 2 === 1 }}"
+        class="water-item"
+        index="{{index}}"
+        id="{{item.id}}"
+        data-posttype="{{item.postType}}"
+        data-format="{{item.format}}"
+        data-channelsfeedid="{{item.channelsFeedId}}"
+        data-channelsid="{{item.channelsId}}"
+       data-mppostlink="{{item.mpPostLink}}"
+        data-weixinmptype="{{item.raw_weixinmp_type}}"
+        data-weixinmpurl="{{item.raw_weixinmp_url}}"
+        bindtap="goto"
+      >
+        <image 
+        show-menu-by-longpress="true" 
+        lazy-load="{{true}}"  
+        src="{{item.postcover ? item.postcover : item.post_medium_image}}" 
+        mode="aspectFill" 
+        class="{{ item.format === 'video' ? 'img-cover-video water-cover' : ((item.format === 'postformatgallery' || item.format === 'gallery')?'img-cover-gallery water-cover': 'water-cover')}}" 
+        />
+        <view class="water-content">
+          <view class="water-title">
+            <text>{{item.title.rendered || item.post_title}}</text>
+          </view>
+          <view class='water-des'>{{item.category_name}} · {{item.post_date}}
+          </view>
+        </view>
+      </view>
+    </block>  
+  </view>
+</view>
+
+
+<!-- 无图列表 -->
+<view class="noimg" wx:elif="{{ type ? type === 6 : articleStyle === 6 }}">
+  <block wx:key="id" wx:for="{{ list }}">
+    <view
+      class="noimg-ad"
+      index="{{index}}"
+      wx:if="{{index%item.listAdEvery ==0  && index!=0  && item.listAd =='1'  && showAd}}"
+    >
+      <block wx:if="{{(index/item.listAdEvery)%2==0}}">
+        <ad unit-id="{{item.videoAdId}}" ad-type="video" ad-theme="white" binderror="onError"></ad>
+      </block>
+      <block wx:else>
+        <ad unit-id="{{item.listAdId}}" ad-intervals="30" binderror="onError"></ad>
+      </block>
+    </view>
+
+    <view
+      class="noimg-item"
+      index="{{index}}"
+      id="{{item.id}}"
+      data-posttype="{{item.postType}}"
+      data-format="{{item.format}}"
+      data-channelsfeedid="{{item.channelsFeedId}}"
+      data-channelsid="{{item.channelsId}}"
+      data-mppostlink="{{item.mpPostLink}}"
+      data-weixinmptype="{{item.raw_weixinmp_type}}"
+      data-weixinmpurl="{{item.raw_weixinmp_url}}"
+      bindtap="goto"
+    >
+      <view class="noimg-title">
+        <text class="txt">{{item.title.rendered || item.post_title}}</text>
+      </view>
+
+      <view class="noimg-excerpt">
+        <rich-text nodes="{{item.excerpt.rendered}}"></rich-text>
+      </view>
+
+      <view class="noimg-des">
+        <view>
+          <block wx:if="{{item.integralForCount || item.payForCount}}">
+            <text class="txt">积分阅读 {{item.integralForCount}}</text>
+            <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
+          </block>
+          <block wx:else>
+            <text class="txt">浏览 {{item.pageviews}}</text>
+            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text class="txt">点赞 {{item.like_count}}</text>
+          </block>
+        </view>
+        <text>{{item.post_date}}</text>
+      </view>
+
+      <!-- 操作按钮 -->
+      <!-- <view class="btn-box" wx:if="{{showAction}}">
+        <van-button
+          class="btn"
+          type="info"
+          size="small"
+          data-title="{{item.title.rendered || item.post_title}}"
+          data-author="{{item.author_name}}"
+          id="{{item.id}}"
+          catchtap="submitPage"
+        >提交页面搜索({{item.searhDataPostCount}})</van-button>
+
+        <van-button
+          class="btn"
+          type="info"
+          size="small"
+          data-title="{{item.title.rendered || item.post_title}}"
+          data-author="{{item.author_name}}"
+          id="{{item.id}}"
+          catchtap="submitContent"
+        >提交内容搜索({{item.searhContentPostCount}})</van-button>
+
+        <van-button
+          class="btn"
+          type="primary"
+          size="small"
+          data-title="{{item.title.rendered || item.post_title}}"
+          data-author="{{item.author_name}}"
+          id="{{item.id}}"
+          catchtap="sendSubscribeMessage"
+        >更新提醒</van-button>
+
+        <van-button
+          class="btn"
+          size="small"
+          id="{{item.id}}"
+          catchtap="deleteTopic"
+        >删除</van-button>
+      </view> -->
+    </view>
+  </block>
+</view>

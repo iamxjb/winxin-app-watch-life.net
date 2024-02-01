@@ -1,11 +1,23 @@
 .change-theme {
-    .item {
-        padding: 10rpx;
-        .ui-BG {
-            border-radius: 10rpx;
-            display: flex;
-            padding: 20rpx;
-            flex-direction: column;
-        }
+  .item {
+    padding: 10rpx;
+    .ui-BG {
+      border-radius: 10rpx;
+      display: flex;
+      padding: 20rpx;
+      flex-direction: column;
     }
+  }
+}
+
+.radio {
+  border-radius: 10rpx;
+  background: #FFF;
+  padding: 30rpx 10rpx;
+  .ui-radio-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 30rpx;
+    grid-column-gap: 10rpx;
+  }
 }

@@ -98,14 +98,14 @@
 
   <!-- 文章列表 -->
   <view class="container ">
+    <article list="{{postsList}}" type="{{articleStyle}}" />
     <!-- 列表template模板 -->
-    <template is="tempCommonList" data="{{postsList:postsList,listAdsuccess:listAdsuccess}}" />
+    <!-- <template is="tempCommonList" data="{{postsList:postsList,listAdsuccess:listAdsuccess}}" /> -->
     <view style='display:{{isLoading?"block":"none"}};margin-top: 48rpx;'>
       <template is="tempLoading" />
     </view>
     <!-- 无更多文章提示 -->
     <view class="loadingmore" style="display:{{floatDisplay}}">
-
       <view class="no-more" hidden="{{!isLastPage}}">- 无更多文章 -</view>
     </view>
     <!-- 版权信息template模板 -->

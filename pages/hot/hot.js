@@ -12,15 +12,12 @@
 
 var Api = require('../../utils/api.js');
 var util = require('../../utils/util.js');
-
 var wxApi = require('../../utils/wxApi.js')
 var wxRequest = require('../../utils/wxRequest.js')
 const Adapter = require('../../utils/adapter.js')
 var webSiteName= config.getWebsiteName;
 var domain =config.getDomain
-
 import config from '../../utils/config.js'
-
 
 Page({
   data: {
@@ -42,8 +39,17 @@ Page({
     ],
     tab: '1',
     webSiteName:webSiteName,
-    domain:domain
-
+    domain:domain,
+    articleStyle: config.articleStyle || 1
+  },
+  getArticleStyle() {
+    const articleStyle = wx.getStorageSync('articleStyle') || config.articleStyle || 1
+    this.setData({
+      articleStyle: +articleStyle,
+    })
+  },
+  onShow: function() {
+    this.getArticleStyle()
   },
   formSubmit: function (e) {
     var url = '../list/list'
