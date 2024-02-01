@@ -4,7 +4,7 @@
         <ui-change-theme ui="radius border"/>
         <ui-title title="字号" depth="2" isIcon/>
         <ui-text-size ui="radius border"/>
-        <ui-title title="首页列表" depth="2" isIcon/>
+        <ui-title title="列表样式" depth="2" isIcon/>
         <view class="radio">
           <ui-radio-group value="{{articleStyle}}" bind:change="changeArticleStyle">
               <ui-radio label="{{1}}">左图右文</ui-radio>
