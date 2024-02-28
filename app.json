@@ -18,7 +18,8 @@
     "pages/my/my", 
     "pages/my/phone/index",
     "pages/my/profile/index",
-    "pages/channels/channels"
+    "pages/channels/channels",
+    "pages/rand/rand"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -39,6 +40,10 @@
       {
         "pagePath": "pages/index/index",
     
+        "text": " "
+      },
+      {
+        "pagePath": "pages/rand/rand",
         "text": " "
       },
       {

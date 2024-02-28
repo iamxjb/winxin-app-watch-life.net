@@ -1,0 +1,64 @@
+<!--
+/*
+ * 
+ * 微慕小程序开源版
+ * author: jianbo
+ * organization: 微慕  www.minapper.com
+ * github:    https://github.com/iamxjb/winxin-app-watch-life.net
+ * 技术支持微信号：iamxjb
+ * 开源协议：MIT
+ * Copyright (c) 2017  微慕 https://www.minapper.com All rights reserved.
+ *
+ */-->
+<import src="../../templates/common-list.wxml" />
+<import src="../../templates/copyright.wxml" />
+
+<ui-sys tabbar>
+  <ui-navbar back="{{false}}" isSlot>
+    <view class="flex-center flex-sub">发现</view>
+  </ui-navbar>
+  
+
+  <view class="container">
+    <view class="showerror" style="display:{{showerror}}">
+      <text class="cicon-wifi-off text-xsl"></text>
+
+      <view class="errortext">
+        暂时无法访问网络
+        <view class="">
+          <button class="more-button" bindtap="reload" size="mini" bindtap="reload">重新加载</button>
+        </view>
+      </view>
+    </view>
+
+    <view style="display:{{showallDisplay}}">
+      <article list="{{postsList}}" type="{{articleStyle}}" />
+      <!-- <view class="post-list">
+        <block wx:key="id" wx:for="{{postsList}}">
+          <view class="post-item ui-BG ui-BG-card" index="{{index}}" id="{{item.post_id}}" bindtap="redictDetail">
+
+            <view class="post-desc">
+              <view class="post-title text-lg ui-TC">
+                <text>{{item.post_title}}</text>
+              </view>
+              <view class="post-data ui-TC-3 text-xs">
+
+                <text>{{item.post_date}}</text>
+                <text class="cicon-popover-o  "> {{item.comment_total}}</text>
+                <text class="cicon-favorite-o "> {{item.like_count}}</text>
+                <text class="cicon-eye-o "> {{item.pageviews}}</text>
+              </view>
+            </view>
+
+            <image src="{{item.post_thumbnail_image}}" mode="aspectFill" class="post-img"></image>
+          </view>
+        </block>
+      </view> -->
+
+    </view>
+
+    <view class="copyright" style="display:{{floatDisplay}}">
+      <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}" />
+    </view>
+  </view>
+</ui-sys>

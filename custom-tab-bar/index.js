@@ -12,6 +12,11 @@ Component({
         "text": "首页"
       },
       {
+        "pagePath": "/pages/rand/rand",
+   
+        "text": "发现"
+      },
+      {
         "pagePath": "/pages/topic/topic", 
         "text": "专题"
       },{

@@ -5,11 +5,20 @@ export const colorUI = new ColorUI({
         theme: 'auto',
         main: 'blue',
         footer: false,
-        text: 1,    tabBar: [{
+        text: 1,
+        tabBar: [
+        {
             title: '首页',
             icon: 'cicon-home-sm-o',
             curIcon: 'cicon-home-line',
             url: '/pages/index/index',
+            type: 'tab'
+        },
+        {
+            title: '发现',
+            icon: 'cicon-home-sm-o',
+            curIcon: 'cicon-home-line',
+            url: '/pages/rand/rand',
             type: 'tab'
         },
         {

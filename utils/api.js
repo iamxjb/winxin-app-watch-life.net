@@ -211,6 +211,13 @@ module.exports = {
       return url;
   },
 
+  //获取随机文章
+  getRandPosts(){      
+    var url = HOST_URI_WATCH_LIFE_JSON;
+    url +="post/rand";
+    return url;
+},
+
   //更新文章浏览数
   updatePageviews(id) {
       var url = HOST_URI_WATCH_LIFE_JSON;
