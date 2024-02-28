@@ -16,8 +16,8 @@ export const colorUI = new ColorUI({
         },
         {
             title: '发现',
-            icon: 'cicon-home-sm-o',
-            curIcon: 'cicon-home-line',
+            icon: 'cicon-archive-o',
+            curIcon: 'cicon-archive',
             url: '/pages/rand/rand',
             type: 'tab'
         },
