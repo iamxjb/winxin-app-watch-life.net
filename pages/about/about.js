@@ -53,7 +53,7 @@ Page({
     
     // 设置系统分享菜单
     wx.showShareMenu({
-    withShareTicket: true,
+    withShareTicket: false,
     menus: ['shareAppMessage', 'shareTimeline']
     })
   },

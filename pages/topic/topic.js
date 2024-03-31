@@ -51,7 +51,7 @@ Page({
         });
 
         wx.showShareMenu({
-            withShareTicket:true,
+            withShareTicket: false,
             menus:['shareAppMessage','shareTimeline'],           
             })
         Adapter.setInterstitialAd("enable_topic_interstitial_ad");

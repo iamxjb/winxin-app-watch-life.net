@@ -68,7 +68,7 @@ Page({
     onLoad: function (options) {
         var self = this;
         wx.showShareMenu({
-            withShareTicket: true,
+            withShareTicket: false,
             menus: ['shareAppMessage', 'shareTimeline'],
             success: function (e) {
                 //console.log(e);

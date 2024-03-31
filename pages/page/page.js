@@ -29,7 +29,7 @@ Page({
   onLoad: function (options) {
     this.fetchData(options.id);
     wx.showShareMenu({
-      withShareTicket:true,
+      withShareTicket: false,
       menus:['shareAppMessage','shareTimeline'],
       success:function(e)
       {

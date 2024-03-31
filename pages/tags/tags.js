@@ -50,7 +50,7 @@ Page({
         });
         Auth.setUserInfoData(this); 
         wx.showShareMenu({
-            withShareTicket:true,
+            withShareTicket: false,
             menus:['shareAppMessage','shareTimeline'],
               
         })

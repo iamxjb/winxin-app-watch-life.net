@@ -125,7 +125,7 @@ Page({
       }
     })   
     wx.showShareMenu({
-      withShareTicket:true,
+      withShareTicket: false,
       menus:['shareAppMessage','shareTimeline'],     
     })
     self.getEnableComment();
