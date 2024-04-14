@@ -105,10 +105,14 @@
 
 ### 六、商业版本
 我们在开源版基础上开发了更多功能的商业版本，了解详情请访问：https://www.minapper.com
-| 专业版 | 增强版微信 | 增强版百度 | 增强版字节 | 增强版QQ | 增强版支付宝 |  增强版快手版 |专业版App(Adroid) | 专业版App(iOS) |增强版APP |
-|-----|-------|-------|-------|-------|--------|-------|--------|--------|--------|
-|   ![专业版](https://www.watch-life.net/images/minapper.jpg)  |    ![微信](https://www.watch-life.net/images/minapper-plus-wx.jpg)    |    ![百度](https://www.watch-life.net/images/minapper-plus-baidu.jpg)    |  ![字节](https://www.watch-life.net/images/minapper-plus-toutiao.jpg)       |  ![QQ](https://www.watch-life.net/images/minapper-plus-qq.jpg)     |   ![支付宝](https://www.watch-life.net/images/minapper-plus-alipay.jpg)     | ![快手](https://www.watch-life.net/images/minapper-plus-kuaishou.jpg)     |  ![专业版安卓app](https://www.minapper.com/data/attachment/forum/202403/01/minapperproandroid.png)  |   ![专业版苹果app](https://www.minapper.com/data/attachment/forum/202403/01/minapperproios.png) |   ![增强版app](https://www.minapper.com/template/domi_mi/static/assets/images/app.png)
+| 微信专业版 | 增强版微信 | 增强版百度 | 增强版字节 | 增强版QQ | 
+|-----|-------|-------|-------|-------|
+|  <img src="https://www.watch-life.net/images/minapper.jpg" alt="微信专业版" width="120px" height="120px">  |    <img src="https://www.watch-life.net/images/minapper-plus-wx.jpg" alt="微信增强版" width="120px" height="120px">    | <img src="https://www.watch-life.net/images/minapper-plus-baidu.jpg" alt="百度增强版" width="120px" height="120px">    | <img src="https://www.watch-life.net/images/minapper-plus-toutiao.jpg" alt="字节增强版" width="120px" height="120px">      | <img src="https://www.watch-life.net/images/minapper-plus-qq.jpg" alt="QQ增强版" width="120px" height="120px"> | 
 
+
+| 支付宝增强版 |  快手增强版 |专业版App(Adroid) | 专业版App(iOS) |增强版APP |
+|-----|-------|-------|-------|-------|
+| <img src="https://www.watch-life.net/images/minapper-plus-alipay.jpg" alt="支付宝增强版" width="120px" height="120px">    | <img src="https://www.watch-life.net/images/minapper-plus-kuaishou.jpg" alt="快手增强版" width="120px" height="120px">      |  <img src="https://www.minapper.com/data/attachment/forum/202403/01/minapperproandroid.png" alt="专业版安卓app" width="120px" height="120px"> | <img src="https://www.minapper.com/data/attachment/forum/202403/01/minapperproios.png" alt="专业版苹果app" width="120px" height="120px"> |  <img src="https://www.minapper.com/template/domi_mi/static/assets/images/app.png" alt="增强版app" width="120px" height="120px">|
 
 ### 七、增值服务
  
