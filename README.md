@@ -10,7 +10,7 @@
 -  **交流微信群** ：
 <img src="https://www.watch-life.net/images/weixinshengtaiquan2.png" alt="流微信群" width="150px" height="150px">
 
--  **开源协议** ：GPL v3
+-  **开源协议** ：Apache-2.0
 
 -  **多端版本** ：https://ext.dcloud.net.cn/plugin?id=2214 （合作伙伴开发）
 
