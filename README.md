@@ -8,7 +8,7 @@
 -  **作者微信** ：iamxjb
 
 -  **交流微信群** ：
-<img src="https://www.watch-life.net/images/weixinshengtaiquan2.png" alt="流微信群" width="150px" height="150px">
+<img src="https://www.watch-life.net/images/weixinshengtaiquan2-0501.png" alt="流微信群" width="150px" height="150px">
 
 -  **开源协议** ：Apache-2.0
 
