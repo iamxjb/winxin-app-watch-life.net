@@ -1,10 +1,10 @@
+/* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
 @font-face {
-  font-family: "iconfont"; /* Project id 2687084 */
-  src: url('//at.alicdn.com/t/font_2687084_fepa8ax75vh.woff2?t=1650168284423') format('woff2'),
-       url('//at.alicdn.com/t/font_2687084_fepa8ax75vh.woff?t=1650168284423') format('woff'),
-       url('//at.alicdn.com/t/font_2687084_fepa8ax75vh.ttf?t=1650168284423') format('truetype');
+  font-family: 'iconfont';  /* Project id 2687084 */
+  src: url('//at.alicdn.com/t/c/font_2687084_pvel6asm7cl.woff2?t=1714182858766') format('woff2'),
+       url('//at.alicdn.com/t/c/font_2687084_pvel6asm7cl.woff?t=1714182858766') format('woff'),
+       url('//at.alicdn.com/t/c/font_2687084_pvel6asm7cl.ttf?t=1714182858766') format('truetype');
 }
-
 .iconfont {
   font-family: "iconfont" !important;
   font-size: 16px;
@@ -40,3 +40,8 @@
 .icon-play:before {
   content: "\e666";
 }
+
+.icon-dianzan:before {
+  content: "\e601";
+}
+

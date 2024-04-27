@@ -90,14 +90,14 @@ Auth.agreeGetUser = function(e, wxLoginInfo, authFlag) {
             lang: 'zh_CN',
             desc: '登录后信息展示',
             success: (res) => {
-                let wxUserInfo = res.userInfo || {}
-                wx.showLoading({
-                    title: "正在登录...",
-                    mask: true
-                })
+                let wxUserInfo = res.userInfo || {}                
                 Auth.getUserInfo(wxUserInfo, js_code).then(resdata => {
                     resolve(resdata);
-                    wx.hideLoading();
+                    //wx.hideLoading();
+                    // setTimeout(function () {
+                    //     wx.hideLoading()
+                    //   }, 1000)
+                      
                 });
             },
             fail: (err) => {
@@ -123,10 +123,21 @@ Auth.getUserInfo = function(wxUserInfo, js_code) {
         args.nickname = wxUserInfo.nickName;
         var url = Api.getOpenidUrl();
         var postOpenidRequest = wxRequest.postRequest(url, args);
-        wx.hideLoading();
+        //wx.hideLoading();
+        wx.showLoading({
+            title: "正在登录...",
+            mask: true
+        })
         postOpenidRequest.then(response => {
             if (response.data.status == '200') {
                 console.log("授权登录获取成功");
+                wx.hideLoading();
+                wx.showToast({
+                    title: '登录成功...',
+                    icon: 'success',
+                    duration: 2000
+                  })
+                  
                 UserInfoData.openid = response.data.openid;
                 var userLevel = {};
                 if (response.data.userLevel) {
@@ -149,7 +160,12 @@ Auth.getUserInfo = function(wxUserInfo, js_code) {
                 return;
             }
             else {
-                UserInfoData.errcode = "error"
+                wx.showToast({
+                    title: '登录失败...',
+                    icon: 'error',
+                    duration: 2000
+                  })
+                UserInfoData.errcode = "error"   
                 resolve(UserInfoData);
                 return;
             }
