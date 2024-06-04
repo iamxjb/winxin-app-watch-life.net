@@ -7,8 +7,11 @@
 
 -  **作者微信** ：iamxjb
 
+<img src="https://www.watch-life.net/images/iamxjbweixin.jpg" alt="微信号" />
+
 -  **交流微信群** ：
-<img src="https://www.watch-life.net/images/2024/05/weixinshengtaiquan2-0529-300x291.jpg" alt="流微信群" width="150px" height="150px">
+
+请先加我的微信：<strong>iamxjb </strong>，我拉你入群。
 
 -  **开源协议** ：Apache-2.0
 
