@@ -25,23 +25,21 @@ const enableScanLogin =false
 
 //是否启用微慕视频号插件,  true 启用  false  不启用
 //未安装微慕视频号插件不要启用,插件下载地址：https://shops.minapper.com/2192.html
-const enableChannels =false 
+const enableChannels =true 
 //////////////////////////////////////////////////////
 
 // 上传图片的最大文件大小,单位是m,必须填整数,
 // 同时必须修改php.ini文件 post_max_size 和 upload_max_filesize 具体修改请自行搜索
 const uploadImageSize=1
-
 // 默认文章列表样式：1 左图 2 右图 3 大图 4 多图 5 瀑布流 6 无图
 const articleStyle = 3
-//////////////////////////////////////////////////////
 
 //小程序原始id
 const appghId ='gh_e49213784fae'
 //////////////////////////////////////////////////////
 
 //微慕小程序端版本,请勿修改
-const minapperVersion=4.681
+const minapperVersion=4.71
 const minapperSource="free"
 //////////////////////////////////////////////////////
 

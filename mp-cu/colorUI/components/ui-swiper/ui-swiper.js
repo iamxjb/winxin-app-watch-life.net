@@ -68,7 +68,8 @@ Component({
               appid,
               url,
               path,
-              jumptype
+              jumptype,
+              unassociated
             } = e.currentTarget.dataset
         
             if (type === 'apppage') { // 小程序页面         
@@ -77,10 +78,27 @@ Component({
               })
             }
             if (type === 'webpage') { // web-view页面
-              url = '../webpage/webpage?url=' + encodeURIComponent(url)
-              wx.navigateTo({
-                url: url
-              })
+                if (unassociated==='yes')
+                    {
+                      wx.openOfficialAccountArticle({
+                        url:url, // 此处填写公众号文章连接
+                        success: res => {
+                          console.log(res);
+                        },
+                        fail: res => {
+                          console.log(res);
+                        }
+                      })
+                    }
+                  else
+                  {
+                    url = '../webpage/webpage?url=' + encodeURIComponent(url)
+                    wx.navigateTo({
+                      url
+                    })
+                  }
+              
+             
             }
             if (type === 'miniapp') { // 其他小程序
                 if(jumptype=='embedded')

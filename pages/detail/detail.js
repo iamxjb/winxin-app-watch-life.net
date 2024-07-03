@@ -662,6 +662,7 @@ Page({
     let redirectype = e.detail.redirectype
     let path = e.detail.path
     let jumptype=e.detail.jumptype
+    let unassociated=e.detail.unassociated
 
 
     // 判断a标签src里是不是插入的文档链接
@@ -679,10 +680,26 @@ Page({
         })
       } else if (redirectype == 'webpage') //跳转到web-view内嵌的页面
       {
-        href = '../webpage/webpage?url=' + encodeURIComponent(href);
-        wx.navigateTo({
-          url: href
-        })
+        if (unassociated==='1')
+          {
+            wx.openOfficialAccountArticle({
+              url:href, // 此处填写公众号文章连接
+              success: res => {
+                console.log(res);
+              },
+              fail: res => {
+                console.log(res);
+              }
+            })
+          }
+        else
+        {
+          href = '../webpage/webpage?url=' + encodeURIComponent(href)
+          wx.navigateTo({
+            href
+          })
+        }
+       
       }
       else if (redirectype == 'miniapp') //跳转其他小程序
        {
