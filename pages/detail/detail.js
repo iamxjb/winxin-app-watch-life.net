@@ -90,8 +90,7 @@ Page({
     showTime2: '00:00',
     audioTime: 0,
     displayAudio: 'none',
-    shareImagePath: '',
-    detailSummaryHeight: '',
+    shareImagePath: '',    
     detailAdsuccess: true,
     detailTopAdsuccess:true,
     fristOpen: false,
@@ -1438,9 +1437,9 @@ hiddenBar() {
       })
       rewardedVideoAd.onError((err) => {
         console.log(err);
-        this.setData({
-          detailSummaryHeight: ''
-        })
+        // this.setData({
+        //   detailSummaryHeight: ''
+        // })
       })
       rewardedVideoAd.onClose((res) => {
 
@@ -1502,18 +1501,31 @@ hiddenBar() {
       self.setData({
         detailSummaryHeight: ''
       })
-    }
+    }    
     else {
-
       rewardedVideoAd.show()
         .catch(() => {
           rewardedVideoAd.load()
             .then(() => rewardedVideoAd.show())
             .catch(err => {
-              console.log('激励视频 广告显示失败');
-              self.setData({
-                detailSummaryHeight: ''
-              })
+              console.log(err);
+              if (platform == 'windows' || platform =='mac') 
+                {
+                  wx.showToast({
+                    title: "请使用移动端阅读本文",
+                    icon: "none",
+                    duration: 2000
+                  });
+                }
+              else
+              {
+                wx.showToast({
+                  title: "广告加载错误,请刷新页面",
+                  icon: "none",
+                  duration: 2000
+                });
+              }
+              
             })
         })
 
