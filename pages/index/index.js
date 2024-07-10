@@ -42,6 +42,7 @@ Page({
     isFirst: false, // 是否第一次打开,
     isLoading: false,
     swipe_nav: [],
+    postImageUrl:'',
     selected_nav: [],
     articleStyle: config.articleStyle || 1
   },
@@ -78,8 +79,8 @@ Page({
     return {
       title: '“' + webSiteName + '”小程序,基于微慕WordPress版小程序构建',
       path: 'pages/index/index',
-      appInfo:{
-        'appId':config.appghId
+      appInfo: {
+        'appId': config.appghId
       },
       success: function (res) {
         // 转发成功
@@ -203,21 +204,23 @@ Page({
 
       let zanImageurl = res.data.zanImageurl
       let logoImageurl = res.data.logoImageurl
-
+      let postImageUrl = res.data.postImageUrl
       let downloadfileDomain = _d.length ? _d.split(',') : []
       let businessDomain = _b.length ? _b.split(',') : []
       self.setData({
         swipe_nav: swipe_nav,
-        selected_nav,
-        selected_nav
+        selected_nav: selected_nav,
+        postImageUrl: postImageUrl
       });
       wx.setStorageSync('downloadfileDomain', downloadfileDomain);
       wx.setStorageSync('businessDomain', businessDomain);
       wx.setStorageSync('zanImageurl', zanImageurl);
       wx.setStorageSync('logoImageurl', logoImageurl);
+      wx.setStorageSync('postImageUrl', postImageUrl);
     });
   },
 
+  //获取文章列表数据
   fetchAllPosts(data = {}) {
     const self = this;
     const { page = 1, categories = 0, search = '' } = data;
@@ -233,7 +236,7 @@ Page({
           const formatPost = (item) => ({
             ...item,
             categoryImage: "",
-            post_medium_image: item.post_medium_image || "../../images/logo700.png",
+            post_medium_image:  item.post_medium_image || self.data.postImageUrl ||"../../images/logo700.png",
             date: util.cutstr(item.date, 10, 1)
           });
   
@@ -267,6 +270,8 @@ Page({
         wx.stopPullDownRefresh();
       });
   },
+
+ 
   //加载分页
   loadMore: function (e) {
 
@@ -344,20 +349,17 @@ Page({
       })
     }
     if (type === 'webpage') { // web-view页面
-      if (unassociated==='yes')
-        {
-          wx.openOfficialAccountArticle({
-            url:url, // 此处填写公众号文章连接
-            success: res => {
-              console.log(res);
-            },
-            fail: res => {
-              console.log(res);
-            }
-          })
-        }
-      else
-      {
+      if (unassociated === 'yes') {
+        wx.openOfficialAccountArticle({
+          url: url, // 此处填写公众号文章连接
+          success: res => {
+            console.log(res);
+          },
+          fail: res => {
+            console.log(res);
+          }
+        })
+      } else {
         url = '../webpage/webpage?url=' + encodeURIComponent(url)
         wx.navigateTo({
           url
@@ -365,23 +367,20 @@ Page({
       }
     }
     if (type === 'miniapp') { // 其他小程序
-      if(jumptype=='embedded')
-      {
+      if (jumptype == 'embedded') {
         wx.openEmbeddedMiniProgram({
           appId: appid,
           path: path,
-          allowFullScreen:true
+          allowFullScreen: true
         })
 
-      }
-      else
-      {
+      } else {
         wx.navigateToMiniProgram({
           appId: appid,
           path: path
         })
       }
-      
+
     }
   },
   //返回首页
