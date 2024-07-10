@@ -109,7 +109,7 @@ Page({
 
     });
     this.getHomeconfig();
-    this.fetchPostsData(self.data);
+    this.fetchAllPosts(self.data);
 
 
   },
@@ -121,7 +121,7 @@ Page({
         page: self.data.page + 1
       });
       console.log('当前页' + self.data.page);
-      this.fetchPostsData(self.data);
+      this.fetchAllPosts(self.data);
     } else {
       console.log('最后一页');
     }
@@ -140,9 +140,9 @@ Page({
     wx.setNavigationBarTitle({
       title: webSiteName
     });
-    self.fetchTopFivePosts();
+ 
     Adapter.setInterstitialAd("enable_index_interstitial_ad");
-    self.fetchPostsData(self.data);
+    self.fetchAllPosts(self.data);
 
     // 判断用户是不是第一次打开，弹出添加到我的小程序提示
     var isFirstStorage = wx.getStorageSync('isFirst');
@@ -218,169 +218,54 @@ Page({
     });
   },
 
-  //获取文章列表数据
-  fetchPostsData: function (data) {
-    var self = this;
-    if (!data) data = {};
-    if (!data.page) data.page = 1;
-    if (!data.categories) data.categories = 0;
-    if (!data.search) data.search = '';
-    if (data.page === 1) {
-      self.setData({
-        postsList: []
-      });
-    };
-    self.setData({
-      isLoading: true
-    })
-    var getCategoriesRequest = wxRequest.getRequest(Api.getCategoriesIds());
-    getCategoriesRequest.then(res => {
-      if (!res.data.Ids == "") {
-        data.categories = res.data.Ids;
-        self.setData({
-          categories: res.data.Ids
-        })
-
-      }
-
-      var getPostsRequest = wxRequest.getRequest(Api.getPosts(data));
-      getPostsRequest
-        .then(response => {
-          if (response.statusCode === 200) {
-            if (response.data.length) {
-              if (response.data.length < pageCount) {
-                self.setData({
-                  isLastPage: true,
-                  isLoading: false
-                });
-              }
-              self.setData({
-                floatDisplay: "block",
-                postsList: self.data.postsList.concat(response.data.map(function (item) {
-
-                  var strdate = item.date
-                 
-                    item.categoryImage = "";
-                
-
-                  if (item.post_medium_image == null || item.post_medium_image == '') {
-                    item.post_medium_image = "../../images/logo700.png";
-                  }
-                  item.date = util.cutstr(strdate, 10, 1);
-                  return item;
-                })),
-
-              });
-
-            } else {
-              if (response.data.code == "rest_post_invalid_page_number") {
-                self.setData({
-                  isLastPage: true,
-                  isLoading: false
-                });
-                wx.showToast({
-                  title: '没有更多内容',
-                  mask: false,
-                  duration: 1500
-                });
-              } else {
-                wx.showToast({
-                  title: response.data.message,
-                  duration: 1500
-                })
-              }
-            }
-          }
-        })
-        .catch(function (response) {
-          if (data.page == 1) {
-
-            self.setData({
-              showerror: "block",
-              floatDisplay: "none"
-            });
-
-          } else {
-            wx.showModal({
-              title: '加载失败',
-              content: '加载数据失败,请重试.',
-              showCancel: false,
-            });
-            self.setData({
-              page: data.page - 1
-            });
-          }
-
-        })
-        .finally(function (response) {
-          wx.hideLoading();
+  fetchAllPosts(data = {}) {
+    const self = this;
+    const { page = 1, categories = 0, search = '' } = data;
+  
+    wx.showLoading({ title: '加载中' });
+  
+    const postsPromise = wxRequest.getRequest(Api.getPosts({ page, categories, search }));
+    const stickyPostsPromise = wxRequest.getRequest(Api.getStickyPosts());
+  
+    Promise.all([postsPromise, stickyPostsPromise])
+      .then(([postsResponse, stickyPostsResponse]) => {
+        if (postsResponse.statusCode === 200 && stickyPostsResponse.statusCode === 200) {
+          const formatPost = (item) => ({
+            ...item,
+            categoryImage: "",
+            post_medium_image: item.post_medium_image || "../../images/logo700.png",
+            date: util.cutstr(item.date, 10, 1)
+          });
+  
+          const postsList = postsResponse.data.map(formatPost);
+          const postsstickyList = stickyPostsResponse.data.map(formatPost);
+  
           self.setData({
-            isLoading: false
-          })
-          wx.stopPullDownRefresh();
+            postsList: page === 1 ? postsList : [...self.data.postsList, ...postsList],
+            postsstickyList,
+            isLastPage: postsList.length < pageCount,
+            floatDisplay: "block"
+          });
+        } else {
+          wx.showToast({
+            title: '加载失败',
+            icon: 'none',
+            duration: 1500
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Failed to fetch posts:', error);
+        wx.showToast({
+          title: '加载失败',
+          icon: 'none',
+          duration: 1500
         });
-
-    })
-
-
-  },
-
-  fetchTopFivePosts: function (data) {
-    var self = this;
-    var getCategoriesRequest = wxRequest.getRequest(Api.getCategoriesIds());
-    getCategoriesRequest.then(res => {
-     
-
-      var getPostsRequest = wxRequest.getRequest(Api.getStickyPosts(data));
-      getPostsRequest
-        .then(response => {
-          if (response.statusCode === 200) {
-            if (response.data.length) {
-             
-              self.setData({
-                floatDisplay: "block",
-                postsstickyList: self.data.postsstickyList.concat(response.data.map(function (item) {
-
-                  var strdate = item.date
-                 
-                    item.categoryImage = "";
-                 
-
-                  if (item.post_medium_image == null || item.post_medium_image == '') {
-                    item.post_medium_image = "../../images/logo700.png";
-                  }
-                  item.date = util.cutstr(strdate, 10, 1);
-                  return item;
-                })),
-
-              });
-
-            } else {
-              if (response.data.code == "rest_post_invalid_page_number") {
-                self.setData({
-                  isLastPage: true,
-                  isLoading: false
-                });
-                wx.showToast({
-                  title: '没有更多内容',
-                  mask: false,
-                  duration: 1500
-                });
-              } else {
-                wx.showToast({
-                  title: response.data.message,
-                  duration: 1500
-                })
-              }
-            }
-          }
-        })
-      
-   
-
-    })
-
-
+      })
+      .finally(() => {
+        wx.hideLoading();
+        wx.stopPullDownRefresh();
+      });
   },
   //加载分页
   loadMore: function (e) {
@@ -391,7 +276,7 @@ Page({
         page: self.data.page + 1
       });
       //console.log('当前页' + self.data.page);
-      this.fetchPostsData(self.data);
+      this.fetchAllPosts(self.data);
     } else {
       wx.showToast({
         title: '没有更多内容',
