@@ -5,6 +5,8 @@
 
 -  **官方网站** ：https://www.minapper.com
 
+-  **最新版本** ：v4.72
+
 -  **作者微信** ：iamxjb
 
 <img src="https://www.watch-life.net/images/iamxjbweixin.jpg" alt="微信号" />
