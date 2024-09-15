@@ -34,7 +34,10 @@ Component({
    */
   data: {
     showAd: true,
-    articleStyle: config.articleStyle || 3
+    articleStyle: config.articleStyle || 3,
+    enableCommentCount:config.enableCommentCount,
+    enablePageviewsCount:config.enablePageviewsCount,
+    enableLikeCount:config.enableLikeCount
   },
 
   lifetimes: {

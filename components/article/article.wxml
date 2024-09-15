@@ -45,11 +45,13 @@
             <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
           </block>
           <block wx:else>
-            <text class="txt">浏览 {{item.pageviews}}</text>
-            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
-            <text class="txt">点赞 {{item.like_count}}</text>
-          </block>
+            <text wx:if="{{enablePageviewsCount}}"  class="txt">浏览 {{item.pageviews}}</text>
+            <text wx:if="{{enableCommentCount}}" class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text wx:if="{{enableLikeCount}}" class="txt">点赞 {{item.like_count}}</text>
+            <text wx:if="{{!enablePageviewsCount || !enableCommentCount || !enableLikeCount }}" class="txt">{{item.post_date}}</text>
+         </block>
         </view>
+         
       </view>
     </view>
   </block>
@@ -98,10 +100,11 @@
             <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
           </block>
           <block wx:else>
-            <text class="txt">浏览 {{item.pageviews}}</text>
-            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
-            <text class="txt">点赞 {{item.like_count}}</text>
-          </block>
+            <text wx:if="{{enablePageviewsCount}}"  class="txt">浏览 {{item.pageviews}}</text>
+            <text wx:if="{{enableCommentCount}}" class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text wx:if="{{enableLikeCount}}" class="txt">点赞 {{item.like_count}}</text>
+            <text wx:if="{{!enablePageviewsCount || !enableCommentCount || !enableLikeCount }}" class="txt">{{item.post_date}}</text>
+         </block>
         </view>
       </view>
       <image 
@@ -163,9 +166,9 @@
             <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
           </block>
           <block wx:else>
-            <text class="txt">浏览 {{item.pageviews}}</text>
-            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
-            <text class="txt">点赞 {{item.like_count}}</text>
+            <text wx:if="{{enablePageviewsCount}}"  class="txt">浏览 {{item.pageviews}}</text>
+            <text wx:if="{{enableCommentCount}}" class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text wx:if="{{enableLikeCount}}" class="txt">点赞 {{item.like_count}}</text>
           </block>
         </view>
         <text>{{item.post_date}}</text>
@@ -224,9 +227,9 @@
             <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
           </block>
           <block wx:else>
-            <text class="txt">浏览 {{item.pageviews}}</text>
-            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
-            <text class="txt">点赞 {{item.like_count}}</text>
+           <text wx:if="{{enablePageviewsCount}}"  class="txt">浏览 {{item.pageviews}}</text>
+            <text wx:if="{{enableCommentCount}}" class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text wx:if="{{enableLikeCount}}" class="txt">点赞 {{item.like_count}}</text>
           </block>
         </view>
         <text>{{item.post_date}}</text>
@@ -263,9 +266,9 @@
             <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
           </block>
           <block wx:else>
-            <text class="txt">浏览 {{item.pageviews}}</text>
-            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
-            <text class="txt">点赞 {{item.like_count}}</text>
+            <text wx:if="{{enablePageviewsCount}}"  class="txt">浏览 {{item.pageviews}}</text>
+            <text wx:if="{{enableCommentCount}}" class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text wx:if="{{enableLikeCount}}" class="txt">点赞 {{item.like_count}}</text>
           </block>
         </view>
         <text>{{item.post_date}}</text>
@@ -297,9 +300,10 @@
             <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
           </block>
           <block wx:else>
-            <text class="txt">浏览 {{item.pageviews}}</text>
-            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
-            <text class="txt">点赞 {{item.like_count}}</text>
+            <text wx:if="{{enablePageviewsCount}}"  class="txt">浏览 {{item.pageviews}}</text>
+            <text wx:if="{{enableCommentCount}}" class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text wx:if="{{enableLikeCount}}" class="txt">点赞 {{item.like_count}}</text>
+           <text wx:if="{{!enablePageviewsCount || !enableCommentCount || !enableLikeCount }}">{{item.post_date}}</text>
           </block>
         </view>
       </view>
@@ -431,9 +435,9 @@
             <text wx:if="{{system != 'iOS'  & system !=null}}" class="txt">付费阅读 {{item.payForCount}}</text>
           </block>
           <block wx:else>
-            <text class="txt">浏览 {{item.pageviews}}</text>
-            <text class="txt">评论 {{item.total_comments || item.comment_total}}</text>
-            <text class="txt">点赞 {{item.like_count}}</text>
+            <text wx:if="{{enablePageviewsCount}}"  class="txt">浏览 {{item.pageviews}}</text>
+            <text wx:if="{{enableCommentCount}}" class="txt">评论 {{item.total_comments || item.comment_total}}</text>
+            <text wx:if="{{enableLikeCount}}" class="txt">点赞 {{item.like_count}}</text>
           </block>
         </view>
         <text>{{item.post_date}}</text>

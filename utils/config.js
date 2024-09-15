@@ -28,6 +28,18 @@ const enableScanLogin =false
 const enableChannels =true 
 //////////////////////////////////////////////////////
 
+//是否在列表显示文章评论数量,  true 启用  false  不启用
+const enableCommentCount =true 
+//////////////////////////////////////////////////////
+
+//是否在列表显示文章浏览数量,  true 启用  false  不启用
+const enablePageviewsCount =true 
+//////////////////////////////////////////////////////
+
+//是否在列表显示文章点赞,  true 启用  false  不启用
+const enableLikeCount =true 
+//////////////////////////////////////////////////////
+
 // 上传图片的最大文件大小,单位是m,必须填整数,
 // 同时必须修改php.ini文件 post_max_size 和 upload_max_filesize 具体修改请自行搜索
 const uploadImageSize=1
@@ -53,5 +65,8 @@ export default {
   minapperSource,
   enableChannels,
   appghId,
-  articleStyle
+  articleStyle,
+  enableCommentCount,
+  enablePageviewsCount,
+  enableLikeCount
 }
