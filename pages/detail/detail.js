@@ -139,7 +139,9 @@ Page({
     if (rewardedVideoAd && rewardedVideoAd.destroy) { 
       rewardedVideoAd.destroy() 
     }
-    innerAudioContext.destroy()
+    if(rewardedVideoAd) {      
+      innerAudioContext.destroy()
+    }
     ctx=null;
 
 

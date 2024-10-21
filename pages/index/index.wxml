@@ -94,6 +94,23 @@
 
   </view>
 
+  <!-- 那年今日 -->
+  <view class=" ui-BG-card ui-BG" wx:if="{{history_post.length > 0}}">
+    <ui-title title="那年今日" desc="汇聚历史文章" depth="3">
+      <text slot="icon" class="ui-TC-Main cicon-whatshot" />
+    </ui-title>
+
+
+    <swiper class="sticky-list" autoplay="true" interval="5000" duration="400" circular="true"  vertical="true">
+      <swiper-item class="sticky-list-item" wx:for="{{history_post}}" wx:key="id" id="{{item.ID}}" bindtap="redictDetail">
+        <view class="sticky-list-item-title ui-TC text-df">
+          <text class="dot ui-BG-Main"></text> {{item.post_date}} {{item.post_title}}
+        </view>
+      </swiper-item>
+    </swiper>
+
+  </view>
+
  <video-channels type="3"/>  
 
   <!-- 文章列表 -->

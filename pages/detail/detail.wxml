@@ -99,6 +99,20 @@
         </navigator>
       </block>
     </view>
+
+    <!-- 那年今日 -->
+    <view wx:if="{{detail.history_post_single.length != 0}}" class="relatedPost ui-BG-card ui-BG" style="display:{{display}}">
+      <view class="subTitle ui-TC">那年今日</view>
+      <view class="subTitle_line"></view>
+      <block wx:key="id" wx:for="{{detail.history_post_single}}">
+        <navigator url="../detail/detail?id={{item.ID}}" open-type="redirect" hover-class="relatedNavigator">
+          <view class="relatedText ui-TC-1  ">
+            <text class="dot ui-BG-Main"></text>
+            {{item.post_date}} {{item.post_title}}
+          </view>
+        </navigator>
+      </block>
+    </view>
     <!-- 评论列表 -->
     <view style="display:{{display}}" class="comment-container ui-BG-card ui-BG">
       <!-- 小标题 -->

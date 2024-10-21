@@ -207,10 +207,13 @@ Page({
       let postImageUrl = res.data.postImageUrl
       let downloadfileDomain = _d.length ? _d.split(',') : []
       let businessDomain = _b.length ? _b.split(',') : []
+      let history_post=res.data.history_post   
+
       self.setData({
         swipe_nav: swipe_nav,
         selected_nav: selected_nav,
-        postImageUrl: postImageUrl
+        postImageUrl: postImageUrl,
+        history_post:history_post
       });
       wx.setStorageSync('downloadfileDomain', downloadfileDomain);
       wx.setStorageSync('businessDomain', businessDomain);
