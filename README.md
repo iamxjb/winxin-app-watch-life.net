@@ -19,7 +19,7 @@
 
 -  **多端版本** ：https://ext.dcloud.net.cn/plugin?id=2214 （合作伙伴开发）
 
--  **配套后端** ：https://gitee.com/iamxjb/rest-api-to-miniprogram
+-  **配套后端wordpress插件** ：https://gitee.com/iamxjb/rest-api-to-miniprogram
 
 
 ### 一、功能清单：
@@ -95,7 +95,13 @@
 -   **最新稳定版本下载** (推荐)：[点击下载](https://gitee.com/iamxjb/winxin-app-watch-life.net/releases)
 
 
--   **WordPress插件市场** 下载：[点击下载](https://wordpress.org/plugins/rest-api-to-miniprogram)（注：wordprss官方一直不最新的版本，原因不明）
+-   **镜像下载地址** :
+ 
+1.https://github.com/iamxjb/winxin-app-watch-life.net
+2.https://xjb.coding.net/p/winxin-app-watch-life.net
+3.https://gitlab.com/xiajianbo/winxin-app-watch-life.net
+4.https://codechina.csdn.net/xjbx/winxin-app-watch-life.net
+5.https://xjb.coding.net/public/winxin-app-watch-life.net/winxin-app-watch-life.net/git/files
 
 
 ### 四、扩展插件
