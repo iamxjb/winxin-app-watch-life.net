@@ -103,10 +103,6 @@
 
 3.https://gitlab.com/xiajianbo/winxin-app-watch-life.net
 
-4.https://gitcode.com/xjbx/winxin-app-watch-life.net
-
-
-
 
 ### 四、扩展插件
 
