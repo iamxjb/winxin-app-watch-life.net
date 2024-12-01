@@ -98,9 +98,13 @@
 -   **镜像下载地址** :
  
 1.https://github.com/iamxjb/winxin-app-watch-life.net
+
 2.https://xjb.coding.net/p/winxin-app-watch-life.net
+
 3.https://gitlab.com/xiajianbo/winxin-app-watch-life.net
+
 4.https://codechina.csdn.net/xjbx/winxin-app-watch-life.net
+
 5.https://xjb.coding.net/public/winxin-app-watch-life.net/winxin-app-watch-life.net/git/files
 
 
