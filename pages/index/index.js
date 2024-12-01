@@ -22,6 +22,8 @@ var pageCount = config.getPageCount;
 var webSiteName = config.getWebsiteName;
 var domain = config.getDomain;
 
+const app = getApp()
+
 
 Page({
   data: {
@@ -162,6 +164,7 @@ Page({
     }
 
     this.getHomeconfig();
+    this.getWechatShopSelectProducts()
 
   },
   onShow: function (options) {
@@ -491,4 +494,16 @@ Page({
     }
 
   },
+
+  async getWechatShopSelectProducts() {
+    var args = {};  
+    const res = await app.$api.getWechatShopExtOptions(args) 
+    let wechatShopSelectProducts = res.selected_products || []
+    let wechatShopHostProducts = res.host_products || []
+    this.setData({
+      wechatShopSelectProducts,
+      wechatShopHostProducts
+    })
+  },
+
 })

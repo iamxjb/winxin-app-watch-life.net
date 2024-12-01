@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "商品列表",
+  "navigationStyle": "default",
+  "usingComponents": {
+    "goods-list": "../components/goods-list/goods-list"
+  }
+}

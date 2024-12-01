@@ -1,0 +1,88 @@
+<view
+  class="{{ listType === '1' ? 'hot-goods' : (listType === '2' ? 'hot-goods-two' : (listType === '3' ? 'hot-goods-three' : (listType === '4' ? 'hot-goods-four hot-goods' : 'hot-goods'))) }}{{ from === 'home' ? ' hot-goods-home' : '' }}"
+>
+  <view class='header' style="padding: {{ padding }}" wx:if="{{listType != '4'}}">
+    <view class='title'>{{ title }}</view>
+    <view wx:if="{{ listType === '1' && goodsList.length > 4}}" class='tip'>滑动查看</view>
+    <view wx:if="{{ listType === '2' && goodsList.length > 2}}" class='tip'>滑动查看</view>
+     <view wx:if="{{ listType === '4' && goodsList.length > 2}}" class='tip'>滑动查看</view>
+  </view>
+
+  <!-- 横向滚动 -->
+  <scroll-view scroll-x wx:if="{{ listType === '1' || listType === '2'   || listType === '4'}}">
+    <block wx:if="{{ listType === '1' || listType === '2' }}">
+      <view class="list" style="padding: {{ padding }}">
+          <view
+            wx:for="{{goodsList}}"
+            wx:key="id"
+            class="item"
+            data-type="{{item.type}}"
+            data-redirecttype="{{item.redirecttype}}"          
+            data-url="{{item.url}}"
+            data-appid="{{item.appid}}"
+            data-path="{{item.path}}"
+            data-jumptype="{{item.jumptype}}"       
+            bindtap="toDetail"
+          >
+            
+              <image class="img" mode="aspectFill" src="{{item.image || item.img}}" />            
+              <view class="info">
+                <view class="name">{{item.title}}</view>
+                <view class="price" wx:if="{{item.costprice}}">
+        
+                  <text class="cost-price"> ￥{{item.costprice}}</text>
+                </view>
+                <view class="price" wx:if="{{item.price}}">
+                  <text class="unit">￥</text>
+                  <text class="sale-price">{{item.price}}</text> 
+                </view>
+                <!-- 没有价格显示个按钮 -->
+                <view wx:else class="footer"><text class="btn">立即抢购</text></view>
+              </view>
+          </view>
+      </view>
+    </block>
+    <block wx:if="{{listType === '4'}}">
+      <view class="list" style="padding: {{ padding }}">
+          <view
+              wx:for="{{goodsList}}"
+              wx:key="productid"
+              class="item"             
+            >
+            <store-product appid="{{item.storeappid}}" product-id="{{item.productid}}"></store-product>
+            </view>
+        </view>
+    </block>
+  </scroll-view>
+
+  <!-- 纵向布局 -->
+  <view wx:if="{{ listType === '3' }}" class="list" style="padding: {{ padding }}">
+      <view
+        wx:for="{{goodsList}}"
+        wx:key="id"
+        class="item"
+        data-type="{{item.type}}"
+        data-redirecttype="{{item.redirecttype}}"     
+        data-url="{{item.url}}"
+        data-appid="{{item.appid}}"
+        data-path="{{item.path}}"
+        data-jumptype="{{item.jumptype}}"
+        bindtap="toDetail"
+      >
+        <view>
+          <image class="img" mode="aspectFill" src="{{item.image || item.img}}" />
+        </view>
+        <view class="info">
+          <view class="name">{{item.title}}</view>
+          <view class="price" wx:if="{{item.price}}">
+            <text class="unit">￥</text>
+            <text class="sale-price">{{item.price}}</text>
+            <text class="cost-price">{{item.costprice}}</text>
+          </view>
+
+          <!-- 没有价格显示个按钮 -->
+          <view wx:else class="footer"><text class="btn">立即抢购</text></view>
+        </view>
+      </view>
+  </view>
+</view>

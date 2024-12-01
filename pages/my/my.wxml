@@ -47,6 +47,10 @@
   <!-- 服务列表 -->
   <view class="ui-BG-card ui-BG">
     <ui-menu ui=" radius">
+      <block wx:if="{{enableWeixinOpen && enableWechatshop}}">
+      <ui-menu-item arrow title="小店订单" icon="cicon-weixin" isAction data-url="/pages/shop/order/order" bindtap="tapWechatOrder">        
+      </ui-menu-item>
+      </block>
       <ui-menu-item arrow title="关于我们" icon="cicon-service-fill" isAction data-url="/pages/about/about" bindtap="tapToUrl"></ui-menu-item>
       <block wx:if="{{openid !=''}}">
         <ui-menu-item arrow title="修改昵称" icon="cicon-settings" isAction data-url="/pages/about/about" bindtap="showModal" data-key='drawer'></ui-menu-item>

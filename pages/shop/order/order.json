@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "订单管理",
+  "navigationStyle": "default",
+  "usingComponents": {
+    "goods-order": "../components/goods-order/goods-order"
+  }
+}

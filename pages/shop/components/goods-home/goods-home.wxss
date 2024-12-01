@@ -1,0 +1,91 @@
+.shop {
+  background: #FFF;
+  border-top: 80rpx solid #2f80ed;
+  padding: 0 20rpx 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shop .avatar {
+  display: flex;
+  align-items: center;
+  margin-top: -30rpx;
+}
+
+.shop .avatar image {
+  display: block;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  border: 10rpx solid #FFF;
+  background: #FFF;
+}
+
+.shop .shop-info {
+  margin-left: 10rpx;
+}
+
+.shop .shop-info .shop-name {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.shop .shop-info .shop-type {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 6rpx;
+}
+
+.shop .btn-service {
+  height: 60rpx;
+  background: #EEE;
+  border-radius: 10rpx;
+  padding: 0 28rpx;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.shop .btn-service::after {
+  border: none;
+}
+
+.tab {
+  background: #FFF;
+  padding: 0 24rpx;
+}
+
+.tab .tab-inner {
+  display: flex;
+  position: relative;
+}
+
+.tab .slider {
+  width: 40rpx;
+  height: 4rpx;
+  position: absolute;
+  bottom: 0;
+  left: 30rpx;
+  background: #333;
+  transition: all .3s;
+}
+
+.tab .tab-item {
+  width: 100rpx;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  text-align: center;
+}
+
+.tab .tab-item-active {
+  font-weight: bold;
+  color: #333;
+}
+ 
+.goods-list {
+  background-color: #fafafa;
+}

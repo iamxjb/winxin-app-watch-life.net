@@ -1,0 +1,9 @@
+<view class="goods-list">
+  <view class="goods-item" wx:for="{{productList}}" wx:key='index'>
+    <goods-item
+      wx:if="{{ item }}"
+      product-id="{{ item }}"
+      storeAppId="{{ storeAppId }}"
+    />
+  </view>
+</view>

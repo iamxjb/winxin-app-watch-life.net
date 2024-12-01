@@ -1,0 +1,4 @@
+<goods-list
+  product-list="{{ productList }}"
+  store-app-id="{{ storeAppId }}"
+/>

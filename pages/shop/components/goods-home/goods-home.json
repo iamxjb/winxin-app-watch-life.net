@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-icon": "../../@vant/weapp/icon/index",
+    "van-sticky": "../../@vant/weapp/sticky/index",
+    "goods-item": "../goods-item/goods-item",
+    "goods-cate": "../goods-cate/goods-cate",
+    "hot-booth": "../hot-booth/hot-booth",
+    "shop-notice": "../shop-notice/shop-notice"
+  }
+}

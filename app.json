@@ -13,13 +13,17 @@
     "pages/search/search",
     "pages/topic/topic",
     "pages/theme/theme",
-    "pages/webpage/webpage",   
+    "pages/webpage/webpage",
     "pages/tags/tags",
-    "pages/my/my", 
+    "pages/my/my",
     "pages/my/phone/index",
     "pages/my/profile/index",
     "pages/channels/channels",
-    "pages/rand/rand"
+    "pages/rand/rand",
+
+    "pages/shop/index",
+    "pages/shop/order/order",
+    "pages/shop/list/list"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -31,7 +35,6 @@
     "navigationBarHideMoreButton": false
   },
   "tabBar": {
- 
     "color": "#959595",
     "selectedColor": "#118fff",
     "borderStyle": "white",
@@ -39,26 +42,22 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-    
         "text": " "
       },
       {
-        "pagePath": "pages/rand/rand",
+        "pagePath": "pages/shop/index",
         "text": " "
       },
       {
         "pagePath": "pages/topic/topic",
-  
         "text": " "
       },
       {
         "pagePath": "pages/hot/hot",
-       
         "text": " "
       },
       {
         "pagePath": "pages/my/my",
- 
         "text": " "
       }
     ]
@@ -94,8 +93,9 @@
     "ui-checkbox": "/mp-cu/colorUI/components/ui-checkbox/ui-checkbox",
     "ui-checkbox-group": "/mp-cu/colorUI/components/ui-checkbox-group/ui-checkbox-group",
     "ui-change-theme": "/mp-cu/colorUI/components/ui-change-theme/ui-change-theme",
-    "video-channels": "./components/video-channels/video-channels",
-    "privacy": "./components/privacy/privacy"
+    "video-channels": "./components/video-channels/video-channels", 
+    "privacy": "./components/privacy/privacy",
+    "hot-goods": "./components/hot-goods/hot-goods"
   },
   "requiredBackgroundModes": [
     "audio",
@@ -106,6 +106,9 @@
     "connectSocket": 10000,
     "uploadFile": 10000,
     "downloadFile": 10000
+  },
+  "plugins": {
+    
   },
   "sitemapLocation": "sitemap.json",
   "resizable": false,

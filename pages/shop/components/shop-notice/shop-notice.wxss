@@ -1,0 +1,68 @@
+.shop-notice {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 24rpx;
+  background: #FFF;
+}
+
+.notice-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 10rpx;
+}
+
+.swiper { 
+  height: 48rpx;
+  flex: 1;
+}
+
+.notice-title {
+  font-size: 26rpx;
+  color: #7b6933;
+  line-height: 48rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  position: relative;
+  padding-right: 20rpx;
+}
+
+.notice-title::after {
+  content: '';
+  height: 10rpx;
+  width: 10rpx;
+  border-width: 1px 1px 0 0;
+  border-color: #7b6933;
+  border-style: solid;
+  transform: rotate(45deg);
+  position: absolute;
+  margin-top: -5rpx;
+  top: 50%;
+  right: 4rpx;
+}
+
+/* 公告弹窗样式 */
+.popup-notice-detail {
+  padding: 32rpx;
+}
+
+.popup-notice-detail .notice-detail-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 1.4;
+  padding-right: 48rpx;
+}
+
+.popup-notice-detail .notice-detail-date {
+  font-size: 26rpx;
+  line-height: 1;
+  color: #999;
+  margin-top: 12rpx;
+}
+
+.popup-notice-detail .notice-detail-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}

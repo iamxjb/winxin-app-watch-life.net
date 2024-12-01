@@ -1,0 +1,11 @@
+<goods-order
+  tabList="{{tabList}}"
+  active="{{active}}"
+  orderList="{{orderList}}"
+  empty="{{empty}}"
+  showOrderDetail="{{showOrderDetail}}"
+  curOrder="{{curOrder}}"
+  bind:onTabChange="onTabChange"
+  bind:onCloseOrderDetail="onCloseOrderDetail"
+  bind:onOpenOrderDetail="onOpenOrderDetail"
+/>

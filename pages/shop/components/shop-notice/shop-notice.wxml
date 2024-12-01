@@ -1,0 +1,44 @@
+
+<block wx:if="{{list.length > 0}}">
+  <view class="shop-notice">
+    <image class="notice-icon" src="/images/shop-notice.png" />
+    <swiper autoplay vertical circular class="swiper">
+      <swiper-item
+        wx:for="{{list}}"
+        wx:key="{{index}}"
+        class="swiper-item"
+        data-id="{{item.ID}}"
+        bind:tap="goNoticeDetail"
+      >
+        <view class="notice-title">{{ item.post_title }}</view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <van-popup
+    closeable
+    round
+    lock-scroll
+    close-icon="close"
+    custom-style="width: 90%;"
+    show="{{ showNoticeDetail }}"
+    bind:close="onCloseNoticeDetail"
+  >
+    <view class="popup-notice-detail">
+      <view class="notice-detail-title">{{ noticeInfo.post_title }}</view>
+      <view class="notice-detail-date">{{ noticeInfo.post_date }}</view>
+      <view class="notice-detail-content">
+        <mp-html
+          content="{{ noticeInfo.post_content }}"
+          copy-link="{{false}}"
+          selectable="{{true}}"
+          lazy-load="{{true}}"
+          markdown="{{true}}"
+          use-anchor="{{true}}"
+          show-img-menu="{{true}}"
+          scroll-table="true"
+        />
+      </view>
+    </view>
+  </van-popup>
+</block>

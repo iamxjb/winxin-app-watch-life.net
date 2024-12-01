@@ -15,10 +15,10 @@ export const colorUI = new ColorUI({
             type: 'tab'
         },
         {
-            title: '发现',
+            title: '小店',
             icon: 'cicon-archive-o',
             curIcon: 'cicon-archive',
-            url: '/pages/rand/rand',
+            url: '/pages/shop/index',
             type: 'tab'
         },
         {

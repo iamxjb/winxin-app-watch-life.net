@@ -41,6 +41,8 @@ Page({
     nickName: '',
     inFinChat:false,
     uploadImageSize: config.uploadImageSize,
+    enableWeixinOpen:config.enableWeixinOpen,
+    enableWechatshop:config.enableWechatshop,
     list: [{
       name: "浏览",
       icon: "cicon-eye",
@@ -64,7 +66,7 @@ Page({
       color: "#F37D7D",
       icon: "cicon-notice-active",
       path: "/pages/readlog/readlog?key=5"
-    },
+    }  
 
     ]
   },
@@ -186,6 +188,13 @@ Page({
   tapToUrl(e) {
     wx.navigateTo({
       url: e.currentTarget.dataset.url
+    })
+  },
+
+  tapWechatOrder(e) {  
+    let url= e.currentTarget.dataset.url+"?ordertype=my"
+    wx.navigateTo({
+      url:url
     })
   },
   tapCopy(e) {

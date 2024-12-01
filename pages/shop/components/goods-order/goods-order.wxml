@@ -1,0 +1,85 @@
+<van-tabs
+  active="{{active}}"
+  color="#2f80ed"
+  line-width="20"
+  border
+  animated
+  swipeable
+  sticky
+  bind:change="onTabChange"
+>
+  <van-tab
+    wx:for="{{tabList}}"
+    wx:key="idx"
+    wx:for-index="idx"
+    wx:for-item="tab"
+    title="{{tab.title}}"
+    name="{{tab.status}}"
+  >
+    <view wx:for="{{orderList}}" wx:key="index" class="order-item">
+      <view wx:for="{{item.productInfo}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex" class="goods-item">
+        <van-card
+          num="{{ subItem.sku_cnt }}"
+          price="{{ subItem.sale_price/100 }}"
+          origin-price="{{ subItem.market_price/100 }}"
+          title="{{ subItem.title }}"
+          thumb="{{ subItem.thumb_img }}"
+          thumb-mode="aspectFill"
+          data-info="{{subItem}}"
+          data-path="goods-detail"
+        >
+          <view
+            slot="footer"
+            wx:if="{{ subIndex === item.productInfo.length - 1}}"
+          >
+            <view class="price-total">合计：<text class="price-unit">￥</text><text class="price-num">{{item.order_price}}</text></view>
+            <van-button size="small" round data-info="{{item}}" catch:tap="onOpenOrderDetail">订单信息</van-button>
+          </view>
+        </van-card>
+      </view>
+    </view>
+
+    <!-- 空态 -->
+    <van-empty wx:if="{{empty}}" description="暂无订单" />
+  </van-tab>
+</van-tabs>
+
+<van-popup
+  title="订单详情"
+  position="bottom"
+  closeable
+  custom-style="height: 50%"
+  show="{{ showOrderDetail }}"
+  bind:close="onCloseOrderDetail"
+>
+  <view class="popup-order-detail">
+    <view class="order-detail-item">
+      <view class="order-detail-item-label">订单编号</view>
+      <view class="order-detail-item-value">{{ curOrder.order_id }}</view>
+    </view>
+    <view class="order-detail-item">
+      <view class="order-detail-item-label">订单状态</view>
+      <view class="order-detail-item-value">{{ curOrder.status_name }}</view>
+    </view>
+    <view class="order-detail-item">
+      <view class="order-detail-item-label">订单总价</view>
+      <view class="order-detail-item-value">￥{{ curOrder.order_price }}</view>
+    </view>
+    <view class="order-detail-item">
+      <view class="order-detail-item-label">收货信息</view>
+      <view class="order-detail-item-value">{{ curOrder.address_info.user_name }}，{{ curOrder.address_info.tel_number }}，{{ curOrder.address_info.province_name }}{{ curOrder.address_info.city_name }}{{ curOrder.address_info.detail_info }}</view>
+    </view>
+    <view class="order-detail-item">
+      <view class="order-detail-item-label">创建时间</view>
+      <view class="order-detail-item-value">{{ curOrder.create_time }}</view>
+    </view>
+    <view class="order-detail-item">
+      <view class="order-detail-item-label">更新时间</view>
+      <view class="order-detail-item-value">{{ curOrder.update_time }}</view>
+    </view>
+    <view class="order-detail-item" wx:if="{{ curOrder.order_detail && curOrder.order_detail.ext_info && curOrder.order_detail.ext_info.customer_notes }}">
+      <view class="order-detail-item-label">买家留言</view>
+      <view class="order-detail-item-value">{{ curOrder.order_detail.ext_info.customer_notes }}</view>
+    </view>
+  </view>
+</van-popup>

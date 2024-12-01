@@ -1,0 +1,6 @@
+<view class="goods-item">
+  <store-product
+    appid="{{ storeAppId }}"
+    product-id="{{ productId }}"
+  />
+</view>

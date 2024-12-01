@@ -1,0 +1,24 @@
+<view class="hot-booth" wx:if="{{list.length > 0}}">
+  <view class="header" style="padding: {{ padding }}" wx:if="{{title}}">
+    <view class="title">{{ title }}</view>
+    <!-- <view wx:if="{{list.length > 3}}" class="tip">滑动查看</view> -->
+  </view>
+
+  <!-- 横向滚动 -->
+  <scroll-view scroll-x>
+    <view class="list" style="padding: {{ padding }}">
+      <view
+        wx:for="{{list}}"
+        wx:key="id"
+        class="item"
+        data-item="{{item}}"
+        bindtap="goto"
+      >
+        <image class="img" mode="aspectFill" src="{{ item.banner.img_url }}" />
+        <view class="info" style="background: {{ (index % 3 === 1) ? '#39312e' : ((index % 3 === 2) ? '#344521' : '#3d3329') }};">
+          <text class="name">{{ item.banner.title }}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

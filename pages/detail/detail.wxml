@@ -82,6 +82,14 @@
         </navigator>
       </view>
     </view>
+    <!-- 精选商品 -->
+    <view wx:if="{{detail.recommendWechatShopGoods && detail.recommendWechatShopGoods.length}}" class="relatedPost ui-BG-card ui-BG" style="display:{{display}}">
+      <view class="subTitle ui-TC">精选商品</view>
+      <view class="subTitle_line"></view>
+       <view class="hot-goods" wx:if="{{detail.recommendWechatShopGoods && detail.recommendWechatShopGoods.length}}">
+        <hot-goods goods-list="{{detail.recommendWechatShopGoods}}" title="推荐商品" list-type="4" pagetype="detail" />
+      </view>
+    </view>
     <!-- 小程序广告 -->
     <view class="ad-box-video " wx:if="{{detail.videoAdId !='' && detail.detailAd=='1' && detailAdsuccess}}">
       <ad unit-id="{{detail.videoAdId}}" ad-intervals="30" ad-type="video" binderror="adbinderror"></ad>

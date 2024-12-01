@@ -1,0 +1,89 @@
+.goods-cate {
+  width: 100%;
+  height: 100vh;
+  position: relative ;
+  top: 0;
+  bottom: 0;
+  display: flex;
+}
+
+/* 左边分类菜单 */
+.goods-cate-menu {
+  width: 130rpx;
+  font-size: 24rpx;
+  background: #F5F7F7;
+  position: absolute;
+  height: 100%;
+}
+
+.goods-cate-menu-content {
+  width: 130rpx;
+  position: absolute;
+  height: 100%;
+  overflow: auto;
+}
+
+.goods-cate-menu-item {
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 16rpx;
+  position: relative;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.goods-cate-menu-item.active {
+  color: #2f80ed;
+  font-weight: 500;
+  background: #FFF;
+  position: relative;
+}
+
+.goods-cate-menu-item.active::before {
+  content: '';
+  height: 40rpx;
+  width: 6rpx;
+  background: #2f80ed;
+  border-radius: 0 6rpx 6rpx 0;
+  position: absolute;
+  top: calc(50% - 20rpx);
+  left: 0;
+}
+
+/* 右边显示的分类列表 */
+.goods-cate-list {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+  background: #FAFAFA;
+  margin-left: 130rpx;
+}
+
+.goods-cate-list .sub-cate {
+  display: flex;
+  padding: 20rpx 20rpx 0;
+}
+
+.goods-cate-list .sub-cate-item {
+  flex-shrink: 0;
+  padding: 8rpx 20rpx;
+  border-radius: 8rpx;
+  background: #F5F7F7;
+  margin-right: 12rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.sub-cate-item.active {
+  background: #EDFDE8;
+  color: #57bc78;
+}
+
+.goods-cate-list-content {
+  padding: 20rpx 0 0;
+}
+
+.goods-cate-list-item {
+  margin-bottom: 12rpx;
+}

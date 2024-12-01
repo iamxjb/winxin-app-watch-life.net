@@ -1,0 +1,9 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "小店",
+  "navigationBarBackgroundColor": "#2f80ed",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "goods-home": "./components/goods-home/goods-home"
+  }
+}

@@ -1,0 +1,47 @@
+<!-- 店铺信息 -->
+<view class="shop">
+  <view class="avatar">
+    <image src="{{shopInfo.headimg_url}}"></image>
+    <view class="shop-info">
+      <text class="shop-name">{{shopInfo.nickname}}</text>
+      <view class="shop-type">{{shopInfo.subject_type}}</view>
+    </view>
+  </view>
+  <button class="btn-service" open-type="contact"><van-icon name="service-o" />客服</button>
+</view>
+
+<!-- 精选展位 -->
+<hot-booth />
+
+<!-- 店铺公告 -->
+<shop-notice />
+
+<!-- 商品/分类切换 -->
+<van-sticky>
+  <view class="tab">
+    <view class="tab-inner">
+      <view class="slider" style="left:{{ (activeTab * 100) + 30 }}rpx" />
+      <view
+        wx:for="{{tabList}}"
+        wx:key="index"
+        class="{{ activeTab === index ? 'tab-item tab-item-active' : 'tab-item'}}"
+        data-index="{{index}}"
+        bind:tap="onTabChange"
+      >
+        {{ item.name }}
+      </view>
+    </view>
+  </view>
+</van-sticky>
+
+<!-- 商品列表 -->
+<view class="goods-list" style="display:{{ activeTab === 0 ? 'block': 'none' }}">
+  <view class="goods-item" wx:for="{{productList}}" wx:key="index">
+    <goods-item product-id="{{ item }}" storeAppId="{{ storeAppId }}" wx:if="index>0"/>
+  </view>
+</view>
+<!-- 商品分类 -->
+<view wx:if="{{activeTab === 1}}">
+  <!-- 分类列表的内容 -->
+  <goods-cate id="goods-cate" listData="{{productList}}"></goods-cate>
+</view>

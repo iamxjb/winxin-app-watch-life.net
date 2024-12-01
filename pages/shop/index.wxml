@@ -1,0 +1,15 @@
+
+<ui-sys tabbar>
+  <ui-navbar back="{{false}}" bg="ui-BG-Main" op isSlot>
+    <view class="flex-center flex-sub" style="color: #FFFFFF;">小店</view>
+  </ui-navbar>
+  <goods-home
+    id="goods-home"
+    shopInfo="{{shopInfo}}"
+    storeAppId="{{storeAppId}}"
+    productList="{{productList}}"
+    tabList="{{tabList}}"
+    activeTab="{{activeTab}}"
+    bind:onTabChange="onTabChange"
+  />
+</ui-sys>

@@ -12,9 +12,9 @@ Component({
         "text": "首页"
       },
       {
-        "pagePath": "/pages/rand/rand",
+        "pagePath": "/pages/shop/index",
    
-        "text": "发现"
+        "text": "小店"
       },
       {
         "pagePath": "/pages/topic/topic", 

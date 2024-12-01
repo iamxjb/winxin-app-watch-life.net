@@ -1,0 +1,50 @@
+<view class="goods-cate">
+  <!-- 一级分类 -->
+  <view class="goods-cate-menu">
+    <view class="goods-cate-menu-content">
+      <view
+        wx:for="{{ cateList }}"
+        wx:key="index"
+        class="{{ (activeIndex === index) ? 'active goods-cate-menu-item' : ' goods-cate-menu-item' }}"
+        bindtap="changeCate"
+        data-cate="{{ item.name }}"
+        data-index="{{ index }}"
+      >
+        {{ item.name }}
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品 -->
+  <view class="goods-cate-list">
+    <scroll-view
+      scroll-x
+      wx:if="{{cateList[activeIndex] && cateList[activeIndex].children && cateList[activeIndex].children.length > 0}}"
+    >
+      <view class="sub-cate">
+        <view
+          class="{{ (subActiveIndex === -1) ? 'active sub-cate-item' : 'sub-cate-item' }}"
+          data-index="{{-1}}"
+          bindtap="changeSubCate"
+        >
+          全部
+        </view>
+        <view
+          class="{{ (subActiveIndex === index) ? 'active sub-cate-item' : 'sub-cate-item' }}"
+          wx:for="{{ cateList[activeIndex].children }}"
+          wx:key="index"
+          data-index="{{ index }}"
+          data-id="{{ item.levelId }}"
+          bindtap="changeSubCate"
+        >
+          {{ item.name }}
+        </view>
+      </view>
+    </scroll-view>
+    <view class="goods-cate-list-content">
+      <view class="goods-cate-list-item" wx:key="id" wx:for="{{goodsList}}">
+        <goods-item product-id="{{item}}" storeAppId="{{ storeAppId }}"/>
+      </view>
+    </view>
+  </view>
+</view>

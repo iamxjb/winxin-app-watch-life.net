@@ -1,0 +1,39 @@
+.order-item {
+  background: #FFF;
+  margin-top: 20rpx;
+}
+
+.price-total {
+  display: inline-block;
+  margin-right: 20rpx;
+}
+
+.price-total .price-unit {
+  font-size: 20rpx;
+  color: rgb(236, 0, 43);
+}
+
+.price-total .price-num {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: rgb(236, 0, 43);
+}
+
+/* 订单详情弹窗 */
+.popup-order-detail {
+  padding: 80rpx 32rpx;
+}
+
+.order-detail-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.order-detail-item .order-detail-item-value {
+  flex: 1;
+  margin-left: 20rpx;
+  text-align: right;
+  color: #666;
+}
