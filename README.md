@@ -92,20 +92,24 @@
 开源版安装文档：https://docs.minapper.com/minfree
 
 ### 三、下载源码
--   **最新稳定版本下载** ：[点击下载](https://gitee.com/iamxjb/winxin-app-watch-life.net/releases)
+-   **最新稳定版本下载** (推荐)：[点击下载](https://gitee.com/iamxjb/winxin-app-watch-life.net/releases)
 
 
--   **WordPress插件市场** 下载：[点击下载](https://wordpress.org/plugins/rest-api-to-miniprogram)
+-   **WordPress插件市场** 下载：[点击下载](https://wordpress.org/plugins/rest-api-to-miniprogram)（注：wordprss官方一直不最新的版本，原因不明）
 
 
 ### 四、扩展插件
--  [API缓存加速（299元）]( https://shops.minapper.com/2036.html)
+
+-  [API缓存加速（299元）]( https://www.minapper.com/shops/)
 
 
--  [视频号主页（99元）](https://shops.minapper.com/2192.html)
+-  [视频号主页（99元）](https://www.minapper.com/shops/)
 
 
--  [扫码登录（199元）](https://shops.minapper.com/2167.html)
+-  [扫码登录（199元）](https://www.minapper.com/shops/)
+
+
+-  [微信小店（299元）](https://www.minapper.com/shops/)
 
 ### 五、案例展示
 如果您使用了微慕小程序开源版且愿意公开展示，可以提交案例给我们。
