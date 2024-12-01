@@ -103,9 +103,9 @@
 
 3.https://gitlab.com/xiajianbo/winxin-app-watch-life.net
 
-4.https://codechina.csdn.net/xjbx/winxin-app-watch-life.net
+4.https://gitcode.com/xjbx/winxin-app-watch-life.net
 
-5.https://xjb.coding.net/public/winxin-app-watch-life.net/winxin-app-watch-life.net/git/files
+
 
 
 ### 四、扩展插件
