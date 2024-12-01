@@ -86,7 +86,8 @@
 
 31. 增加“那年今日”功能，展示历史上“今日”的文章列表。
 
-32. 增加“微信小店”功能。
+32. 增加“[微信小店](https://www.watch-life.net/wechat/minapper-wechat-shop.html)”功能。
+
 
 ### 二、安装教程：
 开源版安装文档：https://docs.minapper.com/minfree
