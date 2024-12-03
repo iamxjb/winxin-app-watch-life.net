@@ -5,7 +5,7 @@
     <swiper autoplay vertical circular class="swiper">
       <swiper-item
         wx:for="{{list}}"
-        wx:key="{{index}}"
+        wx:key="ID"
         class="swiper-item"
         data-id="{{item.ID}}"
         bind:tap="goNoticeDetail"
