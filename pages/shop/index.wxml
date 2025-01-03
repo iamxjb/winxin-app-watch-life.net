@@ -8,6 +8,7 @@
     shopInfo="{{shopInfo}}"
     storeAppId="{{storeAppId}}"
     productList="{{productList}}"
+    hostProductList="{{hostProductList}}"
     tabList="{{tabList}}"
     activeTab="{{activeTab}}"
     bind:onTabChange="onTabChange"

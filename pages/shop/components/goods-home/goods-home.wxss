@@ -89,3 +89,9 @@
 .goods-list {
   background-color: #fafafa;
 }
+
+.hot-goods-box {
+  padding: 0 24rpx;
+  background: #FFF;
+}
+

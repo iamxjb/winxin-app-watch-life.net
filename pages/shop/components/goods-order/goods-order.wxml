@@ -17,7 +17,7 @@
     name="{{tab.status}}"
   >
     <view wx:for="{{orderList}}" wx:key="index" class="order-item">
-      <view wx:for="{{item.productInfo}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex" class="goods-item">
+      <view wx:for="{{item.productInfo}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex" class="goods-item" data-order_id="{{item.order_id}}" catchtap="openStoreOrderDetail" >
         <van-card
           num="{{ subItem.sku_cnt }}"
           price="{{ subItem.sale_price/100 }}"
@@ -33,7 +33,7 @@
             wx:if="{{ subIndex === item.productInfo.length - 1}}"
           >
             <view class="price-total">合计：<text class="price-unit">￥</text><text class="price-num">{{item.order_price}}</text></view>
-            <van-button size="small" round data-info="{{item}}" catch:tap="onOpenOrderDetail">订单信息</van-button>
+            <van-button size="small" round data-info="{{item}}" catchtap="onOpenOrderDetail">订单信息</van-button>
           </view>
         </van-card>
       </view>

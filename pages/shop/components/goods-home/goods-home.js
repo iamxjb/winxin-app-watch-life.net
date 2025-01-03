@@ -12,6 +12,10 @@ Component({
       type: Array,
       value: []
     },
+    hostProductList: {
+      type: Array,
+      value: []
+    },
     tabList: {
       type: Array,
       value: []

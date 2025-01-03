@@ -10,11 +10,15 @@
   <button class="btn-service" open-type="contact"><van-icon name="service-o" />客服</button>
 </view>
 
-<!-- 精选展位 -->
-<hot-booth />
 
 <!-- 店铺公告 -->
 <shop-notice />
+
+<!-- 精选展位 -->
+<hot-booth />
+<view wx:if="{{hostProductList.length}}" class="hot-goods-box">
+  <hot-goods title="热销商品" goods-list="{{hostProductList}}" />
+</view>
 
 <!-- 商品/分类切换 -->
 <van-sticky>

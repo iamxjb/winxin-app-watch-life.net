@@ -1,6 +1,6 @@
 const app = getApp()
 import config from '../../utils/config.js'
-import { getWechatShopInfo, getWechatGoodsList } from './lib/api'
+import { getWechatShopInfo, getWechatGoodsList,getWechatShopExtOptions } from './lib/api'
 let COMPONENT_CATE
 
 Page({
@@ -21,6 +21,7 @@ Page({
 
   onLoad: function (option) {
     this.getShopInfo()
+    this.getWechatHotGoodsList()
     this.getShopProducts()
 
     // 设置系统分享菜单
@@ -61,6 +62,7 @@ Page({
       page: 1,
       hasMore: true
     })
+    this.getWechatHotGoodsList()
     this.getShopProducts()
     wx.stopPullDownRefresh()
   },
@@ -96,6 +98,14 @@ Page({
     })
   },
 
+  async getWechatHotGoodsList() {
+    var args = {};  
+    const res = await getWechatShopExtOptions(args)     
+    let hostProductList = res.host_products || []
+    this.setData({       
+      hostProductList
+    })
+  },
   // 获取商品列表
   async getShopProducts(isRefresh) {
     let { productList, nextKey } = this.data

@@ -39,6 +39,18 @@ Component({
 
     onCloseOrderDetail() {
       this.triggerEvent('onCloseOrderDetail')
+    },    
+    openStoreOrderDetail(e) {
+      var order_id = e.currentTarget.dataset.order_id
+      wx.openStoreOrderDetail({
+        orderId: order_id,
+        success(res) {
+          console.log(res)
+        },
+        fail(res) {
+          console.log(res)
+        }
+      })
     }
   }
 })

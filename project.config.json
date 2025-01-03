@@ -39,7 +39,8 @@
     "useCompilerPlugins": [
       "sass"
     ],
-    "useStaticServer": true
+    "useStaticServer": true,
+    "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.23.2",

@@ -77,20 +77,15 @@
 
   </view>
 
-   <!-- 精选商品 -->  
-    <view class=" ui-BG-card ui-BG" wx:if="{{wechatShopSelectProducts.length}}">
-      <ui-title title="精选商品" desc="小店精选" depth="3">
+  <!-- 精选商品 -->  
+  <view class=" ui-BG-card ui-BG" wx:if="{{wechatShopSelectProducts.length}}">
+    <ui-title title="精选商品" desc="小店精选" depth="3">
       <text slot="icon" class="ui-TC-Main cicon-whatshot" />
     </ui-title>
-      <hot-goods goods-list="{{wechatShopSelectProducts}}" title="精选商品" list-type="4" from="home" />
-    </view>
+    <hot-goods goods-list="{{wechatShopSelectProducts}}" />
+  </view>
 
-     <view class=" ui-BG-card ui-BG" wx:if="{{wechatShopHostProducts.length}}">
-      <ui-title title="热销商品" desc="小店热销" depth="3">
-      <text slot="icon" class="ui-TC-Main cicon-whatshot" />
-    </ui-title>
-      <hot-goods goods-list="{{wechatShopHostProducts}}" title="精选商品" list-type="4" from="home" />
-    </view>
+     
    
  
   <!-- 推荐文章 -->

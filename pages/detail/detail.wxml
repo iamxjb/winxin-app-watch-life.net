@@ -86,8 +86,8 @@
     <view wx:if="{{detail.recommendWechatShopGoods && detail.recommendWechatShopGoods.length}}" class="relatedPost ui-BG-card ui-BG" style="display:{{display}}">
       <view class="subTitle ui-TC">精选商品</view>
       <view class="subTitle_line"></view>
-       <view class="hot-goods" wx:if="{{detail.recommendWechatShopGoods && detail.recommendWechatShopGoods.length}}">
-        <hot-goods goods-list="{{detail.recommendWechatShopGoods}}" title="推荐商品" list-type="4" pagetype="detail" />
+      <view class="hot-goods" wx:if="{{detail.recommendWechatShopGoods && detail.recommendWechatShopGoods.length}}">
+        <hot-goods goods-list="{{detail.recommendWechatShopGoods}}" />
       </view>
     </view>
     <!-- 小程序广告 -->

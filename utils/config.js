@@ -20,12 +20,12 @@ var WECHAT='微信号:iamxjb'; //客服联系方式,如 微信号：iamxjb 或 �
 
 //是否启用小程序扫描二维码登录网站,  true 启用  false  不启用
 //未安装微慕登录插件不要启用,插件下载地址：https://shops.minapper.com/2167.html
-const enableScanLogin =false 
+const enableScanLogin =true 
 //////////////////////////////////////////////////////
 
 //是否启用微慕视频号插件,  true 启用  false  不启用
 //未安装微慕视频号插件不要启用,插件下载地址：https://shops.minapper.com/2192.html
-const enableChannels =false 
+const enableChannels =true 
 //////////////////////////////////////////////////////
 
 //是否在列表显示文章评论数量,  true 启用  false  不启用
@@ -42,7 +42,7 @@ const enableLikeCount =true
 
 //是否绑定微信开放平台,  true 绑定  false  未绑定
 //无微信开放平台不要开启
-const enableWeixinOpen =false 
+const enableWeixinOpen =true 
 
 //是否启用微信小店,  true 启用  false  不启用
 //未安装微信小店插件不要启用,插件下载地址：https://www.minapper.com/shops/
