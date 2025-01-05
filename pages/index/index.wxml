@@ -19,7 +19,7 @@
     </view>
   </ui-navbar>
   <!-- 首次进入引导添加到“我的小程序” -->
-  <view class="addMyMiniapp" wx:if="{{isFirst}}" catchtap="shutAddMyMiniapp">
+  <view class="addMyMiniapp" wx:if="{{minappAddTip}}" catchtap="shutAddMyMiniapp">
     <view>点击加入我的小程序 ↑</view>
     <text>了解"{{webSiteName}}"最新文章</text>
   </view>

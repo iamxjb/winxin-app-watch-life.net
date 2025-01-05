@@ -42,6 +42,7 @@ Page({
     webSiteName: webSiteName,
     domain: domain,
     isFirst: false, // 是否第一次打开,
+    minappAddTip:false,
     isLoading: false,
     swipe_nav: [],
     postImageUrl:'',
@@ -146,26 +147,29 @@ Page({
  
     Adapter.setInterstitialAd("enable_index_interstitial_ad");
     self.fetchAllPosts(self.data);
-
-    // 判断用户是不是第一次打开，弹出添加到我的小程序提示
-    var isFirstStorage = wx.getStorageSync('isFirst');
-    // console.log(isFirstStorage);
-    if (!isFirstStorage) {
-      self.setData({
-        isFirst: true
-      });
-      wx.setStorageSync('isFirst', 'no')
-      // console.log(wx.getStorageSync('isFirst'));
-      setTimeout(function () {
-        self.setData({
-          isFirst: false
-        });
-      }, 5000)
-    }
+    wx.checkIsAddedToMyMiniProgram({
+      success (res) {
+        if(!res.added)
+        {
+          self.setData({minappAddTip:true})
+          setTimeout(function () {
+            self.setData({
+              minappAddTip: false
+            });
+          }, 10000)
+        }
+      }
+    })
 
     this.getHomeconfig();
     this.getWechatShopSelectProducts()
 
+  },
+  // 点击关闭添加到我的小程序提示框
+  shutAddMyMiniapp() {
+    this.setData({
+      minappAddTip: false
+    })
   },
   onShow: function (options) {
     this.getArticleStyle()

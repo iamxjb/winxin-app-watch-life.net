@@ -207,8 +207,8 @@
   background: #fff;
   padding: 24rpx 24rpx;
   position: fixed;
-  top: 20rpx;
-  right: 24rpx;
+  /* top: 20rpx; */
+  right: 115rpx;
   z-index: 999;
   box-shadow: 0 16rpx 30rpx -12rpx rgba(88, 88, 88, 0.2);
 }
@@ -220,7 +220,7 @@
 
 .addMyMiniapp>text {
   font-size: 20rpx;
-  font-weight: 200;
+  font-weight: 350;
 }
 
 .addMyMiniapp::before {
