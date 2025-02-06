@@ -1,6 +1,7 @@
 import http from '../../../utils/new/http'
 import config from '../../../utils/config.js'
 const wm = `https://${config.getDomain}/wp-json/minapper/v1/`
+const wh = `https://${config.getDomain}/wp-json/watch-life-net/v1/`
 
 // ===================================================== 微信小店
 // 获取微信小店店铺信息
@@ -38,3 +39,20 @@ export const getWechatOrderList = params => http.get(`${wm}wechatshop/order/list
 
 // 获取我的订单列表
 export const getWechatMyOrderList = params => http.get(`${wm}wechatshop/order/my`, params)
+
+// 添加或修改微信小店|post
+export const postWechatShopInfo = params => http.post(`${wh}weixin/updatewechatshopinfo`, params)
+
+// ===================================================== 合作微信小店
+// 获取合作小店的商品|get
+export const getCooperationShopProductList = params => http.get(`${wm}miniprogram/cooperation/shop/product/list`, params)
+
+// 获取合作小店的列表|get
+export const getCooperationShopList = params => http.get(`${wm}miniprogram/cooperation/shop/list`, params)
+
+
+// 获取合作小店的订单|get
+export const getCooperationShopOrderList = params => http.get(`${wm}miniprogram/cooperation/shop/order/list`, params)
+
+// 获取合作小店的用户订单|get
+export const getCooperationShopMyOrderList = params => http.get(`${wm}miniprogram/cooperation/shop/order/my`, params)

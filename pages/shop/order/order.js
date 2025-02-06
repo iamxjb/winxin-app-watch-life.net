@@ -1,4 +1,4 @@
-import { getWechatOrderList, getWechatMyOrderList } from '../lib/api'
+import { getWechatOrderList, getWechatMyOrderList,getCooperationShopMyOrderList } from '../lib/api'
 
 Page({
   data: {
@@ -57,7 +57,7 @@ Page({
     if (ordertype === 'all') {
         res = await getWechatOrderList(params);
     } else if (ordertype === 'my' || !ordertype) {
-      res = await getWechatMyOrderList(params);
+      res = await getCooperationShopMyOrderList(params);
     }
     wx.hideLoading()
 

@@ -180,13 +180,13 @@ Page({
     }
     wx.setStorageSync('openLinkCount', 0);
 
-    var nowDate = new Date();
-    nowDate = nowDate.getFullYear() + "-" + (nowDate.getMonth() + 1) + '-' + nowDate.getDate();
-    nowDate = new Date(nowDate).getTime();
+    var nowDate = util.getFormattedCurrentDate();
     var _openAdLogs = wx.getStorageSync('openAdLogs') || [];
     var openAdLogs = [];
     _openAdLogs.map(function (log) {
-      if (new Date(log["date"]).getTime() >= nowDate) {
+      let openAdate = log["date"];
+      let early=util.isEarlier(openAdate, nowDate);
+      if(!early) {
         openAdLogs.unshift(log);
       }
 
@@ -214,7 +214,8 @@ Page({
       let postImageUrl = res.data.postImageUrl
       let downloadfileDomain = _d.length ? _d.split(',') : []
       let businessDomain = _b.length ? _b.split(',') : []
-      let history_post=res.data.history_post   
+      let history_post=res.data.history_post
+      let appid=res.data.appid   
 
       self.setData({
         swipe_nav: swipe_nav,
@@ -227,6 +228,7 @@ Page({
       wx.setStorageSync('zanImageurl', zanImageurl);
       wx.setStorageSync('logoImageurl', logoImageurl);
       wx.setStorageSync('postImageUrl', postImageUrl);
+      wx.setStorageSync('appid', appid);    
     });
   },
 

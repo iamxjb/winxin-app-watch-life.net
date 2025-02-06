@@ -62,6 +62,17 @@ Auth.checkAgreeGetUser = function(e, app, appPage, authFlag) {
                 appPage.setData({ userLevel: res.userLevel });
                 appPage.setData({ userId: res.userId });
 
+                const {storeinfo } =res.userInfo;
+                if(storeinfo &&　storeinfo.storelocation){
+                    appPage.setData({
+                        location: storeinfo.storelocation,
+                        address: storeinfo.storeaddress,
+                        latitude: storeinfo.storelatitude,
+                        longitude: storeinfo.storelongitude,
+                        isOPenlocation: true
+                    });
+                }
+
             }
             else {
                 var userInfo = { avatarUrl: "../images/gravatar.png", nickName: "点击登录", isLogin: false }
@@ -152,10 +163,14 @@ Auth.getUserInfo = function(wxUserInfo, js_code) {
                 userInfo.nickName = response.data.nickname
                 userInfo.avatarUrl = response.data.avatarurl
                 userInfo.enableUpdateAvatarCount = response.data.enableUpdateAvatarCount;
+                userInfo.storeappid = response.data.storeappid;
+                userInfo.storename = response.data.storename;
+                userInfo.storeinfo = response.data.storeinfo;
                 UserInfoData.userInfo = userInfo;
                 UserInfoData.userLevel = userLevel;
                 UserInfoData.errcode = "";
                 UserInfoData.userId = response.data.userId;
+               
                 resolve(UserInfoData);
                 return;
             }

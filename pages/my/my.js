@@ -21,6 +21,8 @@ var webSiteName = config.getWebsiteName;
 var domain = config.getDomain;
 var wechat = config.getWecat
 
+import { postWechatShopInfo } from '../shop/lib/api'
+
 Page({
 
   /**
@@ -43,6 +45,15 @@ Page({
     uploadImageSize: config.uploadImageSize,
     enableWeixinOpen:config.enableWeixinOpen,
     enableWechatshop:config.enableWechatshop,
+    storeappid: '',
+    storename: '',
+    location: "",
+    latitude: "",
+    longitude: "",
+    address: "",
+    isOPenlocation: false,    
+    scopeUserLocation: 'undefined', 
+    appid:'',
     list: [{
       name: "浏览",
       icon: "cicon-eye",
@@ -90,6 +101,37 @@ Page({
         }
       }
     })
+
+    wx.getSetting({
+      success(res) {
+        if (typeof(res.authSetting['scope.userLocation']) == 'undefined') {
+          self.setData({
+            scopeUserLocation: "undefined"
+          });
+        } else {
+          self.setData({
+            scopeUserLocation: res.authSetting['scope.userLocation'] ? 'true' : 'false'
+          });
+
+        }
+      }
+    })
+
+    let  appid=wx.getStorageSync('appid');
+    this.setData({
+      appid:appid
+    })
+
+    const {storeinfo } =this.data.userInfo;
+    if(storeinfo &&　storeinfo.storelocation){
+      this.setData({
+        location: storeinfo.storelocation,
+        address: storeinfo.storeaddress,
+        latitude: storeinfo.storelatitude,
+        longitude: storeinfo.storelongitude,
+        isOPenlocation: true
+      });
+    }
     
   },  
   bindgetuserinfo()
@@ -102,7 +144,131 @@ Page({
     Auth.checkAgreeGetUser(e, app, self, '0');
 
   },
+  copyStoreappid:function(e){
+    let self = this;
+    wx.setClipboardData({
+      data: self.data.appid,
+      success() {
+        wx.showToast({
+          title: '复制成功！',
+          icon: 'none'
+        })
+      },
+      fail() {
+        wx.showToast({
+          title: '复制失败！',
+          icon: 'none'
+        })
+      },
+    });
+  },
 
+  openUserLocation: function(e) {
+    var self = this;
+    if (!e.detail.value) {
+      self.setData({
+        location: '',
+        address: '',
+        latitude: '',
+        longitude: '',
+        isOPenlocation: false
+      });
+      return;
+    }
+    wx.chooseLocation({
+      success: function(res) {
+        // let map = '[minappermap latitude="'+res.latitude+'" longitude="'+res.longitude+'" title="'+res.name+'"]';
+        // let content = self.data.content + map
+    
+        self.setData({
+          location: res.name,
+          address: res.address,
+          latitude: res.latitude,
+          longitude: res.longitude,
+          isOPenlocation: true,
+          // content
+        });
+      },
+      fail: function(err) {
+        if (err.errMsg == 'chooseLocation:fail:auth denied' || err.errMsg == 'chooseLocation:fail auth deny') {
+          wx.showToast({
+            title: "请开启微信定位服务和小程序位置授权",
+            mask: false,
+            icon: "none",
+            duration: 3000
+          });
+
+          self.setData({
+            isOPenlocation: false,
+            scopeUserLocation: 'false'
+          });
+        }else if(err.errMsg == 'chooseLocation:fail api scope is not declared in the privacy agreement')
+          wx.showToast({
+            title: "未在用户隐私保护指引里设置位置授权",
+            mask: false,
+            icon: "none",
+            duration: 3000
+          })
+         else if (err.errMsg == 'chooseLocation:fail cancel') {
+          self.setData({
+            isOPenlocation: false,
+            scopeUserLocation: 'true'
+          });
+
+        }
+
+
+      }
+    })
+
+
+  },
+
+  openUserLocationBtn: function(e) {
+    var self = this;
+    wx.openSetting({
+      success(res) {
+        if (res.authSetting['scope.userLocation']) {
+          wx.chooseLocation({
+            success: function(res) {
+              // let map = '[minappermap latitude="'+res.latitude+'" longitude="'+res.longitude+'" title="'+res.name+'"]';
+              // let content = self.data.content + map;
+              self.setData({
+                location: res.name,
+                address: res.address,
+                latitude: res.latitude,
+                longitude: res.longitude,
+                isOPenlocation: true,
+                scopeUserLocation: 'true',
+                // content
+              });
+            },
+            fail: function(err) {
+              if (err.errMsg == 'chooseLocation:fail cancel') {
+                self.setData({
+                  isOPenlocation: false,
+                  scopeUserLocation: 'true'
+                });
+
+              }
+
+            }
+
+          })
+        } else {
+          wx.showToast({
+            title: "用户未授权使用位置信息",
+            mask: false,
+            icon: "none",
+            duration: 3000,
+            isOPenlocation: false,
+            scopeUserLocation: 'false'
+          });
+
+        }
+      }
+    })
+  },
   refresh: function(e) {
     var self = this;
     if (self.data.openid) {
@@ -317,24 +483,14 @@ Page({
 
   },
   showModal(e) {
-    this.setData({
-      target: e.currentTarget.dataset.key
-    })
-  },
-  onEdit(e) {
     let key = e.currentTarget.dataset.key
-    if (this.data.userInfo.despending == '2' && key === 'description') {
-      wx.showToast({
-        title: '正在审核中,无法编辑',
-        icon: 'none'
-      })
-      return
-    }
-
     this.setData({
-      showPop: true
+      target: key,
+      [key]: this.data.userInfo[key],
     })
   },
+ 
+  
   onClose() {
     this.setData({
       target: false
@@ -342,8 +498,68 @@ Page({
   },
   onSave() {
 
-    this.editNickName()
+    const t = this.data.target
+    
+    if (t === 'nickName') {
+      this.editNickName()
+    }
+    if (t === 'storeappid') {
+      this.postWechatShopInfo()
+    }   
 
+  },
+
+  // 绑定合作小店
+  async postWechatShopInfo() {
+    let storeappid = this.data.storeappid
+    if (!storeappid) {
+      wx.showToast({
+        title: '请微信小店appid！',
+        icon: 'none'
+      })
+      return
+    }
+
+    var storelocation = this.data.location;
+    var storeaddress = this.data.address;
+    var storelatitude = this.data.latitude;
+    var storelongitude = this.data.longitude;
+    let params = {
+      openid: this.data.openid,
+      userid: this.data.userId,
+      storeappid,
+      storelocation,
+      storeaddress,
+      storelatitude,
+      storelongitude
+    }
+    wx.showLoading({
+      title: '正在更新...',
+    })
+    const res= await postWechatShopInfo(params)
+      if (res.code !== 'error') {
+        wx.showToast({
+          title: res.message,
+          icon: 'none'
+        })
+
+        let userInfo = this.data.userInfo        
+        userInfo.storeappid = res.storeappid
+        userInfo.storename = res.storename
+        userInfo.storeinfo = res.storeinfo
+        this.setData({
+          userInfo
+        })
+        wx.setStorageSync('userInfo', userInfo) 
+        this.onClose()
+      } else {
+        wx.showToast({
+          title: res.message,
+          icon: 'none'
+        })
+      }
+      wx.hideLoading()
+   
   },
 
   // 修改个人简介

@@ -135,13 +135,17 @@ Page({
   },
   onUnload: function () {
     //卸载页面，清除计步器
-    clearInterval(this.data.durationIntval);
+    if(this.data.durationIntval)
+    {
+      clearInterval(this.data.durationIntval);
+    }
+    
     if (rewardedVideoAd && rewardedVideoAd.destroy) { 
       rewardedVideoAd.destroy() 
     }
-    if(rewardedVideoAd) {      
-      innerAudioContext.destroy()
-    }
+    // if(rewardedVideoAd) {      
+    //   innerAudioContext.destroy()
+    // }
     ctx=null;
 
 
@@ -448,7 +452,7 @@ Page({
           }
         }
 
-        if (res.data.excitationAd == '1' && !self.data.isShareTimeline) {
+        if (res.data.excitationAd == '1' && !self.data.isShareTimeline && !openAded) {
           self.loadInterstitialAd(res.data.rewardedVideoAdId);
         }
 
@@ -1448,9 +1452,7 @@ hiddenBar() {
         var id = self.data.detail.id;
         if (res && res.isEnded) {
 
-          var nowDate = new Date();
-          nowDate = nowDate.getFullYear() + "-" + (nowDate.getMonth() + 1) + '-' + nowDate.getDate();
-
+          var nowDate = util.getFormattedCurrentDate();        
           var openAdLogs = wx.getStorageSync('openAdLogs') || [];
           // 过滤重复值
           if (openAdLogs.length > 0) {
@@ -1491,20 +1493,20 @@ hiddenBar() {
   readMore: function () {
     var self = this;
 
-    var platform = self.data.platform
-    if (platform == 'devtools') {
+    // var platform = self.data.platform
+    // if (platform == 'devtools') {
 
-      wx.showToast({
-        title: "开发工具无法显示激励视频",
-        icon: "none",
-        duration: 2000
-      });
+    //   wx.showToast({
+    //     title: "开发工具无法显示激励视频",
+    //     icon: "none",
+    //     duration: 2000
+    //   });
 
-      self.setData({
-        detailSummaryHeight: ''
-      })
-    }    
-    else {
+    //   self.setData({
+    //     detailSummaryHeight: ''
+    //   })
+    // }    
+    // else {
       rewardedVideoAd.show()
         .catch(() => {
           rewardedVideoAd.load()
@@ -1531,7 +1533,7 @@ hiddenBar() {
             })
         })
 
-    }
+    //}
 
   }
 

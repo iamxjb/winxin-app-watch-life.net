@@ -46,14 +46,18 @@
   </view>
   <!-- 服务列表 -->
   <view class="ui-BG-card ui-BG">
-    <ui-menu ui=" radius">
-      <block wx:if="{{enableWeixinOpen && enableWechatshop}}">
-      <ui-menu-item arrow title="小店订单" icon="cicon-weixin" isAction data-url="/pages/shop/order/order" bindtap="tapWechatOrder">        
-      </ui-menu-item>
-      </block>
-      <ui-menu-item arrow title="关于我们" icon="cicon-service-fill" isAction data-url="/pages/about/about" bindtap="tapToUrl"></ui-menu-item>
+    <ui-menu ui=" radius">    
       <block wx:if="{{openid !=''}}">
-        <ui-menu-item arrow title="修改昵称" icon="cicon-settings" isAction data-url="/pages/about/about" bindtap="showModal" data-key='drawer'></ui-menu-item>
+        <ui-menu-item arrow title="修改昵称" icon="cicon-settings" isAction  bindtap="showModal" data-key='nickName'></ui-menu-item>
+      </block>
+      <block wx:if="{{openid !=''}}">
+        <ui-menu-item arrow title="微信小店" icon="cicon-shopping-cart" isAction  bindtap="showModal" data-key='storeappid'>
+          <text slot="action" class="text-sm ui-TC-3 m-1">{{userInfo.storename}}</text>
+        </ui-menu-item>
+      </block>
+      <block wx:if="{{openid !='' && enableWechatshop}}">
+      <ui-menu-item arrow title="订单" icon="cicon-order" isAction data-url="/pages/shop/order/order" bindtap="tapWechatOrder">        
+      </ui-menu-item>
       </block>
       <block wx:if="{{!inFinChat}}">
         <view style="position: relative;" wx:if="{{openid !='' && userInfo.enableUpdateAvatarCount !=0}}">
@@ -61,6 +65,7 @@
           <button class="ui-btn kefubtn" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar"></button>
         </view>
       </block>
+      <ui-menu-item arrow title="关于我们" icon="cicon-service-fill" isAction data-url="/pages/about/about" bindtap="tapToUrl"></ui-menu-item>
       <ui-menu-item arrow title="联系我们" icon="cicon-weixin" isAction data-value="{{wechat}}" bindtap="tapCopy">
         <text slot="action" class="text-sm ui-TC-3 m-1">{{wechat}}</text>
       </ui-menu-item>
@@ -84,12 +89,39 @@
   <view class="copyright">
     <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}" />
   </view>
-  <ui-modal show="{{target === 'drawer'}}" mask="40" align="bottom">
+  <ui-modal show="{{target === 'nickName' || target === 'storeappid'}}" mask="40" align="bottom">
     <view class="pop-edit">
       <view class="pop-header">
-        <view class="title">修改昵称</view>
+        <view class="title" wx:if="{{target === 'nickName'}}">修改昵称</view>
+         <view class="title" wx:if="{{target === 'storeappid'}}">绑定你的微信小店</view>
       </view>
-      <input class="pop-input" model:value="{{nickName}}" type="nickname" placeholder="请输入昵称" />
+      <input wx:if="{{target === 'nickName'}}" class="pop-input" model:value="{{nickName}}" type="nickname" placeholder="请输入昵称" />
+      <input wx:if="{{target === 'storeappid'}}" class="pop-input" model:value="{{storeappid}}" type="text" placeholder="请输入微信小店appid" />
+
+    <view class="switch-box" wx:if="{{target === 'storeappid'}}">
+        <view class="switch-item">
+          <view>
+            开启小店位置
+            <view class="address-tips">              
+              <view wx:if="{{location!='' && isOPenlocation}}">
+                <text class="cicon-road-map" />
+                {{location}}
+              </view>
+            </view>
+          </view>
+          <view wx:if="{{scopeUserLocation=='undefined' || scopeUserLocation=='true'}}">
+            <switch checked="{{isOPenlocation}}" bindchange="openUserLocation" />
+          </view>
+          <view wx:else>
+            <button hover-class="none" bindtap="openUserLocationBtn">立即开启</button>
+          </view>
+        </view>
+    </view>
+    <view class="storetip"  wx:if="{{target === 'storeappid'}}">
+     <view >微信小店需先绑定本小程序为合作账号.</view>
+     <view>本小程序的appid: {{appid}}</view>
+     <view class="btn-copy" catchtap="copyStoreappid"  data-appid="{{appid}}">复制本小程序appid</view>
+     </view>
       <view class="pop-footer">
         <view class="btn-cancel" bindtap="onClose">取消</view>
         <view class="btn-save" bindtap="onSave">保存</view>

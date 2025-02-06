@@ -8,7 +8,7 @@
  * Copyright (c) 2017  微慕 https://www.minapper.com All rights reserved.
  * 
  */
-import * as api from 'utils/new/api.js'
+import * as api from '/pages/shop/lib/api.js'
 import * as util from 'utils/new/util.js'
 
 import { colorUI } from './utils/uiconfig'

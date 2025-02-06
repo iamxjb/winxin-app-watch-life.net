@@ -1,4 +1,4 @@
-<van-tabs
+<!-- <van-tabs
   active="{{active}}"
   color="#2f80ed"
   line-width="20"
@@ -7,16 +7,16 @@
   swipeable
   sticky
   bind:change="onTabChange"
->
-  <van-tab
+> -->
+  <!-- <van-tab
     wx:for="{{tabList}}"
     wx:key="idx"
     wx:for-index="idx"
     wx:for-item="tab"
     title="{{tab.title}}"
     name="{{tab.status}}"
-  >
-    <view wx:for="{{orderList}}" wx:key="index" class="order-item">
+  > -->
+    <!-- <view wx:for="{{orderList}}" wx:key="index" class="order-item">
       <view wx:for="{{item.productInfo}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex" class="goods-item" data-order_id="{{item.order_id}}" catchtap="openStoreOrderDetail" >
         <van-card
           num="{{ subItem.sku_cnt }}"
@@ -37,12 +37,38 @@
           </view>
         </van-card>
       </view>
+    </view> -->
+
+    <!-- 空态 -->
+    <!-- <van-empty wx:if="{{empty}}" description="暂无订单" />
+  </van-tab>
+</van-tabs> -->
+
+<view wx:for="{{orderList}}" wx:key="index" class="order-item">
+      <view wx:for="{{item.productInfo}}" wx:for-item="subItem" wx:for-index="subIndex" wx:key="subIndex" class="goods-item" data-order_id="{{item.order_id}}" catchtap="openStoreOrderDetail" >
+        <van-card
+          num="{{ subItem.sku_cnt }}"
+          price="{{ subItem.sale_price/100 }}"
+          origin-price="{{ subItem.market_price/100 }}"
+          title="{{ subItem.title }}"
+          thumb="{{ subItem.thumb_img }}"
+          thumb-mode="aspectFill"
+          data-info="{{subItem}}"
+          data-path="goods-detail"
+        >
+          <view
+            slot="footer"
+            wx:if="{{ subIndex === item.productInfo.length - 1}}"
+          >
+            <view class="price-total">合计：<text class="price-unit">￥</text><text class="price-num">{{item.order_price}}</text></view>
+            <!-- <van-button size="small" round data-info="{{item}}" catchtap="onOpenOrderDetail">订单信息</van-button> -->
+          </view>
+        </van-card>
+      </view>
     </view>
 
     <!-- 空态 -->
     <van-empty wx:if="{{empty}}" description="暂无订单" />
-  </van-tab>
-</van-tabs>
 
 <van-popup
   title="订单详情"

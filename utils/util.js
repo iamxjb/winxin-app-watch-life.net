@@ -22,6 +22,36 @@ function formatTime(date) {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+function getFormattedCurrentDate() {
+    const now = new Date();
+    
+    // 获取年月日（本地时区）
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // 月份从0开始需+1
+    const day = String(now.getDate()).padStart(2, '0');
+
+    return `${year}-${month}-${day}`;
+}
+
+function compareDates(dateStrA, dateStrB) {
+    // 日期解析器（本地时区安全）
+    const parse = (str) => {
+        const [y, m, d] = str.split('-').map(Number)
+        return new Date(y, m-1, d) // 月份需要-1
+    }
+
+    const dateA = parse(dateStrA)
+    const dateB = parse(dateStrB)
+
+    if (dateA < dateB) return -1  // A更早
+    if (dateA > dateB) return 1   // B更早
+    return 0                      // 相等
+}
+
+function isEarlier(dateStrA, dateStrB) {
+    return new Date(...dateStrA.split('-').map((v,i) => i===1 ? v-1 : v)) < 
+           new Date(...dateStrB.split('-').map((v,i) => i===1 ? v-1 : v))
+}
 function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -306,6 +336,9 @@ function datefomate(time,format) {
 
 module.exports = {
   formatTime: formatTime,
+  getFormattedCurrentDate: getFormattedCurrentDate,
+  compareDates: compareDates,
+  isEarlier: isEarlier,
   getDateDiff: getDateDiff,
   cutstr:cutstr,
   removeHTML:removeHTML,

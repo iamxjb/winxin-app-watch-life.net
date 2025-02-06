@@ -133,6 +133,14 @@ font-size: 15px;
 .cicon-settings{
   color:#087cca;
 }
+
+.cicon-shopping-cart{
+  color:#b0ca08;
+}
+.cicon-order{
+  color:#45ca08;
+}
+
 .cicon-avatar{
   color:#ca0880;
 }
@@ -170,4 +178,81 @@ font-size: 15px;
 
 .pop-header .title {
   font-weight: 500;
+}
+
+/* 开关：开启位置、广告 */
+
+.switch-box {
+  margin-top: 16rpx;
+  background: #fff;
+  font-size: 15px;
+  color: #333;
+}
+
+.switch-item {
+  height: 120rpx;
+  border: 1rpx solid #eee;
+  padding: 0 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.switch-item button {
+  font-size: 15px;
+  color: #2f80ed;
+  padding: 0;
+  background: none;
+}
+
+.switch-item button::after {
+  border: none;
+}
+
+.address-tips {
+  font-size: 12px;
+  color: #959595;
+  width: 480rpx;
+  overflow:  hidden;
+  text-overflow: ellipsis;
+  white-space:  nowrap;
+}
+
+.address-tips .icon-address {
+  font-size: 12px;
+  margin: 0;
+}
+
+.tags-real {
+  border: 2rpx solid #c4c4c4;
+  border-radius: 200rpx;
+  background: #fff;
+  height: 60rpx;
+  line-height: 60rpx;
+  display: inline-block;
+  font-size: 28rpx;
+  color: #4c4c4c;
+  padding: 0 14rpx 0 20rpx;
+  margin-bottom: 24rpx;
+  margin-right: 24rpx;
+}
+
+.storetip{
+  font-size: 16px;
+  color: #333;
+  line-height: 2;
+}
+
+.storetip > .btn-copy {
+  margin-top: 20rpx;
+  height: 72rpx;
+  width: 400rpx;
+  border-radius: 36rpx;
+  background: #2f80ed;
+  font-size: 30rpx;
+  font-weight: 500;
+  text-align: center;
+  color: #fff;
+  line-height: 72rpx;
+  margin: 0 auto 20rpx;
 }
