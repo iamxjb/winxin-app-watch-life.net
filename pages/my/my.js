@@ -203,12 +203,18 @@ Page({
             scopeUserLocation: 'false'
           });
         }else if(err.errMsg == 'chooseLocation:fail api scope is not declared in the privacy agreement')
+        {
           wx.showToast({
             title: "未在用户隐私保护指引里设置位置授权",
             mask: false,
             icon: "none",
             duration: 3000
           })
+          self.setData({
+            isOPenlocation: false,
+            scopeUserLocation: 'false'
+          });
+        }
          else if (err.errMsg == 'chooseLocation:fail cancel') {
           self.setData({
             isOPenlocation: false,
@@ -514,7 +520,7 @@ Page({
     let storeappid = this.data.storeappid
     if (!storeappid) {
       wx.showToast({
-        title: '请微信小店appid！',
+        title: '请输入微信小店appid！',
         icon: 'none'
       })
       return
