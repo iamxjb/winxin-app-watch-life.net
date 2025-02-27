@@ -1,0 +1,13 @@
+<view class="page">
+  <view wx:for="{{shopList}}" wx:key="index" class="store-item">
+    <store-home appid="{{item.appid}}" />
+    <view
+      class="store-name"
+      data-item="{{item}}"
+      bindtap="openStoreProduct"
+    >
+      <view>{{item.nickname}}小店的商品</view>
+      <text class="iconfont icon-arrow-right" />
+    </view>
+  </view>
+</view>

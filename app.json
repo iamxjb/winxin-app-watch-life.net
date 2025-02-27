@@ -20,10 +20,11 @@
     "pages/my/profile/index",
     "pages/channels/channels",
     "pages/rand/rand",
-
     "pages/shop/index",
     "pages/shop/order/order",
-    "pages/shop/list/list"
+    "pages/shop/list/list",
+    "pages/shop/cooperation/shop/list",
+    "pages/shop/cooperation/shop/home"
   ],
   "window": {
     "backgroundTextStyle": "light",

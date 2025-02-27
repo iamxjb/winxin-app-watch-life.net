@@ -1,0 +1,29 @@
+page {
+  background: #f5f7f7;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.store-item {
+  background: #FFF;
+  margin-top: 30rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 4px 8px #EEE;
+}
+
+.store-name {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  font-weight: 500;
+  padding: 40rpx 20rpx;
+}
+
+.store-name .iconfont {
+  font-size: 24rpx;
+  color: #999;
+}

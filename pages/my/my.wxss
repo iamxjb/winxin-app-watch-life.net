@@ -150,17 +150,18 @@ font-size: 15px;
 .cicon-clothes{
   font-size: 13px;
   color:#FFB300;
-}/* 编辑弹窗 */
+}
+
+/* 编辑弹窗 */
 .pop-input{
   background-color: #f5f5f5;
   padding: 24rpx 12rpx;
   border-radius: 12rpx;
   width: auto;
 }
+
 .pop-edit {
- 
   padding: 24rpx 24rpx 120rpx 24rpx;
-   
 }
 
 .pop-header {
@@ -180,79 +181,70 @@ font-size: 15px;
   font-weight: 500;
 }
 
-/* 开关：开启位置、广告 */
-
-.switch-box {
-  margin-top: 16rpx;
-  background: #fff;
-  font-size: 15px;
-  color: #333;
+.pop-shop {
+  padding: 40rpx 0 80rpx;
 }
 
-.switch-item {
-  height: 120rpx;
-  border: 1rpx solid #eee;
-  padding: 0 24rpx;
+.pop-shop-form-item {
   display: flex;
+  padding: 30rpx 0;
+  border-bottom: 1px solid #EEE;
+}
+
+.pop-shop-form-label {
+  width: 280rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #666;
+}
+
+.pop-shop-form-item input {
+  flex: 1;
+}
+
+.pop-shop-form-item-switch {
   justify-content: space-between;
   align-items: center;
 }
 
-.switch-item button {
+.pop-shop-form-item-switch button {
   font-size: 15px;
   color: #2f80ed;
   padding: 0;
   background: none;
 }
 
-.switch-item button::after {
+.pop-shop-form-item-switch button::after {
   border: none;
 }
 
-.address-tips {
-  font-size: 12px;
-  color: #959595;
-  width: 480rpx;
-  overflow:  hidden;
-  text-overflow: ellipsis;
-  white-space:  nowrap;
+.pop-shop-form-item-switch .address {
+  font-size: 26rpx;
+  flex: 1;
 }
 
-.address-tips .icon-address {
-  font-size: 12px;
-  margin: 0;
+.pop-shop-form-item-switch .address-label {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #666;
 }
 
-.tags-real {
-  border: 2rpx solid #c4c4c4;
-  border-radius: 200rpx;
-  background: #fff;
-  height: 60rpx;
-  line-height: 60rpx;
-  display: inline-block;
+.pop-shop-tip {
+  margin-top: 40rpx;
   font-size: 28rpx;
-  color: #4c4c4c;
-  padding: 0 14rpx 0 20rpx;
-  margin-bottom: 24rpx;
-  margin-right: 24rpx;
-}
-
-.storetip{
-  font-size: 16px;
-  color: #333;
+  color: #666;
   line-height: 2;
 }
 
-.storetip > .btn-copy {
-  margin-top: 20rpx;
-  height: 72rpx;
-  width: 400rpx;
+.pop-shop-tip .btn-copy {
+  display: inline-block;
+  height: 48rpx;
+  padding: 0 30rpx;
+  margin-left: 20rpx;
   border-radius: 36rpx;
-  background: #2f80ed;
-  font-size: 30rpx;
-  font-weight: 500;
-  text-align: center;
-  color: #fff;
-  line-height: 72rpx;
-  margin: 0 auto 20rpx;
+  background: #EEE;
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #666;
+  line-height: 48rpx;
 }

@@ -89,6 +89,7 @@
   <view class="copyright">
     <template is="tempCopyright" data="{{webSiteName:webSiteName,domain:domain}}" />
   </view>
+
   <ui-modal show="{{target === 'nickName' || target === 'storeappid'}}" mask="40" align="bottom">
     <view class="pop-edit">
       <view class="pop-header">
@@ -96,32 +97,32 @@
          <view class="title" wx:if="{{target === 'storeappid'}}">绑定你的微信小店</view>
       </view>
       <input wx:if="{{target === 'nickName'}}" class="pop-input" model:value="{{nickName}}" type="nickname" placeholder="请输入昵称" />
-      <input wx:if="{{target === 'storeappid'}}" class="pop-input" model:value="{{storeappid}}" type="text" placeholder="请输入微信小店appid" />
 
-    <view class="switch-box" wx:if="{{target === 'storeappid'}}">
-        <view class="switch-item">
-          <view>
-            开启小店位置
-            <view class="address-tips">              
-              <view wx:if="{{location!='' && isOPenlocation}}">
-                <text class="cicon-road-map" />
-                {{location}}
-              </view>
+      <view class="pop-shop" wx:if="{{target === 'storeappid'}}">
+        <view class="pop-shop-form-item">
+          <text class="pop-shop-form-label">微信小店appid</text>
+          <input
+            model:value="{{storeappid}}"
+            type="text" 
+            placeholder="请输入微信小店appid"
+          />
+        </view>
+        <view class="pop-shop-form-item pop-shop-form-item-switch">
+          <view class="address" >
+            <text class="address-label">开启小店位置</text>
+            <view wx:if="{{location!='' && isOPenlocation}}">
+              <text class="cicon-road-map" />
+              {{location}}
             </view>
           </view>
-          <view wx:if="{{scopeUserLocation=='undefined' || scopeUserLocation=='true'}}">
-            <switch checked="{{isOPenlocation}}" bindchange="openUserLocation" />
-          </view>
-          <view wx:else>
-            <button hover-class="none" bindtap="openUserLocationBtn">立即开启</button>
-          </view>
+          <switch wx:if="{{scopeUserLocation=='undefined' || scopeUserLocation=='true'}}" checked="{{isOPenlocation}}" bindchange="openUserLocation" />
+          <button wx:else hover-class="none" bindtap="openUserLocationBtn">立即开启</button>
         </view>
-    </view>
-    <view class="storetip"  wx:if="{{target === 'storeappid'}}">
-     <view >微信小店需先绑定本小程序为合作账号.</view>
-     <view>本小程序的appid: {{appid}}</view>
-     <view class="btn-copy" catchtap="copyStoreappid"  data-appid="{{appid}}">复制本小程序appid</view>
-     </view>
+        <view class="pop-shop-tip">
+          <text>* 微信小店需先绑定本小程序为合作账号, 本小程序的 appid 为: {{appid}}</text>
+          <text class="btn-copy" catchtap="copyStoreappid"  data-appid="{{appid}}">复制</text>
+        </view>
+      </view>
       <view class="pop-footer">
         <view class="btn-cancel" bindtap="onClose">取消</view>
         <view class="btn-save" bindtap="onSave">保存</view>

@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "default",
+  "usingComponents": {
+    "goods-item": "../../components/goods-item/goods-item"
+  }
+}
