@@ -108,13 +108,18 @@
     "uploadFile": 10000,
     "downloadFile": 10000
   },
-  "permission": {    
+  "permission": {
+    "scope.userFuzzyLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    },
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "requiredPrivateInfos": [    
-    "chooseLocation"
+  "requiredPrivateInfos": [
+    "chooseAddress",
+    "chooseLocation",
+    "getFuzzyLocation"
   ],
   "plugins": {
     

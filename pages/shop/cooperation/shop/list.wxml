@@ -7,7 +7,7 @@
       bindtap="openStoreProduct"
     >
       <view>{{item.nickname}}小店的商品</view>
-      <text class="iconfont icon-arrow-right" />
+      <text class="_icon-forward item--_icon-forward" />
     </view>
   </view>
 </view>

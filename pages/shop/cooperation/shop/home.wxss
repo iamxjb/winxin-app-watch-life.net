@@ -1,3 +1,30 @@
 page {
   background: #FAFAFA;
 }
+
+.info {
+  padding: 24rpx;
+}
+
+.company {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+}
+
+.info-item {
+  font-size: 14px;
+  margin-bottom: 10rpx;
+}
+
+.contact-btn {
+  width: 320rpx;
+  height: 88rpx;
+  border-radius: 44rpx;
+  margin: 40rpx auto;
+  padding: 0;
+  font-size: 14px;
+  color: #333;
+  line-height: 88rpx;
+  background: rgba(255, 255, 255, .8);
+}
