@@ -12,8 +12,8 @@ Page({
     memberUserInfo: {},
     hasMore: true,
     tabList: [
-      { name: '商品' },
-      { name: '分类' },
+      { name: '小店商品' },
+      // { name: '分类' },
     ],
     activeTab: 0,
     nextKey: '',
