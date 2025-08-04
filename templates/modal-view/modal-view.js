@@ -44,16 +44,13 @@ function ModalViewClass() {
             let page = this
             var formData = this.data.__modalView__.formData
             var errorMessage = null
-            console.log(this.data.__modalView__.inputFields)
-            //   for (var i = 0; i < this.data.__modalView__.inputFields.length; i++) {
-            //     var field = this.data.__modalView__.inputFields[i]
-            //     var value = formData[i]
-            //     if (field.isRequired && !value) {
-            //       errorMessage = field.fieldPlaceHolder
-            //       break
-            //     }
-            //   }
-            page.savePosterImage(this.data.__modalView__.inputFields[0].fieldDatasource);
+            var entrancePath="pages/detail/detail?id="+this.data.postID;
+            console.log(this.data.__modalView__.inputFields)            
+            //page.savePosterImage(this.data.__modalView__.inputFields[0].fieldDatasource);
+            wx.showShareImageMenu({  //打开分享图片弹窗，可以将图片发送给朋友、收藏或下载
+                path: this.data.__modalView__.inputFields[0].fieldDatasource,
+                entrancePath:entrancePath
+            })
             if (errorMessage) {
                 page.setData({
                     '__modalView__.reveal': false

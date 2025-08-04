@@ -29,7 +29,7 @@
     </view>
     <view class="modal-footer">
       <!-- <view class="btn-cancel" bindtap="__modalView__onCancel" data-status="cancel">取消</view> -->
-      <view class="btn-confirm" bindtap="__modalView__onConfirm" data-status="confirm">保存至手机相册分享</view>
+      <view class="btn-confirm" bindtap="__modalView__onConfirm" data-status="confirm">分享给朋友</view>
     </view>
   </view>
 </template>
