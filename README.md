@@ -5,7 +5,7 @@
 
 -  **官方网站** ：https://www.minapper.com
 
--  **最新版本** ：v5.0.5
+-  **最新版本** ：v5.1.0
 
 -  **作者微信** ：iamxjb
 
@@ -21,6 +21,10 @@
 
 -  **配套后端wordpress插件** ：https://gitee.com/iamxjb/rest-api-to-miniprogram
 
+
+-  **官方公众号** 
+
+<img src="https://www.watch-life.net/images/2025/08/minapper-gzh-1024x374.bmp" alt="" width="625" height="228" class="aligncenter size-large wp-image-3113" />
 
 ### 一、功能清单：
 
