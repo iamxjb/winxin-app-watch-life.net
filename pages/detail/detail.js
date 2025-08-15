@@ -1492,21 +1492,6 @@ hiddenBar() {
   // 阅读更多
   readMore: function () {
     var self = this;
-
-    // var platform = self.data.platform
-    // if (platform == 'devtools') {
-
-    //   wx.showToast({
-    //     title: "开发工具无法显示激励视频",
-    //     icon: "none",
-    //     duration: 2000
-    //   });
-
-    //   self.setData({
-    //     detailSummaryHeight: ''
-    //   })
-    // }    
-    // else {
       rewardedVideoAd.show()
         .catch(() => {
           rewardedVideoAd.load()

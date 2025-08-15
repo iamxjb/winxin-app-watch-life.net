@@ -9,21 +9,22 @@
   top: 0;
   left: 0;
   background: #000;
-  opacity: 0.5;
+  opacity: 0.6;
   overflow: hidden;
   z-index: 9000;
   color: #fff;
 }
 .modal-dialog {
   width: 600rpx;
-  border-radius: var(--radius);
   /*height: 90%;*/
   overflow: hidden;
   position: fixed;
-  top: 10%;
+  top: 2%;
   left: 75rpx;
   z-index: 9999;
-  background: #f9f9f9;
+  /* background: #f9f9f9; */
+  /* margin: -200rpx 75rpx; */
+  /* border-radius: 20rpx; */
 }
 .modal-title {
   padding-top: 50rpx;
@@ -31,14 +32,20 @@
   color: #030303;
   text-align: center;
 }
-
+.modal-content {
+  /* padding: 60rpx 32rpx 40rpx 32rpx;
+  border-radius: 20rpx; */
+}
 .modal-input,.modal-input_solo,.modal-input_hd,.modal-input_bd,.modal-input_ft {
   display: flex;
   background: #fff;
   font-size: 28rpx;
 }
 .modal-input_solo {
+  /* margin: 0 auto; 
+  border: 2rpx solid #ddd; */
   width: 600rpx;
+  /* border-radius: 20rpx; */
 }
 
 .modal-input_solo image {
@@ -90,13 +97,20 @@
   font-size: 28rpx;
 }
 .modal-footer {
+  /* background: red; */
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   /* border-top: 1px solid #dedede; */
   /* margin-top:60rpx; */
-  background-color: #fff;
+  /* background-color: #fff; */
 
+}
+.modal-tip { 
+  font-size: 20rpx;
+  color: #EEE;
+  text-align: center;
 }
 .btn-cancel {
   width: 50%;
@@ -106,9 +120,11 @@
 }
 .btn-confirm {
   /* width: 50%; */
+  box-sizing: border-box;
   width: 320rpx;
   height: 80rpx;
-  border: 1rpx solid #c4c4c4;
+  /* border: 1rpx solid #c4c4c4; */
+  background: #FFF;
   border-radius: 40rpx;
   font-size: 28rpx;
   color: #333;
@@ -116,5 +132,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 32rpx 0;
+  margin: 32rpx 0 22rpx;
 }

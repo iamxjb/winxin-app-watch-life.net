@@ -45,6 +45,8 @@ function ModalViewClass() {
             var formData = this.data.__modalView__.formData
             var errorMessage = null
             var entrancePath="pages/detail/detail?id="+this.data.postID;
+            var no_html_content=this.data.detail.content_nohtml;
+            var title = "标题:"+this.data.detail.title.rendered+'\n';
             console.log(this.data.__modalView__.inputFields)            
             //page.savePosterImage(this.data.__modalView__.inputFields[0].fieldDatasource);
             wx.showShareImageMenu({  //打开分享图片弹窗，可以将图片发送给朋友、收藏或下载
@@ -89,6 +91,24 @@ function ModalViewClass() {
                 })
             } else {
                 page.__modalView__onHideModal()
+                if(title && no_html_content)
+        {
+          wx.setClipboardData({
+              data: title + no_html_content,
+              success:res=> {
+                wx.getClipboardData({
+                  success: function(res) {
+                  //  wx.showToast({
+                  //   title: '内容已复制,发表公众号时可粘贴',
+                  //   icon: "none",
+                  //   duration: 5000
+                  // });
+
+                  }
+                })
+              }
+            })
+        }
                 typeof page.data.__modalView__.confirm === 'function' && page.data.__modalView__.confirm(formData)
             }
         },

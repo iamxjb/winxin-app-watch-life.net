@@ -22,7 +22,7 @@
             <textarea class="input_texarea" placeholder-class="input-holder" value="{{formData[i]}}" placeholder="{{item.fieldPlaceHolder}}" bindblur="__modalView__onTextBlur" data-field_index="{{i}}"/> 
           </block>
           <block wx:elif="{{item.fieldType == 'Image'}}">
-            <image style="background-color: #eeeeee;" mode="aspectFill" src="{{item.fieldDatasource}}" data-src="{{item.fieldDatasource}}"  bindtap="posterImageClick" ></image>
+            <image style="background-color: #eeeeee;" src="{{item.fieldDatasource}}" data-src="{{item.fieldDatasource}}"  mode="aspectFill" bindtap="posterImageClick" ></image>
           </block>
         </view>
       </view>
@@ -30,6 +30,8 @@
     <view class="modal-footer">
       <!-- <view class="btn-cancel" bindtap="__modalView__onCancel" data-status="cancel">取消</view> -->
       <view class="btn-confirm" bindtap="__modalView__onConfirm" data-status="confirm">分享给朋友</view>
+      <view class="modal-tip">分享时内容自动复制，发表公众号可直接粘贴使用</view>
     </view>
+   
   </view>
 </template>
