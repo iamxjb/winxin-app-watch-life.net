@@ -437,7 +437,8 @@ Page({
       url,
       path,
       jumptype,
-      unassociated
+      unassociated,
+      username
     } = e.currentTarget.dataset
 
     if (type === 'apppage') { // 小程序页面         
@@ -479,6 +480,16 @@ Page({
       }
 
     }
+    if(type==='officialprofile')
+      {
+
+        wx.openOfficialAccountProfile({
+          username, // 公众号的微信号
+          fail: err => {
+            console.log('打开公众号openOfficialAccountProfile错误：', err)
+          }
+        })
+      }
   },
   //返回首页
   redictHome: function (e) {
