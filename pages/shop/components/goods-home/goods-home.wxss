@@ -74,11 +74,11 @@
 }
 
 .tab .tab-item {
-  width: 200rpx;
+  width: 100rpx;
   padding: 20rpx 0;
   font-size: 28rpx;
   color: #666;
-  /* text-align: center; */
+  text-align: center;
 }
 
 .tab .tab-item-active {

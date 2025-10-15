@@ -10,7 +10,7 @@
         </view>
 
         <view class="channels-card-wrap">
-            <view wx:if="{{info.enableLive==='1' && channelsLiveInfo !=''}}" class="channels-card"  data-channelsid="{{info.channelsId}}" bindtap="redictChannelsLive">
+            <view wx:if="{{info.enableLive==='1' && channelsLiveInfo}}" class="channels-card"  data-channelsid="{{info.channelsId}}" bindtap="redictChannelsLive">
                 <view class="channels-left">
                     <text class="iconfont icon-live" />
                 </view>

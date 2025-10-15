@@ -319,6 +319,63 @@ Page({
 
     }
   },
+  shareToOfficialAccount: function () {
+    let detail=this.data.detail;    
+    let title=detail.title.rendered;
+    let content=detail.content_nohtml
+    let excerpt=detail.excerpt.rendered;
+    if(excerpt.length>0)
+    {
+      excerpt=util.cutstr(excerpt, 10, 1);
+    }
+   
+    let post_all_images=detail.post_all_images;
+    let post_full_image=detail.post_full_image;
+    let  remote_images=[]
+    if(post_all_images.length<1)
+    {
+      remote_images.push(post_full_image);
+
+    }
+    else
+    {
+      post_all_images.forEach(item => {
+        remote_images.push(item.imagesurl);
+      })
+
+    }   
+
+    let tagname=detail.tag_name;
+    let tags=[];
+    if(tagname.length>0) {
+      tagname.forEach(item => {
+        tags.push(item.name);
+      })
+    }  
+    let downloadTasks = remote_images.map(image =>
+      wxRequest.downloadFile(image)
+    );
+
+   Promise.all(downloadTasks).then(local_images => {
+    wx.shareToOfficialAccount({
+      title: title,
+      content: content,
+      description: excerpt,
+      tags: tags,
+      images: local_images,
+      success: (res) => {
+        console.log("分享成功：", res);
+      },
+      fail: (err) => {
+        console.error("分享失败：", err);
+      }
+    });
+  }).catch(err => {
+    console.error("图片下载失败：", err);
+  });
+   
+  },
+
   getIslike: function () { //判断当前用户是否点赞
     var self = this;
     if (self.data.openid) {

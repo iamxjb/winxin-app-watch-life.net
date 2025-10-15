@@ -90,8 +90,25 @@ function postRequest(url, data) {
     })
 }
 
+/**
+ * 微信请求post方法封装
+ * url
+ * data 以对象的格式传入
+ */
+ function downloadFile(url) {
+    var downloadFile = wxPromisify(wx.downloadFile)
+    return downloadFile({
+        url: url
+    }).then(res=>{
+        return res.tempFilePath
+    })
+}
+
+
 module.exports = {
     postRequest: postRequest,
     getRequest: getRequest,
-    uploadFile:uploadFile
+    uploadFile:uploadFile,
+    downloadFile:downloadFile
+
 }

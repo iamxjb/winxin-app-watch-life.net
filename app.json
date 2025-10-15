@@ -116,14 +116,11 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-  "requiredPrivateInfos": [
-    "chooseAddress",
+  "requiredPrivateInfos": [    
     "chooseLocation",
     "getFuzzyLocation"
   ],
-  "plugins": {
-    
-  },
+  "plugins": {},
   "sitemapLocation": "sitemap.json",
   "resizable": false,
   "darkmode": true,

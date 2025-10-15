@@ -225,11 +225,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 130rpx;
-  height: 130rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
-  border: 1px solid #FFF;
-  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, .32);
+  background: rgba(255, 255, 255, .3);
 }
 
 .img::before {
@@ -239,13 +239,13 @@
   top: 50%;
   left: 50%;
   transform: translateY(-50%);
-  margin-left: -14rpx;
+  margin-left: -8rpx;
   width: 0;
   height: 0;
-  border-top: 26rpx solid transparent;
-  border-right: 40rpx solid transparent;
-  border-bottom: 26rpx solid transparent;
-  border-left: 40rpx solid #FFF;
+  border-top: 16rpx solid transparent;
+  border-right: 24rpx solid transparent;
+  border-bottom: 16rpx solid transparent;
+  border-left: 24rpx solid rgba(255, 255, 255, 0.9);
 }
 
 .channels-list-content {

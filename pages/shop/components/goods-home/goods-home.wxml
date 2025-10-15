@@ -24,7 +24,7 @@
 <van-sticky>
   <view class="tab">
     <view class="tab-inner">
-      <!-- <view class="slider" style="left:{{ (activeTab * 100) + 30 }}rpx" /> -->
+      <view class="slider" style="left:{{ (activeTab * 100) + 30 }}rpx" />
       <view
         wx:for="{{tabList}}"
         wx:key="index"

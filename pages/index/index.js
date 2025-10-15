@@ -490,6 +490,16 @@ Page({
           }
         })
       }
+    if(type==='officialaccountchat')
+      {
+
+         wx.openOfficialAccountChat({
+          username, // 公众号的微信号
+          fail: err => {
+            console.log('打开公众号会话openOfficialAccountChat错误：', err)
+          }
+        })
+      }
   },
   //返回首页
   redictHome: function (e) {

@@ -217,6 +217,9 @@
           <view class=" comment ui-BG-2 ui-TC-2" bindtap="showCustomizeModal" data-key='drawer'>
             <text class="cicon-popover-o ">说点什么吧...</text>
           </view>
+          <view class="icon" catchtap="shareToOfficialAccount">
+            <text class="iconfont icon-officialaccount" style="font-size: 19px;"></text>
+          </view>
           <view class="icon" catchtap="clickLike">
             <text class="iconfont icon-dianzan" style="font-size: 19px;"></text>
           </view>
