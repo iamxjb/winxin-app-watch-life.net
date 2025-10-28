@@ -1,4 +1,16 @@
-<goods-list
-  product-list="{{ productList }}"
-  store-app-id="{{ storeAppId }}"
-/>
+<view wx:if="{{ type==3 }}">
+  <goods-list
+    product-list="{{ productList }}"
+    store-app-id="{{ storeAppId }}"
+  />
+</view>
+<view wx:if="{{ type==2 }}">
+  <block wx:for="{{productList}}" wx:key="index">
+    <store-product
+      appid="{{ item.appid }}"
+      product-id="{{ item.out_product_id || item.product_id }}"
+      product-promotion-link="{{ item.product_promotion_link }}"
+    />
+  </block>
+
+</view>
