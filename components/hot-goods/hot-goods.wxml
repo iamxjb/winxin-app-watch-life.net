@@ -6,7 +6,7 @@
   <scroll-view scroll-x>
     <view class="list">
       <view wx:for="{{goodsList}}" wx:key="productid" class="item">
-        <store-product appid="{{item.storeappid}}" product-id="{{item.productid}}"></store-product>
+        <store-product appid="{{item.storeappid}}" product-id="{{item.productid}}" product-promotion-link="{{item.productpromotionlink}}"></store-product>
       </view>
     </view>
   </scroll-view>
